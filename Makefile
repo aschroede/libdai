@@ -74,7 +74,7 @@ all : $(TARGETS)
 	@echo
 	@echo libDAI built successfully!
 
-EXAMPLES=$(foreach name,example example_bipgraph example_varset example_permute example_sprinkler example_sprinkler_em,examples/$(name)$(EE))
+EXAMPLES=$(foreach name,example example_bipgraph example_varset example_MAP example_permute example_sprinkler example_sprinkler_em,examples/$(name)$(EE))
 EXAMPLES:=$(EXAMPLES) examples/example_sprinkler_gibbs$(EE)
 ifdef WITH_CIMG
   EXAMPLES:=$(EXAMPLES) examples/example_imagesegmentation$(EE)
@@ -149,6 +149,7 @@ glc$(OE) : $(SRC)/glc.cpp $(INC)/glc.h $(HEADERS) $(INC)/cobwebgraph.h
 
 # EXAMPLES
 ###########
+# examples/% : examples/%.cpp 
 
 examples/%$(EE) : examples/%.cpp $(HEADERS) $(LIB)/libdai$(LE)
 	$(CC) $(CCO)$@ $< $(LIBS)
