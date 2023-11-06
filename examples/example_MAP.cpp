@@ -11,6 +11,16 @@
 #include <dai/jtree.h>
 #include <dai/bp.h>
 #include <dai/decmap.h>
+#include <chrono>
+
+// comment for production mode, uncomment for debug messages
+#define DEBUGMODE
+
+#ifdef DEBUGMODE
+	#define DEBUG(a) a;
+#else
+	#define DEBUG(a) ;
+#endif	
 
 using namespace dai;
 using namespace std;
@@ -32,23 +42,66 @@ int main( int argc, char *argv[] ) {
         size_t maxstates = 1000000;
 
 
-        // Bound treewidth for junctiontree
-        bool do_jt = true;
-        try {
-            boundTreewidth(fg, &eliminationCost_MinFill, maxstates );
-        } catch( Exception &e ) {
-            if( e.getCode() == Exception::OUT_OF_MEMORY ) {
-                do_jt = false;
-                cout << "Skipping junction tree (need more than " << maxstates << " states)." << endl;
+        // Example from page 260 of Modeling and Reasoning with Bayesian Networks
+        // MAP variables = {I, J} = {0, 1}
+        // Evidence: O = true. O is variable number 4
+        // Constrained variable order = O, Y, X, I, J = 4, 2, 3, 0, 1
+
+        std::vector<unsigned int> ex_evidenceVars =        { 4 };
+	    std::vector<unsigned int> ex_evidenceValues =      { 1};
+	    std::vector<unsigned int> ex_mapVars =             { 0, 1};
+        std::vector<unsigned int> constrainedElimOrder =   { 4, 2, 3, 0, 1 };
+
+
+        std::vector<unsigned long int> MAP = get_map(fg, ex_evidenceVars, ex_evidenceValues, ex_mapVars, constrainedElimOrder, false);
+    }
+}
+
+
+
+std::vector<unsigned long int> get_map(dai::FactorGraph fg, std::vector<unsigned int> map_vars, std::vector<unsigned int> evidence_vars,
+        std::vector<unsigned int> evidence_values, std::vector<unsigned int> constrainedElimOrder, bool mapList){
+
+        // PruneNetwork
+
+        // Generate constrained variable elimination order (pi)
+
+        // Clamp evidence
+
+        auto start = std::chrono::steady_clock::now();
+        for (int i = 0; i < evidence_vars.size(); i++){
+            fg.clamp(evidence_vars[i], evidence_values[i], false);
+        }
+        auto end = std::chrono::steady_clock::now();
+        std::cout << "Clamping evidence " << std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() << " ns" << std::endl;
+
+
+        for (int i=0; i < constrainedElimOrder.size(); i++){
+
+            // Find all factors fk that mention variable pi[i] 
+            // f <- Then multiply those factors together 
+
+            std::vector<dai::Factor> factors = fg.factors();
+
+            for(int i=0; i<factors.size(); i++){
+                
+                dai::VarSet vars = (factors[i].vars();
+                
+                //vars.contains(constrainedElimOrder[i])
+                //contains())
             }
-            else
-                throw;
+
+            // If variable pi(i) is a map variable then
+            //      fi <- max out pi(i) from f
+            
+
+            // Else
+            //      fi <- sum out pi(i) from f
+
+
+            // Replace all factors  fk in the set of factor S by factor fi
         }
 
-
+        // Return trivial factor
+        
     }
-
-
-
-
-}
