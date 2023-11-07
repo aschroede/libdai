@@ -25,6 +25,65 @@
 using namespace dai;
 using namespace std;
 
+std::vector<unsigned long int> get_map(dai::FactorGraph fg, std::vector<unsigned int> map_vars, std::vector<unsigned int> evidence_vars,
+        std::vector<unsigned int> evidence_values, std::vector<unsigned int> constrainedElimOrder, bool mapList){
+
+        // PruneNetwork
+
+        // Generate constrained variable elimination order (pi)
+
+        // Clamp evidence
+
+        auto start = std::chrono::steady_clock::now();
+        for (int i = 0; i < evidence_vars.size(); i++){
+            fg.clamp(evidence_vars[i], evidence_values[i], false);
+        }
+        auto end = std::chrono::steady_clock::now();
+        std::cout << "Clamping evidence " << std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() << " ns" << std::endl;
+
+
+        for (int i=0; i < constrainedElimOrder.size(); i++){
+
+            // Find all factors fk that mention variable pi[i] 
+            // f <- Then multiply those factors together 
+
+            std::vector<dai::Factor> factors = fg.factors();
+
+            std::vector<dai::Factor> toMultiply;
+
+            for(int j=0; j<factors.size(); j++){
+                
+                dai::VarSet vars = (factors[j].vars());
+
+                for (auto it = vars.begin(); it != vars.end(); ++it){
+
+                    if(it->label() == constrainedElimOrder[i]){
+                        
+                        toMultiply.push_back(factors[j]);
+
+                        cout << "Found something!" << endl;
+                    }
+                }
+                //vars.contains(constrainedElimOrder[i])
+                //contains())
+            }
+
+            
+            // If variable pi(i) is a map variable then
+            //      fi <- max out pi(i) from f
+            
+    
+            // Else
+            //      fi <- sum out pi(i) from f
+
+
+            // Replace all factors  fk in the set of factor S by factor fi
+        }
+
+        // Return trivial factor
+        
+    }
+
 int main( int argc, char *argv[] ) {
 
 
@@ -59,49 +118,3 @@ int main( int argc, char *argv[] ) {
 
 
 
-std::vector<unsigned long int> get_map(dai::FactorGraph fg, std::vector<unsigned int> map_vars, std::vector<unsigned int> evidence_vars,
-        std::vector<unsigned int> evidence_values, std::vector<unsigned int> constrainedElimOrder, bool mapList){
-
-        // PruneNetwork
-
-        // Generate constrained variable elimination order (pi)
-
-        // Clamp evidence
-
-        auto start = std::chrono::steady_clock::now();
-        for (int i = 0; i < evidence_vars.size(); i++){
-            fg.clamp(evidence_vars[i], evidence_values[i], false);
-        }
-        auto end = std::chrono::steady_clock::now();
-        std::cout << "Clamping evidence " << std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() << " ns" << std::endl;
-
-
-        for (int i=0; i < constrainedElimOrder.size(); i++){
-
-            // Find all factors fk that mention variable pi[i] 
-            // f <- Then multiply those factors together 
-
-            std::vector<dai::Factor> factors = fg.factors();
-
-            for(int i=0; i<factors.size(); i++){
-                
-                dai::VarSet vars = (factors[i].vars();
-                
-                //vars.contains(constrainedElimOrder[i])
-                //contains())
-            }
-
-            // If variable pi(i) is a map variable then
-            //      fi <- max out pi(i) from f
-            
-
-            // Else
-            //      fi <- sum out pi(i) from f
-
-
-            // Replace all factors  fk in the set of factor S by factor fi
-        }
-
-        // Return trivial factor
-        
-    }
