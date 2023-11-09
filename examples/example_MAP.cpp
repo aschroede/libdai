@@ -25,8 +25,14 @@
 using namespace dai;
 using namespace std;
 
-std::vector<unsigned long int> get_map(dai::FactorGraph fg, std::vector<unsigned int> map_vars, std::vector<unsigned int> evidence_vars,
+dai::Factor get_map(dai::FactorGraph fg, std::vector<unsigned int> map_vars, std::vector<unsigned int> evidence_vars,
         std::vector<unsigned int> evidence_values, std::vector<unsigned int> constrainedElimOrder, bool mapList){
+        
+        std::vector<unsigned long int> elimVars(begin(constrainedElimOrder), end(constrainedElimOrder));
+
+
+        // Messes up the elimination order and orders based on label (0, 1, 2, 3, 4)
+        std::vector<dai::Var> elimSet = fg.vars();
 
         // PruneNetwork
 
@@ -41,15 +47,17 @@ std::vector<unsigned long int> get_map(dai::FactorGraph fg, std::vector<unsigned
         auto end = std::chrono::steady_clock::now();
         std::cout << "Clamping evidence " << std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() << " ns" << std::endl;
 
+        std::vector<dai::Factor> factors = fg.factors();
 
         for (int i=0; i < constrainedElimOrder.size(); i++){
 
             // Find all factors fk that mention variable pi[i] 
             // f <- Then multiply those factors together 
 
-            std::vector<dai::Factor> factors = fg.factors();
+            // Could also use findFactor and findVars in factorgraph
 
             std::vector<dai::Factor> toMultiply;
+            std::vector<unsigned int> toMultiplyIndices;
 
             for(int j=0; j<factors.size(); j++){
                 
@@ -60,28 +68,93 @@ std::vector<unsigned long int> get_map(dai::FactorGraph fg, std::vector<unsigned
                     if(it->label() == constrainedElimOrder[i]){
                         
                         toMultiply.push_back(factors[j]);
+                        toMultiplyIndices.push_back(j);
 
                         cout << "Found something!" << endl;
                     }
                 }
-                //vars.contains(constrainedElimOrder[i])
-                //contains())
             }
 
-            
-            // If variable pi(i) is a map variable then
-            //      fi <- max out pi(i) from f
-            
-    
-            // Else
-            //      fi <- sum out pi(i) from f
+            // If more than one factor found with the variable to be eliminated,
+            // then multiply together the factors
+            dai::Factor newFactor = toMultiply[0];
+            if(toMultiply.size() > 1){
 
+                for (int i = 1; i<toMultiply.size(); i++){
+
+                    newFactor = newFactor.operator*=(toMultiply[i]);
+                }
+            }
+
+            // Check if variable to eliminate is a MAP variable
+            if (std::find(map_vars.begin(), map_vars.end(), constrainedElimOrder[i]) != map_vars.end()){
+                
+                //dai::Var varToSumOut = new Var()
+
+                // Operator /= expects a const dai::Var &T
+                // So I need to get constrainedElimOrder[i] to be a Var
+                // 
+                // But Var is composed of 
+                //      1) Label
+                //      2) States 
+                // Where do I get the states from? 
+                
+                // If variable pi(i) is a map variable then
+                // fi <- max out pi(i) from f
+                dai::VarSet vars = newFactor.vars();
+
+                dai::VarSet varsToKeep;
+                for (auto it = vars.begin(); it != vars.end(); ++it){
+
+                    if(it->label() == constrainedElimOrder[i]){
+                        continue;
+                    }
+                    else{
+                        varsToKeep.insert(*it);
+                    }
+                }
+                newFactor = newFactor.maxMarginal(varsToKeep, false);
+            }
+
+            // Else fi <- sum out pi(i) from f
+            else{
+                
+                dai::VarSet vars = newFactor.vars();
+
+                dai::VarSet varsToKeep;
+                for (auto it = vars.begin(); it != vars.end(); ++it){
+
+                    if(it->label() == constrainedElimOrder[i]){
+                        continue;
+                    }
+                    else{
+                        varsToKeep.insert(*it);
+                    }
+                }
+                newFactor = newFactor.marginal(varsToKeep, false);
+            }
 
             // Replace all factors  fk in the set of factor S by factor fi
+            // Remove factors to multiply and replace with newFactor
+
+            for (auto it = toMultiply.begin(); it != toMultiply.end(); ++it){
+                factors.erase(std::find_if(factors.begin(), factors.end(), [&](Factor const& f){ return f == *it; }));
+            }
+
+            factors.push_back(newFactor);
+
         }
 
-        // Return trivial factor
-        
+        // Multiply remaining factors
+        dai::Factor newFactor = factors[0];
+        if(factors.size() > 1){
+            for (int i = 1; i<factors.size(); i++){
+
+                newFactor = newFactor.operator*=(factors[i]);
+            }
+        }
+
+        return newFactor;
     }
 
 int main( int argc, char *argv[] ) {
@@ -112,7 +185,7 @@ int main( int argc, char *argv[] ) {
         std::vector<unsigned int> constrainedElimOrder =   { 4, 2, 3, 0, 1 };
 
 
-        std::vector<unsigned long int> MAP = get_map(fg, ex_evidenceVars, ex_evidenceValues, ex_mapVars, constrainedElimOrder, false);
+        dai::Factor MAP = get_map(fg, ex_mapVars, ex_evidenceVars, ex_evidenceValues, constrainedElimOrder, false);
     }
 }
 
