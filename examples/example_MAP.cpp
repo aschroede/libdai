@@ -12,6 +12,7 @@
 #include <dai/bp.h>
 #include <dai/decmap.h>
 #include <chrono>
+#include <stack>
 
 // comment for production mode, uncomment for debug messages
 #define DEBUGMODE
@@ -25,18 +26,72 @@
 using namespace dai;
 using namespace std;
 
+template<class EliminationChoice>
+vector<size_t> getConstrainedElimOrder(const FactorGraph &fg, EliminationChoice f, std::vector<unsigned int> map_vars){
+
+    // Create cluster graph from factor graph
+    ClusterGraph cl( fg, true );
+
+    // Construct set of variable indices for non-Map vars
+    std::set<size_t> nonMapVarindices;
+    std::set<size_t> MapVarindices;
+
+    for( size_t i = 0; i < cl.vars().size(); ++i ){
+
+        auto it = std::find(map_vars.begin(), map_vars.end(), i);
+
+        // If not in map variables add it
+        if (it == map_vars.end()) {
+            nonMapVarindices.insert( i );
+        }
+        else{
+            MapVarindices.insert( i );
+        }
+    }
+
+    vector<size_t> elimOrder;
+
+    while( !nonMapVarindices.empty() ) {
+        size_t i = f( cl, nonMapVarindices );
+        elimOrder.push_back(i);
+        nonMapVarindices.erase( i );
+    }
+
+    while( !MapVarindices.empty() ) {
+        size_t i = f( cl, MapVarindices );
+        elimOrder.push_back(i);
+        MapVarindices.erase( i );
+    }
+
+    return elimOrder;
+
+    // // Obtain elimination sequence
+    // vector<VarSet> ElimVec = _cg.VarElim( greedyVariableElimination( fn ), maxStates ).eraseNonMaximal().clusters();
+
+    // // Calculate treewidth
+    // size_t treewidth = 0;
+    // BigInt nrstates = 0.0;
+    // for( size_t i = 0; i < ElimVec.size(); i++ ) {
+    //     if( ElimVec[i].size() > treewidth )
+    //         treewidth = ElimVec[i].size();
+    //     BigInt s = ElimVec[i].nrStates();
+    //     if( s > nrstates )
+    //         nrstates = s;
+    // }
+
+    // return ElimVec;
+    // //return make_pair(treewidth, nrstates);
+}
+
+
 dai::Factor get_map(dai::FactorGraph fg, std::vector<unsigned int> map_vars, std::vector<unsigned int> evidence_vars,
-        std::vector<unsigned int> evidence_values, std::vector<unsigned int> constrainedElimOrder, bool mapList){
+        std::vector<unsigned int> evidence_values, bool mapList){
         
-        std::vector<unsigned long int> elimVars(begin(constrainedElimOrder), end(constrainedElimOrder));
-
-
-        // Messes up the elimination order and orders based on label (0, 1, 2, 3, 4)
-        std::vector<dai::Var> elimSet = fg.vars();
-
         // PruneNetwork
 
         // Generate constrained variable elimination order (pi)
+        size_t maxstates = 1000000;
+        vector<size_t> constrainedElimOrder = getConstrainedElimOrder(fg, greedyVariableElimination( eliminationCost_MinFill), map_vars);
 
         // Clamp evidence
 
@@ -185,7 +240,7 @@ int main( int argc, char *argv[] ) {
         std::vector<unsigned int> constrainedElimOrder =   { 4, 2, 3, 0, 1 };
 
 
-        dai::Factor MAP = get_map(fg, ex_mapVars, ex_evidenceVars, ex_evidenceValues, constrainedElimOrder, false);
+        dai::Factor MAP = get_map(fg, ex_mapVars, ex_evidenceVars, ex_evidenceValues, false);
     }
 }
 
