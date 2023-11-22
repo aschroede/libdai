@@ -18,6 +18,7 @@
 #include <functional>
 #include <cmath>
 #include <dai/prob.h>
+#include <dai/instantiation.h>
 #include <dai/varset.h>
 #include <dai/index.h>
 #include <dai/util.h>
@@ -58,6 +59,9 @@ class TFactor {
         VarSet _vs;
         /// Stores the factor values
         TProb<T> _p;
+        
+        /// Store the instantiation of maxed out variables
+        Instantiation _i;
 
     public:
     /// \name Constructors and destructors
@@ -76,6 +80,7 @@ class TFactor {
         /// Constructs factor depending on variables in \a vars with all values set to \a p
         TFactor( const VarSet& vars, T p ) : _vs(vars), _p() {
             _p = TProb<T>( BigInt_size_t( _vs.nrStates() ), p );
+            _i = Instantiation(BigInt_size_t( _vs.nrStates() ));
         }
 
         /// Constructs factor depending on variables in \a vars, copying the values from a std::vector<>
@@ -120,8 +125,12 @@ class TFactor {
         /// Sets \a i 'th entry to \a val
         void set( size_t i, T val ) { _p.set( i, val ); }
 
+        void setInstantiation(size_t i, std::map<Var, size_t> val) { _i.set(i, val); }
+
         /// Gets \a i 'th entry
         T get( size_t i ) const { return _p[i]; }
+
+        std::map<Var, size_t> getInstantiation( size_t i ) const { return _i[i]; }
     //@}
 
     /// \name Queries
@@ -495,6 +504,9 @@ class TFactor {
 
         /// Returns max-marginal on \a vars, obtained by maximizing all variables except those in \a vars, and normalizing the result if \a normed == \c true
         TFactor<T> maxMarginal(const VarSet &vars, bool normed=true) const;
+
+        TFactor<T> maxMarginalTransparent(const VarSet &vars, std::vector<std::pair<Var, T>> &_instantiation, bool normed=true) const;
+
     //@}
 };
 
@@ -528,6 +540,79 @@ template<typename T> TFactor<T> TFactor<T>::marginal(const VarSet &vars, bool no
         res.normalize( NORMPROB );
 
     return res;
+}
+
+
+template<typename T> TFactor<T> TFactor<T>::maxMarginalTransparent(const VarSet &vars, std::vector<std::pair<Var, T>> &_instantiation, bool normed) const {
+    
+    // Get the intersection of the input vars (those to not maximise out) and the vars in the factor _vs
+    // In this case it would be {1} intersect {0, 1, 2, 3, 4} = {1}
+    // Residual vars are those that remain after maximizing out (the ones to keep)
+    dai::VarSet res_vars = vars & _vs;
+    dai::VarSet to_max_out = _vs / vars;
+    Var varToMaxOut = to_max_out.front();
+    
+    // Create a new factor "res" that contains the residual variables and set all probabilities to 0.0
+    TFactor<T> res( res_vars, 0.0 );
+
+    // The class IndexFor is an important tool for indexing Factor entries. 
+    // Then the following code: loops over all joint states of the variables in _vs, 
+    // and (size_t)i equals the linear index of the corresponding state of res_vars, 
+    // where the variables in res_vars that are not in forVars assume their zero'th value.
+    IndexFor i_res( res_vars, _vs );
+
+    State S(_vs);
+    // Loop over all entries in the factor's probability table '_p'.
+    for( size_t i = 0; i < _p.size(); i++, ++i_res, S++){
+        
+        std::cout << "State of forVars: " << calcState(_vs, i) << "; ";
+        // If the current entry in '_p' is greater than the corresponding entry in 'res', update 'res'.
+        if( _p[i] > res._p[i_res] ){
+            res.set( i_res, _p[i] );
+            std::map<Var, size_t> rowInstantiation = getInstantiation( i_res );
+
+            // 1. Get variable that is being maxed out
+            // 2. Check if that variable is already in rowInstantiation
+            //  2.1 If it is then update the value of that variable to the current row value (acquire from State object)
+            //  2.2 If not then add it as a new key-value pair in the map for the row instantiation
+            // 3. Put the rowInstantiation into the new factor by calling res.setInstantiation
+            // 4. Things should then work!
+
+
+
+            auto it = rowInstantiation.find(varToMaxOut);
+
+            if (it != rowInstantiation.end()) {
+                // Key exists, update the value
+                it->second = S(varToMaxOut);
+            } else {
+                // Key doesn't exist, add a new key-value pair
+                rowInstantiation[varToMaxOut] = S(varToMaxOut);
+            }
+
+
+            res.setInstantiation( i_res, rowInstantiation);
+            //res.setInstantiation(to_max_out.front(), S(to_max_out.front()));
+            //_instantiation.push_back(std::make_pair(to_max_out.front(), S(to_max_out.front())));
+            std::cout << "Maximising: " << S.get() << std::endl;
+        }
+    }
+
+    if( normed )
+        res.normalize( NORMPROB );
+
+
+    for( State S(_vs); S.valid(); S++ ) {
+        // output state of X and corresponding states of x0, x1
+        std::cout << S.get() << std::endl;
+    }
+
+    // Return the resulting factor.
+    return res;
+
+
+    // Maybe need to use calcState -> Returns a mapping that maps each Var
+    // in a varset to it's state
 }
 
 

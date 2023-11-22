@@ -596,19 +596,26 @@ std::vector<size_t> JTree::findMaximum() const {
         visitedORs[alpha] = true;
 
         // Get marginal of outer region alpha 
+        // Qa = Outer region beliefs
         Prob probF = Qa[alpha].p();
 
         // The allowed configuration is restrained according to the variables assigned so far:
         // pick the argmax amongst the allowed states
         Real maxProb = -numeric_limits<Real>::max();
-        State maxState( OR(alpha).vars() );
+
+        // OR(alpha) returns a constant reference to the outer region alpha.
+        // The outer region consists of a factor defined on a subset of variables and a counting number
+        State maxState = State( OR(alpha).vars() );
         size_t maxcount = 0;
+
+        // Iterate over each row in the table
         for( State s( OR(alpha).vars() ); s.valid(); ++s ) {
             // First, calculate whether this state is consistent with variables that
             // have been assigned already
             bool allowedState = true;
             bforeach( const Var& j, OR(alpha).vars() ) {
                 size_t j_index = findVar(j);
+                unsigned long j_val = s(j);
                 if( visitedVars[j_index] && maximum[j_index] != s(j) ) {
                     allowedState = false;
                     break;
@@ -616,6 +623,7 @@ std::vector<size_t> JTree::findMaximum() const {
             }
             // If it is consistent, check if its probability is larger than what we have seen so far
             if( allowedState ) {
+                Real probs = probF[s];
                 if( probF[s] > maxProb ) {
                     maxState = s;
                     maxProb = probF[s];

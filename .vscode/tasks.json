@@ -29,6 +29,13 @@
             "command": "make",
             "args": ["examples"],
             "problemMatcher": [],
+        },
+        {
+            "type": "shell",
+            "label": "clean",
+            "command": "make",
+            "args": ["clean"],
+            "problemMatcher": [],
         }
     ],
     "version": "2.0.0"

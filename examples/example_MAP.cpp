@@ -51,12 +51,14 @@ vector<size_t> getConstrainedElimOrder(const FactorGraph &fg, EliminationChoice 
 
     vector<size_t> elimOrder;
 
+    // Load up non map vars first
     while( !nonMapVarindices.empty() ) {
         size_t i = f( cl, nonMapVarindices );
         elimOrder.push_back(i);
         nonMapVarindices.erase( i );
     }
 
+    // Then load map vars
     while( !MapVarindices.empty() ) {
         size_t i = f( cl, MapVarindices );
         elimOrder.push_back(i);
@@ -65,36 +67,20 @@ vector<size_t> getConstrainedElimOrder(const FactorGraph &fg, EliminationChoice 
 
     return elimOrder;
 
-    // // Obtain elimination sequence
-    // vector<VarSet> ElimVec = _cg.VarElim( greedyVariableElimination( fn ), maxStates ).eraseNonMaximal().clusters();
-
-    // // Calculate treewidth
-    // size_t treewidth = 0;
-    // BigInt nrstates = 0.0;
-    // for( size_t i = 0; i < ElimVec.size(); i++ ) {
-    //     if( ElimVec[i].size() > treewidth )
-    //         treewidth = ElimVec[i].size();
-    //     BigInt s = ElimVec[i].nrStates();
-    //     if( s > nrstates )
-    //         nrstates = s;
-    // }
-
-    // return ElimVec;
-    // //return make_pair(treewidth, nrstates);
 }
 
 
 dai::Factor get_map(dai::FactorGraph fg, std::vector<unsigned int> map_vars, std::vector<unsigned int> evidence_vars,
         std::vector<unsigned int> evidence_values, bool mapList){
         
-        // PruneNetwork
+        // TODO: PruneNetwork
+
+        std::vector<std::pair<Var, dai::Real>> _instantiation;
 
         // Generate constrained variable elimination order (pi)
-        size_t maxstates = 1000000;
         vector<size_t> constrainedElimOrder = getConstrainedElimOrder(fg, greedyVariableElimination( eliminationCost_MinFill), map_vars);
 
         // Clamp evidence
-
         auto start = std::chrono::steady_clock::now();
         for (int i = 0; i < evidence_vars.size(); i++){
             fg.clamp(evidence_vars[i], evidence_values[i], false);
@@ -102,6 +88,7 @@ dai::Factor get_map(dai::FactorGraph fg, std::vector<unsigned int> map_vars, std
         auto end = std::chrono::steady_clock::now();
         std::cout << "Clamping evidence " << std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() << " ns" << std::endl;
 
+        // Perform Variable Elimination
         std::vector<dai::Factor> factors = fg.factors();
 
         for (int i=0; i < constrainedElimOrder.size(); i++){
@@ -110,9 +97,7 @@ dai::Factor get_map(dai::FactorGraph fg, std::vector<unsigned int> map_vars, std
             // f <- Then multiply those factors together 
 
             // Could also use findFactor and findVars in factorgraph
-
             std::vector<dai::Factor> toMultiply;
-            std::vector<unsigned int> toMultiplyIndices;
 
             for(int j=0; j<factors.size(); j++){
                 
@@ -123,9 +108,6 @@ dai::Factor get_map(dai::FactorGraph fg, std::vector<unsigned int> map_vars, std
                     if(it->label() == constrainedElimOrder[i]){
                         
                         toMultiply.push_back(factors[j]);
-                        toMultiplyIndices.push_back(j);
-
-                        cout << "Found something!" << endl;
                     }
                 }
             }
@@ -144,16 +126,6 @@ dai::Factor get_map(dai::FactorGraph fg, std::vector<unsigned int> map_vars, std
             // Check if variable to eliminate is a MAP variable
             if (std::find(map_vars.begin(), map_vars.end(), constrainedElimOrder[i]) != map_vars.end()){
                 
-                //dai::Var varToSumOut = new Var()
-
-                // Operator /= expects a const dai::Var &T
-                // So I need to get constrainedElimOrder[i] to be a Var
-                // 
-                // But Var is composed of 
-                //      1) Label
-                //      2) States 
-                // Where do I get the states from? 
-                
                 // If variable pi(i) is a map variable then
                 // fi <- max out pi(i) from f
                 dai::VarSet vars = newFactor.vars();
@@ -168,7 +140,7 @@ dai::Factor get_map(dai::FactorGraph fg, std::vector<unsigned int> map_vars, std
                         varsToKeep.insert(*it);
                     }
                 }
-                newFactor = newFactor.maxMarginal(varsToKeep, false);
+                newFactor = newFactor.maxMarginalTransparent(varsToKeep,  _instantiation,  false);
             }
 
             // Else fi <- sum out pi(i) from f
@@ -191,7 +163,6 @@ dai::Factor get_map(dai::FactorGraph fg, std::vector<unsigned int> map_vars, std
 
             // Replace all factors  fk in the set of factor S by factor fi
             // Remove factors to multiply and replace with newFactor
-
             for (auto it = toMultiply.begin(); it != toMultiply.end(); ++it){
                 factors.erase(std::find_if(factors.begin(), factors.end(), [&](Factor const& f){ return f == *it; }));
             }
@@ -225,8 +196,7 @@ int main( int argc, char *argv[] ) {
         // Read FactorGraph from the file specified by the first command line argument
         FactorGraph fg;
         std::cout << "Factor graph path: " << argv[1] << std::endl;
-        fg.ReadFromFile(argv[1]);
-        size_t maxstates = 1000000;
+        fg.ReadFromFile(argv[1]);;
 
 
         // Example from page 260 of Modeling and Reasoning with Bayesian Networks
@@ -241,6 +211,13 @@ int main( int argc, char *argv[] ) {
 
 
         dai::Factor MAP = get_map(fg, ex_mapVars, ex_evidenceVars, ex_evidenceValues, false);
+
+        cout << "Map probability: " << MAP.p() << endl;
+        // std::vector<std::pair<Var, dai::Real>> instantiation = MAP.getInstantiation();
+        
+        // for (const auto& pair : instantiation){
+        //     std::cout << "Var: " << pair.first << " Value: " << pair.second << endl;
+        // }
     }
 }
 
