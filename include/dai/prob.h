@@ -735,7 +735,8 @@ template<typename T> T dist( const TProb<T> &p, const TProb<T> &q, ProbDistType 
 /// Writes a TProb<T> to an output stream
 /** \relates TProb
  */
-template<typename T> std::ostream& operator<< (std::ostream& os, const TProb<T>& p) {
+template<typename T> 
+std::ostream& operator<< (std::ostream& os, const TProb<T>& p) {
     os << "(";
     for( size_t i = 0; i < p.size(); i++ )
         os << ((i != 0) ? ", " : "") << p.get(i);

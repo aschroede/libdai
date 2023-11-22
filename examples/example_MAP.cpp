@@ -167,7 +167,9 @@ dai::Factor get_map(dai::FactorGraph fg, std::vector<unsigned int> map_vars, std
                 factors.erase(std::find_if(factors.begin(), factors.end(), [&](Factor const& f){ return f == *it; }));
             }
 
-            factors.push_back(newFactor);
+            // TODO-Andrew: make sure that correct instantiations are not dependent on the new factor
+            // being on the left during multiplications.
+            factors.insert(factors.begin(), newFactor);
 
         }
 
@@ -213,6 +215,13 @@ int main( int argc, char *argv[] ) {
         dai::Factor MAP = get_map(fg, ex_mapVars, ex_evidenceVars, ex_evidenceValues, false);
 
         cout << "Map probability: " << MAP.p() << endl;
+
+        cout << "Map instantiation: ";
+        for (const auto& myMap : MAP.i()) {
+            std::cout << myMap << endl;
+        }
+
+        //cout << "Map Instantiation: " << MAP.i() << endl;
         // std::vector<std::pair<Var, dai::Real>> instantiation = MAP.getInstantiation();
         
         // for (const auto& pair : instantiation){

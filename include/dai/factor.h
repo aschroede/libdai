@@ -141,6 +141,12 @@ class TFactor {
         /// Returns reference to value vector
         TProb<T>& p() { return _p; }
 
+        /// Returns constant reference to instantiation vector
+        const Instantiation& i() const { return _i; }
+
+        /// Returns reference to the instantiation vector
+        Instantiation& i() { return _i; }
+
         /// Returns a copy of the \a i 'th entry of the value vector
         T operator[] (size_t i) const { return _p[i]; }
 
@@ -357,6 +363,8 @@ class TFactor {
          */
         template<typename binOp> TFactor<T>& binaryOp( const TFactor<T> &g, binOp op ) {
             if( _vs == g._vs ) // optimize special case
+
+                // TODO-Andrew: create optimized case for instantiation as well
                 _p.pwBinaryOp( g._p, op );
             else {
                 TFactor<T> f(*this); // make a copy
@@ -368,8 +376,15 @@ class TFactor {
 
                 _p.p().clear();
                 _p.p().reserve( N );
-                for( size_t i = 0; i < N; i++, ++i_f, ++i_g )
+                _i.i().clear();
+                _i.i().reserve( N );
+                for( size_t i = 0; i < N; i++, ++i_f, ++i_g ){
                     _p.p().push_back( op( f._p[i_f], g._p[i_g] ) );
+
+                    // TODO - Make sure that it is not dependent on instantiation being in left factor
+                    // Should be able to compute if on the right as well, right now won't work. 
+                    _i.i().push_back( f._i[i_f]);
+                }
             }
             return *this;
         }

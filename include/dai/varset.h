@@ -97,7 +97,7 @@ class VarSet : public SmallSet<Var> {
     //@{
         /// Default constructor (constructs an empty set)
         VarSet() : SmallSet<Var>() {}
-
+    
         /// Construct from \link SmallSet \endlink<\link Var \endlink> \a x
         VarSet( const SmallSet<Var> &x ) : SmallSet<Var>(x) {}
 

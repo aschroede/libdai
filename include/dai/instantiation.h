@@ -147,14 +147,15 @@ class Instantiation {
 
 
 
-// /// Writes a TProb<T> to an output stream
-// /** \relates TProb
-//  */
-// std::ostream& operator<< (std::ostream& os, const Instantiation& p) {
-//     os << "(";
-//     for( size_t i = 0; i < p.size(); i++ )
-//         os << ((i != 0) ? ", " : "") << p.get(i);
-//     os << ")";
+/// Writes a TProb<T> to an output stream
+/** \relates TProb
+ */
+// std::ostream& operator<< (std::ostream& os, const Instantiation& i) {
+//     os << "[";
+//     for (const auto& myMap : i) {
+//         os << myMap << ", ";
+//     }
+//     os << "]";
 //     return os;
 // }
 
