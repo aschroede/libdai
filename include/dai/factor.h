@@ -362,10 +362,21 @@ class TFactor {
          *  \param op Operation of type \a binOp
          */
         template<typename binOp> TFactor<T>& binaryOp( const TFactor<T> &g, binOp op ) {
-            if( _vs == g._vs ) // optimize special case
+            
+            // Check if right operand has instantiation data
+            bool instantiationDataOnRight = std::all_of(g._i.begin(), g._i.end(), [](const auto& map) { return !map.empty(); });
 
-                // TODO-Andrew: create optimized case for instantiation as well
+            // optimize special case
+            if( _vs == g._vs ) {
+
                 _p.pwBinaryOp( g._p, op );
+
+                // If instantiation data is in right factor, copy to left one which is the one that is returned.
+                // Else if data is in left then no need to do anything.
+                if (instantiationDataOnRight == true)
+                    _i.pwBinaryOp( g._i );
+            }
+
             else {
                 TFactor<T> f(*this); // make a copy
                 _vs |= g._vs;
@@ -378,12 +389,21 @@ class TFactor {
                 _p.p().reserve( N );
                 _i.i().clear();
                 _i.i().reserve( N );
+                
+
                 for( size_t i = 0; i < N; i++, ++i_f, ++i_g ){
+                    // Collect probability data
                     _p.p().push_back( op( f._p[i_f], g._p[i_g] ) );
 
-                    // TODO - Make sure that it is not dependent on instantiation being in left factor
-                    // Should be able to compute if on the right as well, right now won't work. 
-                    _i.i().push_back( f._i[i_f]);
+                    // If right factor contains instantiation data then copy it over
+                    if (instantiationDataOnRight == true) {
+                        _i.i().push_back( g._i[i_g]);
+                    }
+
+                    // Else left factor has instantiation data to copy over
+                    else{
+                        _i.i().push_back( f._i[i_f]);
+                    }
                 }
             }
             return *this;
@@ -580,20 +600,10 @@ template<typename T> TFactor<T> TFactor<T>::maxMarginalTransparent(const VarSet 
     // Loop over all entries in the factor's probability table '_p'.
     for( size_t i = 0; i < _p.size(); i++, ++i_res, S++){
         
-        std::cout << "State of forVars: " << calcState(_vs, i) << "; ";
         // If the current entry in '_p' is greater than the corresponding entry in 'res', update 'res'.
-        if( _p[i] > res._p[i_res] ){
+        if( _p[i] >= res._p[i_res] ){
             res.set( i_res, _p[i] );
             std::map<Var, size_t> rowInstantiation = getInstantiation( i_res );
-
-            // 1. Get variable that is being maxed out
-            // 2. Check if that variable is already in rowInstantiation
-            //  2.1 If it is then update the value of that variable to the current row value (acquire from State object)
-            //  2.2 If not then add it as a new key-value pair in the map for the row instantiation
-            // 3. Put the rowInstantiation into the new factor by calling res.setInstantiation
-            // 4. Things should then work!
-
-
 
             auto it = rowInstantiation.find(varToMaxOut);
 
@@ -605,22 +615,14 @@ template<typename T> TFactor<T> TFactor<T>::maxMarginalTransparent(const VarSet 
                 rowInstantiation[varToMaxOut] = S(varToMaxOut);
             }
 
-
             res.setInstantiation( i_res, rowInstantiation);
             //res.setInstantiation(to_max_out.front(), S(to_max_out.front()));
             //_instantiation.push_back(std::make_pair(to_max_out.front(), S(to_max_out.front())));
-            std::cout << "Maximising: " << S.get() << std::endl;
         }
     }
 
     if( normed )
         res.normalize( NORMPROB );
-
-
-    for( State S(_vs); S.valid(); S++ ) {
-        // output state of X and corresponding states of x0, x1
-        std::cout << S.get() << std::endl;
-    }
 
     // Return the resulting factor.
     return res;

@@ -136,6 +136,19 @@ class Instantiation {
             return i() == q.i();
         }
 
+        this_type& pwBinaryOp(const this_type& q) {
+            // Check that the sizes of the two objects are the same.
+            DAI_DEBASSERT(size() == q.size());
+
+            // Use a loop to copy elements from 'q._p' to '_p'.
+            for (size_t i = 0; i < size(); ++i) {
+                _i[i] = q._i[i];
+            }
+
+            // Return a reference to the modified object.
+            return *this;
+        }
+
         // /// Formats a TProb as a string
         // std::string toString() const {
         //     std::stringstream ss;

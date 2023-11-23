@@ -167,9 +167,7 @@ dai::Factor get_map(dai::FactorGraph fg, std::vector<unsigned int> map_vars, std
                 factors.erase(std::find_if(factors.begin(), factors.end(), [&](Factor const& f){ return f == *it; }));
             }
 
-            // TODO-Andrew: make sure that correct instantiations are not dependent on the new factor
-            // being on the left during multiplications.
-            factors.insert(factors.begin(), newFactor);
+            factors.push_back(newFactor);
 
         }
 
