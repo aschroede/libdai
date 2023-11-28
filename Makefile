@@ -35,14 +35,14 @@ TARGETS:=lib tests utils examples
 ifdef WITH_MATLAB
   TARGETS:=$(TARGETS) matlabs
 endif
-TARGETS:=$(TARGETS) unittests testregression testem
+TARGETS:=$(TARGETS) testregression testem
 ifdef WITH_DOC
   TARGETS:=$(TARGETS) doc
 endif
 
 # Define conditional build targets
 NAMES:=graph dag bipgraph varset daialg alldai clustergraph factor factorgraph properties regiongraph cobwebgraph util weightedgraph exceptions exactinf evidence emalg io
-NAMES:=$(NAMES) bp fbp trwbp mf hak lc treeep jtree mr gibbs bbp cbp bp_dual decmap glc
+NAMES:=$(NAMES) bp fbp trwbp mf hak lc treeep jtree mr gibbs bbp cbp bp_dual decmap glc map
 
 
 # Define standard libDAI header dependencies, source file names and object file names
@@ -74,7 +74,7 @@ all : $(TARGETS)
 	@echo
 	@echo libDAI built successfully!
 
-EXAMPLES=$(foreach name,example example_bipgraph example_varset example_MAP example_permute example_sprinkler example_sprinkler_em,examples/$(name)$(EE))
+EXAMPLES=$(foreach name,example example_bipgraph example_varset example_map example_permute example_sprinkler example_sprinkler_em,examples/$(name)$(EE))
 EXAMPLES:=$(EXAMPLES) examples/example_sprinkler_gibbs$(EE)
 ifdef WITH_CIMG
   EXAMPLES:=$(EXAMPLES) examples/example_imagesegmentation$(EE)

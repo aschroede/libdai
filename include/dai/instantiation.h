@@ -104,7 +104,7 @@ class Instantiation {
 #ifdef DAI_DEBUG
             return _i.at(i);
 #else
-            return _p[i];
+            return _i[i];
 #endif
         }
 
@@ -141,12 +141,26 @@ class Instantiation {
             DAI_DEBASSERT(size() == q.size());
 
             // Use a loop to copy elements from 'q._p' to '_p'.
-            for (size_t i = 0; i < size(); ++i) {
-                _i[i] = q._i[i];
+            if(q._i.size() > 0){
+                for (size_t i = 0; i < size(); ++i) {
+                    _i[i] = q._i[i];
+                }
             }
+            
 
             // Return a reference to the modified object.
             return *this;
+        }
+
+        this_type pwBinaryTr( const this_type &q) const {
+            DAI_DEBASSERT( size() == q.size() );
+            Instantiation r = Instantiation(size());
+            
+            for (size_t i = 0; i < size(); ++i) {
+                r._i[i] = q._i[i];
+            }
+            
+            return r;
         }
 
         // /// Formats a TProb as a string

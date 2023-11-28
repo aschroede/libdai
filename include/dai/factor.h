@@ -67,18 +67,19 @@ class TFactor {
     /// \name Constructors and destructors
     //@{
         /// Constructs factor depending on no variables with value \a p
-        TFactor ( T p = 1 ) : _vs(), _p(1,p) {}
+        TFactor ( T p = 1 ) : _vs(), _p(1,p), _i(1) {}
 
         /// Constructs factor depending on the variable \a v with uniform distribution
-        TFactor( const Var &v ) : _vs(v), _p(v.states()) {}
+        TFactor( const Var &v ) : _vs(v), _p(v.states()), _i(v.states()) {}
 
         /// Constructs factor depending on variables in \a vars with uniform distribution
-        TFactor( const VarSet& vars ) : _vs(vars), _p() {
+        TFactor( const VarSet& vars ) : _vs(vars), _p(), _i() {
             _p = TProb<T>( BigInt_size_t( _vs.nrStates() ) );
+            _i = Instantiation(BigInt_size_t( _vs.nrStates() ));
         }
 
         /// Constructs factor depending on variables in \a vars with all values set to \a p
-        TFactor( const VarSet& vars, T p ) : _vs(vars), _p() {
+        TFactor( const VarSet& vars, T p ) : _vs(vars), _p(), _i() {
             _p = TProb<T>( BigInt_size_t( _vs.nrStates() ), p );
             _i = Instantiation(BigInt_size_t( _vs.nrStates() ));
         }
@@ -89,27 +90,30 @@ class TFactor {
          *  \param x Vector with values to be copied.
          */
         template<typename S>
-        TFactor( const VarSet& vars, const std::vector<S> &x ) : _vs(vars), _p() {
+        TFactor( const VarSet& vars, const std::vector<S> &x ) : _vs(vars), _p(), _i() {
             DAI_ASSERT( (BigInt)x.size() == vars.nrStates() );
             _p = TProb<T>( x.begin(), x.end(), x.size() );
+            _i = Instantiation(x.size());
         }
 
         /// Constructs factor depending on variables in \a vars, copying the values from an array
         /** \param vars contains the variables that the new factor should depend on.
          *  \param p Points to array of values to be added.
          */
-        TFactor( const VarSet& vars, const T* p ) : _vs(vars), _p() {
+        TFactor( const VarSet& vars, const T* p ) : _vs(vars), _p(), _i() {
             size_t N = BigInt_size_t( _vs.nrStates() );
             _p = TProb<T>( p, p + N, N );
+            _i = Instantiation(N);
         }
 
         /// Constructs factor depending on variables in \a vars, copying the values from \a p
-        TFactor( const VarSet& vars, const TProb<T> &p ) : _vs(vars), _p(p) {
+        TFactor( const VarSet& vars, const TProb<T> &p ) : _vs(vars), _p(p), _i(_p.size()) {
             DAI_ASSERT( _vs.nrStates() == (BigInt)_p.size() );
+            DAI_ASSERT( _vs.nrStates() == (BigInt)_i.size() );
         }
 
         /// Constructs factor depending on variables in \a vars, permuting the values given in \a p accordingly
-        TFactor( const std::vector<Var> &vars, const std::vector<T> &p ) : _vs(vars.begin(), vars.end(), vars.size()), _p(p.size()) {
+        TFactor( const std::vector<Var> &vars, const std::vector<T> &p ) : _vs(vars.begin(), vars.end(), vars.size()), _p(p.size()), _i(p.size()) {
             BigInt nrStates = 1;
             for( size_t i = 0; i < vars.size(); i++ )
                 nrStates *= vars[i].states();
@@ -395,15 +399,20 @@ class TFactor {
                     // Collect probability data
                     _p.p().push_back( op( f._p[i_f], g._p[i_g] ) );
 
-                    // If right factor contains instantiation data then copy it over
-                    if (instantiationDataOnRight == true) {
-                        _i.i().push_back( g._i[i_g]);
-                    }
 
-                    // Else left factor has instantiation data to copy over
-                    else{
-                        _i.i().push_back( f._i[i_f]);
+                    if(g._i.size() > 0 && f._i.size() > 0){
+                        
+                        // If right factor contains instantiation data then copy it over
+                        if (instantiationDataOnRight == true) {
+                            _i.i().push_back( g._i[i_g]);
+                        }
+
+                        // Else left factor has instantiation data to copy over
+                        else{
+                            _i.i().push_back( f._i[i_f]);
+                        }
                     }
+                    
                 }
             }
             return *this;
@@ -448,10 +457,18 @@ class TFactor {
         template<typename binOp> TFactor<T> binaryTr( const TFactor<T> &g, binOp op ) const {
             // Note that to prevent a copy to be made, it is crucial 
             // that the result is declared outside the if-else construct.
+
+            bool instantiationDataOnRight = std::all_of(g._i.begin(), g._i.end(), [](const auto& map) { return !map.empty(); });
+
             TFactor<T> result;
             if( _vs == g._vs ) { // optimize special case
                 result._vs = _vs;
                 result._p = _p.pwBinaryTr( g._p, op );
+                
+                if (instantiationDataOnRight == true)
+                    result._i = _i.pwBinaryTr( g._i );
+                else
+                    result._i = _i;
             } else {
                 result._vs = _vs | g._vs;
                 size_t N = BigInt_size_t( result._vs.nrStates() );
@@ -461,9 +478,24 @@ class TFactor {
 
                 result._p.p().clear();
                 result._p.p().reserve( N );
-                for( size_t i = 0; i < N; i++, ++i_f, ++i_g )
+                result._i.i().clear();
+                result._i.i().reserve( N );
+
+                for( size_t i = 0; i < N; i++, ++i_f, ++i_g ){
                     result._p.p().push_back( op( _p[i_f], g[i_g] ) );
+
+                    // If right factor contains instantiation data then copy it over
+                    if (instantiationDataOnRight == true) {
+                        result._i.i().push_back( g._i[i_g]);
+                    }
+
+                    // Else left factor has instantiation data to copy over
+                    else{   
+                        result._i.i().push_back( _i[i_f]);
+                    }
+                }
             }
+            std::cout << "BinaryTR: " << result._i.size() << " " << result._p.size() << std::endl;
             return result;
         }
 

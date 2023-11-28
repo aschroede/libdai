@@ -2,6 +2,31 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "(gdb) Launch factor unit tests",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/tests/unit/factorgraph_test",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        
+        {
             "name": "(gdb) Launch example",
             "type": "cppdbg",
             "request": "launch",
@@ -57,9 +82,9 @@
             "name": "(gdb) Launch MAP",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/examples/example_MAP",
+            "program": "${workspaceFolder}/examples/example_map",
             "args": [
-                "${workspaceFolder}/factorgraphformats/circuit.fg"
+                "${workspaceFolder}/factorgraphformats/andes_fix.fg"
             ],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
