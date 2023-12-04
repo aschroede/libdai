@@ -106,7 +106,7 @@ dai::Factor get_map(dai::FactorGraph fg, std::vector<unsigned int> map_vars, std
 
         for (int i=0; i < constrainedElimOrder.size(); i++){
 
-            //std::cout << "Eliminate: " << constrainedElimOrder[i] << endl;
+            std::cout << "Eliminate: " << constrainedElimOrder[i] << endl;
 
             // Find all factors fk that mention variable pi[i] 
             // f <- Then multiply those factors together 
@@ -184,7 +184,7 @@ dai::Factor get_map(dai::FactorGraph fg, std::vector<unsigned int> map_vars, std
 
             factors.push_back(newFactor);
 
-            // std::cout << "Eliminated " << ++eliminationCount << "/" << constrainedElimOrder.size() << endl;
+             std::cout << "Eliminated " << ++eliminationCount << "/" << constrainedElimOrder.size() << endl;
 
         }
 
@@ -196,7 +196,7 @@ dai::Factor get_map(dai::FactorGraph fg, std::vector<unsigned int> map_vars, std
                 newFactor = newFactor.operator*=(factors[i]);
             }
         }
-
+        std::cout << "Returning last factor" << std::endl;
         return newFactor;
     }
     

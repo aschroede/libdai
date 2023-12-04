@@ -1,0 +1,46 @@
+561040c72000-561040c75000 r--p 00000000 103:05 2491260                   /home/andrew/Documents/libDAI/libdai modified/examples/example_map
+561040c75000-561040ca2000 r-xp 00003000 103:05 2491260                   /home/andrew/Documents/libDAI/libdai modified/examples/example_map
+561040ca2000-561040cad000 r--p 00030000 103:05 2491260                   /home/andrew/Documents/libDAI/libdai modified/examples/example_map
+561040cae000-561040caf000 r--p 0003b000 103:05 2491260                   /home/andrew/Documents/libDAI/libdai modified/examples/example_map
+561040caf000-561040cb0000 rw-p 0003c000 103:05 2491260                   /home/andrew/Documents/libDAI/libdai modified/examples/example_map
+5610410db000-56104130d000 rw-p 00000000 00:00 0                          [heap]
+7fde53a00000-7fde53a28000 r--p 00000000 103:05 12322914                  /usr/lib/x86_64-linux-gnu/libc.so.6
+7fde53a28000-7fde53bbd000 r-xp 00028000 103:05 12322914                  /usr/lib/x86_64-linux-gnu/libc.so.6
+7fde53bbd000-7fde53c15000 r--p 001bd000 103:05 12322914                  /usr/lib/x86_64-linux-gnu/libc.so.6
+7fde53c15000-7fde53c19000 r--p 00214000 103:05 12322914                  /usr/lib/x86_64-linux-gnu/libc.so.6
+7fde53c19000-7fde53c1b000 rw-p 00218000 103:05 12322914                  /usr/lib/x86_64-linux-gnu/libc.so.6
+7fde53c1b000-7fde53c28000 rw-p 00000000 00:00 0 
+7fde53c57000-7fde53d04000 rw-p 00000000 00:00 0 
+7fde53e00000-7fde53e9a000 r--p 00000000 103:05 12326282                  /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30
+7fde53e9a000-7fde53fab000 r-xp 0009a000 103:05 12326282                  /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30
+7fde53fab000-7fde5401a000 r--p 001ab000 103:05 12326282                  /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30
+7fde5401a000-7fde5401b000 ---p 0021a000 103:05 12326282                  /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30
+7fde5401b000-7fde54026000 r--p 0021a000 103:05 12326282                  /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30
+7fde54026000-7fde54029000 rw-p 00225000 103:05 12326282                  /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30
+7fde54029000-7fde5402c000 rw-p 00000000 00:00 0 
+7fde5408a000-7fde5408f000 rw-p 00000000 00:00 0 
+7fde5408f000-7fde54092000 r--p 00000000 103:05 12326267                  /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7fde54092000-7fde540a9000 r-xp 00003000 103:05 12326267                  /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7fde540a9000-7fde540ad000 r--p 0001a000 103:05 12326267                  /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7fde540ad000-7fde540ae000 r--p 0001d000 103:05 12326267                  /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7fde540ae000-7fde540af000 rw-p 0001e000 103:05 12326267                  /usr/lib/x86_64-linux-gnu/libgcc_s.so.1
+7fde540af000-7fde540bd000 r--p 00000000 103:05 12322921                  /usr/lib/x86_64-linux-gnu/libm.so.6
+7fde540bd000-7fde54139000 r-xp 0000e000 103:05 12322921                  /usr/lib/x86_64-linux-gnu/libm.so.6
+7fde54139000-7fde54194000 r--p 0008a000 103:05 12322921                  /usr/lib/x86_64-linux-gnu/libm.so.6
+7fde54194000-7fde54195000 r--p 000e4000 103:05 12322921                  /usr/lib/x86_64-linux-gnu/libm.so.6
+7fde54195000-7fde54196000 rw-p 000e5000 103:05 12322921                  /usr/lib/x86_64-linux-gnu/libm.so.6
+7fde54196000-7fde541a0000 r--p 00000000 103:05 12347973                  /usr/lib/x86_64-linux-gnu/libgmp.so.10.4.1
+7fde541a0000-7fde541ff000 r-xp 0000a000 103:05 12347973                  /usr/lib/x86_64-linux-gnu/libgmp.so.10.4.1
+7fde541ff000-7fde54216000 r--p 00069000 103:05 12347973                  /usr/lib/x86_64-linux-gnu/libgmp.so.10.4.1
+7fde54216000-7fde54217000 r--p 0007f000 103:05 12347973                  /usr/lib/x86_64-linux-gnu/libgmp.so.10.4.1
+7fde54217000-7fde54218000 rw-p 00080000 103:05 12347973                  /usr/lib/x86_64-linux-gnu/libgmp.so.10.4.1
+7fde54231000-7fde54233000 rw-p 00000000 00:00 0 
+7fde54233000-7fde54235000 r--p 00000000 103:05 12322906                  /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7fde54235000-7fde5425f000 r-xp 00002000 103:05 12322906                  /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7fde5425f000-7fde5426a000 r--p 0002c000 103:05 12322906                  /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7fde5426b000-7fde5426d000 r--p 00037000 103:05 12322906                  /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7fde5426d000-7fde5426f000 rw-p 00039000 103:05 12322906                  /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+7ffdd3e99000-7ffdd3ebb000 rw-p 00000000 00:00 0                          [stack]
+7ffdd3f6c000-7ffdd3f70000 r--p 00000000 00:00 0                          [vvar]
+7ffdd3f70000-7ffdd3f72000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsyscall]

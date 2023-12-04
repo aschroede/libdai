@@ -32,6 +32,13 @@
         },
         {
             "type": "shell",
+            "label": "make map",
+            "command": "make",
+            "args": ["examples/example_map"],
+            "problemMatcher": [],
+        },
+        {
+            "type": "shell",
             "label": "clean",
             "command": "make",
             "args": ["clean"],

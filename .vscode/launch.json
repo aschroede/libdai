@@ -85,7 +85,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/examples/example_map",
             "args": [
-                "${workspaceFolder}/factorgraphformats/alarm_fix.fg"
+                "${workspaceFolder}/factorgraphformats/barley.fg"
             ],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
@@ -104,7 +104,7 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "make examples",
+            "preLaunchTask": "make map",
             
               
         },

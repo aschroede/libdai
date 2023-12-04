@@ -1,0 +1,10 @@
+
+command: examples/example_map -i ./factorgraphformats/barley.fg -o barley_map.txt -H 0,1,5,8 -E 40,41,42,43,44,45,46,47 -e 0,3,3,4,2,2,10,5 -M 
+./factorgraphformats/barley.fg simulation results Mon Dec  4 15:59:37 2023
+
+hypothesis vars (0, 1, 5, 8)
+evidence vars (40, 41, 42, 43, 44, 45, 46, 47) values (0, 3, 3, 4, 2, 2, 10, 5)
+
+[MAP] MAP explanation of the hypotheses given the evidence is: (0.111111)
+[MAP] Computation took 8189803 ns
+

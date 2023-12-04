@@ -1,94 +1,175 @@
 #include <dai/alldai.h> 
 #include <dai/factorgraph.h>
+#include "cxxopts.hpp"
 #include <dai/map.h>
+#include <chrono>
+#include <ctime>
+#include <filesystem>
+
 
 using namespace std;
 using namespace dai;
 
-// int main( int argc, char *argv[] ) {
 
+// comment for production mode, uncomment for debug messages
+#define DEBUGMODE
 
-//     if ( argc != 2 && argc != 3 ) {
-//         cout << "Usage: " << argv[0] << " <filename.fg> [maxstates]" << endl << endl;
-//         cout << "Reads factor graph <filename.fg> and runs MAP on it." << endl;
-//         return 1;
+#ifdef DEBUGMODE
+	#define DEBUG(a) a;
+#else
+	#define DEBUG(a) ;
+#endif	
 
-//     } else {
+std::string testdir = "TestsResults";
+std::string inputfile = "./alarm.fg";
+std::string outputfile = "./results";
+std::vector<unsigned int> hypothesisVars;
+std::vector<unsigned int> evidenceVars;
+std::vector<unsigned int> evidenceValues;
+
+bool mapComputation = false;
+bool veMapComputation = false;
+
+cxxopts::ParseResult parse(int argc, char* argv[])
+{
+    const char *shortdes = "MAP, MFE, and Annealed MAP experimental simulation";
+    try
+    {
+        cxxopts::Options options(argv[0], shortdes);
+        options.add_options()
+            ("i,input", "factor graph to run simulations on", cxxopts::value<std::string>())
+            ("o,output", "output file for simulation results", cxxopts::value<std::string>())
+            ("H,hypothesis-variables", "hypothesis variables", cxxopts::value<std::vector<unsigned int>>())
+            ("E,evidence-variables", "evidence variables", cxxopts::value<std::vector<unsigned int>>())
+            ("e,evidence-values", "values of the evidence variables", cxxopts::value<std::vector<unsigned int>>())
+            ("M,map", "run exact MAP computation")
+            ("V,vemap", "run exact MAP using variable elimination")
+        ;
+
+        if (argc == 1)
+        {
+          std::cout << shortdes << std::endl;
+          exit(0);
+        }
     
-//         // Read FactorGraph from the file specified by the first command line argument
-//         FactorGraph fg;
-//         std::cout << "Factor graph path: " << argv[1] << std::endl;
-//         fg.ReadFromFile(argv[1]);;
+        auto result = options.parse(argc, argv);
 
+        if (result.count("help"))
+        {
+          std::cout << options.help({"", "Group"}) << std::endl;
+          exit(0);
+        }
 
-//         // Example from page 260 of Modeling and Reasoning with Bayesian Networks
-//         // MAP variables = {I, J} = {0, 1}
-//         // Evidence: O = true. O is variable number 4
-//         // Constrained variable order = O, Y, X, I, J = 4, 2, 3, 0, 1
+        if (result.count("map"))
+        {
+            mapComputation = true;  
+            DEBUG(std::cout << "Exact computation using MAP" << std::endl)
+        }
 
-//         std::vector<unsigned int> ex_evidenceVars =        { 4 };
-// 	    std::vector<unsigned int> ex_evidenceValues =      { 1};
-// 	    std::vector<unsigned int> ex_mapVars =             { 0, 1};
-//         std::vector<unsigned int> constrainedElimOrder =   { 4, 2, 3, 0, 1 };
+        if (result.count("vemap")){
+            veMapComputation = true;
+            DEBUG(std::cout << "Exact computation using VE MAP" << std::endl)
+        }
 
-
-//         dai::Factor MAP = get_map(fg, ex_mapVars, ex_evidenceVars, ex_evidenceValues, false);
-
-//         cout << "Map probability: " << MAP.p() << endl;
-
-//         cout << "Map instantiation: ";
-//         for (const auto& myMap : MAP.i()) {
-//             std::cout << myMap << endl;
-//         }
-
-//         //cout << "Map Instantiation: " << MAP.i() << endl;
-//         // std::vector<std::pair<Var, dai::Real>> instantiation = MAP.getInstantiation();
         
-//         // for (const auto& pair : instantiation){
-//         //     std::cout << "Var: " << pair.first << " Value: " << pair.second << endl;
-//         // }
-        
-//     }
-// }
+
+        if (result.count("input"))
+        {
+            inputfile = result["input"].as<std::string>();
+            DEBUG(std::cout << "Input file: " << inputfile << std::endl)
+        }
+
+        if (result.count("output"))
+        {
+            outputfile = result["output"].as<std::string>();
+            DEBUG(std::cout << "Output file: " << outputfile << std::endl)
+        }
+
+        if (result.count("hypothesis-variables"))
+        {  
+            hypothesisVars = result["hypothesis-variables"].as<std::vector<unsigned int>>();
+            DEBUG(
+                std::cout << "Hypothesis variables: ";
+                for (auto i = hypothesisVars.begin(); i != hypothesisVars.end(); ++i) std::cout << *i << ' ';
+                std::cout << std::endl;
+                 )
+        }
+
+        if (result.count("evidence-variables"))
+        {  
+            evidenceVars = result["evidence-variables"].as<std::vector<unsigned int>>();
+            DEBUG(
+                std::cout << "Evidence variables: ";
+                for (auto i = evidenceVars.begin(); i != evidenceVars.end(); ++i) std::cout << *i << ' ';
+                std::cout << std::endl;
+                 )
+        }
+
+        if (result.count("evidence-values"))
+        {  
+            evidenceValues = result["evidence-values"].as<std::vector<unsigned int>>();
+            DEBUG(
+                std::cout << "Evidence values: ";
+                for (auto i = evidenceValues.begin(); i != evidenceValues.end(); ++i) std::cout << *i << ' ';
+                std::cout << std::endl;
+                 )
+        }
+
+        return result;
+    } 
+    catch (const cxxopts::OptionException& e)
+    {
+        std::cout << "error parsing options: " << e.what() << std::endl;
+        exit(1);
+    }
+}
+
 
 int main( int argc, char *argv[] ) {
-
-
-    if ( argc != 2 && argc != 3 ) {
-        cout << "Usage: " << argv[0] << " <filename.fg> [maxstates]" << endl << endl;
-        cout << "Reads factor graph <filename.fg> and runs MAP on it." << endl;
-        return 1;
-
-    } else {
+    namespace fs = std::filesystem;
     
-        // Read FactorGraph from the file specified by the first command line argument
-        FactorGraph fg;
-        std::cout << "Factor graph path: " << argv[1] << std::endl;
-        fg.ReadFromFile(argv[1]);;
+    auto result = parse(argc, argv);
+    auto arguments = result.arguments();
 
+    time_t now = time(0);
+   	dai::FactorGraph fg;
+   	fg.ReadFromFile(inputfile.c_str());
 
+	std::ofstream ofs;
 
-        std::cout << "This is a test" << std::endl;
-        std::vector<unsigned int> ex_evidenceVars =        { 40,41,42,43,44,45,46,47 };
-	    std::vector<unsigned int> ex_evidenceValues =      { 0,3,3,4,2,2,10,5 };
-	    std::vector<unsigned int> ex_mapVars =             { 0,1,5,8 };
-        //std::vector<unsigned int> constrainedElimOrder =   { 4, 2, 3, 0, 1 };
+    std::string filepath = testdir + "/" + outputfile;
 
+    if(!fs::exists(testdir)){
 
-        dai::Factor MAP = get_map(fg, ex_mapVars, ex_evidenceVars, ex_evidenceValues, false);
-
-        cout << "Map probability: " << MAP.p() << endl;
-
-        // cout << "Map instantiation: ";
-        // for (const auto& myMap : MAP.i()) {
-        //     std::cout << myMap << endl;
-        // }
-
-        //cout << "Map Instantiation: " << MAP.i() << endl;
-        // std::vector<std::pair<Var, dai::Real>> instantiation = MAP.getInstantiation();
-        
-        // for (const auto& pair : instantiation){
-        //     std::cout << "Var: " << pair.first << " Value: " << pair.second << endl;
-        // }
+        if(!fs::create_directory(testdir)){
+            std::cerr << "Error creating direcotyr: " << testdir << std::endl;
+        }
     }
+	ofs.open (filepath.c_str(), std::ofstream::out | std::ofstream::app);
+
+	ofs << std::endl << "command: ";
+    for (int i = 0; i < argc; i++)
+        ofs << argv[i] << " ";
+    ofs << std::endl;
+
+	ofs << inputfile << " simulation results " << ctime(&now) << std::endl;
+	ofs << "hypothesis vars " << hypothesisVars << std::endl;
+	ofs << "evidence vars " << evidenceVars << " values " << evidenceValues << std::endl;
+
+    if(mapComputation){
+
+        // compute exact MAP
+        if (mapComputation)
+        {
+            ofs << std::endl << "[MAP] MAP explanation of the hypotheses given the evidence is: ";
+            auto start = std::chrono::steady_clock::now();
+            dai::Factor MAP = get_map(fg, hypothesisVars, evidenceVars, evidenceValues, false);
+            auto end = std::chrono::steady_clock::now();
+            ofs << MAP.p() << std::endl;
+            ofs << "[MAP] Computation took " << std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() << " ns" << std::endl;
+        }
+    }
+
+    ofs << std::endl;
+	ofs.close();
 }
