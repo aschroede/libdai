@@ -35,7 +35,7 @@ TARGETS:=lib tests utils examples
 ifdef WITH_MATLAB
   TARGETS:=$(TARGETS) matlabs
 endif
-TARGETS:=$(TARGETS) testregression testem
+TARGETS:=$(TARGETS) unittests testregression testem
 ifdef WITH_DOC
   TARGETS:=$(TARGETS) doc
 endif
@@ -80,6 +80,8 @@ ifdef WITH_CIMG
   EXAMPLES:=$(EXAMPLES) examples/example_imagesegmentation$(EE)
 endif
 examples : $(EXAMPLES)
+
+map : example_map
 
 matlabs : matlab/dai$(ME) matlab/dai_readfg$(ME) matlab/dai_writefg$(ME) matlab/dai_potstrength$(ME) matlab/dai_jtree$(ME)
 
@@ -149,9 +151,11 @@ glc$(OE) : $(SRC)/glc.cpp $(INC)/glc.h $(HEADERS) $(INC)/cobwebgraph.h
 
 # EXAMPLES
 ###########
-# examples/% : examples/%.cpp 
 
 examples/%$(EE) : examples/%.cpp $(HEADERS) $(LIB)/libdai$(LE)
+	$(CC) $(CCO)$@ $< $(LIBS)
+
+examples/example_map$(EE) : examples/example_map.cpp $(HEADERS) $(LIB)/libdai$(LE)
 	$(CC) $(CCO)$@ $< $(LIBS)
 
 examples/example_sprinkler_gibbs$(EE) : examples/example_sprinkler_gibbs.cpp $(HEADERS) $(LIB)/libdai$(LE)

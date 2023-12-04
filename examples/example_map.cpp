@@ -68,10 +68,10 @@ int main( int argc, char *argv[] ) {
 
 
 
-
-        std::vector<unsigned int> ex_evidenceVars =        { 27,54,55,56,59,120,122,124,126,127,128,137,148,182,183,188,190,203,204,206,220,222 };
-	    std::vector<unsigned int> ex_evidenceValues =      { 1,0,1,1,1,1,0,0,1,1,0,0,0,1,1,1,1,1,0,0,1,0 };
-	    std::vector<unsigned int> ex_mapVars =             { 0,1,2,3,4 };
+        std::cout << "This is a test" << std::endl;
+        std::vector<unsigned int> ex_evidenceVars =        { 40,41,42,43,44,45,46,47 };
+	    std::vector<unsigned int> ex_evidenceValues =      { 0,3,3,4,2,2,10,5 };
+	    std::vector<unsigned int> ex_mapVars =             { 0,1,5,8 };
         //std::vector<unsigned int> constrainedElimOrder =   { 4, 2, 3, 0, 1 };
 
 
@@ -79,10 +79,10 @@ int main( int argc, char *argv[] ) {
 
         cout << "Map probability: " << MAP.p() << endl;
 
-        cout << "Map instantiation: ";
-        for (const auto& myMap : MAP.i()) {
-            std::cout << myMap << endl;
-        }
+        // cout << "Map instantiation: ";
+        // for (const auto& myMap : MAP.i()) {
+        //     std::cout << myMap << endl;
+        // }
 
         //cout << "Map Instantiation: " << MAP.i() << endl;
         // std::vector<std::pair<Var, dai::Real>> instantiation = MAP.getInstantiation();

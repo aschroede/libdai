@@ -71,6 +71,9 @@ vector<size_t> getConstrainedElimOrder(const FactorGraph &fg, EliminationChoice 
 dai::Factor get_map(dai::FactorGraph fg, std::vector<unsigned int> map_vars, std::vector<unsigned int> evidence_vars,
         std::vector<unsigned int> evidence_values, bool mapList){
         
+    try{
+
+        std::cout << "This is a another test" << std::endl;
         // TODO: PruneNetwork
 
         std::vector<std::pair<Var, dai::Real>> _instantiation;
@@ -97,19 +100,19 @@ dai::Factor get_map(dai::FactorGraph fg, std::vector<unsigned int> map_vars, std
         // Perform Variable Elimination
         std::vector<dai::Factor> factors = fg.factors();
 
-        for (dai::Factor& factor : factors) {
-            std::cout << factor.p().size() << " " << factor.i().size() << endl;
-        }
+        // for (dai::Factor& factor : factors) {
+        //     std::cout << factor.p().size() << " " << factor.i().size() << endl;
+        // }
 
         for (int i=0; i < constrainedElimOrder.size(); i++){
 
-            std::cout << "Eliminate: " << constrainedElimOrder[i] << endl;
+            //std::cout << "Eliminate: " << constrainedElimOrder[i] << endl;
 
             // Find all factors fk that mention variable pi[i] 
             // f <- Then multiply those factors together 
 
             // Could also use findFactor and findVars in factorgraph
-            std::vector<dai::Factor> toMultiply;
+            std::vector<dai::Factor> toMultiply(1);
 
             for(int j=0; j<factors.size(); j++){
                 
@@ -152,7 +155,7 @@ dai::Factor get_map(dai::FactorGraph fg, std::vector<unsigned int> map_vars, std
                         varsToKeep.insert(*it);
                     }
                 }
-                newFactor = newFactor.maxMarginalTransparent(varsToKeep,  _instantiation,  false);
+                newFactor = newFactor.maxMarginal(varsToKeep,  false);
             }
 
             // Else fi <- sum out pi(i) from f
@@ -181,7 +184,7 @@ dai::Factor get_map(dai::FactorGraph fg, std::vector<unsigned int> map_vars, std
 
             factors.push_back(newFactor);
 
-            std::cout << "Eliminated " << ++eliminationCount << "/" << constrainedElimOrder.size() << endl;
+            // std::cout << "Eliminated " << ++eliminationCount << "/" << constrainedElimOrder.size() << endl;
 
         }
 
@@ -196,6 +199,26 @@ dai::Factor get_map(dai::FactorGraph fg, std::vector<unsigned int> map_vars, std
 
         return newFactor;
     }
+    
+    catch( Exception &e ) {
+        // Save a copy of /proc/self/maps to a file
+        std::ofstream mapsFile("proc_self_maps_copy.txt");
+        if (mapsFile.is_open()) {
+            std::ifstream maps("/proc/self/maps");
+            if (maps.is_open()) {
+                mapsFile << maps.rdbuf();
+                maps.close();
+            } else {
+                std::cerr << "Failed to open /proc/self/maps for reading." << std::endl;
+            }
+
+            mapsFile.close();
+        } else {
+            std::cerr << "Failed to open proc_self_maps_copy.txt for writing." << std::endl;
+        }
+    }
+    
+}
 
 int main( int argc, char *argv[] ) {
 
@@ -228,10 +251,10 @@ int main( int argc, char *argv[] ) {
 
         cout << "Map probability: " << MAP.p() << endl;
 
-        cout << "Map instantiation: ";
-        for (const auto& myMap : MAP.i()) {
-            std::cout << myMap << endl;
-        }
+        // cout << "Map instantiation: ";
+        // for (const auto& myMap : MAP.i()) {
+        //     std::cout << myMap << endl;
+        // }
 
         //cout << "Map Instantiation: " << MAP.i() << endl;
         // std::vector<std::pair<Var, dai::Real>> instantiation = MAP.getInstantiation();

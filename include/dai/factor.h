@@ -18,7 +18,6 @@
 #include <functional>
 #include <cmath>
 #include <dai/prob.h>
-#include <dai/instantiation.h>
 #include <dai/varset.h>
 #include <dai/index.h>
 #include <dai/util.h>
@@ -59,29 +58,24 @@ class TFactor {
         VarSet _vs;
         /// Stores the factor values
         TProb<T> _p;
-        
-        /// Store the instantiation of maxed out variables
-        Instantiation _i;
 
     public:
     /// \name Constructors and destructors
     //@{
         /// Constructs factor depending on no variables with value \a p
-        TFactor ( T p = 1 ) : _vs(), _p(1,p), _i(1) {}
+        TFactor ( T p = 1 ) : _vs(), _p(1,p) {}
 
         /// Constructs factor depending on the variable \a v with uniform distribution
-        TFactor( const Var &v ) : _vs(v), _p(v.states()), _i(v.states()) {}
+        TFactor( const Var &v ) : _vs(v), _p(v.states()) {}
 
         /// Constructs factor depending on variables in \a vars with uniform distribution
-        TFactor( const VarSet& vars ) : _vs(vars), _p(), _i() {
+        TFactor( const VarSet& vars ) : _vs(vars), _p() {
             _p = TProb<T>( BigInt_size_t( _vs.nrStates() ) );
-            _i = Instantiation(BigInt_size_t( _vs.nrStates() ));
         }
 
         /// Constructs factor depending on variables in \a vars with all values set to \a p
-        TFactor( const VarSet& vars, T p ) : _vs(vars), _p(), _i() {
+        TFactor( const VarSet& vars, T p ) : _vs(vars), _p() {
             _p = TProb<T>( BigInt_size_t( _vs.nrStates() ), p );
-            _i = Instantiation(BigInt_size_t( _vs.nrStates() ));
         }
 
         /// Constructs factor depending on variables in \a vars, copying the values from a std::vector<>
@@ -90,30 +84,27 @@ class TFactor {
          *  \param x Vector with values to be copied.
          */
         template<typename S>
-        TFactor( const VarSet& vars, const std::vector<S> &x ) : _vs(vars), _p(), _i() {
+        TFactor( const VarSet& vars, const std::vector<S> &x ) : _vs(vars), _p() {
             DAI_ASSERT( (BigInt)x.size() == vars.nrStates() );
             _p = TProb<T>( x.begin(), x.end(), x.size() );
-            _i = Instantiation(x.size());
         }
 
         /// Constructs factor depending on variables in \a vars, copying the values from an array
         /** \param vars contains the variables that the new factor should depend on.
          *  \param p Points to array of values to be added.
          */
-        TFactor( const VarSet& vars, const T* p ) : _vs(vars), _p(), _i() {
+        TFactor( const VarSet& vars, const T* p ) : _vs(vars), _p() {
             size_t N = BigInt_size_t( _vs.nrStates() );
             _p = TProb<T>( p, p + N, N );
-            _i = Instantiation(N);
         }
 
         /// Constructs factor depending on variables in \a vars, copying the values from \a p
-        TFactor( const VarSet& vars, const TProb<T> &p ) : _vs(vars), _p(p), _i(_p.size()) {
+        TFactor( const VarSet& vars, const TProb<T> &p ) : _vs(vars), _p(p) {
             DAI_ASSERT( _vs.nrStates() == (BigInt)_p.size() );
-            DAI_ASSERT( _vs.nrStates() == (BigInt)_i.size() );
         }
 
         /// Constructs factor depending on variables in \a vars, permuting the values given in \a p accordingly
-        TFactor( const std::vector<Var> &vars, const std::vector<T> &p ) : _vs(vars.begin(), vars.end(), vars.size()), _p(p.size()), _i(p.size()) {
+        TFactor( const std::vector<Var> &vars, const std::vector<T> &p ) : _vs(vars.begin(), vars.end(), vars.size()), _p(p.size()) {
             BigInt nrStates = 1;
             for( size_t i = 0; i < vars.size(); i++ )
                 nrStates *= vars[i].states();
@@ -129,12 +120,8 @@ class TFactor {
         /// Sets \a i 'th entry to \a val
         void set( size_t i, T val ) { _p.set( i, val ); }
 
-        void setInstantiation(size_t i, std::map<Var, size_t> val) { _i.set(i, val); }
-
         /// Gets \a i 'th entry
         T get( size_t i ) const { return _p[i]; }
-
-        std::map<Var, size_t> getInstantiation( size_t i ) const { return _i[i]; }
     //@}
 
     /// \name Queries
@@ -144,12 +131,6 @@ class TFactor {
 
         /// Returns reference to value vector
         TProb<T>& p() { return _p; }
-
-        /// Returns constant reference to instantiation vector
-        const Instantiation& i() const { return _i; }
-
-        /// Returns reference to the instantiation vector
-        Instantiation& i() { return _i; }
 
         /// Returns a copy of the \a i 'th entry of the value vector
         T operator[] (size_t i) const { return _p[i]; }
@@ -366,21 +347,8 @@ class TFactor {
          *  \param op Operation of type \a binOp
          */
         template<typename binOp> TFactor<T>& binaryOp( const TFactor<T> &g, binOp op ) {
-            
-            // Check if right operand has instantiation data
-            bool instantiationDataOnRight = std::all_of(g._i.begin(), g._i.end(), [](const auto& map) { return !map.empty(); });
-
-            // optimize special case
-            if( _vs == g._vs ) {
-
+            if( _vs == g._vs ) // optimize special case
                 _p.pwBinaryOp( g._p, op );
-
-                // If instantiation data is in right factor, copy to left one which is the one that is returned.
-                // Else if data is in left then no need to do anything.
-                if (instantiationDataOnRight == true)
-                    _i.pwBinaryOp( g._i );
-            }
-
             else {
                 TFactor<T> f(*this); // make a copy
                 _vs |= g._vs;
@@ -391,29 +359,8 @@ class TFactor {
 
                 _p.p().clear();
                 _p.p().reserve( N );
-                _i.i().clear();
-                _i.i().reserve( N );
-                
-
-                for( size_t i = 0; i < N; i++, ++i_f, ++i_g ){
-                    // Collect probability data
+                for( size_t i = 0; i < N; i++, ++i_f, ++i_g )
                     _p.p().push_back( op( f._p[i_f], g._p[i_g] ) );
-
-
-                    if(g._i.size() > 0 && f._i.size() > 0){
-                        
-                        // If right factor contains instantiation data then copy it over
-                        if (instantiationDataOnRight == true) {
-                            _i.i().push_back( g._i[i_g]);
-                        }
-
-                        // Else left factor has instantiation data to copy over
-                        else{
-                            _i.i().push_back( f._i[i_f]);
-                        }
-                    }
-                    
-                }
             }
             return *this;
         }
@@ -457,18 +404,10 @@ class TFactor {
         template<typename binOp> TFactor<T> binaryTr( const TFactor<T> &g, binOp op ) const {
             // Note that to prevent a copy to be made, it is crucial 
             // that the result is declared outside the if-else construct.
-
-            bool instantiationDataOnRight = std::all_of(g._i.begin(), g._i.end(), [](const auto& map) { return !map.empty(); });
-
             TFactor<T> result;
             if( _vs == g._vs ) { // optimize special case
                 result._vs = _vs;
                 result._p = _p.pwBinaryTr( g._p, op );
-                
-                if (instantiationDataOnRight == true)
-                    result._i = _i.pwBinaryTr( g._i );
-                else
-                    result._i = _i;
             } else {
                 result._vs = _vs | g._vs;
                 size_t N = BigInt_size_t( result._vs.nrStates() );
@@ -478,24 +417,9 @@ class TFactor {
 
                 result._p.p().clear();
                 result._p.p().reserve( N );
-                result._i.i().clear();
-                result._i.i().reserve( N );
-
-                for( size_t i = 0; i < N; i++, ++i_f, ++i_g ){
+                for( size_t i = 0; i < N; i++, ++i_f, ++i_g )
                     result._p.p().push_back( op( _p[i_f], g[i_g] ) );
-
-                    // If right factor contains instantiation data then copy it over
-                    if (instantiationDataOnRight == true) {
-                        result._i.i().push_back( g._i[i_g]);
-                    }
-
-                    // Else left factor has instantiation data to copy over
-                    else{   
-                        result._i.i().push_back( _i[i_f]);
-                    }
-                }
             }
-            std::cout << "BinaryTR: " << result._i.size() << " " << result._p.size() << std::endl;
             return result;
         }
 
@@ -571,9 +495,6 @@ class TFactor {
 
         /// Returns max-marginal on \a vars, obtained by maximizing all variables except those in \a vars, and normalizing the result if \a normed == \c true
         TFactor<T> maxMarginal(const VarSet &vars, bool normed=true) const;
-
-        TFactor<T> maxMarginalTransparent(const VarSet &vars, std::vector<std::pair<Var, T>> &_instantiation, bool normed=true) const;
-
     //@}
 };
 
@@ -607,61 +528,6 @@ template<typename T> TFactor<T> TFactor<T>::marginal(const VarSet &vars, bool no
         res.normalize( NORMPROB );
 
     return res;
-}
-
-
-template<typename T> TFactor<T> TFactor<T>::maxMarginalTransparent(const VarSet &vars, std::vector<std::pair<Var, T>> &_instantiation, bool normed) const {
-    
-    // Get the intersection of the input vars (those to not maximise out) and the vars in the factor _vs
-    // In this case it would be {1} intersect {0, 1, 2, 3, 4} = {1}
-    // Residual vars are those that remain after maximizing out (the ones to keep)
-    dai::VarSet res_vars = vars & _vs;
-    dai::VarSet to_max_out = _vs / vars;
-    Var varToMaxOut = to_max_out.front();
-    
-    // Create a new factor "res" that contains the residual variables and set all probabilities to 0.0
-    TFactor<T> res( res_vars, 0.0 );
-
-    // The class IndexFor is an important tool for indexing Factor entries. 
-    // Then the following code: loops over all joint states of the variables in _vs, 
-    // and (size_t)i equals the linear index of the corresponding state of res_vars, 
-    // where the variables in res_vars that are not in forVars assume their zero'th value.
-    IndexFor i_res( res_vars, _vs );
-
-    State S(_vs);
-    // Loop over all entries in the factor's probability table '_p'.
-    for( size_t i = 0; i < _p.size(); i++, ++i_res, S++){
-        
-        // If the current entry in '_p' is greater than the corresponding entry in 'res', update 'res'.
-        if( _p[i] >= res._p[i_res] ){
-            res.set( i_res, _p[i] );
-            std::map<Var, size_t> rowInstantiation = getInstantiation( i_res );
-
-            auto it = rowInstantiation.find(varToMaxOut);
-
-            if (it != rowInstantiation.end()) {
-                // Key exists, update the value
-                it->second = S(varToMaxOut);
-            } else {
-                // Key doesn't exist, add a new key-value pair
-                rowInstantiation[varToMaxOut] = S(varToMaxOut);
-            }
-
-            res.setInstantiation( i_res, rowInstantiation);
-            //res.setInstantiation(to_max_out.front(), S(to_max_out.front()));
-            //_instantiation.push_back(std::make_pair(to_max_out.front(), S(to_max_out.front())));
-        }
-    }
-
-    if( normed )
-        res.normalize( NORMPROB );
-
-    // Return the resulting factor.
-    return res;
-
-
-    // Maybe need to use calcState -> Returns a mapping that maps each Var
-    // in a varset to it's state
 }
 
 

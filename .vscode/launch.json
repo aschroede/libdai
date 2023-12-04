@@ -1,6 +1,7 @@
 {
     "version": "0.2.0",
     "configurations": [
+
         {
             "name": "(gdb) Launch factor unit tests",
             "type": "cppdbg",
@@ -84,7 +85,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/examples/example_map",
             "args": [
-                "${workspaceFolder}/factorgraphformats/andes_fix.fg"
+                "${workspaceFolder}/factorgraphformats/alarm_fix.fg"
             ],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
