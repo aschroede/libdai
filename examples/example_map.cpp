@@ -166,6 +166,11 @@ int main( int argc, char *argv[] ) {
             dai::Factor MAP = get_map(fg, hypothesisVars, evidenceVars, evidenceValues, false);
             auto end = std::chrono::steady_clock::now();
             ofs << MAP.p() << std::endl;
+
+            // for (const auto& myMap : MAP.i()){
+            //     std::cout << myMap << std::endl;
+            //     ofs << myMap << std::endl;
+            // }
             ofs << "[MAP] Computation took " << std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() << " ns" << std::endl;
         }
     }

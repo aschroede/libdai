@@ -1,0 +1,72 @@
+
+command: examples/example_map -i ./factorgraphformats/alarm_fix.fg -o alarm_map.txt -H 3,5,12,13,16,22,24,26 -E 0,1,2,8,9,11,14,15,17,18,20,21,25,27,35,36 -e 0,2,0,0,0,0,1,3,1,0,1,0,2,0,2,0 -M 
+./factorgraphformats/alarm_fix.fg simulation results Mon Dec  4 16:04:37 2023
+
+hypothesis vars (3, 5, 12, 13, 16, 22, 24, 26)
+evidence vars (0, 1, 2, 8, 9, 11, 14, 15, 17, 18, 20, 21, 25, 27, 35, 36) values (0, 2, 0, 0, 0, 0, 1, 3, 1, 0, 1, 0, 2, 0, 2, 0)
+
+[MAP] MAP explanation of the hypotheses given the evidence is: (0.92)
+[MAP] Computation took 321485 ns
+
+
+command: examples/example_map -i ./factorgraphformats/alarm_fix.fg -o alarm_map.txt -H 3,5,12,13,16,22,24,26 -E 0,1,2,8,9,11,14,15,17,18,20,21,25,27,35,36 -e 0,2,0,0,0,0,1,3,1,0,1,0,2,0,2,0 -M 
+./factorgraphformats/alarm_fix.fg simulation results Mon Dec  4 16:24:10 2023
+
+hypothesis vars (3, 5, 12, 13, 16, 22, 24, 26)
+evidence vars (0, 1, 2, 8, 9, 11, 14, 15, 17, 18, 20, 21, 25, 27, 35, 36) values (0, 2, 0, 0, 0, 0, 1, 3, 1, 0, 1, 0, 2, 0, 2, 0)
+
+[MAP] MAP explanation of the hypotheses given the evidence is: (0.92)
+{}
+[MAP] Computation took 414795 ns
+
+
+command: examples/example_map -i ./factorgraphformats/alarm_fix.fg -o alarm_map.txt -H 3,5,12,13,16,22,24,26 -E 0,1,2,8,9,11,14,15,17,18,20,21,25,27,35,36 -e 0,2,0,0,0,0,1,3,1,0,1,0,2,0,2,0 -M 
+./factorgraphformats/alarm_fix.fg simulation results Mon Dec  4 16:31:06 2023
+
+hypothesis vars (3, 5, 12, 13, 16, 22, 24, 26)
+evidence vars (0, 1, 2, 8, 9, 11, 14, 15, 17, 18, 20, 21, 25, 27, 35, 36) values (0, 2, 0, 0, 0, 0, 1, 3, 1, 0, 1, 0, 2, 0, 2, 0)
+
+[MAP] MAP explanation of the hypotheses given the evidence is: (0.92)
+{x24->0}
+[MAP] Computation took 441125 ns
+
+
+command: examples/example_map -i ./factorgraphformats/alarm_fix.fg -o alarm_map.txt -H 3,5,12,13,16,22,24,26 -E 0,1,2,8,9,11,14,15,17,18,20,21,25,27,35,36 -e 0,2,0,0,0,0,1,3,1,0,1,0,2,0,2,0 -M 
+./factorgraphformats/alarm_fix.fg simulation results Mon Dec  4 16:34:41 2023
+
+hypothesis vars (3, 5, 12, 13, 16, 22, 24, 26)
+evidence vars (0, 1, 2, 8, 9, 11, 14, 15, 17, 18, 20, 21, 25, 27, 35, 36) values (0, 2, 0, 0, 0, 0, 1, 3, 1, 0, 1, 0, 2, 0, 2, 0)
+
+[MAP] MAP explanation of the hypotheses given the evidence is: (0.92)
+{x24->0}
+[MAP] Computation took 639478 ns
+
+
+command: examples/example_map -i ./factorgraphformats/alarm_fix.fg -o alarm_map.txt -H 3,5,12 
+./factorgraphformats/alarm_fix.fg simulation results Mon Dec  4 20:05:26 2023
+
+hypothesis vars (3, 5, 12)
+evidence vars () values ()
+
+
+command: examples/example_map -i ./factorgraphformats/alarm_fix.fg -o alarm_map.txt -H 3,5,12,13,16,22,24,26 -E 0,1,2,8,9,11,14,15,17,18,20,21,25,27,35,36 -e 0,2,0,0,0,0,1,3,1,0,1,0,2,0,2,0 -M 
+./factorgraphformats/alarm_fix.fg simulation results Mon Dec  4 20:05:42 2023
+
+hypothesis vars (3, 5, 12, 13, 16, 22, 24, 26)
+evidence vars (0, 1, 2, 8, 9, 11, 14, 15, 17, 18, 20, 21, 25, 27, 35, 36) values (0, 2, 0, 0, 0, 0, 1, 3, 1, 0, 1, 0, 2, 0, 2, 0)
+
+[MAP] MAP explanation of the hypotheses given the evidence is: (0.92)
+{x24->0}
+[MAP] Computation took 437436 ns
+
+
+command: examples/example_map -i ./factorgraphformats/alarm_fix.fg -o alarm_map.txt -H 3,5,12,13,16,22,24,26 -E 0,1,2,8,9,11,14,15,17,18,20,21,25,27,35,36 -e 0,2,0,0,0,0,1,3,1,0,1,0,2,0,2,0 -M 
+./factorgraphformats/alarm_fix.fg simulation results Mon Dec  4 20:53:33 2023
+
+hypothesis vars (3, 5, 12, 13, 16, 22, 24, 26)
+evidence vars (0, 1, 2, 8, 9, 11, 14, 15, 17, 18, 20, 21, 25, 27, 35, 36) values (0, 2, 0, 0, 0, 0, 1, 3, 1, 0, 1, 0, 2, 0, 2, 0)
+
+[MAP] MAP explanation of the hypotheses given the evidence is: (1.24119e-17)
+{x3->1, x5->0, x12->1, x13->1, x16->1, x22->1, x24->0, x26->1}
+[MAP] Computation took 10947906 ns
+

@@ -85,7 +85,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/examples/example_map",
             "args": [
-                "${workspaceFolder}/factorgraphformats/barley.fg"
+                "-i", "${workspaceFolder}/factorgraphformats/circuit.fg", "-o", "circuit_map.txt", "-H", "0,1", "-E", "4", "-e", "1", "-M"
             ],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",

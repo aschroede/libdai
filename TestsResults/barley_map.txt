@@ -8,3 +8,122 @@ evidence vars (40, 41, 42, 43, 44, 45, 46, 47) values (0, 3, 3, 4, 2, 2, 10, 5)
 [MAP] MAP explanation of the hypotheses given the evidence is: (0.111111)
 [MAP] Computation took 8189803 ns
 
+
+command: examples/example_map -i ./factorgraphformats/barley.fg -o barley_map.txt -H 0,1,5,8 -E 40,41,42,43,44,45,46,47 -e 0,3,3,4,2,2,10,5 -M 
+./factorgraphformats/barley.fg simulation results Mon Dec  4 20:49:35 2023
+
+hypothesis vars (0, 1, 5, 8)
+evidence vars (40, 41, 42, 43, 44, 45, 46, 47) values (0, 3, 3, 4, 2, 2, 10, 5)
+
+
+command: examples/example_map -i ./factorgraphformats/barley.fg -o barley_map.txt -H 0,1,5,8 -E 40,41,42,43,44,45,46,47 -e 0,3,3,4,2,2,10,5 -M 
+./factorgraphformats/barley.fg simulation results Mon Dec  4 21:11:17 2023
+
+hypothesis vars (0, 1, 5, 8)
+evidence vars (40, 41, 42, 43, 44, 45, 46, 47) values (0, 3, 3, 4, 2, 2, 10, 5)
+
+
+command: examples/example_map -i ./factorgraphformats/barley.fg -o barley_map.txt -H 0,1,5,8 -E 40,41,42,43,44,45,46,47 -e 0,3,3,4,2,2,10,5 -M 
+./factorgraphformats/barley.fg simulation results Mon Dec  4 21:12:19 2023
+
+hypothesis vars (0, 1, 5, 8)
+evidence vars (40, 41, 42, 43, 44, 45, 46, 47) values (0, 3, 3, 4, 2, 2, 10, 5)
+
+
+command: examples/example_map -i ./factorgraphformats/barley.fg -o barley_map.txt -H 0,1,5,8 -E 40,41,42,43,44,45,46,47 -e 0,3,3,4,2,2,10,5 -M 
+./factorgraphformats/barley.fg simulation results Tue Dec  5 08:25:00 2023
+
+hypothesis vars (0, 1, 5, 8)
+evidence vars (40, 41, 42, 43, 44, 45, 46, 47) values (0, 3, 3, 4, 2, 2, 10, 5)
+
+
+command: examples/example_map -i ./factorgraphformats/barley.fg -o barley_map.txt -H 0,1,5,8 -E 40,41,42,43,44,45,46,47 -e 0,3,3,4,2,2,10,5 -M 
+./factorgraphformats/barley.fg simulation results Tue Dec  5 08:26:33 2023
+
+hypothesis vars (0, 1, 5, 8)
+evidence vars (40, 41, 42, 43, 44, 45, 46, 47) values (0, 3, 3, 4, 2, 2, 10, 5)
+
+
+command: examples/example_map -i ./factorgraphformats/barley.fg -o barley_map.txt -H 0,1,5,8 -E 40,41,42,43,44,45,46,47 -e 0,3,3,4,2,2,10,5 -M 
+./factorgraphformats/barley.fg simulation results Tue Dec  5 08:27:05 2023
+
+hypothesis vars (0, 1, 5, 8)
+evidence vars (40, 41, 42, 43, 44, 45, 46, 47) values (0, 3, 3, 4, 2, 2, 10, 5)
+
+
+command: examples/example_map -i ./factorgraphformats/barley.fg -o barley_map.txt -H 0,1,5,8 -E 40,41,42,43,44,45,46,47 -e 0,3,3,4,2,2,10,5 -M 
+./factorgraphformats/barley.fg simulation results Tue Dec  5 08:59:28 2023
+
+hypothesis vars (0, 1, 5, 8)
+evidence vars (40, 41, 42, 43, 44, 45, 46, 47) values (0, 3, 3, 4, 2, 2, 10, 5)
+
+
+command: examples/example_map -i ./factorgraphformats/barley.fg -o barley_map.txt -H 0,1,5,8 -E 40,41,42,43,44,45,46,47 -e 0,3,3,4,2,2,10,5 -M 
+./factorgraphformats/barley.fg simulation results Tue Dec  5 09:00:47 2023
+
+hypothesis vars (0, 1, 5, 8)
+evidence vars (40, 41, 42, 43, 44, 45, 46, 47) values (0, 3, 3, 4, 2, 2, 10, 5)
+
+
+command: examples/example_map -i ./factorgraphformats/barley.fg -o barley_map.txt -H 0,1,5,8 -E 40,41,42,43,44,45,46,47 -e 0,3,3,4,2,2,10,5 -M 
+./factorgraphformats/barley.fg simulation results Tue Dec  5 09:06:42 2023
+
+hypothesis vars (0, 1, 5, 8)
+evidence vars (40, 41, 42, 43, 44, 45, 46, 47) values (0, 3, 3, 4, 2, 2, 10, 5)
+
+
+command: examples/example_map -i ./factorgraphformats/barley.fg -o barley_map.txt -H 0,1,5,8 -E 40,41,42,43,44,45,46,47 -e 0,3,3,4,2,2,10,5 -M 
+./factorgraphformats/barley.fg simulation results Tue Dec  5 09:09:47 2023
+
+hypothesis vars (0, 1, 5, 8)
+evidence vars (40, 41, 42, 43, 44, 45, 46, 47) values (0, 3, 3, 4, 2, 2, 10, 5)
+
+
+command: examples/example_map -i ./factorgraphformats/barley.fg -o barley_map.txt -H 0,1,5,8 -E 40,41,42,43,44,45,46,47 -e 0,3,3,4,2,2,10,5 -M 
+./factorgraphformats/barley.fg simulation results Tue Dec  5 09:14:17 2023
+
+hypothesis vars (0, 1, 5, 8)
+evidence vars (40, 41, 42, 43, 44, 45, 46, 47) values (0, 3, 3, 4, 2, 2, 10, 5)
+
+
+command: examples/example_map -i ./factorgraphformats/barley.fg -o barley_map.txt -H 0,1,5,8 -E 40,41,42,43,44,45,46,47 -e 0,3,3,4,2,2,10,5 -M 
+./factorgraphformats/barley.fg simulation results Tue Dec  5 09:23:45 2023
+
+hypothesis vars (0, 1, 5, 8)
+evidence vars (40, 41, 42, 43, 44, 45, 46, 47) values (0, 3, 3, 4, 2, 2, 10, 5)
+
+
+command: examples/example_map -i ./factorgraphformats/barley.fg -o barley_map.txt -H 0,1,5,8 -E 40,41,42,43,44,45,46,47 -e 0,3,3,4,2,2,10,5 -M 
+./factorgraphformats/barley.fg simulation results Tue Dec  5 09:25:32 2023
+
+hypothesis vars (0, 1, 5, 8)
+evidence vars (40, 41, 42, 43, 44, 45, 46, 47) values (0, 3, 3, 4, 2, 2, 10, 5)
+
+
+command: examples/example_map -i ./factorgraphformats/barley.fg -o barley_map.txt -H 0,1,5 -E 40,41,42,43,44,45,46,47 -e 0,3,3,4,2,2,10,5 -M 
+./factorgraphformats/barley.fg simulation results Tue Dec  5 09:33:16 2023
+
+hypothesis vars (0, 1, 5)
+evidence vars (40, 41, 42, 43, 44, 45, 46, 47) values (0, 3, 3, 4, 2, 2, 10, 5)
+
+
+command: examples/example_map -i ./factorgraphformats/barley.fg -o barley_map.txt -H 0,1,5 -E 40,41,42,43,44,45,46,47 -e 0,3,3,4,2,2,10,5 -M 
+./factorgraphformats/barley.fg simulation results Tue Dec  5 09:33:32 2023
+
+hypothesis vars (0, 1, 5)
+evidence vars (40, 41, 42, 43, 44, 45, 46, 47) values (0, 3, 3, 4, 2, 2, 10, 5)
+
+
+command: examples/example_map -i ./factorgraphformats/barley.fg -o barley_map.txt -H 0,1,5 -E 40,41,42,43,44,45,46,47 -e 0,3,3,4,2,2,10,5 -M 
+./factorgraphformats/barley.fg simulation results Tue Dec  5 09:40:52 2023
+
+hypothesis vars (0, 1, 5)
+evidence vars (40, 41, 42, 43, 44, 45, 46, 47) values (0, 3, 3, 4, 2, 2, 10, 5)
+
+
+command: examples/example_map -i ./factorgraphformats/barley.fg -o barley_map.txt -H 0,1,5,8 -E 40,41,42,43,44,45,46,47 -e 0,3,3,4,2,2,10,5 -M 
+./factorgraphformats/barley.fg simulation results Tue Dec  5 09:53:36 2023
+
+hypothesis vars (0, 1, 5, 8)
+evidence vars (40, 41, 42, 43, 44, 45, 46, 47) values (0, 3, 3, 4, 2, 2, 10, 5)
+

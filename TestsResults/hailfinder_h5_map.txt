@@ -1,0 +1,53 @@
+
+command: ./examples/example_map -i ./factorgraphformats/hailfinder_fix.fg -o hailfinder_h5_map.txt -H 0,1,2,5,6 -E 43,44,45,46,47,48,49,50,51,52,53,54,55 -e 1,6,1,1,0,1,0,2,3,3,1,1,4 -M 
+./factorgraphformats/hailfinder_fix.fg simulation results Mon Dec  4 16:07:09 2023
+
+hypothesis vars (0, 1, 2, 5, 6)
+evidence vars (43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55) values (1, 6, 1, 1, 0, 1, 0, 2, 3, 3, 1, 1, 4)
+
+[MAP] MAP explanation of the hypotheses given the evidence is: (0.4)
+[MAP] Computation took 787963 ns
+
+
+command: ./examples/example_map -i ./factorgraphformats/hailfinder_fix.fg -o hailfinder_h5_map.txt -H 0,1,2,5,6 -E 43,44,45,46,47,48,49,50,51,52,53,54,55 -e 1,6,1,1,0,1,0,2,3,3,1,1,4 -M 
+./factorgraphformats/hailfinder_fix.fg simulation results Mon Dec  4 16:17:08 2023
+
+hypothesis vars (0, 1, 2, 5, 6)
+evidence vars (43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55) values (1, 6, 1, 1, 0, 1, 0, 2, 3, 3, 1, 1, 4)
+
+[MAP] MAP explanation of the hypotheses given the evidence is: (0.4)
+[MAP] Computation took 1830223 ns
+
+
+command: ./examples/example_map -i ./factorgraphformats/hailfinder_fix.fg -o hailfinder_h5_map.txt -H 0,1,2,5,6 -E 43,44,45,46,47,48,49,50,51,52,53,54,55 -e 1,6,1,1,0,1,0,2,3,3,1,1,4 -M 
+./factorgraphformats/hailfinder_fix.fg simulation results Mon Dec  4 16:23:14 2023
+
+hypothesis vars (0, 1, 2, 5, 6)
+evidence vars (43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55) values (1, 6, 1, 1, 0, 1, 0, 2, 3, 3, 1, 1, 4)
+
+[MAP] MAP explanation of the hypotheses given the evidence is: (0.4)
+{}
+[MAP] Computation took 1393987 ns
+
+
+command: ./examples/example_map -i ./factorgraphformats/hailfinder_fix.fg -o hailfinder_h5_map.txt -H 0,1,2,5,6 -E 43,44,45,46,47,48,49,50,51,52,53,54,55 -e 1,6,1,1,0,1,0,2,3,3,1,1,4 -M 
+./factorgraphformats/hailfinder_fix.fg simulation results Mon Dec  4 20:55:17 2023
+
+hypothesis vars (0, 1, 2, 5, 6)
+evidence vars (43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55) values (1, 6, 1, 1, 0, 1, 0, 2, 3, 3, 1, 1, 4)
+
+[MAP] MAP explanation of the hypotheses given the evidence is: (5.34913e-11)
+{x0->1, x1->2, x2->2, x5->2, x6->2}
+[MAP] Computation took 39555841 ns
+
+
+command: ./examples/example_map -i ./factorgraphformats/hailfinder_fix.fg -o hailfinder_h5_map.txt -H 0,1,2,5,6 -E 43,44,45,46,47,48,49,50,51,52,53,54,55 -e 1,6,1,1,0,1,0,2,3,3,1,1,4 -M 
+./factorgraphformats/hailfinder_fix.fg simulation results Mon Dec  4 21:08:37 2023
+
+hypothesis vars (0, 1, 2, 5, 6)
+evidence vars (43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55) values (1, 6, 1, 1, 0, 1, 0, 2, 3, 3, 1, 1, 4)
+
+[MAP] MAP explanation of the hypotheses given the evidence is: (5.34913e-11)
+{x0->1, x1->2, x2->2, x5->2, x6->2}
+[MAP] Computation took 3913886 ns
+

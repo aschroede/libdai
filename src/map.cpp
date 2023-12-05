@@ -112,7 +112,7 @@ dai::Factor get_map(dai::FactorGraph fg, std::vector<unsigned int> map_vars, std
             // f <- Then multiply those factors together 
 
             // Could also use findFactor and findVars in factorgraph
-            std::vector<dai::Factor> toMultiply(1);
+            std::vector<dai::Factor> toMultiply;
 
             for(int j=0; j<factors.size(); j++){
                 
@@ -134,7 +134,7 @@ dai::Factor get_map(dai::FactorGraph fg, std::vector<unsigned int> map_vars, std
 
                 for (int i = 1; i<toMultiply.size(); i++){
 
-                    newFactor = newFactor*toMultiply[i];
+                    newFactor *= toMultiply[i];
                 }
             }
 
@@ -184,7 +184,9 @@ dai::Factor get_map(dai::FactorGraph fg, std::vector<unsigned int> map_vars, std
 
             factors.push_back(newFactor);
 
-             std::cout << "Eliminated " << ++eliminationCount << "/" << constrainedElimOrder.size() << endl;
+            std::cout << "Eliminated " << ++eliminationCount << "/" << constrainedElimOrder.size() << endl;
+
+            std::cout << sizeof(factors) << std::endl;
 
         }
 
