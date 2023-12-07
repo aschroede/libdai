@@ -251,7 +251,7 @@ class FactorGraph {
     //@{
         /// Set the content of the \a I 'th factor and make a backup of its old content if \a backup == \c true
         virtual void setFactor( size_t I, const Factor& newFactor, bool backup = false ) {
-            DAI_ASSERT( newFactor.vars() == factor(I).vars() );
+            //DAI_ASSERT( newFactor.vars() == factor(I).vars() );
             if( backup )
                 backupFactor( I );
             _factors[I] = newFactor;
@@ -311,6 +311,8 @@ class FactorGraph {
         /** If \a backup == \c true, make a backup of all factors that are changed
          */
         virtual void clamp( size_t i, size_t x, bool backup = false );
+
+        virtual void clampReduce( size_t i, size_t x, bool backup = false );
 
         /// Clamp a variable in a factor graph to have one out of a list of values
         /** If \a backup == \c true, make a backup of all factors that are changed

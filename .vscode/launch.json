@@ -80,7 +80,37 @@
             "preLaunchTask": "make examples",
         },
         {
-            "name": "(gdb) Launch MAP",
+            "name": "(gdb) Launch MAP Barley",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/examples/example_map",
+            "args": [
+                "-i", "${workspaceFolder}/factorgraphformats/barley.fg", "-o", "barley_map.txt", "-H", "0,1,5,8", "-E", "40,41,42,43,44,45,46,47", "-e", "0,3,3,4,2,2,10,5", "-M"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "make map",
+            
+              
+        },
+
+        {
+            "name": "(gdb) Launch MAP Circuits",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/examples/example_map",

@@ -1,0 +1,7 @@
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/circuit.fg -o circuit_map.txt -H 0,1 -E 4 -e 1 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/circuit.fg simulation results Thu Dec  7 20:02:21 2023
+
+hypothesis vars (0, 1)
+evidence vars (4) values (1)
+

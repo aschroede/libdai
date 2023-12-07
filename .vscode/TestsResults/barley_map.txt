@@ -1,0 +1,21 @@
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/barley.fg -o barley_map.txt -H 0,1,5,8 -E 40,41,42,43,44,45,46,47 -e 0,3,3,4,2,2,10,5 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/barley.fg simulation results Tue Dec  5 14:12:18 2023
+
+hypothesis vars (0, 1, 5, 8)
+evidence vars (40, 41, 42, 43, 44, 45, 46, 47) values (0, 3, 3, 4, 2, 2, 10, 5)
+
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/barley.fg -o barley_map.txt -H 0,1 -E 4 -e 1 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/barley.fg simulation results Wed Dec  6 09:30:23 2023
+
+hypothesis vars (0, 1)
+evidence vars (4) values (1)
+
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/barley.fg -o barley_map.txt -H 0,1,5,8 -E 40,41,42,43,44,45,46,47 -e 0,3,3,4,2,2,10,5 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/barley.fg simulation results Thu Dec  7 19:27:47 2023
+
+hypothesis vars (0, 1, 5, 8)
+evidence vars (40, 41, 42, 43, 44, 45, 46, 47) values (0, 3, 3, 4, 2, 2, 10, 5)
+

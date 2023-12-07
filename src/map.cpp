@@ -6,10 +6,11 @@
  */
 
 #include <iostream>
-#include <map>
+//#include <map>
 #include <dai/alldai.h>  // Include main libDAI header file
 #include <chrono>
 #include <stack>
+#include <statsutil.h>
 
 // comment for production mode, uncomment for debug messages
 #define DEBUGMODE
@@ -25,7 +26,7 @@ namespace dai {
 using namespace std;
 
 template<class EliminationChoice>
-vector<size_t> getConstrainedElimOrder(const FactorGraph &fg, EliminationChoice f, std::vector<unsigned int> map_vars){
+vector<size_t> getConstrainedElimOrder(const FactorGraph &fg, EliminationChoice f, std::vector<unsigned int> map_vars, std::vector<unsigned int> evidence_vars  ){
 
     // Create cluster graph from factor graph
     ClusterGraph cl( fg, true );
@@ -34,16 +35,22 @@ vector<size_t> getConstrainedElimOrder(const FactorGraph &fg, EliminationChoice 
     std::set<size_t> nonMapVarindices;
     std::set<size_t> MapVarindices;
 
-    for( size_t i = 0; i < cl.vars().size(); ++i ){
+    for( size_t i = 0; i < cl.vars().size(); ++i ){\
 
-        auto it = std::find(map_vars.begin(), map_vars.end(), i);
+        auto it = std::find(evidence_vars.begin(), evidence_vars.end(), i);
 
-        // If not in map variables add it
-        if (it == map_vars.end()) {
-            nonMapVarindices.insert( i );
-        }
-        else{
-            MapVarindices.insert( i );
+        // Only add non-evidence variables
+        if(it == evidence_vars.end()){
+
+            auto it = std::find(map_vars.begin(), map_vars.end(), i);
+
+            // If not in map variables add it
+            if (it == map_vars.end()) {
+                nonMapVarindices.insert( i );
+            }
+            else{
+                MapVarindices.insert( i );
+            }
         }
     }
 
@@ -76,26 +83,22 @@ dai::Factor get_map(dai::FactorGraph fg, std::vector<unsigned int> map_vars, std
         std::cout << "This is a another test" << std::endl;
         // TODO: PruneNetwork
 
-        std::vector<std::pair<Var, dai::Real>> _instantiation;
-
-        // Generate constrained variable elimination order (pi)
-        vector<size_t> constrainedElimOrder = getConstrainedElimOrder(fg, greedyVariableElimination( eliminationCost_MinFill), map_vars);
-
-        std::cout << "Elimination Order: " << constrainedElimOrder << endl;
-        std::cout << "Number of vars: " << constrainedElimOrder.size() << endl;
-        
-        int eliminationCount = 0;
-
         // Clamp evidence
         auto start = std::chrono::steady_clock::now();
         for (int i = 0; i < evidence_vars.size(); i++){
-            fg.clamp(evidence_vars[i], evidence_values[i], false);
+            fg.clampReduce(evidence_vars[i], evidence_values[i]);
         }
         auto end = std::chrono::steady_clock::now();
         std::cout << "Clamping evidence " << std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() << " ns" << std::endl;
 
 
+        // Generate constrained variable elimination order. Don't include evidence variables
+        vector<size_t> constrainedElimOrder = getConstrainedElimOrder(fg, greedyVariableElimination( eliminationCost_MinFill), map_vars, evidence_vars);
 
+        std::cout << "Elimination Order: " << constrainedElimOrder << endl;
+        std::cout << "Number of vars: " << constrainedElimOrder.size() << endl;
+        
+        int eliminationCount = 0;
 
         // Perform Variable Elimination
         std::vector<dai::Factor> factors = fg.factors();
@@ -181,6 +184,8 @@ dai::Factor get_map(dai::FactorGraph fg, std::vector<unsigned int> map_vars, std
             for (auto it = toMultiply.begin(); it != toMultiply.end(); ++it){
                 factors.erase(std::find_if(factors.begin(), factors.end(), [&](Factor const& f){ return f == *it; }));
             }
+
+            printAllMemStats();
 
             factors.push_back(newFactor);
 

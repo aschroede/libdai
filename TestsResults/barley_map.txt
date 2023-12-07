@@ -127,3 +127,17 @@ command: examples/example_map -i ./factorgraphformats/barley.fg -o barley_map.tx
 hypothesis vars (0, 1, 5, 8)
 evidence vars (40, 41, 42, 43, 44, 45, 46, 47) values (0, 3, 3, 4, 2, 2, 10, 5)
 
+
+command: examples/example_map -i ./factorgraphformats/barley.fg -o barley_map.txt -H 0,1,5,8 -E 40,41,42,43,44,45,46,47 -e 0,3,3,4,2,2,10,5 -M 
+./factorgraphformats/barley.fg simulation results Tue Dec  5 13:59:50 2023
+
+hypothesis vars (0, 1, 5, 8)
+evidence vars (40, 41, 42, 43, 44, 45, 46, 47) values (0, 3, 3, 4, 2, 2, 10, 5)
+
+
+command: examples/example_map -i ./factorgraphformats/barley.fg -o barley_map.txt -H 0,1,5 -E 40,41,42,43,44,45,46,47 -e 0,3,3,4,2,2,10,5 -M 
+./factorgraphformats/barley.fg simulation results Thu Dec  7 19:29:39 2023
+
+hypothesis vars (0, 1, 5)
+evidence vars (40, 41, 42, 43, 44, 45, 46, 47) values (0, 3, 3, 4, 2, 2, 10, 5)
+
