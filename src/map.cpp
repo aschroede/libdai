@@ -31,6 +31,25 @@ vector<size_t> getConstrainedElimOrder(const FactorGraph &fg, EliminationChoice 
     // Create cluster graph from factor graph
     ClusterGraph cl( fg, true );
 
+    // Obtain elimination sequence
+    vector<VarSet> ElimVec = cl.VarElim( greedyVariableElimination( f )).eraseNonMaximal().clusters();
+
+    // Calculate unconstrainted treewidth. This is the best we can do for now. 
+    size_t treewidth = 0;
+    BigInt nrstates = 0.0;
+    for( size_t i = 0; i < ElimVec.size(); i++ ) {
+        if( ElimVec[i].size() > treewidth )
+            treewidth = ElimVec[i].size();
+        BigInt s = ElimVec[i].nrStates();
+        if( s > nrstates )
+            nrstates = s;
+    }
+
+    std::cout << "Unconstrained tree width: " << treewidth << std::endl;
+    std::cout << "Unconstrainted state number: " << nrstates << std::endl;
+    std::cout << "Assuming doubles worth 8 bytes on each row. Max mem usage for state number: " << nrstates.get_d()*8*0.000000001 << " GB" << std::endl;
+
+    // Now get constrained tree width
     // Construct set of variable indices for non-Map vars
     std::set<size_t> nonMapVarindices;
     std::set<size_t> MapVarindices;
@@ -158,7 +177,7 @@ dai::Factor get_map(dai::FactorGraph fg, std::vector<unsigned int> map_vars, std
                         varsToKeep.insert(*it);
                     }
                 }
-                newFactor = newFactor.maxMarginal(varsToKeep,  false);
+                newFactor = newFactor.maxMarginalTransparent(varsToKeep,  false);
             }
 
             // Else fi <- sum out pi(i) from f
@@ -192,6 +211,7 @@ dai::Factor get_map(dai::FactorGraph fg, std::vector<unsigned int> map_vars, std
             std::cout << "Eliminated " << ++eliminationCount << "/" << constrainedElimOrder.size() << endl;
 
             std::cout << sizeof(factors) << std::endl;
+            
 
         }
 
@@ -200,7 +220,7 @@ dai::Factor get_map(dai::FactorGraph fg, std::vector<unsigned int> map_vars, std
         if(factors.size() > 1){
             for (int i = 1; i<factors.size(); i++){
 
-                newFactor = newFactor.operator*=(factors[i]);
+                newFactor *= factors[i];
             }
         }
         std::cout << "Returning last factor" << std::endl;

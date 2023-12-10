@@ -1,0 +1,132 @@
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg -o alarm_map.txt -H 3,5,12,13,16,22,24,26 -E 0,1,2,8,9,11,14,15,17,18,20,21,25,27,35,36 -e 1,1,2,1,1,1,1,2,2,1,1,1,2,1,1,2 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg simulation results Fri Dec  8 11:50:46 2023
+
+hypothesis vars (3, 5, 12, 13, 16, 22, 24, 26)
+evidence vars (0, 1, 2, 8, 9, 11, 14, 15, 17, 18, 20, 21, 25, 27, 35, 36) values (1, 1, 2, 1, 1, 1, 1, 2, 2, 1, 1, 1, 2, 1, 1, 2)
+
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg -o alarm_map.txt -H 3,5,12,13,16,22,24,26 -E 0,1,2,8,9,11,14,15,17,18,20,21,25,27,35,36 -e 1,1,2,1,1,1,1,2,2,1,1,1,2,1,1,2 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg simulation results Fri Dec  8 11:51:11 2023
+
+hypothesis vars (3, 5, 12, 13, 16, 22, 24, 26)
+evidence vars (0, 1, 2, 8, 9, 11, 14, 15, 17, 18, 20, 21, 25, 27, 35, 36) values (1, 1, 2, 1, 1, 1, 1, 2, 2, 1, 1, 1, 2, 1, 1, 2)
+
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg -o alarm_map.txt -H 3,5,12,13,16,22,24,26 -E 0,1,2,8,9,11,14,15,17,18,20,21,25,27,35,36 -e 1,1,2,1,1,1,1,2,2,1,1,1,2,1,1,2 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg simulation results Fri Dec  8 11:53:50 2023
+
+hypothesis vars (3, 5, 12, 13, 16, 22, 24, 26)
+evidence vars (0, 1, 2, 8, 9, 11, 14, 15, 17, 18, 20, 21, 25, 27, 35, 36) values (1, 1, 2, 1, 1, 1, 1, 2, 2, 1, 1, 1, 2, 1, 1, 2)
+
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg -o alarm_map.txt -H 3,5,12,13,16,22,24,26 -E 0,1,2,8,9,11,14,15,17,18,20,21,25,27,35,36 -e 1,1,2,1,1,1,1,2,2,1,1,1,2,1,1,2 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg simulation results Fri Dec  8 12:03:28 2023
+
+hypothesis vars (3, 5, 12, 13, 16, 22, 24, 26)
+evidence vars (0, 1, 2, 8, 9, 11, 14, 15, 17, 18, 20, 21, 25, 27, 35, 36) values (1, 1, 2, 1, 1, 1, 1, 2, 2, 1, 1, 1, 2, 1, 1, 2)
+
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg -o alarm_map.txt -H 3,5,12,13,16,22,24,26 -E 0,1,2,8,9,11,14,15,17,18,20,21,25,27,35,36 -e 1,1,2,1,1,1,1,2,2,1,1,1,2,1,1,2 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg simulation results Fri Dec  8 12:06:38 2023
+
+hypothesis vars (3, 5, 12, 13, 16, 22, 24, 26)
+evidence vars (0, 1, 2, 8, 9, 11, 14, 15, 17, 18, 20, 21, 25, 27, 35, 36) values (1, 1, 2, 1, 1, 1, 1, 2, 2, 1, 1, 1, 2, 1, 1, 2)
+
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg -o alarm_map.txt -H 3,5,12,13,16,22,24,26 -E 0,1,2,8,9,11,14,15,17,18,20,21,25,27,35,36 -e 1,1,2,1,1,1,1,2,2,1,1,1,2,1,1,2 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg simulation results Sat Dec  9 15:14:50 2023
+
+hypothesis vars (3, 5, 12, 13, 16, 22, 24, 26)
+evidence vars (0, 1, 2, 8, 9, 11, 14, 15, 17, 18, 20, 21, 25, 27, 35, 36) values (1, 1, 2, 1, 1, 1, 1, 2, 2, 1, 1, 1, 2, 1, 1, 2)
+
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg -o alarm_map.txt -H 3,5,12,13,16,22,24,26 -E 0,1,2,8,9,11,14,15,17,18,20,21,25,27,35,36 -e 1,1,2,1,1,1,1,2,2,1,1,1,2,1,1,2 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg simulation results Sat Dec  9 15:29:55 2023
+
+hypothesis vars (3, 5, 12, 13, 16, 22, 24, 26)
+evidence vars (0, 1, 2, 8, 9, 11, 14, 15, 17, 18, 20, 21, 25, 27, 35, 36) values (1, 1, 2, 1, 1, 1, 1, 2, 2, 1, 1, 1, 2, 1, 1, 2)
+
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg -o alarm_map.txt -H 3,5,12,13,16,22,24,26 -E 0,1,2,8,9,11,14,15,17,18,20,21,25,27,35,36 -e 1,1,2,1,1,1,1,2,2,1,1,1,2,1,1,2 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg simulation results Sat Dec  9 15:39:02 2023
+
+hypothesis vars (3, 5, 12, 13, 16, 22, 24, 26)
+evidence vars (0, 1, 2, 8, 9, 11, 14, 15, 17, 18, 20, 21, 25, 27, 35, 36) values (1, 1, 2, 1, 1, 1, 1, 2, 2, 1, 1, 1, 2, 1, 1, 2)
+
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg -o alarm_map.txt -H 3,5,12,13,16,22,24,26 -E 0,1,2,8,9,11,14,15,17,18,20,21,25,27,35,36 -e 1,1,2,1,1,1,1,2,2,1,1,1,2,1,1,2 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg simulation results Sun Dec 10 09:28:42 2023
+
+hypothesis vars (3, 5, 12, 13, 16, 22, 24, 26)
+evidence vars (0, 1, 2, 8, 9, 11, 14, 15, 17, 18, 20, 21, 25, 27, 35, 36) values (1, 1, 2, 1, 1, 1, 1, 2, 2, 1, 1, 1, 2, 1, 1, 2)
+
+[MAP] MAP explanation of the hypotheses given the evidence is: (5.5517e-13)
+{}
+[MAP] Computation took 505345066983 ns
+
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg -o alarm_map.txt -H 3,5,12,13,16,22,24,26 -E 0,1,2,8,9,11,14,15,17,18,20,21,25,27,35,36 -e 1,1,2,1,1,1,1,2,2,1,1,1,2,1,1,2 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg simulation results Sun Dec 10 09:43:10 2023
+
+hypothesis vars (3, 5, 12, 13, 16, 22, 24, 26)
+evidence vars (0, 1, 2, 8, 9, 11, 14, 15, 17, 18, 20, 21, 25, 27, 35, 36) values (1, 1, 2, 1, 1, 1, 1, 2, 2, 1, 1, 1, 2, 1, 1, 2)
+
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg -o alarm_map.txt -H 3,5,12,13,16,22,24,26 -E 0,1,2,8,9,11,14,15,17,18,20,21,25,27,35,36 -e 1,1,2,1,1,1,1,2,2,1,1,1,2,1,1,2 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg simulation results Sun Dec 10 09:56:32 2023
+
+hypothesis vars (3, 5, 12, 13, 16, 22, 24, 26)
+evidence vars (0, 1, 2, 8, 9, 11, 14, 15, 17, 18, 20, 21, 25, 27, 35, 36) values (1, 1, 2, 1, 1, 1, 1, 2, 2, 1, 1, 1, 2, 1, 1, 2)
+
+[MAP] MAP explanation of the hypotheses given the evidence is: (5.5517e-13)
+{}
+[MAP] Computation took 53566899883 ns
+
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg -o alarm_map.txt -H 3,5,12,13,16,22,24,26 -E 0,1,2,8,9,11,14,15,17,18,20,21,25,27,35,36 -e 1,1,2,1,1,1,1,2,2,1,1,1,2,1,1,2 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg simulation results Sun Dec 10 10:03:43 2023
+
+hypothesis vars (3, 5, 12, 13, 16, 22, 24, 26)
+evidence vars (0, 1, 2, 8, 9, 11, 14, 15, 17, 18, 20, 21, 25, 27, 35, 36) values (1, 1, 2, 1, 1, 1, 1, 2, 2, 1, 1, 1, 2, 1, 1, 2)
+
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg -o alarm_map.txt -H 3,5,12,13,16,22,24,26 -E 0,1,2,8,9,11,14,15,17,18,20,21,25,27,35,36 -e 1,1,2,1,1,1,1,2,2,1,1,1,2,1,1,2 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg simulation results Sun Dec 10 10:26:30 2023
+
+hypothesis vars (3, 5, 12, 13, 16, 22, 24, 26)
+evidence vars (0, 1, 2, 8, 9, 11, 14, 15, 17, 18, 20, 21, 25, 27, 35, 36) values (1, 1, 2, 1, 1, 1, 1, 2, 2, 1, 1, 1, 2, 1, 1, 2)
+
+[MAP] MAP explanation of the hypotheses given the evidence is: (5.5517e-13)
+{x3->1, x5->1, x12->1, x13->1, x16->1, x22->1, x24->0, x26->1}
+[MAP] Computation took 227644481743 ns
+
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg -o alarm_map.txt -H 3,5,12,13,16,22,24,26 -E 0,1,2,8,9,11,14,15,17,18,20,21,25,27,35,36 -e 1,1,2,1,1,1,1,2,2,1,1,1,2,1,1,2 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg simulation results Sun Dec 10 10:36:03 2023
+
+hypothesis vars (3, 5, 12, 13, 16, 22, 24, 26)
+evidence vars (0, 1, 2, 8, 9, 11, 14, 15, 17, 18, 20, 21, 25, 27, 35, 36) values (1, 1, 2, 1, 1, 1, 1, 2, 2, 1, 1, 1, 2, 1, 1, 2)
+
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg -o alarm_map.txt -H 3,5,12,13,16,22,24,26 -E 0,1,2,8,9,11,14,15,17,18,20,21,25,27,35,36 -e 1,1,2,1,1,1,1,2,2,1,1,1,2,1,1,2 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg simulation results Sun Dec 10 10:38:42 2023
+
+hypothesis vars (3, 5, 12, 13, 16, 22, 24, 26)
+evidence vars (0, 1, 2, 8, 9, 11, 14, 15, 17, 18, 20, 21, 25, 27, 35, 36) values (1, 1, 2, 1, 1, 1, 1, 2, 2, 1, 1, 1, 2, 1, 1, 2)
+
+[MAP] MAP explanation of the hypotheses given the evidence is: (5.5517e-13)
+{x3->1, x5->1, x12->1, x13->1, x16->1, x22->1, x24->0, x26->1}
+[MAP] Computation took 22869986193 ns
+
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg -o alarm_map.txt -H 3,5,12,13,16,22,24,26 -E 0,1,2,8,9,11,14,15,17,18,20,21,25,27,35,36 -e 1,1,2,1,1,1,1,2,2,1,1,1,2,1,1,2 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg simulation results Sun Dec 10 10:44:44 2023
+
+hypothesis vars (3, 5, 12, 13, 16, 22, 24, 26)
+evidence vars (0, 1, 2, 8, 9, 11, 14, 15, 17, 18, 20, 21, 25, 27, 35, 36) values (1, 1, 2, 1, 1, 1, 1, 2, 2, 1, 1, 1, 2, 1, 1, 2)
+
+[MAP] MAP explanation of the hypotheses given the evidence is: (5.5517e-13)
+{x3->1, x5->1, x12->1, x13->1, x16->1, x22->1, x24->0, x26->1}
+[MAP] Computation took 7577536 ns
+

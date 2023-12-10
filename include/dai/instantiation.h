@@ -141,11 +141,13 @@ class Instantiation {
             DAI_DEBASSERT(size() == q.size());
 
             // Use a loop to copy elements from 'q._p' to '_p'.
-            if(q._i.size() > 0){
-                for (size_t i = 0; i < size(); ++i) {
-                    _i[i] = q._i[i];
-                }
-            }
+            // if(q._i.size() > 0){
+            //     for (size_t i = 0; i < size(); ++i) {
+            //         _i[i].insert(q._i[i].begin(), q._i[i].end());
+            //         _i[i].merge(q._i[i]);
+
+            //     }
+            // }
             
 
             // Return a reference to the modified object.

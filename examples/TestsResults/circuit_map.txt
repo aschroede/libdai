@@ -5,3 +5,14 @@ command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /
 hypothesis vars (0, 1)
 evidence vars (4) values (1)
 
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/circuit.fg -o circuit_map.txt -H 0,1 -E 4 -e 1 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/circuit.fg simulation results Fri Dec  8 11:13:14 2023
+
+hypothesis vars (0, 1)
+evidence vars (4) values (1)
+
+[MAP] MAP explanation of the hypotheses given the evidence is: (0.24272)
+{x0->1, x1->0}
+[MAP] Computation took 4416784488 ns
+

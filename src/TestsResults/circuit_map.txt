@@ -185,3 +185,30 @@ evidence vars (4) values (1)
 [MAP] MAP explanation of the hypotheses given the evidence is: (0.24272)
 [MAP] Computation took 79096736201 ns
 
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/circuit.fg -o circuit_map.txt -H 0,1 -E 4 -e 1 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/circuit.fg simulation results Fri Dec  8 11:07:24 2023
+
+hypothesis vars (0, 1)
+evidence vars (4) values (1)
+
+[MAP] MAP explanation of the hypotheses given the evidence is: (0.24272)
+[MAP] Computation took 6867514168 ns
+
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/circuit.fg -o circuit_map.txt -H 0,1 -E 4 -e 1 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/circuit.fg simulation results Fri Dec  8 11:07:43 2023
+
+hypothesis vars (0, 1)
+evidence vars (4) values (1)
+
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/circuit.fg -o circuit_map.txt -H 0,1 -E 4 -e 1 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/circuit.fg simulation results Fri Dec  8 11:11:08 2023
+
+hypothesis vars (0, 1)
+evidence vars (4) values (1)
+
+[MAP] MAP explanation of the hypotheses given the evidence is: (0.24272)
+[MAP] Computation took 21682345991 ns
+

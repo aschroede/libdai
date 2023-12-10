@@ -110,6 +110,36 @@
         },
 
         {
+            "name": "(gdb) Launch MAP Alarm",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/examples/example_map",
+            "args": [
+                "-i", "${workspaceFolder}/factorgraphformats/alarm_fix.fg", "-o", "alarm_map.txt", "-H", "3,5,12,13,16,22,24,26", "-E", "0,1,2,8,9,11,14,15,17,18,20,21,25,27,35,36", "-e", "0,2,0,0,0,0,1,3,1,0,1,0,2,0,2,0", "-M"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "make map",
+            
+              
+        },
+
+        {
             "name": "(gdb) Launch MAP Circuits",
             "type": "cppdbg",
             "request": "launch",

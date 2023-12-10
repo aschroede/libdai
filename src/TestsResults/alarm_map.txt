@@ -1,0 +1,21 @@
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg -o alarm_map.txt -H 3,5,12,13,16,22,24,26 -E 0,1,2,8,9,11,14,15,17,18,20,21,25,27,35,36 -e 1,1,2,1,1,1,1,2,2,1,1,1,2,1,1,2 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg simulation results Fri Dec  8 11:52:20 2023
+
+hypothesis vars (3, 5, 12, 13, 16, 22, 24, 26)
+evidence vars (0, 1, 2, 8, 9, 11, 14, 15, 17, 18, 20, 21, 25, 27, 35, 36) values (1, 1, 2, 1, 1, 1, 1, 2, 2, 1, 1, 1, 2, 1, 1, 2)
+
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg -o alarm_map.txt -H 3,5,12,13,16,22,24,26 -E 0,1,2,8,9,11,14,15,17,18,20,21,25,27,35,36 -e 1,1,2,1,1,1,1,2,2,1,1,1,2,1,1,2 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg simulation results Sun Dec 10 08:26:04 2023
+
+hypothesis vars (3, 5, 12, 13, 16, 22, 24, 26)
+evidence vars (0, 1, 2, 8, 9, 11, 14, 15, 17, 18, 20, 21, 25, 27, 35, 36) values (1, 1, 2, 1, 1, 1, 1, 2, 2, 1, 1, 1, 2, 1, 1, 2)
+
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg -o alarm_map.txt -H 3,5,12,13,16,22,24,26 -E 0,1,2,8,9,11,14,15,17,18,20,21,25,27,35,36 -e 1,1,2,1,1,1,1,2,2,1,1,1,2,1,1,2 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/alarm_fix.fg simulation results Sun Dec 10 08:29:14 2023
+
+hypothesis vars (3, 5, 12, 13, 16, 22, 24, 26)
+evidence vars (0, 1, 2, 8, 9, 11, 14, 15, 17, 18, 20, 21, 25, 27, 35, 36) values (1, 1, 2, 1, 1, 1, 1, 2, 2, 1, 1, 1, 2, 1, 1, 2)
+
