@@ -380,6 +380,8 @@ class TFactor {
                 _vs |= g._vs;
                 size_t N = BigInt_size_t( _vs.nrStates() );
 
+                std::cout << "Number of states in new table: " << N << std::endl;
+
                 IndexFor i_f( f._vs, _vs );
                 IndexFor i_g( g._vs, _vs );
 
@@ -620,7 +622,7 @@ template<typename T> TFactor<T> TFactor<T>::maxMarginalTransparent(const VarSet 
     for( size_t i = 0; i < _p.size(); i++, ++i_res, S++){
         
         // If the current entry in '_p' is greater than the corresponding entry in 'res', update 'res'.
-        if( _p[i] > res._p[i_res] ){
+        if( _p[i] >  res._p[i_res] ){
             res.set( i_res, _p[i] );
             std::map<Var, size_t> rowInstantiation = getInstantiation( i_res );
 

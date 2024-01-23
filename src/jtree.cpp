@@ -99,6 +99,13 @@ JTree::JTree( const FactorGraph &fg, const PropertySet &opts, bool automatic ) :
         if( props.verbose >= 3 )
             cerr << "VarElim result: " << ElimVec << endl;
 
+        for (VarSet cluster : ElimVec){
+
+            std::cout << "Cluster size: " << cluster.size() << std::endl;
+            std::cout << "Cluster states: " << cluster.nrStates() << std::endl;
+            std::cout << cluster << std::endl;
+        }
+
         // Estimate memory needed (rough upper bound)
         BigInt memneeded = 0;
         bforeach( const VarSet& cl, ElimVec )

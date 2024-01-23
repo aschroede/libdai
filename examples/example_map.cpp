@@ -163,15 +163,21 @@ int main( int argc, char *argv[] ) {
         {
             ofs << std::endl << "[MAP] MAP explanation of the hypotheses given the evidence is: ";
             auto start = std::chrono::steady_clock::now();
-            dai::Factor MAP = get_map(fg, hypothesisVars, evidenceVars, evidenceValues, false);
-            auto end = std::chrono::steady_clock::now();
-            ofs << MAP.p() << std::endl;
+            dai::Factor map = get_map_ve(fg, hypothesisVars, evidenceVars, evidenceValues, false);
+            //dai::Factor MAP = get_map_ve(fg, hypothesisVars, evidenceVars, evidenceValues, false);
+            // auto end = std::chrono::steady_clock::now();
+            // ofs << MAP.p() << std::endl;
+            // ofs << "[MAP] Computation took " << std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() << " ns" << std::endl;
 
-            for (const auto& myMap : MAP.i()){
-                std::cout << myMap << std::endl;
-                ofs << myMap << std::endl;
-            }
-            ofs << "[MAP] Computation took " << std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() << " ns" << std::endl;
+            // string instantiation = "";
+            // for (const auto& myMap : MAP.i()){
+
+            //     for (const auto& entry : myMap){
+            //         instantiation += std::to_string(entry.second) + " ";
+            //     }   
+            // }
+
+            // ofs << instantiation << std::endl;
         }
     }
 
