@@ -5,7 +5,8 @@
 #include <chrono>
 #include <ctime>
 #include <filesystem>
-
+#include "example_map.h"
+# include <dai/logger.h>
 
 using namespace std;
 using namespace dai;
@@ -20,15 +21,17 @@ using namespace dai;
 	#define DEBUG(a) ;
 #endif	
 
-std::string testdir = "TestsResults";
+std::string testdir = "TestResults";
 std::string inputfile = "./alarm.fg";
 std::string outputfile = "./results";
+LogLevel logLevel = LogLevel::INFO;
 std::vector<unsigned int> hypothesisVars;
 std::vector<unsigned int> evidenceVars;
 std::vector<unsigned int> evidenceValues;
 
-bool mapComputation = false;
+bool jtMapComputation = false;
 bool veMapComputation = false;
+bool veComputation = false;
 
 cxxopts::ParseResult parse(int argc, char* argv[])
 {
@@ -39,11 +42,13 @@ cxxopts::ParseResult parse(int argc, char* argv[])
         options.add_options()
             ("i,input", "factor graph to run simulations on", cxxopts::value<std::string>())
             ("o,output", "output file for simulation results", cxxopts::value<std::string>())
+            ("l, log-level", "verbosity of logging [DEBUG, INFO, WARNING, ERROR, CRITICAL]", cxxopts::value<std::string>())
             ("H,hypothesis-variables", "hypothesis variables", cxxopts::value<std::vector<unsigned int>>())
             ("E,evidence-variables", "evidence variables", cxxopts::value<std::vector<unsigned int>>())
             ("e,evidence-values", "values of the evidence variables", cxxopts::value<std::vector<unsigned int>>())
-            ("M,map", "run exact MAP computation")
-            ("V,vemap", "run exact MAP using variable elimination")
+            ("J,jtmap", "run exact MAP computation")
+            ("M,vemap", "run exact MAP using variable elimination")
+            ("V,ve", "run a variable elimination query")
         ;
 
         if (argc == 1)
@@ -60,9 +65,9 @@ cxxopts::ParseResult parse(int argc, char* argv[])
           exit(0);
         }
 
-        if (result.count("map"))
+        if (result.count("jtmap"))
         {
-            mapComputation = true;  
+            jtMapComputation = true;  
             DEBUG(std::cout << "Exact computation using MAP" << std::endl)
         }
 
@@ -71,7 +76,10 @@ cxxopts::ParseResult parse(int argc, char* argv[])
             DEBUG(std::cout << "Exact computation using VE MAP" << std::endl)
         }
 
-        
+        if (result.count("ve")){
+            veComputation = true;
+            DEBUG(std::cout << "Exact computation using VE" << std::endl)
+        }
 
         if (result.count("input"))
         {
@@ -83,6 +91,22 @@ cxxopts::ParseResult parse(int argc, char* argv[])
         {
             outputfile = result["output"].as<std::string>();
             DEBUG(std::cout << "Output file: " << outputfile << std::endl)
+        }
+
+        if (result.count("log-level"))
+        {
+            std::string level = result["log-level"].as<std::string>();
+
+            if(level == "DEBUG")
+                logLevel = LogLevel::DEBUG;
+            else if (level == "INFO")
+                logLevel = LogLevel::INFO;
+            else if (level == "WARNING")
+                logLevel = LogLevel::WARNING;
+            else if (level == "ERROR")
+                logLevel = LogLevel::ERROR;
+            else if (level == "CRITICAL")
+                logLevel = LogLevel::CRITICAL;
         }
 
         if (result.count("hypothesis-variables"))
@@ -124,21 +148,72 @@ cxxopts::ParseResult parse(int argc, char* argv[])
     }
 }
 
+void VEMap(dai::FactorGraph &fg, LibLogger &logger)
+{
+    logger.log(LogLevel::INFO, "\n[MAP] Computing MAP with Variable Elimination ");
+
+    // Start clock
+    auto start = std::chrono::steady_clock::now();
+
+    // Perform VE Map
+    dai::Factor MAP = get_map_ve(fg, hypothesisVars, evidenceVars, evidenceValues, false, logger);
+
+    // Stop clock
+    auto end = std::chrono::steady_clock::now();
+
+    // Format instantiation data
+    string instantiation = "";
+    for (const auto &myMap : MAP.i())
+    {
+        for (const auto &entry : myMap)
+        {
+            instantiation += std::to_string(entry.second) + " ";
+        }
+    }
+
+    logger.log(LogLevel::INFO, "[MAP] Total Time: " + std::to_string(std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()) + " ns");
+    logger.log(LogLevel::INFO, "[MAP] Instantiation: " + instantiation + " has probability " + probToString(MAP.p()));
+    
+}
+
+void JTMap(dai::FactorGraph &fg, LibLogger &logger)
+{
+    logger.log(LogLevel::INFO, "\n[MAP] Computing MAP with Junction Tree: ");
+
+    // Perform VE Map
+    std::vector<unsigned long int> MAP = get_map_jt(fg, hypothesisVars, evidenceVars, evidenceValues, false, logger);
+
+}
+
+void VE(dai::FactorGraph &fg, LibLogger &logger)
+{
+    logger.log(LogLevel::INFO, "Running VE Algorithm: ");
+
+    // Perform VE Map
+    dai::Factor prob_dist = variableElimination(fg, hypothesisVars, evidenceVars, evidenceValues, logger);
+    extractMax(prob_dist, logger);
+
+}
 
 int main( int argc, char *argv[] ) {
     namespace fs = std::filesystem;
     
+    // Get arguments
     auto result = parse(argc, argv);
     auto arguments = result.arguments();
 
+    // Get time
     time_t now = time(0);
+
+    // Read graph data
    	dai::FactorGraph fg;
    	fg.ReadFromFile(inputfile.c_str());
 
+    // File output stream
 	std::ofstream ofs;
-
     std::string filepath = testdir + "/" + outputfile;
 
+    // Create directory for storing results
     if(!fs::exists(testdir)){
 
         if(!fs::create_directory(testdir)){
@@ -147,40 +222,38 @@ int main( int argc, char *argv[] ) {
     }
 	ofs.open (filepath.c_str(), std::ofstream::out | std::ofstream::app);
 
-	ofs << std::endl << "command: ";
+    
+    dai::LibLogger logger = dai::LibLogger(testdir + "/" + outputfile, logLevel);
+    logger.log(LogLevel::DEBUG, "This is a test");
+    
+    // Write command to output file for reference
+    std:: string command = "command: ";
     for (int i = 0; i < argc; i++)
-        ofs << argv[i] << " ";
-    ofs << std::endl;
+        command += std::string(argv[i]) + ' ';
+    logger.log(LogLevel::INFO, command);
 
-	ofs << inputfile << " simulation results " << ctime(&now) << std::endl;
-	ofs << "hypothesis vars " << hypothesisVars << std::endl;
-	ofs << "evidence vars " << evidenceVars << " values " << evidenceValues << std::endl;
+    // Record relevent parameters in log file
+    logger.log(LogLevel::INFO, inputfile + " simulation results " + ctime(&now));
+    
+    std::ostringstream oss;
+    logger.log(LogLevel::INFO, "hypothesis vars " + vecToString(hypothesisVars));
+    logger.log(LogLevel::INFO, "evidence vars " + vecToString(evidenceVars) + " values " + vecToString(evidenceValues));
 
-    if(mapComputation){
 
-        // compute exact MAP
-        if (mapComputation)
-        {
-            ofs << std::endl << "[MAP] MAP explanation of the hypotheses given the evidence is: ";
-            auto start = std::chrono::steady_clock::now();
-            dai::Factor map = get_map_ve(fg, hypothesisVars, evidenceVars, evidenceValues, false);
-            //dai::Factor MAP = get_map_ve(fg, hypothesisVars, evidenceVars, evidenceValues, false);
-            // auto end = std::chrono::steady_clock::now();
-            // ofs << MAP.p() << std::endl;
-            // ofs << "[MAP] Computation took " << std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() << " ns" << std::endl;
+    if (jtMapComputation)
+    {
+        JTMap(fg, logger);
+    }
 
-            // string instantiation = "";
-            // for (const auto& myMap : MAP.i()){
+    if (veMapComputation){
+        VEMap(fg, logger);
+    }
 
-            //     for (const auto& entry : myMap){
-            //         instantiation += std::to_string(entry.second) + " ";
-            //     }   
-            // }
-
-            // ofs << instantiation << std::endl;
-        }
+    if(veComputation){
+        VE(fg, logger);
     }
 
     ofs << std::endl;
 	ofs.close();
 }
+

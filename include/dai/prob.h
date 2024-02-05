@@ -744,6 +744,19 @@ std::ostream& operator<< (std::ostream& os, const TProb<T>& p) {
     return os;
 }
 
+// Writes a TProb<T> to a string
+/** \relates TProb
+ */
+template<typename T> 
+std::string probToString (const TProb<T>& p) {
+    std::ostringstream os;
+    os << "(";
+    for( size_t i = 0; i < p.size(); i++ )
+        os << ((i != 0) ? ", " : "") << p.get(i);
+    os << ")";
+    return os.str();
+}
+
 
 /// Returns the pointwise minimum of \a a and \a b
 /** \relates TProb

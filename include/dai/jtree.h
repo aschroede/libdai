@@ -104,6 +104,18 @@ class JTree : public DAIAlgRG {
             size_t maxmem;
         } props;
 
+        /// Elimination order generated using heuristics
+        std::vector<size_t> ElimOrder;
+
+        /// Heuristic used for generating the elimination order
+        std::string Heuristic;
+
+        /// Maximum cluster size
+        std::size_t MaxCluster;
+
+        /// Maximum number of States in MaxCluster
+        BigInt MaxStates;
+
     public:
     /// \name Constructors/destructors
     //@{
@@ -115,7 +127,7 @@ class JTree : public DAIAlgRG {
          ** \param opts Parameters @see Properties
          *  \param automatic if \c true, construct the junction tree automatically, using the heuristic in opts['heuristic'].
          */
-        JTree( const FactorGraph &fg, const PropertySet &opts, bool automatic=true );
+        JTree( const FactorGraph &fg, const PropertySet &opts, bool automatic=true);
     //@}
 
 

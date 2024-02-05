@@ -43,6 +43,13 @@
             "command": "make",
             "args": ["clean"],
             "problemMatcher": [],
+        },
+        {
+            "type": "shell",
+            "label": "make factor_test",
+            "command": "make",
+            "args": ["tests/unit/factor_test"],
+            "problemMatcher": [],
         }
     ],
     "version": "2.0.0"

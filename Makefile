@@ -42,7 +42,7 @@ endif
 
 # Define conditional build targets
 NAMES:=graph dag bipgraph varset daialg alldai clustergraph factor factorgraph properties regiongraph cobwebgraph util weightedgraph exceptions exactinf evidence emalg io
-NAMES:=$(NAMES) bp fbp trwbp mf hak lc treeep jtree mr gibbs bbp cbp bp_dual decmap glc map
+NAMES:=$(NAMES) bp fbp trwbp mf hak lc treeep jtree mr gibbs bbp cbp bp_dual decmap glc map logger
 
 
 # Define standard libDAI header dependencies, source file names and object file names
@@ -171,6 +171,8 @@ endif
 
 # UNIT TESTS
 #############
+
+tests/unit/factor_test$(EE) : tests/unit/factor_test.cpp $(HEADERS) $(LIB)/libdai$(LE)
 
 tests/unit/%$(EE) : tests/unit/%.cpp $(HEADERS) $(LIB)/libdai$(LE)
 ifneq ($(OS),WINDOWS)

@@ -9,7 +9,7 @@
 #include <dai/dai_config.h>
 #ifdef DAI_WITH_JTREE
 
-
+#include <tuple>
 #include <iostream>
 #include <stack>
 #include <dai/jtree.h>
@@ -19,7 +19,6 @@ namespace dai {
 
 
 using namespace std;
-
 
 void JTree::setProperties( const PropertySet &opts ) {
     DAI_ASSERT( opts.hasKey("updates") );
@@ -67,7 +66,7 @@ string JTree::printProperties() const {
 }
 
 
-JTree::JTree( const FactorGraph &fg, const PropertySet &opts, bool automatic ) : DAIAlgRG(), _mes(), _logZ(), RTree(), Qa(), Qb(), props() {
+JTree::JTree( const FactorGraph &fg, const PropertySet &opts, bool automatic) : DAIAlgRG(), _mes(), _logZ(), RTree(), Qa(), Qb(), props() {
     setProperties( opts );
 
     if( automatic ) {
@@ -94,21 +93,36 @@ JTree::JTree( const FactorGraph &fg, const PropertySet &opts, bool automatic ) :
             default:
                 DAI_THROW(UNKNOWN_ENUM_VALUE);
         }
-        size_t fudge = 6; // this yields a rough estimate of the memory needed (for some reason not yet clearly understood)
-        vector<VarSet> ElimVec = _cg.VarElim( greedyVariableElimination( ec ), props.maxmem / (sizeof(Real) * fudge) ).eraseNonMaximal().clusters();
-        if( props.verbose >= 3 )
-            cerr << "VarElim result: " << ElimVec << endl;
 
-        for (VarSet cluster : ElimVec){
-
-            std::cout << "Cluster size: " << cluster.size() << std::endl;
-            std::cout << "Cluster states: " << cluster.nrStates() << std::endl;
-            std::cout << cluster << std::endl;
+        // Find name of heuristic
+        for (const auto& entry: functionNames){
+            if (entry.first == ec){
+                Heuristic = entry.second;
+                break;
+            }
         }
+
+        size_t fudge = 6; // this yields a rough estimate of the memory needed (for some reason not yet clearly understood)
+
+        // Are these the clusters? (218)
+        // Generate cluster sequence induced by applying an elimination order
+        // String this cluster sequence together into a junction tree!
+        ClusterGraph ElimVec;
+
+        tie(ElimVec, ElimOrder) = _cg.VarElim( greedyVariableElimination( ec ), props.maxmem / (sizeof(Real) * fudge));
+        std::vector<dai::VarSet> ElimCliques = ElimVec.eraseNonMaximal().clusters();
+
+        // Get maximum cluster size and maximum number of states
+        std::pair<size_t,BigInt> data = boundTreewidth(fg, ec, 0);
+        MaxCluster = data.first;
+        MaxStates = data.second;
+        
+        if( props.verbose >= 3 )
+            cerr << "VarElim result: " << ElimCliques << endl;
 
         // Estimate memory needed (rough upper bound)
         BigInt memneeded = 0;
-        bforeach( const VarSet& cl, ElimVec )
+        bforeach( const VarSet& cl, ElimCliques )
             memneeded += cl.nrStates();
         memneeded *= (BigInt)sizeof(Real) * (BigInt)fudge;
         if( props.verbose >= 1 ) {
@@ -123,7 +137,7 @@ JTree::JTree( const FactorGraph &fg, const PropertySet &opts, bool automatic ) :
             DAI_THROW(OUT_OF_MEMORY);
 
         // Generate the junction tree corresponding to the elimination sequence
-        GenerateJT( fg, ElimVec );
+        GenerateJT( fg, ElimCliques );
     }
 }
 
@@ -571,16 +585,20 @@ std::pair<size_t,BigInt> boundTreewidth( const FactorGraph &fg, greedyVariableEl
     // Create cluster graph from factor graph
     ClusterGraph _cg( fg, true );
 
+    ClusterGraph ElimVec;
+    std::vector<size_t> ElimOrder;
+
     // Obtain elimination sequence
-    vector<VarSet> ElimVec = _cg.VarElim( greedyVariableElimination( fn ), maxStates ).eraseNonMaximal().clusters();
+    tie(ElimVec, ElimOrder) = _cg.VarElim( greedyVariableElimination( fn ), maxStates );
+    std::vector<dai::VarSet> ElimCliques = ElimVec.eraseNonMaximal().clusters();
 
     // Calculate treewidth
     size_t treewidth = 0;
     BigInt nrstates = 0.0;
-    for( size_t i = 0; i < ElimVec.size(); i++ ) {
-        if( ElimVec[i].size() > treewidth )
-            treewidth = ElimVec[i].size();
-        BigInt s = ElimVec[i].nrStates();
+    for( size_t i = 0; i < ElimCliques.size(); i++ ) {
+        if( ElimCliques[i].size() > treewidth )
+            treewidth = ElimCliques[i].size();
+        BigInt s = ElimCliques[i].nrStates();
         if( s > nrstates )
             nrstates = s;
     }

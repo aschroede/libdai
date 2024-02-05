@@ -15,7 +15,7 @@
 #ifndef __defined_libdai_clustergraph_h
 #define __defined_libdai_clustergraph_h
 
-
+#include <tuple>
 #include <set>
 #include <vector>
 #include <dai/varset.h>
@@ -228,12 +228,57 @@ namespace dai {
              *  \return A set of elimination "cliques".
              */
             template<class EliminationChoice>
-            ClusterGraph VarElim( EliminationChoice f, size_t maxStates=0 ) const {
+            std::tuple<ClusterGraph, std::vector<size_t>> VarElim( EliminationChoice f, size_t maxStates=0 ) const {
                 // Make a copy
                 ClusterGraph cl(*this);
                 cl.eraseNonMaximal();
 
                 ClusterGraph result;
+                std::vector<size_t> elimOrder;
+
+
+                // Construct set of variable indices
+                std::set<size_t> varindices;
+                for( size_t i = 0; i < _vars.size(); ++i )
+                    varindices.insert( i );
+
+                // Do variable elimination
+                BigInt totalStates = 0;
+                while( !varindices.empty() ) {
+                    size_t i = f( cl, varindices );
+                    elimOrder.push_back(i);
+                    VarSet Di = cl.elimVar( i );
+                    result.insert( Di );
+                    if( maxStates ) {
+                        totalStates += Di.nrStates();
+                        if( totalStates > (BigInt)maxStates )
+                            DAI_THROW(OUT_OF_MEMORY);
+                    }
+                    varindices.erase( i );
+                }
+
+                return std::make_tuple(result, elimOrder);
+            }
+        //@}
+
+
+
+        /// \name Variable elimination
+        //@{
+            /// Performs Variable Elimination, keeping track of the interactions that are created along the way.
+            /** \tparam EliminationChoice should support "size_t operator()( const ClusterGraph &cl, const std::set<size_t> &remainingVars )"
+             *  \param f function object which returns the next variable index to eliminate; for example, a dai::greedyVariableElimination object.
+             *  \param maxStates maximum total number of states of all clusters in the output cluster graph (0 means no limit).
+             *  \throws OUT_OF_MEMORY if total number of states becomes larger than maxStates
+             *  \return A set of elimination "cliques".
+             */
+            template<class EliminationChoice>
+            std::vector<size_t> VarElimVarOrder( EliminationChoice f) const {
+                // Make a copy
+                ClusterGraph cl(*this);
+                cl.eraseNonMaximal();
+
+                std::vector<size_t> elimOrder;
 
                 // Construct set of variable indices
                 std::set<size_t> varindices;
@@ -245,16 +290,11 @@ namespace dai {
                 while( !varindices.empty() ) {
                     size_t i = f( cl, varindices );
                     VarSet Di = cl.elimVar( i );
-                    result.insert( Di );
-                    if( maxStates ) {
-                        totalStates += Di.nrStates();
-                        if( totalStates > (BigInt)maxStates )
-                            DAI_THROW(OUT_OF_MEMORY);
-                    }
+                    elimOrder.push_back(i);
                     varindices.erase( i );
                 }
 
-                return result;
+                return elimOrder;
             }
         //@}
     };
@@ -337,6 +377,9 @@ namespace dai {
      *  The weight of an edge is the product of the number of states of the variables corresponding with its nodes.
      */
     size_t eliminationCost_WeightedMinFill( const ClusterGraph& cl, size_t i );
+
+    /// @brief Provides a mapping from the heuristic cost functions to string names
+    extern std::map<greedyVariableElimination::eliminationCostFunction, std::string> functionNames;
 
 
 } // end of namespace dai

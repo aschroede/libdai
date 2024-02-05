@@ -33,3 +33,45 @@ command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /
 hypothesis vars (0, 1, 5, 8)
 evidence vars (40, 41, 42, 43, 44, 45, 46, 47) values (0, 3, 3, 4, 2, 2, 10, 5)
 
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/barley.fg -o barley_map.txt -H 0,1,5,8 -E 40,41,42,43,44,45,46,47 -e 0,3,3,4,2,2,10,5 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/barley.fg simulation results Thu Jan 25 10:41:31 2024
+
+hypothesis vars (0, 1, 5, 8)
+evidence vars (40, 41, 42, 43, 44, 45, 46, 47) values (0, 3, 3, 4, 2, 2, 10, 5)
+
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/barley.fg -o barley_map.txt -H 0,1,5,8 -E 40,41,42,43,44,45,46,47 -e 0,3,3,4,2,2,10,5 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/barley.fg simulation results Thu Jan 25 10:48:29 2024
+
+hypothesis vars (0, 1, 5, 8)
+evidence vars (40, 41, 42, 43, 44, 45, 46, 47) values (0, 3, 3, 4, 2, 2, 10, 5)
+
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/barley.fg -o barley_map.txt -H 0,1,5,8 -E 40,41,42,43,44,45,46,47 -e 0,3,3,4,2,2,10,5 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/barley.fg simulation results Thu Jan 25 10:50:49 2024
+
+hypothesis vars (0, 1, 5, 8)
+evidence vars (40, 41, 42, 43, 44, 45, 46, 47) values (0, 3, 3, 4, 2, 2, 10, 5)
+
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/barley.fg -o barley_map.txt -H 0,1,5,8 -E 40,41,42,43,44,45,46,47 -e 0,2,2,3,0,2,12,5 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/barley.fg simulation results Fri Jan 26 20:22:24 2024
+
+hypothesis vars (0, 1, 5, 8)
+evidence vars (40, 41, 42, 43, 44, 45, 46, 47) values (0, 2, 2, 3, 0, 2, 12, 5)
+
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/barley.fg -o barley_map.txt -H 0,1,5,8 -E 40,41,42,43,44,45,46,47 -e 0,2,2,3,0,2,12,5 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/barley.fg simulation results Fri Jan 26 20:45:24 2024
+
+hypothesis vars (0, 1, 5, 8)
+evidence vars (40, 41, 42, 43, 44, 45, 46, 47) values (0, 2, 2, 3, 0, 2, 12, 5)
+
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/barley.fg -o barley_map.txt -H 0,1,5,8 -E 40,41,42,43,44,45,46,47 -e 0,2,2,3,0,2,12,5 -J 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/barley.fg simulation results Thu Feb  1 10:31:00 2024
+
+hypothesis vars (0, 1, 5, 8)
+evidence vars (40, 41, 42, 43, 44, 45, 46, 47) values (0, 2, 2, 3, 0, 2, 12, 5)
+[MAP] Computing MAP with Junction Tree: 

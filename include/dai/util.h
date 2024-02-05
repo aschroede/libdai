@@ -199,6 +199,17 @@ std::ostream& operator << (std::ostream& os, const std::vector<T> & x) {
     return os;
 }
 
+/// Writes a \c std::vector<> to a \c std::string
+template<class T>
+std::string vecToString (const std::vector<T> & x) {
+    std::ostringstream os;
+    os << "(";
+    for( typename std::vector<T>::const_iterator it = x.begin(); it != x.end(); it++ )
+        os << (it != x.begin() ? ", " : "") << *it;
+    os << ")";
+    return os.str();
+}
+
 /// Writes a \c std::set<> to a \c std::ostream
 template<class T>
 std::ostream& operator << (std::ostream& os, const std::set<T> & x) {

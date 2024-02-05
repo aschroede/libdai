@@ -135,5 +135,11 @@ size_t eliminationCost_WeightedMinFill( const ClusterGraph &cl, size_t i ) {
     return cost;
 }
 
+std::map<greedyVariableElimination::eliminationCostFunction, std::string> functionNames = {
+        {eliminationCost_MinNeighbors, "MinNeighbors"},
+        {eliminationCost_MinWeight, "MinWeight"},
+        {eliminationCost_MinFill, "MinFill"},
+        {eliminationCost_WeightedMinFill, "WeightedMinFill"}
+    };
 
 } // end of namespace dai

@@ -11,6 +11,7 @@
 #include <chrono>
 #include <stack>
 #include <statsutil.h>
+#include <dai/logger.h>
 
 // comment for production mode, uncomment for debug messages
 #define DEBUGMODE
@@ -25,40 +26,102 @@ namespace dai {
 
 using namespace std;
 
+
+void LogFactors(std::vector<dai::Factor> &factors, dai::LibLogger &logger)
+{
+    for (dai::Factor &factor : factors)
+    {
+        logger.log(LogLevel::DEBUG, factor.toStringNice());
+    }
+}
+
+
+std::pair<size_t,BigInt> boundTreewidth1( const FactorGraph &fg, greedyVariableElimination::eliminationCostFunction fn, size_t maxStates ) {
+    // Create cluster graph from factor graph
+    ClusterGraph _cg( fg, true );
+
+    ClusterGraph ElimVec;
+    std::vector<size_t> ElimOrder;
+
+    // Obtain elimination sequence
+    tie(ElimVec, ElimOrder) = _cg.VarElim( greedyVariableElimination( fn ), maxStates );
+    std::vector<dai::VarSet> ElimCliques = ElimVec.eraseNonMaximal().clusters();
+
+    // Calculate treewidth
+    size_t treewidth = 0;
+    BigInt nrstates = 0.0;
+    for( size_t i = 0; i < ElimCliques.size(); i++ ) {
+        if( ElimCliques[i].size() > treewidth )
+            treewidth = ElimCliques[i].size();
+        BigInt s = ElimCliques[i].nrStates();
+        if( s > nrstates )
+            nrstates = s;
+    }
+
+    std::cout << "Unconstrained tree width (BoundTreeWidth): " << treewidth << std::endl;
+    std::cout << "Unconstrained state number (BoundTreeWidth): " << nrstates << std::endl;
+
+    return make_pair(treewidth, nrstates);
+}
+
+
+template<class EliminationChoice>
+vector<size_t> getUnconstrainedElimOrder(const FactorGraph &fg, EliminationChoice f, std::vector<unsigned int> query_vars, std::vector<unsigned int> evidence_vars  ){
+
+    // Create cluster graph from factor graph
+    ClusterGraph cl( fg, true );
+
+
+    // Now get unconstrained tree width
+    std::set<size_t> nonQueryVarindices;
+
+    for( size_t i = 0; i < cl.vars().size(); ++i ){
+
+        auto it = std::find(evidence_vars.begin(), evidence_vars.end(), i);
+
+        // // Only add non-evidence variables
+        if(it == evidence_vars.end()){
+
+            auto it = std::find(query_vars.begin(), query_vars.end(), i);
+
+            // If not in query variables add it
+            if (it == query_vars.end()) {
+                nonQueryVarindices.insert( i );
+            }
+        }
+    }
+
+    vector<size_t> elimOrder;
+ 
+    // Load up non map vars first
+    while( !nonQueryVarindices.empty() ) {
+        size_t i = f( cl, nonQueryVarindices );
+        VarSet Di = cl.elimVar( i );
+        elimOrder.push_back(i);
+        nonQueryVarindices.erase( i );
+    }
+
+    return elimOrder;
+
+}
+
+
 template<class EliminationChoice>
 vector<size_t> getConstrainedElimOrder(const FactorGraph &fg, EliminationChoice f, std::vector<unsigned int> map_vars, std::vector<unsigned int> evidence_vars  ){
 
     // Create cluster graph from factor graph
     ClusterGraph cl( fg, true );
 
-    // Obtain elimination sequence
-    vector<VarSet> ElimVec = cl.VarElim( greedyVariableElimination( f )).eraseNonMaximal().clusters();
-
-    // Calculate unconstrainted treewidth. This is the best we can do for now. 
-    size_t treewidth = 0;
-    BigInt nrstates = 0.0;
-    for( size_t i = 0; i < ElimVec.size(); i++ ) {
-        if( ElimVec[i].size() > treewidth )
-            treewidth = ElimVec[i].size();
-        BigInt s = ElimVec[i].nrStates();
-        if( s > nrstates )
-            nrstates = s;
-    }
-
-    std::cout << "Unconstrained tree width: " << treewidth << std::endl;
-    std::cout << "Unconstrainted state number: " << nrstates << std::endl;
-    std::cout << "Assuming doubles worth 8 bytes on each row. Max mem usage for state number: " << nrstates.get_d()*8*0.000000001 << " GB" << std::endl;
 
     // Now get constrained tree width
-    // Construct set of variable indices for non-Map vars
     std::set<size_t> nonMapVarindices;
     std::set<size_t> MapVarindices;
 
-    for( size_t i = 0; i < cl.vars().size(); ++i ){\
+    for( size_t i = 0; i < cl.vars().size(); ++i ){
 
         auto it = std::find(evidence_vars.begin(), evidence_vars.end(), i);
 
-        // Only add non-evidence variables
+        // // Only add non-evidence variables
         if(it == evidence_vars.end()){
 
             auto it = std::find(map_vars.begin(), map_vars.end(), i);
@@ -70,14 +133,16 @@ vector<size_t> getConstrainedElimOrder(const FactorGraph &fg, EliminationChoice 
             else{
                 MapVarindices.insert( i );
             }
+        
         }
     }
 
     vector<size_t> elimOrder;
-
+ 
     // Load up non map vars first
     while( !nonMapVarindices.empty() ) {
         size_t i = f( cl, nonMapVarindices );
+        VarSet Di = cl.elimVar( i );
         elimOrder.push_back(i);
         nonMapVarindices.erase( i );
     }
@@ -85,6 +150,7 @@ vector<size_t> getConstrainedElimOrder(const FactorGraph &fg, EliminationChoice 
     // Then load map vars
     while( !MapVarindices.empty() ) {
         size_t i = f( cl, MapVarindices );
+        VarSet Di = cl.elimVar( i );
         elimOrder.push_back(i);
         MapVarindices.erase( i );
     }
@@ -94,7 +160,7 @@ vector<size_t> getConstrainedElimOrder(const FactorGraph &fg, EliminationChoice 
 }
 
 
-void calculateEliminationWidth(dai::FactorGraph fg, vector<size_t> elimOrder){
+std::pair<size_t,BigInt> calculateEliminationWidth(dai::FactorGraph fg, vector<size_t> elimOrder){
 
     // Get list of factors in this form ([A], [B], [A, B, C], [D], [E, B], [F, C, E, D])
 
@@ -193,25 +259,194 @@ void calculateEliminationWidth(dai::FactorGraph fg, vector<size_t> elimOrder){
         maxVars = newFactor.size();
     }
 
-    std::cout<<"Elimination Order: " << elimOrder << std::endl;
-    std::cout<<"Maximum Variables in one Factor: " << maxVars << std::endl;
-    std::cout<<"Maximum States in one Factor: " << maxStates << std::endl;
+    return make_pair(maxVars, maxStates);
+}
 
+dai::Factor variableElimination(dai::FactorGraph fg, std::vector<unsigned int> query_vars, std::vector<unsigned int> evidence_vars,
+        std::vector<unsigned int> evidence_values, LibLogger &logger){
+
+    // Generate constrained variable elimination order. Don't include evidence variables
+    greedyVariableElimination::eliminationCostFunction ec = eliminationCost_MinFill;
+
+    // Find name of heuristic to log it
+    for (const auto& entry: functionNames){
+        if (entry.first == ec){
+            logger.log(LogLevel::INFO, "Heuristic Used: " + entry.second);
+            break;
+        }
+    }
+
+    // Get constrained elimination order using heuristic
+    vector<size_t> constrainedElimOrder = getUnconstrainedElimOrder(fg, greedyVariableElimination( ec ), query_vars, evidence_vars);
+    logger.log(LogLevel::INFO, "Elimination Order: " + vecToString(constrainedElimOrder));
+
+    // Calculate treewidth of elim order
+    std::pair<size_t,BigInt> data = calculateEliminationWidth(fg, constrainedElimOrder);
+    logger.log(LogLevel::INFO, "Treewidth: " + std::to_string(data.first));
+    logger.log(LogLevel::INFO, "Maximum States in a single cluster: " + data.second.get_str());
+    
+    std::vector<dai::Factor> factors = fg.factors();
+    logger.log(LogLevel::DEBUG, "Initial set of factors:");
+    LogFactors(factors, logger);
+
+    // Clamp evidence
+    auto start = std::chrono::steady_clock::now();
+    for (int i = 0; i < evidence_vars.size(); i++){
+        fg.clampReduce(evidence_vars[i], evidence_values[i], false);
+    }
+    auto end = std::chrono::steady_clock::now();
+    std::cout << "Clamping evidence " << std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() << " ns" << std::endl;
+
+    // Log reduced factors
+    factors = fg.factors();
+    logger.log(LogLevel::DEBUG, "Factors after applying evidence:");
+    LogFactors(factors, logger);
+
+
+    // Perform Variable Elimination
+    int eliminationCount = 0;
+    for (int i=0; i < constrainedElimOrder.size(); i++){
+
+        logger.log(LogLevel::DEBUG, "Variable to Eliminate: " + std::to_string(constrainedElimOrder[i]));
+
+        // Find all factors fk that mention variable pi[i] 
+        // f <- Then multiply those factors together 
+        // Could also use findFactor and findVars in factorgraph
+        std::vector<dai::Factor> toMultiply;
+
+        for(int j=0; j<factors.size(); j++){
+            
+            dai::VarSet vars = (factors[j].vars());
+
+            for (auto it = vars.begin(); it != vars.end(); ++it){
+
+                if(it->label() == constrainedElimOrder[i]){
+                    
+                    toMultiply.push_back(factors[j]);
+                }
+            }
+        }
+
+        logger.log(LogLevel::DEBUG, "Factors to multiply: ");
+        LogFactors(toMultiply, logger);
+
+        // If more than one factor found with the variable to be eliminated,
+        // then multiply together the factors
+        dai::Factor newFactor = toMultiply[0];
+        if(toMultiply.size() > 1){
+
+            for (int i = 1; i<toMultiply.size(); i++){
+
+                newFactor *= toMultiply[i];
+            }
+        }
+
+        logger.log(LogLevel::DEBUG, "Multiplication Result: ");
+        logger.log(LogLevel::DEBUG, newFactor.toStringNice());
+
+        // sum out pi(i) from f
+        dai::VarSet vars = newFactor.vars();
+        dai::VarSet varsToKeep;
+        for (auto it = vars.begin(); it != vars.end(); ++it){
+
+            if(it->label() == constrainedElimOrder[i]){
+                continue;
+            }
+            else{
+                varsToKeep.insert(*it);
+            }
+        }
+        newFactor = newFactor.marginal(varsToKeep, false);
+
+        logger.log(LogLevel::DEBUG, "After marginalising out " + std::to_string(constrainedElimOrder[i]));
+        logger.log(LogLevel::DEBUG, newFactor.toStringNice());
+
+        // Replace all factors fk in the set of factor S by factor fi
+        // Remove factors to multiply and replace with newFactor
+        for (auto it = toMultiply.begin(); it != toMultiply.end(); ++it){
+            factors.erase(std::find_if(factors.begin(), factors.end(), [&](Factor const& f){ return f == *it; }));
+        }
+        factors.push_back(newFactor);
+
+        logger.log(LogLevel::DEBUG, "New List of Factors:");
+        LogFactors(factors, logger);
+    }
+
+    logger.log(LogLevel::DEBUG, "Completed marginalisation. Multiplying remaining factors...");
+
+    // Multiply remaining factors
+    dai::Factor newFactor = factors[0];
+    if(factors.size() > 1){
+        for (int i = 1; i<factors.size(); i++){
+            newFactor *= factors[i];
+        }
+    }
+
+    logger.log(LogLevel::DEBUG, newFactor.toStringNice());
+    newFactor.normalize();
+    logger.log(LogLevel::DEBUG, "Normalized Result: ");
+    logger.log(LogLevel::INFO, "\n" + newFactor.toStringNice());
+
+    return newFactor;
 }
 
 
+std::vector<unsigned long int> extractMax(dai::Factor factor, LibLogger &logger){
+
+    std::vector<unsigned long int> map;
+	auto start = std::chrono::steady_clock::now();
+	double max = 0.0;
+	int entry = 0; 
+    for (int i = 0; i < factor.nrStates(); i++)
+    {
+        // if (mapList)
+        // {
+        //     std::cout << "entry ";
+        //     for (auto const& j: dai::calcState(hypFact.vars(), i))
+        //         std::cout << j.second;
+        //     std::cout << " has probability " << hypFact.p()[i] << std::endl;
+        // }
+		if (factor.p()[i] > max)
+		{
+    	    max = factor.p()[i];
+			entry = i;
+		}
+    }
+
+	// transform index to map of <Var, value> pairs
+	std::map<dai::Var, size_t> mapValues = dai::calcState(factor.vars(), entry);
+	auto end = std::chrono::steady_clock::now();
+    auto jtMaximiseTime = end-start;
+	// ofs << "[MAP] MAP time " << std::chrono::duration_cast<std::chrono::nanoseconds>(jtMaximiseTime).count() << " ns" << std::endl;
+
+    //auto totalTime = jtInitRunTime+jtMarginaliseTime+jtMaximiseTime;
+    //ofs << "[MAP] Total JT time: " << std::chrono::duration_cast<std::chrono::nanoseconds>(totalTime).count() << " ns" << std::endl;
+
+	// now set map accordingly to the values in hypothesis_vars
+	for (auto const& i: mapValues)
+	{
+		map.push_back(i.second);
+	}
+    logger.log(LogLevel::INFO, "Map instantiation " + vecToString(map) + " has probability " + std::to_string(max));
+
+	return map;
+}
+
+
+
+
 dai::Factor get_map_ve(dai::FactorGraph fg, std::vector<unsigned int> map_vars, std::vector<unsigned int> evidence_vars,
-        std::vector<unsigned int> evidence_values, bool mapList){
-        
+                       std::vector<unsigned int> evidence_values, bool mapList, LibLogger &logger)
+{
+
     try{
 
-        std::cout << "This is a another test" << std::endl;
         // TODO: PruneNetwork
 
         // Clamp evidence
         auto start = std::chrono::steady_clock::now();
         for (int i = 0; i < evidence_vars.size(); i++){
-            fg.clampReduce(evidence_vars[i], evidence_values[i]);
+            fg.clampReduce(evidence_vars[i], evidence_values[i], false);
         }
         auto end = std::chrono::steady_clock::now();
         std::cout << "Clamping evidence " << std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() << " ns" << std::endl;
@@ -232,18 +467,27 @@ dai::Factor get_map_ve(dai::FactorGraph fg, std::vector<unsigned int> map_vars, 
 
         }
 
-        std::cout << "Num joint states: " << num_states << std::endl; 
-        std::cout << "Num hypothesis joint states: " << num_hyp_states << std::endl; 
-
         // Generate constrained variable elimination order. Don't include evidence variables
-        vector<size_t> constrainedElimOrder = getConstrainedElimOrder(fg, greedyVariableElimination( eliminationCost_MinNeighbors), map_vars, evidence_vars);
-        calculateEliminationWidth(fg, constrainedElimOrder);
+        greedyVariableElimination::eliminationCostFunction ec = eliminationCost_MinFill;
 
-        std::cout << "Elimination Order: " << constrainedElimOrder << endl;
-        std::cout << "Number of vars: " << constrainedElimOrder.size() << endl;
+        // Find name of heuristic
+        for (const auto& entry: functionNames){
+            if (entry.first == ec){
+                logger.log(LogLevel::INFO, "[MAP] Heuristic Used: " + entry.second);
+                break;
+            }
+        }
+
+        // Get constrained elimination order using heuristic
+        vector<size_t> constrainedElimOrder = getConstrainedElimOrder(fg, greedyVariableElimination( ec ), map_vars, evidence_vars);
+        logger.log(LogLevel::INFO, "[MAP] Elimination Order: " + vecToString(constrainedElimOrder));
+
+        //boundTreewidth1(fg, eliminationCost_MinFill, 0);
+        std::pair<size_t,BigInt> data = calculateEliminationWidth(fg, constrainedElimOrder);
+        logger.log(LogLevel::INFO, "Treewidth: " + std::to_string(data.first));
+        logger.log(LogLevel::INFO, "Maximum States in a single cluster: " + data.second.get_str());
         
         int eliminationCount = 0;
-
         // Perform Variable Elimination
         std::vector<dai::Factor> factors = fg.factors();
 
@@ -305,7 +549,7 @@ dai::Factor get_map_ve(dai::FactorGraph fg, std::vector<unsigned int> map_vars, 
                 newFactor = newFactor.maxMarginalTransparent(varsToKeep,  false);
             }
 
-            // Else fi <- sum out pi(i) from f
+            //Else fi <- sum out pi(i) from f
             else{
                 
                 dai::VarSet vars = newFactor.vars();
@@ -369,12 +613,10 @@ dai::Factor get_map_ve(dai::FactorGraph fg, std::vector<unsigned int> map_vars, 
             std::cerr << "Failed to open proc_self_maps_copy.txt for writing." << std::endl;
         }
     }
-    
 }
 
-
-std::vector<unsigned long int> get_map(dai::FactorGraph fg, std::vector<unsigned int> hypothesis_vars, std::vector<unsigned int> evidence_vars,
-	std::vector<unsigned int> evidence_values, bool mapList)
+std::vector<unsigned long int> get_map_jt(dai::FactorGraph fg, std::vector<unsigned int> hypothesis_vars, std::vector<unsigned int> evidence_vars,
+	std::vector<unsigned int> evidence_values, bool mapList, dai::LibLogger& logger)
 {
 	// returns the map, the joint value assignment to the hypothesis vars that has maximum posterior probability given the evidence
 	// while marginalizing over the (relevant) intermediate variables. As libDAI has no MAP function we just compute the distribution
@@ -398,16 +640,27 @@ std::vector<unsigned long int> get_map(dai::FactorGraph fg, std::vector<unsigned
 	start = std::chrono::steady_clock::now();
     dai::PropertySet opts;
     dai::JTree jt = dai::JTree(fg, opts("updates",std::string("HUGIN"))("inference",std::string("SUMPROD")));
+
+    logger.log(LogLevel::INFO, "[MAP] Heuristic Used: " + jt.Heuristic);
+    logger.log(LogLevel::INFO, "[MAP] Elimination Order: " + vecToString(jt.ElimOrder));
+    logger.log(LogLevel::INFO, "MAP] Treewidth: " + jt.MaxCluster);
+    logger.log(LogLevel::INFO, "[MAP] Maximum States in a single cluster: " + jt.MaxStates.get_str());
+
+
     jt.init();
     jt.run();
 	end = std::chrono::steady_clock::now();
-	DEBUG(std::cout << "JT run " << std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() << " ns" << std::endl;)
+    auto jtInitRunTime = end-start;
+
+    logger.log(LogLevel::INFO, "[MAP] JT run " + std::to_string(std::chrono::duration_cast<std::chrono::nanoseconds>(jtInitRunTime).count()) + " ns");
+
 
 	start = std::chrono::steady_clock::now();
 	dai::Factor hypFact = jt.calcMarginal(hypSet);
 	end = std::chrono::steady_clock::now();
-	DEBUG(std::cout << "Marginal time " << std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() << " ns" << std::endl;)
-    
+    auto jtMarginaliseTime = end-start;
+    logger.log(LogLevel::INFO, "[MAP] Marginal time " + std::to_string(std::chrono::duration_cast<std::chrono::nanoseconds>(jtMarginaliseTime).count()) + " ns");
+
 	// find element with maximum value ( = MAP explanation)
 	start = std::chrono::steady_clock::now();
 	double max = 0.0;
@@ -431,64 +684,22 @@ std::vector<unsigned long int> get_map(dai::FactorGraph fg, std::vector<unsigned
 	// transform index to map of <Var, value> pairs
 	std::map<dai::Var, size_t> mapValues = dai::calcState(hypFact.vars(), entry);
 	end = std::chrono::steady_clock::now();
-	DEBUG(std::cout << "MAP time " << std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() << " ns" << std::endl;)
+    auto jtMaximiseTime = end-start;
+
+    logger.log(LogLevel::INFO, "[MAP] MAP time " + std::to_string(std::chrono::duration_cast<std::chrono::nanoseconds>(jtMaximiseTime).count()) + " ns");
+
+    auto totalTime = jtInitRunTime+jtMarginaliseTime+jtMaximiseTime;
+    logger.log(LogLevel::INFO, "[MAP] Total JT time: " + std::to_string(std::chrono::duration_cast<std::chrono::nanoseconds>(totalTime).count()) + " ns");
+
 
 	// now set map accordingly to the values in hypothesis_vars
 	for (auto const& i: mapValues)
 	{
 		map.push_back(i.second);
 	}
-    DEBUG(std::cout << "map " << map << " has probability " << max << std::endl;)
+    logger.log(LogLevel::INFO, "[MAP] Instantiation: " + vecToString(map) + " has probability " + std::to_string(max));
 
 	return map;
 }
 
-int main( int argc, char *argv[] ) {
-
-
-    if ( argc != 2 && argc != 3 ) {
-        cout << "Usage: " << argv[0] << " <filename.fg> [maxstates]" << endl << endl;
-        cout << "Reads factor graph <filename.fg> and runs MAP on it." << endl;
-        return 1;
-
-    } else {
-    
-        // Read FactorGraph from the file specified by the first command line argument
-        FactorGraph fg;
-        std::cout << "Factor graph path: " << argv[1] << std::endl;
-        fg.ReadFromFile(argv[1]);;
-
-
-        // Example from page 260 of Modeling and Reasoning with Bayesian Networks
-        // MAP variables = {I, J} = {0, 1}
-        // Evidence: O = true. O is variable number 4
-        // Constrained variable order = O, Y, X, I, J = 4, 2, 3, 0, 1
-
-        std::vector<unsigned int> ex_evidenceVars =        { 4 };
-	    std::vector<unsigned int> ex_evidenceValues =      { 1};
-	    std::vector<unsigned int> ex_mapVars =             { 0, 1};
-        std::vector<unsigned int> constrainedElimOrder =   { 4, 2, 3, 0, 1 };
-
-
-        // dai::Factor MAP = get_m(fg, ex_mapVars, ex_evidenceVars, ex_evidenceValues, false);
-
-        // cout << "Map probability: " << MAP.p() << endl;
-
-        // cout << "Map instantiation: ";
-        // for (const auto& myMap : MAP.i()) {
-        //     std::cout << myMap << endl;
-        // }    
-
-        //cout << "Map Instantiation: " << MAP.i() << endl;
-        // std::vector<std::pair<Var, dai::Real>> instantiation = MAP.getInstantiation();
-        
-        // for (const auto& pair : instantiation){
-        //     std::cout << "Var: " << pair.first << " Value: " << pair.second << endl;
-        // }
-    }
 }
-
-}
-
-
-

@@ -203,6 +203,17 @@ class TFactor {
             ss << *this;
             return ss.str();
         }
+
+        // More readable output of a factor with probabilities for each row
+        std::string toStringNice() const {
+            std::stringstream ss;
+            size_t i = 0;
+            ss << '\n' << vars() << std::endl;
+            for(State S(vars()); S.valid(); S++, i++ ) {
+                ss << S.get() << " " << _p[i] << std::endl;
+            }
+            return ss.str();
+        }
     //@}
 
     /// \name Unary transformations
@@ -604,6 +615,12 @@ template<typename T> TFactor<T> TFactor<T>::maxMarginalTransparent(const VarSet 
     // Get the intersection of the input vars (those to not maximise out) and the vars in the factor _vs
     // In this case it would be {1} intersect {0, 1, 2, 3, 4} = {1}
     // Residual vars are those that remain after maximizing out (the ones to keep)
+
+    if(vars == _vs){
+        return this->normalized();
+    }
+
+
     dai::VarSet res_vars = vars & _vs;
     dai::VarSet to_max_out = _vs / vars;
     Var varToMaxOut = to_max_out.front();
