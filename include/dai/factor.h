@@ -203,6 +203,17 @@ class TFactor {
             ss << *this;
             return ss.str();
         }
+
+        // More readable output of a factor with probabilities for each row
+        std::string toStringNice() const {
+            std::stringstream ss;
+            size_t i = 0;
+            ss << '\n' << vars() << std::endl;
+            for(State S(vars()); S.valid(); S++, i++ ) {
+                ss << S.get() << " " << _p[i] << std::endl;
+            }
+            return ss.str();
+        }
     //@}
 
     /// \name Unary transformations
@@ -367,24 +378,20 @@ class TFactor {
          */
         template<typename binOp> TFactor<T>& binaryOp( const TFactor<T> &g, binOp op ) {
             
-            // Check if right operand has instantiation data
-            bool instantiationDataOnRight = std::all_of(g._i.begin(), g._i.end(), [](const auto& map) { return !map.empty(); });
 
             // optimize special case
-            if( _vs == g._vs ) {
+            // if( _vs == g._vs ) {
 
-                _p.pwBinaryOp( g._p, op );
+            //     _p.pwBinaryOp( g._p, op );
+            //     _i.pwBinaryOp( g._i );
+            // }
 
-                // If instantiation data is in right factor, copy to left one which is the one that is returned.
-                // Else if data is in left then no need to do anything.
-                if (instantiationDataOnRight == true)
-                    _i.pwBinaryOp( g._i );
-            }
-
-            else {
+            //else {
                 TFactor<T> f(*this); // make a copy
                 _vs |= g._vs;
                 size_t N = BigInt_size_t( _vs.nrStates() );
+
+                std::cout << "Number of states in new table: " << N << std::endl;
 
                 IndexFor i_f( f._vs, _vs );
                 IndexFor i_g( g._vs, _vs );
@@ -400,21 +407,15 @@ class TFactor {
                     _p.p().push_back( op( f._p[i_f], g._p[i_g] ) );
 
 
-                    if(g._i.size() > 0 && f._i.size() > 0){
-                        
-                        // If right factor contains instantiation data then copy it over
-                        if (instantiationDataOnRight == true) {
-                            _i.i().push_back( g._i[i_g]);
-                        }
+                    // Take union of instantiation data
+                    auto instantiation1 = f._i[i_f];
+                    auto instantiation2 = g._i[i_g];
 
-                        // Else left factor has instantiation data to copy over
-                        else{
-                            _i.i().push_back( f._i[i_f]);
-                        }
-                    }
-                    
+                    instantiation1.merge(instantiation2);
+
+                    _i.i().push_back(instantiation1);
                 }
-            }
+            //}
             return *this;
         }
 
@@ -458,7 +459,7 @@ class TFactor {
             // Note that to prevent a copy to be made, it is crucial 
             // that the result is declared outside the if-else construct.
 
-            bool instantiationDataOnRight = std::all_of(g._i.begin(), g._i.end(), [](const auto& map) { return !map.empty(); });
+            bool instantiationDataOnRight = !g._i.i().front().empty();
 
             TFactor<T> result;
             if( _vs == g._vs ) { // optimize special case
@@ -495,7 +496,6 @@ class TFactor {
                     }
                 }
             }
-            std::cout << "BinaryTR: " << result._i.size() << " " << result._p.size() << std::endl;
             return result;
         }
 
@@ -572,7 +572,7 @@ class TFactor {
         /// Returns max-marginal on \a vars, obtained by maximizing all variables except those in \a vars, and normalizing the result if \a normed == \c true
         TFactor<T> maxMarginal(const VarSet &vars, bool normed=true) const;
 
-        TFactor<T> maxMarginalTransparent(const VarSet &vars, std::vector<std::pair<Var, T>> &_instantiation, bool normed=true) const;
+        TFactor<T> maxMarginalTransparent(const VarSet &vars, bool normed=true) const;
 
     //@}
 };
@@ -610,11 +610,17 @@ template<typename T> TFactor<T> TFactor<T>::marginal(const VarSet &vars, bool no
 }
 
 
-template<typename T> TFactor<T> TFactor<T>::maxMarginalTransparent(const VarSet &vars, std::vector<std::pair<Var, T>> &_instantiation, bool normed) const {
+template<typename T> TFactor<T> TFactor<T>::maxMarginalTransparent(const VarSet &vars, bool normed) const {
     
     // Get the intersection of the input vars (those to not maximise out) and the vars in the factor _vs
     // In this case it would be {1} intersect {0, 1, 2, 3, 4} = {1}
     // Residual vars are those that remain after maximizing out (the ones to keep)
+
+    if(vars == _vs){
+        return this->normalized();
+    }
+
+
     dai::VarSet res_vars = vars & _vs;
     dai::VarSet to_max_out = _vs / vars;
     Var varToMaxOut = to_max_out.front();
@@ -633,7 +639,7 @@ template<typename T> TFactor<T> TFactor<T>::maxMarginalTransparent(const VarSet 
     for( size_t i = 0; i < _p.size(); i++, ++i_res, S++){
         
         // If the current entry in '_p' is greater than the corresponding entry in 'res', update 'res'.
-        if( _p[i] >= res._p[i_res] ){
+        if( _p[i] >  res._p[i_res] ){
             res.set( i_res, _p[i] );
             std::map<Var, size_t> rowInstantiation = getInstantiation( i_res );
 

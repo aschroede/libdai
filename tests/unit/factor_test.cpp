@@ -644,6 +644,46 @@ BOOST_AUTO_TEST_CASE( FactorTransformationsTest ) {
 }
 
 
+BOOST_AUTO_TEST_CASE( MaxMarginalTransparentTest ) {
+
+    Var v1(1, 2);
+    Var v2(2, 3);
+    Factor x(VarSet(v1, v2));
+    x.randomize();
+
+    // Slice seems to take the original factor and then extract only those rows where v1 is set to 1
+    // In some sense this seems to be the reduction operation?
+    Factor y = x.slice(v1, 1);
+
+    std::cout << x.toStringNice() << std::endl;
+
+
+    y = x.maxMarginalTransparent( v1 );
+
+    // Check correct variable set
+    BOOST_CHECK( y.vars() == VarSet( v1 ) );
+
+    // Check Probabilities
+    BOOST_CHECK_CLOSE( y[0], x.slice( v1, 0 ).max() / (x.slice( v1, 0 ).max() + x.slice( v1, 1 ).max()), tol );
+    BOOST_CHECK_CLOSE( y[1], x.slice( v1, 1 ).max() / (x.slice( v1, 0 ).max() + x.slice( v1, 1 ).max()), tol );
+
+    //BOOST_CHECK_CLOSE( y.i()[0], )
+
+
+    y = x.maxMarginalTransparent( v2 );
+    BOOST_CHECK( y.vars() == VarSet( v2 ) );
+    BOOST_CHECK_CLOSE( y[0], x.slice( v2, 0 ).max() / (x.slice( v2, 0 ).max() + x.slice( v2, 1 ).max() + x.slice( v2, 2 ).max()), tol );
+    BOOST_CHECK_CLOSE( y[1], x.slice( v2, 1 ).max() / (x.slice( v2, 0 ).max() + x.slice( v2, 1 ).max() + x.slice( v2, 2 ).max()), tol );
+    BOOST_CHECK_CLOSE( y[2], x.slice( v2, 2 ).max() / (x.slice( v2, 0 ).max() + x.slice( v2, 1 ).max() + x.slice( v2, 2 ).max()), tol );
+    y = x.maxMarginalTransparent( VarSet() );
+    BOOST_CHECK( y.vars() == VarSet() );
+    BOOST_CHECK_CLOSE( y[0], (Real)1.0, tol );
+    y = x.maxMarginalTransparent( VarSet( v1, v2 ) );
+    BOOST_CHECK_SMALL( dist( y, x.normalized(), DISTL1 ), tol );
+
+
+}
+
 BOOST_AUTO_TEST_CASE( MiscOperationsTest ) {
     Var v1(1, 2);
     Var v2(2, 3);

@@ -79,12 +79,12 @@
             "preLaunchTask": "make examples",
         },
         {
-            "name": "(gdb) Launch MAP",
+            "name": "(gdb) Launch MAP Barley",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/examples/example_map",
             "args": [
-                "${workspaceFolder}/factorgraphformats/andes_fix.fg"
+                "-i", "${workspaceFolder}/factorgraphformats/barley.fg", "-o", "barley_map.txt", "-H", "0,1,5,8", "-E", "40,41,42,43,44,45,46,47", "-e", "0,2,2,3,0,2,12,5", "-J"
             ],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
@@ -103,10 +103,151 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "make examples",
+            "preLaunchTask": "make map",
+            
+            "logging": {
+                "engineLogging": true
+             },
+        },
+
+        {
+            "name": "(gdb) Launch MAP Alarm",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/examples/example_map",
+            "args": [
+                "-i", "${workspaceFolder}/factorgraphformats/alarm_fix.fg", "-o", "alarm_map.txt", "-H", "3,5,12,13,16,22,24,26", "-E", "0,1,2,8,9,11,14,15,17,18,20,21,25,27,35,36", "-e", "0,2,0,0,0,0,1,3,1,0,1,0,2,0,2,0", "-V", "-J"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "make map",
             
               
         },
 
+        {
+            "name": "(gdb) Launch MAP Circuits",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/examples/example_map",
+            "args": [
+                "-i", "${workspaceFolder}/factorgraphformats/circuit.fg", "-o", "circuit_map.txt", "-H", "0,1", "-E", "4", "-e", "1", "-J", "-V"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "make map",
+        },
+
+        {
+            "name": "(gdb) Launch Factor Unit Tests",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/tests/unit/factor_test",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "make factor_test",
+        },
+
+        {
+            "name": "(gdb) Launch Alarm Small",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/examples/example_map",
+            "args": [
+                "-i", "${workspaceFolder}/factorgraphformats/alarm_small.fg", "-o", "alarm_small_ve.txt", "-H", "5", "-E", "4,3", "-e", "1,1", "-V"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "make map",
+        },
+
+        {
+            "name": "(gdb) Launch Earthquake",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/examples/example_map",
+            "args": [
+                "-i", "${workspaceFolder}/factorgraphformats/earthquake.fg", "-o", "earthquake_ve.txt", "-H", "2", "-E", "0", "-e", "1", "-V"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "make map",
+        },
     ]
 }

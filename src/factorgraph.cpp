@@ -371,7 +371,6 @@ Real FactorGraph::logScore( const std::vector<size_t>& statevec ) const {
     return lS;
 }
 
-
 void FactorGraph::clamp( size_t i, size_t x, bool backup ) {
     DAI_ASSERT( x <= var(i).states() );
     Factor mask( var(i), (Real)0 );
@@ -380,6 +379,32 @@ void FactorGraph::clamp( size_t i, size_t x, bool backup ) {
     map<size_t, Factor> newFacs;
     bforeach( const Neighbor &I, nbV(i) )
         newFacs[I] = factor(I) * mask;
+    setFactors( newFacs, backup );
+
+    return;
+}
+
+void FactorGraph::clampReduce( size_t i, size_t x, bool backup ) {
+    DAI_ASSERT( x <= var(i).states() );
+    Factor mask( var(i), (Real)0 );
+    mask.set( x, (Real)1 );
+
+    map<size_t, Factor> newFacs;
+    bforeach( const Neighbor &I, nbV(i) ){
+        
+        // Set probs to zero
+        Factor newFactor = factor(I) * mask;
+
+        // Collect info to marginalize
+        VarSet vars = newFactor.vars();
+        VarSet varsToKeep = vars / var(i);
+
+        // Mariginalize
+        newFactor = newFactor.marginal(varsToKeep, false);
+
+        // Store reduced factor
+        newFacs[I] = newFactor;
+    }
     setFactors( newFacs, backup );
 
     return;

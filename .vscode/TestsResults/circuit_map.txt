@@ -1,0 +1,80 @@
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/circuit.fg -o circuit_map.txt -H 0,1 -E 4 -e 1 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/circuit.fg simulation results Mon Dec  4 20:30:36 2023
+
+hypothesis vars (0, 1)
+evidence vars (4) values (1)
+
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/circuit.fg -o circuit_map.txt -H 0,1 -E 4 -e 1 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/circuit.fg simulation results Mon Dec  4 20:34:19 2023
+
+hypothesis vars (0, 1)
+evidence vars (4) values (1)
+
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/circuit.fg -o circuit_map.txt -H 0,1 -E 4 -e 1 -M 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/circuit.fg simulation results Wed Dec  6 09:31:17 2023
+
+hypothesis vars (0, 1)
+evidence vars (4) values (1)
+
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/circuit.fg -o circuit_map.txt -H 0,1 -E 4 -e 1 -J -V 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/circuit.fg simulation results Thu Feb  1 20:28:32 2024
+
+hypothesis vars (0, 1)
+evidence vars (4) values (1)
+
+[MAP] Computing MAP with Junction Tree: 
+[MAP] Heuristic Used: MinFill
+[MAP] Elimination Order: (0, 1, 2, 3, 4)
+[MAP] Treewidth: 3
+[MAP] Maximum States in a single cluster: 8
+[MAP] JT run 20742656446 ns
+[MAP] Marginal time 7962 ns
+[MAP] MAP time 171434220993 ns
+[MAP] Total JT time: 192176885401 ns
+[MAP] Map instantiation (0, 0) has probability 0.32896
+
+[MAP] Computing MAP with Variable Elimination 
+[MAP] Heuristic Used: MinFill
+[MAP] Elimination Order: (4, 2, 3, 0, 1)
+[MAP] Treewidth: 3
+[MAP] Maximum States in a single cluster: 8
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/circuit.fg -o circuit_map.txt -H 0,1 -E 4 -e 1 -J -V 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/circuit.fg simulation results Thu Feb  1 20:38:58 2024
+
+hypothesis vars (0, 1)
+evidence vars (4) values (1)
+
+[MAP] Computing MAP with Junction Tree: 
+[MAP] Heuristic Used: MinFill
+[MAP] Elimination Order: (0, 1, 2, 3, 4)
+[MAP] Treewidth: 3
+[MAP] Maximum States in a single cluster: 8
+[MAP] JT run 582417 ns
+[MAP] Marginal time 6286 ns
+[MAP] MAP time 2864 ns
+[MAP] Total JT time: 591567 ns
+[MAP] Map instantiation (0, 0) has probability 0.32896
+
+[MAP] Computing MAP with Variable Elimination 
+[MAP] Heuristic Used: MinFill
+[MAP] Elimination Order: (4, 2, 3, 0, 1)
+[MAP] Treewidth: 3
+[MAP] Maximum States in a single cluster: 8
+
+command: /home/andrew/Documents/libDAI/libdai modified/examples/example_map -i /home/andrew/Documents/libDAI/libdai modified/factorgraphformats/circuit.fg -o circuit_map.txt -H 0,1 -E 4 -e 1 -J -V 
+/home/andrew/Documents/libDAI/libdai modified/factorgraphformats/circuit.fg simulation results Thu Feb  1 20:39:43 2024
+
+hypothesis vars (0, 1)
+evidence vars (4) values (1)
+
+[MAP] Computing MAP with Junction Tree: 
+[MAP] Heuristic Used: MinFill
+[MAP] Elimination Order: (0, 1, 2, 3, 4)
+[MAP] Treewidth: 3
+[MAP] Maximum States in a single cluster: 8
+[MAP] JT run 600785 ns
