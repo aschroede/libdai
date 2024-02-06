@@ -57,10 +57,10 @@ Mauá and De Campos (2012) proposed an algorithm that makes a tradeoff between p
 
 
 # References
-1. Darwiche, A. (2009). Modeling and Reasoning with Bayesian Networks. Cambridge University Press. (Darwiche, 2009)
-2. Koller, D., & Friedman, N. (2009). Probabilistic graphical models: Principles and Techniques. MIT Press. (D. Koller & Friedman, 2009)
-3. Kwisthout, J. (2022, September 19). Speeding up approximate MAP by applying domain knowledge about relevant variables. PMLR. https://proceedings.mlr.press/v186/kwisthout22a.html (Kwisthout, 2022)
-4. Mauá, D. D., & De Campos, C. (2012). Anytime marginal maximum a posteriori inference. ResearchGate. https://www.researchgate.net/publication/279703286_Anytime_marginal_maximum_a_posteriori_inference (Mauá & De Campos, 2012)
+1. Darwiche, A. (2009). Modeling and Reasoning with Bayesian Networks. Cambridge University Press.
+2. Koller, D., & Friedman, N. (2009). Probabilistic graphical models: Principles and Techniques. MIT Press.
+3. Kwisthout, J. (2022, September 19). Speeding up approximate MAP by applying domain knowledge about relevant variables. PMLR. https://proceedings.mlr.press/v186/kwisthout22a.html
+4. Mauá, D. D., & De Campos, C. (2012). Anytime marginal maximum a posteriori inference. ResearchGate. https://www.researchgate.net/publication/279703286_Anytime_marginal_maximum_a_posteriori_inference
 5. Dawid, A. P. (1992). Applications of a general propagation algorithm for probabilistic expert systems. Statistics and Computing, 2(1), 25–36. https://doi.org/10.1007/bf01890546
 
 
