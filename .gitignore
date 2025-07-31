@@ -1,3 +1,5 @@
 *.o
 tests/
 TestResults
+lib/*
+*.a
