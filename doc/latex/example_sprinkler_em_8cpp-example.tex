@@ -1,0 +1,75 @@
+\doxysection{example\+\_\+sprinkler\+\_\+em.\+cpp}
+\hypertarget{example_sprinkler_em_8cpp-example}{}\label{example_sprinkler_em_8cpp-example}This example shows how to use the EMAlg class.
+
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{comment}{/*\ \ This\ file\ is\ part\ of\ libDAI\ -\/\ http://www.libdai.org/}}
+\DoxyCodeLine{\textcolor{comment}{\ *}}
+\DoxyCodeLine{\textcolor{comment}{\ *\ \ Copyright\ (c)\ 2006-\/2011,\ The\ libDAI\ authors.\ All\ rights\ reserved.}}
+\DoxyCodeLine{\textcolor{comment}{\ *}}
+\DoxyCodeLine{\textcolor{comment}{\ *\ \ Use\ of\ this\ source\ code\ is\ governed\ by\ a\ BSD-\/style\ license\ that\ can\ be\ found\ in\ the\ LICENSE\ file.}}
+\DoxyCodeLine{\textcolor{comment}{\ */}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{alldai_8h}{dai/alldai.h}}>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{\textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespacedai}{dai}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main()\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ This\ example\ program\ illustrates\ how\ to\ learn\ the}}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ parameters\ of\ a\ Bayesian\ network\ from\ a\ sample\ of}}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ the\ sprinkler\ network\ discussed\ at}}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ http://www.cs.ubc.ca/\string~murphyk/Bayes/bnintro.html}}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ The\ factor\ graph\ file\ (sprinkler.fg)\ has\ to\ be\ generated\ first}}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ by\ running\ example\_sprinkler,\ and\ the\ data\ sample\ file\ }}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ (sprinkler.tab)\ by\ running\ example\_sprinkler\_gibbs}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Read\ the\ factorgraph\ from\ the\ file}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classdai_1_1FactorGraph}{FactorGraph}}\ SprinklerNetwork;}
+\DoxyCodeLine{\ \ \ \ SprinklerNetwork.\mbox{\hyperlink{classdai_1_1FactorGraph_a89ee98ae7d3bc1723452e1c11ace4b51}{ReadFromFile}}(\ \textcolor{stringliteral}{"{}sprinkler.fg"{}}\ );}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Prepare\ junction-\/tree\ object\ for\ doing\ exact\ inference\ for\ E-\/step}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classdai_1_1PropertySet}{PropertySet}}\ infprops;}
+\DoxyCodeLine{\ \ \ \ infprops.\mbox{\hyperlink{classdai_1_1PropertySet_a25c2ae75e46faf88b732b1e484b5663f}{set}}(\ \textcolor{stringliteral}{"{}verbose"{}},\ (\textcolor{keywordtype}{size\_t})1\ );}
+\DoxyCodeLine{\ \ \ \ infprops.\mbox{\hyperlink{classdai_1_1PropertySet_a25c2ae75e46faf88b732b1e484b5663f}{set}}(\ \textcolor{stringliteral}{"{}updates"{}},\ \textcolor{keywordtype}{string}(\textcolor{stringliteral}{"{}HUGIN"{}})\ );}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classdai_1_1InfAlg}{InfAlg}}*\ inf\ =\ \mbox{\hyperlink{namespacedai_a4b9e5254e7ec388e69aa68dfc54509e0}{newInfAlg}}(\ \textcolor{stringliteral}{"{}JTREE"{}},\ SprinklerNetwork,\ infprops\ );}
+\DoxyCodeLine{\ \ \ \ inf-\/>\mbox{\hyperlink{classdai_1_1InfAlg_a99dd53d1aaccf09a4b977a49a983cc85}{init}}();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Read\ sample\ from\ file}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classdai_1_1Evidence}{Evidence}}\ e;}
+\DoxyCodeLine{\ \ \ \ ifstream\ estream(\ \textcolor{stringliteral}{"{}sprinkler.tab"{}}\ );}
+\DoxyCodeLine{\ \ \ \ e.\mbox{\hyperlink{classdai_1_1Evidence_a86aa114bd9377d0f953bf28e5e2e9e87}{addEvidenceTabFile}}(\ estream,\ SprinklerNetwork\ );}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Number\ of\ samples:\ "{}}\ <<\ e.\mbox{\hyperlink{classdai_1_1Evidence_ae71a36b32ca257bb0743a1c1d96bac10}{nrSamples}}()\ <<\ endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Read\ EM\ specification}}
+\DoxyCodeLine{\ \ \ \ ifstream\ emstream(\ \textcolor{stringliteral}{"{}sprinkler.em"{}}\ );}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classdai_1_1EMAlg}{EMAlg}}\ em(e,\ *inf,\ emstream);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Iterate\ EM\ until\ convergence}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{while}(\ !em.\mbox{\hyperlink{classdai_1_1EMAlg_a2e5ca74dca46d4f5fd04b7f8cfe11202}{hasSatisfiedTermConditions}}()\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}}\ l\ =\ em.\mbox{\hyperlink{classdai_1_1EMAlg_ae6212c799c73ffd223ee21d2293fca14}{iterate}}();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Iteration\ "{}}\ <<\ em.\mbox{\hyperlink{classdai_1_1EMAlg_aced47975e8ab11c886cb8a5e9ad06010}{Iterations}}()\ <<\ \textcolor{stringliteral}{"{}\ likelihood:\ "{}}\ <<\ l\ <<endl;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Output\ true\ factor\ graph}}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ endl\ <<\ \textcolor{stringliteral}{"{}True\ factor\ graph:"{}}\ <<\ endl\ <<\ \textcolor{stringliteral}{"{}\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ cout.precision(12);}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ SprinklerNetwork;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Output\ learned\ factor\ graph}}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ endl\ <<\ \textcolor{stringliteral}{"{}Learned\ factor\ graph:"{}}\ <<\ endl\ <<\ \textcolor{stringliteral}{"{}\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ cout.precision(12);}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ inf-\/>\mbox{\hyperlink{classdai_1_1InfAlg_a58888cd453abc0b3dbfe62068c5ccaa9}{fg}}();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Clean\ up}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{delete}\ inf;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+ 

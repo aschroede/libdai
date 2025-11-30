@@ -1,0 +1,51 @@
+\doxysection{include/dai/weightedgraph.h File Reference}
+\hypertarget{weightedgraph_8h}{}\label{weightedgraph_8h}\index{include/dai/weightedgraph.h@{include/dai/weightedgraph.h}}
+
+
+Defines some utility functions for (weighted) undirected graphs, trees and rooted trees.  
+
+
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$set$>$}\newline
+{\ttfamily \#include $<$limits$>$}\newline
+{\ttfamily \#include $<$climits$>$}\newline
+{\ttfamily \#include $<$boost/graph/adjacency\+\_\+list.\+hpp$>$}\newline
+{\ttfamily \#include $<$boost/graph/prim\+\_\+minimum\+\_\+spanning\+\_\+tree.\+hpp$>$}\newline
+{\ttfamily \#include $<$boost/graph/kruskal\+\_\+min\+\_\+spanning\+\_\+tree.\+hpp$>$}\newline
+{\ttfamily \#include $<$dai/util.\+h$>$}\newline
+{\ttfamily \#include $<$dai/exceptions.\+h$>$}\newline
+{\ttfamily \#include $<$dai/graph.\+h$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classdai_1_1DEdge}{dai\+::\+DEdge}}
+\begin{DoxyCompactList}\small\item\em Represents a directed edge. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classdai_1_1UEdge}{dai\+::\+UEdge}}
+\begin{DoxyCompactList}\small\item\em Represents an undirected edge. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classdai_1_1GraphEL}{dai\+::\+Graph\+EL}}
+\begin{DoxyCompactList}\small\item\em Represents an undirected graph, implemented as a std\+::set of undirected edges. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classdai_1_1WeightedGraph}{dai\+::\+Weighted\+Graph$<$ T $>$}}
+\begin{DoxyCompactList}\small\item\em Represents an undirected weighted graph, with weights of type {\itshape T}, implemented as a std\+::map mapping undirected edges to weights. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classdai_1_1RootedTree}{dai\+::\+Rooted\+Tree}}
+\begin{DoxyCompactList}\small\item\em Represents a rooted tree, implemented as a vector of directed edges. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacedai}{dai}}
+\begin{DoxyCompactList}\small\item\em Namespace for lib\+DAI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typename}} T $>$ }\\\mbox{\hyperlink{classdai_1_1RootedTree}{Rooted\+Tree}} \mbox{\hyperlink{namespacedai_af37305c285dbe556f8a40cbf3ccf4be3}{dai\+::\+Min\+Spanning\+Tree}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1WeightedGraph}{Weighted\+Graph}}$<$ T $>$ \&G, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{use\+Prim}})
+\begin{DoxyCompactList}\small\item\em Constructs a minimum spanning tree from the (non-\/negatively) weighted graph {\itshape G}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typename}} T $>$ }\\\mbox{\hyperlink{classdai_1_1RootedTree}{Rooted\+Tree}} \mbox{\hyperlink{namespacedai_a394197d7c57ab6f1dd5bad99df18d51c}{dai\+::\+Max\+Spanning\+Tree}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1WeightedGraph}{Weighted\+Graph}}$<$ T $>$ \&G, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{use\+Prim}})
+\begin{DoxyCompactList}\small\item\em Constructs a minimum spanning tree from the (non-\/negatively) weighted graph {\itshape G}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Defines some utility functions for (weighted) undirected graphs, trees and rooted trees. 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000021}{Todo}}]Improve general support for graphs and trees (in particular, a good tree implementation is needed). \end{DoxyRefDesc}

@@ -1,0 +1,59 @@
+\doxysection{include/dai/alldai.h File Reference}
+\hypertarget{alldai_8h}{}\label{alldai_8h}\index{include/dai/alldai.h@{include/dai/alldai.h}}
+
+
+Main lib\+DAI header file. It \#includes all other lib\+DAI headers.  
+
+
+{\ttfamily \#include $<$dai/dai\+\_\+config.\+h$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$dai/daialg.\+h$>$}\newline
+{\ttfamily \#include $<$dai/properties.\+h$>$}\newline
+{\ttfamily \#include $<$dai/exactinf.\+h$>$}\newline
+{\ttfamily \#include $<$dai/evidence.\+h$>$}\newline
+{\ttfamily \#include $<$dai/emalg.\+h$>$}\newline
+{\ttfamily \#include $<$dai/bp.\+h$>$}\newline
+{\ttfamily \#include $<$dai/fbp.\+h$>$}\newline
+{\ttfamily \#include $<$dai/trwbp.\+h$>$}\newline
+{\ttfamily \#include $<$dai/mf.\+h$>$}\newline
+{\ttfamily \#include $<$dai/hak.\+h$>$}\newline
+{\ttfamily \#include $<$dai/lc.\+h$>$}\newline
+{\ttfamily \#include $<$dai/treeep.\+h$>$}\newline
+{\ttfamily \#include $<$dai/jtree.\+h$>$}\newline
+{\ttfamily \#include $<$dai/mr.\+h$>$}\newline
+{\ttfamily \#include $<$dai/cbp.\+h$>$}\newline
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacedai}{dai}}
+\begin{DoxyCompactList}\small\item\em Namespace for lib\+DAI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::map$<$ std\+::string, \mbox{\hyperlink{classdai_1_1InfAlg}{Inf\+Alg}} \texorpdfstring{$\ast$}{*} $>$ \& \mbox{\hyperlink{namespacedai_aa4fae69226f56a38066c2cac1a343fe1}{dai\+::builtin\+Inf\+Algs}} ()
+\begin{DoxyCompactList}\small\item\em Returns a map that contains for each built-\/in inference algorithm its name and a pointer to an object of that type. \end{DoxyCompactList}\item 
+std\+::set$<$ std\+::string $>$ \mbox{\hyperlink{namespacedai_a16d6acf1e82fdf9ae23b655a12517b91}{dai\+::builtin\+Inf\+Alg\+Names}} ()
+\begin{DoxyCompactList}\small\item\em Returns a set of names of all available inference algorithms. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1InfAlg}{Inf\+Alg}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespacedai_a4b9e5254e7ec388e69aa68dfc54509e0}{dai\+::new\+Inf\+Alg}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::string \&name, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1FactorGraph}{Factor\+Graph}} \&fg, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{opts}})
+\begin{DoxyCompactList}\small\item\em Constructs a new inference algorithm. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1InfAlg}{Inf\+Alg}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespacedai_a246c23914fee45f8b7f01f9073bdd6fe}{dai\+::new\+Inf\+Alg\+From\+String}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::string \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{name\+Opts}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1FactorGraph}{Factor\+Graph}} \&fg)
+\begin{DoxyCompactList}\small\item\em Constructs a new inference algorithm. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1InfAlg}{Inf\+Alg}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespacedai_af688c62fd7c8dff22e24835547cec7e7}{dai\+::new\+Inf\+Alg\+From\+String}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::string \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{name\+Opts}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1FactorGraph}{Factor\+Graph}} \&fg, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::map$<$ std\+::string, std\+::string $>$ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{aliases}})
+\begin{DoxyCompactList}\small\item\em Constructs a new inference algorithm. \end{DoxyCompactList}\item 
+std\+::pair$<$ std\+::string, \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} $>$ \mbox{\hyperlink{namespacedai_a8f6e164a012fff145d683d64ac4d7b7f}{dai\+::parse\+Name\+Properties}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::string \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{s}})
+\begin{DoxyCompactList}\small\item\em Extracts the name and property set from a string {\itshape s} in the format "{}name\mbox{[}key1=val1,key2=val2,...\mbox{]}"{} or "{}name"{}. \end{DoxyCompactList}\item 
+std\+::pair$<$ std\+::string, \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} $>$ \mbox{\hyperlink{namespacedai_a18ef8153f219f1cad48e4f1f1a00a2a6}{dai\+::parse\+Name\+Properties}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::string \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{s}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::map$<$ std\+::string, std\+::string $>$ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{aliases}})
+\begin{DoxyCompactList}\small\item\em Extracts the name and property set from a string {\itshape s} in the format "{}name\mbox{[}key1=val1,key2=val2,...\mbox{]}"{} or "{}name"{}, performing alias substitution. \end{DoxyCompactList}\item 
+std\+::map$<$ std\+::string, std\+::string $>$ \mbox{\hyperlink{namespacedai_afffceb04ae10c57ff54a9c57ac3bfc29}{dai\+::read\+Aliases\+File}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::string \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{filename}})
+\begin{DoxyCompactList}\small\item\em Reads aliases from file named {\itshape filename}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Main lib\+DAI header file. It \#includes all other lib\+DAI headers. 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000002}{Todo}}]Replace Var\+Sets by \doxylink{classdai_1_1SmallSet}{Small\+Set$<$size\+\_\+t$>$} where appropriate, in order to minimize the use of Factor\+Graph\+::find\+Var().\end{DoxyRefDesc}
+
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000003}{Todo}}]Improve SWIG interfaces and merge their build process with the main build process \end{DoxyRefDesc}

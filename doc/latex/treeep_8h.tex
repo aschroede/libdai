@@ -1,0 +1,40 @@
+\doxysection{include/dai/treeep.h File Reference}
+\hypertarget{treeep_8h}{}\label{treeep_8h}\index{include/dai/treeep.h@{include/dai/treeep.h}}
+
+
+Defines class Tree\+EP, which implements Tree Expectation Propagation.  
+
+
+{\ttfamily \#include $<$dai/dai\+\_\+config.\+h$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$dai/daialg.\+h$>$}\newline
+{\ttfamily \#include $<$dai/varset.\+h$>$}\newline
+{\ttfamily \#include $<$dai/regiongraph.\+h$>$}\newline
+{\ttfamily \#include $<$dai/factorgraph.\+h$>$}\newline
+{\ttfamily \#include $<$dai/clustergraph.\+h$>$}\newline
+{\ttfamily \#include $<$dai/weightedgraph.\+h$>$}\newline
+{\ttfamily \#include $<$dai/jtree.\+h$>$}\newline
+{\ttfamily \#include $<$dai/properties.\+h$>$}\newline
+{\ttfamily \#include $<$dai/enum.\+h$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classdai_1_1TreeEP}{dai\+::\+Tree\+EP}}
+\begin{DoxyCompactList}\small\item\em Approximate inference algorithm "{}\+Tree Expectation Propagation"{} \mbox{[}\doxylink{bibliography_MiQ04}{Mi\+Q04}\mbox{]}. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structdai_1_1TreeEP_1_1Properties}{dai\+::\+Tree\+EP\+::\+Properties}}
+\begin{DoxyCompactList}\small\item\em Parameters for \doxylink{classdai_1_1TreeEP}{Tree\+EP}. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree}{dai\+::\+Tree\+EP\+::\+Tree\+EPSub\+Tree}}
+\begin{DoxyCompactList}\small\item\em Stores the data structures needed to efficiently update the approximation of an off-\/tree factor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacedai}{dai}}
+\begin{DoxyCompactList}\small\item\em Namespace for lib\+DAI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Defines class Tree\+EP, which implements Tree Expectation Propagation. 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000018}{Todo}}]Clean up the Tree\+EP code (exploiting that a large part of the code is just a special case of JTree). \end{DoxyRefDesc}

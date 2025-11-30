@@ -1,0 +1,37 @@
+\doxysection{include/dai/bp\+\_\+dual.h File Reference}
+\hypertarget{bp__dual_8h}{}\label{bp__dual_8h}\index{include/dai/bp\_dual.h@{include/dai/bp\_dual.h}}
+
+
+Defines class BP\+\_\+dual, which is used primarily by BBP.  
+
+
+{\ttfamily \#include $<$dai/dai\+\_\+config.\+h$>$}\newline
+{\ttfamily \#include $<$dai/daialg.\+h$>$}\newline
+{\ttfamily \#include $<$dai/factorgraph.\+h$>$}\newline
+{\ttfamily \#include $<$dai/enum.\+h$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classdai_1_1BP__dual}{dai\+::\+BP\+\_\+dual}}
+\begin{DoxyCompactList}\small\item\em Calculates both types of \doxylink{classdai_1_1BP}{BP} messages and their normalizers from an \doxylink{classdai_1_1InfAlg}{Inf\+Alg}. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structdai_1_1BP__dual_1_1__edges__t}{dai\+::\+BP\+\_\+dual\+::\+\_\+edges\+\_\+t$<$ T $>$}}
+\begin{DoxyCompactList}\small\item\em Convenience label for storing edge properties. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structdai_1_1BP__dual_1_1messages}{dai\+::\+BP\+\_\+dual\+::messages}}
+\begin{DoxyCompactList}\small\item\em Groups together the data structures for storing the two types of messages and their normalizers. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structdai_1_1BP__dual_1_1beliefs}{dai\+::\+BP\+\_\+dual\+::beliefs}}
+\begin{DoxyCompactList}\small\item\em Groups together the data structures for storing the two types of beliefs and their normalizers. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacedai}{dai}}
+\begin{DoxyCompactList}\small\item\em Namespace for lib\+DAI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Defines class BP\+\_\+dual, which is used primarily by BBP. 
+
+\begin{DoxyRefDesc}{Idea}
+\item[\mbox{\hyperlink{ideas__ideas000003}{Idea}}]BP\+\_\+dual replicates a large part of the functionality of BP; would it not be more efficient to adapt BP instead? \end{DoxyRefDesc}
+\begin{DoxyAuthor}{Author}
+Frederik Eaton 
+\end{DoxyAuthor}

@@ -1,0 +1,148 @@
+\doxysection{example\+\_\+permute.\+cpp}
+\hypertarget{example_permute_8cpp-example}{}\label{example_permute_8cpp-example}This example shows how to use the Permute, multifor and State classes.\hypertarget{bipgraph.h_Output}{}\doxysubsection{\texorpdfstring{Output}{Output}}\label{bipgraph.h_Output}
+
+\begin{DoxyVerbInclude}
+V = (x1, x2, x0)
+X = {x0, x1, x2}
+Note that the ordering of the variables in X is the canonical ordering
+(ascendingly according to their labels) but the ordering in V is different.
+
+The permutation between both variable orderings is sigma = (2, 0, 1), or more verbosely:
+  sigma[0] = 2
+  sigma[1] = 0
+  sigma[2] = 1
+This means that variable V[sigma[n]] should correspond with the n'th variable in X (for n=0,...,2)...OK. 
+
+The states of the variables x0,x1,x2 are, according to the ordering in V:
+SV:  x0:  x1:  x2:
+ 0    0    0    0
+ 1    0    1    0
+ 2    0    2    0
+ 3    0    0    1
+ 4    0    1    1
+ 5    0    2    1
+ 6    1    0    0
+ 7    1    1    0
+ 8    1    2    0
+ 9    1    0    1
+10    1    1    1
+11    1    2    1
+
+The states of the variables x0,x1,x2 are, according to the canonical ordering in X:
+SX:  x0:  x1:  x2:
+ 0    0    0    0
+ 1    1    0    0
+ 2    0    1    0
+ 3    1    1    0
+ 4    0    2    0
+ 5    1    2    0
+ 6    0    0    1
+ 7    1    0    1
+ 8    0    1    1
+ 9    1    1    1
+10    0    2    1
+11    1    2    1
+
+The permutation sigma induces the following permutation of linear indices of joint states:
+SV:  SX:
+ 0    0
+ 1    2
+ 2    4
+ 3    6
+ 4    8
+ 5   10
+ 6    1
+ 7    3
+ 8    5
+ 9    7
+10    9
+11   11
+\end{DoxyVerbInclude}
+\hypertarget{bipgraph.h_Source}{}\doxysubsection{\texorpdfstring{Source}{Source}}\label{bipgraph.h_Source}
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{comment}{/*\ \ This\ file\ is\ part\ of\ libDAI\ -\/\ http://www.libdai.org/}}
+\DoxyCodeLine{\textcolor{comment}{\ *}}
+\DoxyCodeLine{\textcolor{comment}{\ *\ \ Copyright\ (c)\ 2006-\/2011,\ The\ libDAI\ authors.\ All\ rights\ reserved.}}
+\DoxyCodeLine{\textcolor{comment}{\ *}}
+\DoxyCodeLine{\textcolor{comment}{\ *\ \ Use\ of\ this\ source\ code\ is\ governed\ by\ a\ BSD-\/style\ license\ that\ can\ be\ found\ in\ the\ LICENSE\ file.}}
+\DoxyCodeLine{\textcolor{comment}{\ */}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{varset_8h}{dai/varset.h}}>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{index_8h}{dai/index.h}}>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iomanip>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{\textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespacedai}{dai}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main()\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classdai_1_1Var}{Var}}\ x0(0,\ 2);\ \ \ \textcolor{comment}{//\ Define\ binary\ \ variable\ x0\ (with\ label\ 0)}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classdai_1_1Var}{Var}}\ x1(1,\ 3);\ \ \ \textcolor{comment}{//\ Define\ ternary\ variable\ x1\ (with\ label\ 1)}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classdai_1_1Var}{Var}}\ x2(2,\ 2);\ \ \ \textcolor{comment}{//\ Define\ binary\ \ variable\ x2\ (with\ label\ 2)}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Define\ vector\ V\ =\ (x1,\ x2,\ x0)}}
+\DoxyCodeLine{\ \ \ \ vector<Var>\ V;\ \ \ \ \ \ \textcolor{comment}{//\ Define\ a\ vector\ of\ variables}}
+\DoxyCodeLine{\ \ \ \ V.push\_back(\ x1\ );\ \ \textcolor{comment}{//\ V[0]\ =\ x1;}}
+\DoxyCodeLine{\ \ \ \ V.push\_back(\ x2\ );\ \ \textcolor{comment}{//\ V[1]\ =\ x2;}}
+\DoxyCodeLine{\ \ \ \ V.push\_back(\ x0\ );\ \ \textcolor{comment}{//\ V[2]\ =\ x0;}}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}V\ =\ "{}}\ <<\ V\ <<\ endl;\ \textcolor{comment}{//\ Note\ that\ the\ elements\ of\ X\ are\ not\ necessarily\ ordered\ according\ to\ their\ labels}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Define\ set\ X\ =\ \{x0,\ x1,\ x2\}}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classdai_1_1VarSet}{VarSet}}\ X;\ \textcolor{comment}{//\ empty}}
+\DoxyCodeLine{\ \ \ \ X\ |=\ x2;\ \ \textcolor{comment}{//\ X\ =\ \{x2\}}}
+\DoxyCodeLine{\ \ \ \ X\ |=\ x0;\ \ \textcolor{comment}{//\ X\ =\ \{x0,\ x2\}}}
+\DoxyCodeLine{\ \ \ \ X\ |=\ x1;\ \ \textcolor{comment}{//\ X\ =\ \{x0,\ x1,\ x2\}}}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}X\ =\ "{}}\ <<\ X\ <<\ endl;\ \textcolor{comment}{//\ Note\ that\ the\ elements\ of\ X\ are\ ordered\ according\ to\ their\ labels}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Note\ that\ the\ ordering\ of\ the\ variables\ in\ X\ is\ the\ canonical\ ordering"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}(ascendingly\ according\ to\ their\ labels)\ but\ the\ ordering\ in\ V\ is\ different."{}}\ <<\ endl\ <<\ endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ N\ =\ number\ of\ variables\ in\ V\ (and\ X)}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{size\_t}\ N\ =\ V.\mbox{\hyperlink{classdai_1_1SmallSet_a898d22e10b6870ddc4be574cd583ce26}{size}}();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Define\ a\ Permute\ object\ based\ on\ the\ variables\ in\ V}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classdai_1_1Permute}{Permute}}\ sigma(V);}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Each\ Var\ in\ V\ corresponds\ with\ a\ dimension\ in\ a\ multi-\/dimensional\ array.}}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ The\ permutation\ sigma\ permutes\ these\ dimensions\ from\ the\ canonical\ ordering}}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ (sorted\ ascendingly\ on\ the\ label\ of\ the\ variable,\ i.e.,\ the\ same\ ordering\ as}}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ in\ X)\ into\ the\ ordering\ these\ variables\ have\ in\ V.}}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}The\ permutation\ between\ both\ variable\ orderings\ is\ sigma\ =\ "{}}\ <<\ sigma.\mbox{\hyperlink{classdai_1_1Permute_ade9a442f9844d117ced27ea2182c56d5}{sigma}}()\ <<\ \textcolor{stringliteral}{"{},\ or\ more\ verbosely:"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ n\ =\ 0;\ n\ <\ N;\ n++\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ sigma["{}}\ <<\ n\ <<\ \textcolor{stringliteral}{"{}]\ =\ "{}}\ <<\ sigma[n]\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}This\ means\ that\ variable\ V[sigma[n]]\ should\ correspond\ with\ the\ n'th\ variable\ in\ X\ (for\ n=0,...,"{}}\ <<\ (N-\/1)\ <<\ \textcolor{stringliteral}{"{})..."{}};}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Check\ whether\ the\ permutation\ works\ as\ advertised}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classdai_1_1SmallSet_aa922e181341753250416ea1649de390a}{VarSet::const\_iterator}}\ X\_n\ =\ X.\mbox{\hyperlink{classdai_1_1SmallSet_a3edafa1c2258b97745ba6e7662a529e8}{begin}}();}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ n\ =\ 0;\ n\ <\ N;\ n++,\ X\_n++\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{exceptions_8h_af50adc4fad1e07093579e746302bc884}{DAI\_ASSERT}}(\ V[sigma[n]]\ ==\ *X\_n\ );}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}OK.\ "{}}\ <<\ endl\ <<\ endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Iterate\ over\ the\ joint\ states\ of\ the\ variables,\ according\ to\ the\ ordering\ in\ V}}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}The\ states\ of\ the\ variables\ x0,x1,x2\ are,\ according\ to\ the\ ordering\ in\ V:"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}SV:\ \ x0:\ \ x1:\ \ x2:"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ std::vector<size\_t>\ ranges;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ V.size();\ i++\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ranges.push\_back(\ V[i].states()\ );}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}(\ \mbox{\hyperlink{classdai_1_1multifor}{multifor}}\ SV(ranges);\ SV.\mbox{\hyperlink{classdai_1_1multifor_a2f1c4b39d719de5059b9ff46f620eda1}{valid}}();\ ++SV\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ cout\ <<\ setw(2)\ <<\ (size\_t)SV\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ "{}}\ <<\ SV[sigma[0]]\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ "{}}\ <<\ SV[sigma[1]]\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ "{}}\ <<\ SV[sigma[2]]\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Iterate\ over\ the\ joint\ states\ of\ the\ variables,\ according\ to\ the\ canonical\ ordering\ in\ X}}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}The\ states\ of\ the\ variables\ x0,x1,x2\ are,\ according\ to\ the\ canonical\ ordering\ in\ X:"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}SX:\ \ x0:\ \ x1:\ \ x2:"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}(\ \mbox{\hyperlink{classdai_1_1State}{State}}\ SX(X);\ SX.\mbox{\hyperlink{classdai_1_1State_a431244125b78626784cba3ffbc1f5110}{valid}}();\ SX++\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ cout\ <<\ setw(2)\ <<\ SX\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ "{}}\ <<\ SX(x0)\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ "{}}\ <<\ SX(x1)\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ "{}}\ <<\ SX(x2)\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ The\ main\ functionality\ of\ the\ Permute\ object\ is\ to\ calculate\ the\ induced\ permutation\ of\ linear\ indices\ of\ joint\ states}}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}The\ permutation\ sigma\ induces\ the\ following\ permutation\ of\ linear\ indices\ of\ joint\ states:"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}SV:\ \ SX:"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ li\ =\ 0;\ li\ <\ X.\mbox{\hyperlink{classdai_1_1VarSet_a0e247794f03ee52544e10a8b9f280c41}{nrStates}}();\ li++\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ cout\ <<\ setw(2)\ <<\ li\ <<\ \textcolor{stringliteral}{"{}\ \ \ "{}}\ <<\ setw(2)\ <<\ sigma.\mbox{\hyperlink{classdai_1_1Permute_a55a7b1c9aafb70552ec18baf551783cf}{convertLinearIndex}}(\ li\ )\ <<\ endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+ 

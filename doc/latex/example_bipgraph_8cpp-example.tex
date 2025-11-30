@@ -1,0 +1,73 @@
+\doxysection{example\+\_\+bipgraph.\+cpp}
+\hypertarget{example_bipgraph_8cpp-example}{}\label{example_bipgraph_8cpp-example}This example deals with the following bipartite graph\+:  It has three nodes of type 1 (drawn as circles) and two nodes of type 2 (drawn as rectangles). Node 0 of type 1 has only one neighbor (node 0 of type 2), but node 0 of type 2 has three neighbors (nodes 0,1,2 of type 1). The example code shows how to construct a Bipartite\+Graph object representing this bipartite graph and how to iterate over nodes and their neighbors.\hypertarget{bipgraph.h_Output}{}\doxysubsection{\texorpdfstring{Output}{Output}}\label{bipgraph.h_Output}
+
+\begin{DoxyVerbInclude}
+G has 3 nodes of type 1, 2 nodes of type 2 and 5 edges.
+
+Node 0 of type 1 has 1 neighbors:
+  the 0'th neighbor is node 0 of type 2
+
+Node 1 of type 1 has 2 neighbors:
+  the 0'th neighbor is node 0 of type 2
+  the 1'th neighbor is node 1 of type 2
+
+Node 2 of type 1 has 2 neighbors:
+  the 0'th neighbor is node 0 of type 2
+  the 1'th neighbor is node 1 of type 2
+
+\end{DoxyVerbInclude}
+\hypertarget{bipgraph.h_Source}{}\doxysubsection{\texorpdfstring{Source}{Source}}\label{bipgraph.h_Source}
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{comment}{/*\ \ This\ file\ is\ part\ of\ libDAI\ -\/\ http://www.libdai.org/}}
+\DoxyCodeLine{\textcolor{comment}{\ *}}
+\DoxyCodeLine{\textcolor{comment}{\ *\ \ Copyright\ (c)\ 2006-\/2011,\ The\ libDAI\ authors.\ All\ rights\ reserved.}}
+\DoxyCodeLine{\textcolor{comment}{\ *}}
+\DoxyCodeLine{\textcolor{comment}{\ *\ \ Use\ of\ this\ source\ code\ is\ governed\ by\ a\ BSD-\/style\ license\ that\ can\ be\ found\ in\ the\ LICENSE\ file.}}
+\DoxyCodeLine{\textcolor{comment}{\ */}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{bipgraph_8h}{dai/bipgraph.h}}>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{\textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespacedai}{dai}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main()\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Create\ a\ list\ of\ edges}}
+\DoxyCodeLine{\ \ \ \ vector<Edge>\ edges;}
+\DoxyCodeLine{\ \ \ \ edges.reserve(\ 5\ );}
+\DoxyCodeLine{\ \ \ \ edges.push\_back(\ \mbox{\hyperlink{namespacedai_aca51f13415f708db9eabda981b107a14}{Edge}}(0,\ 0)\ );}
+\DoxyCodeLine{\ \ \ \ edges.push\_back(\ \mbox{\hyperlink{namespacedai_aca51f13415f708db9eabda981b107a14}{Edge}}(1,\ 0)\ );}
+\DoxyCodeLine{\ \ \ \ edges.push\_back(\ \mbox{\hyperlink{namespacedai_aca51f13415f708db9eabda981b107a14}{Edge}}(2,\ 0)\ );}
+\DoxyCodeLine{\ \ \ \ edges.push\_back(\ \mbox{\hyperlink{namespacedai_aca51f13415f708db9eabda981b107a14}{Edge}}(1,\ 1)\ );}
+\DoxyCodeLine{\ \ \ \ edges.push\_back(\ \mbox{\hyperlink{namespacedai_aca51f13415f708db9eabda981b107a14}{Edge}}(2,\ 1)\ );}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Create\ a\ bipartite\ graph\ with\ 3\ nodes\ of\ type\ 1,}}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ 2\ nodes\ of\ type\ 2\ and\ edge\ list\ edges.}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classdai_1_1BipartiteGraph}{BipartiteGraph}}\ G(\ 3,\ 2,\ edges.begin(),\ edges.end()\ );}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Display\ some\ information\ about\ G}}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}G\ has\ "{}}\ <<\ G.\mbox{\hyperlink{classdai_1_1BipartiteGraph_a6b4f272b57126b4dfb572674eba5c035}{nrNodes1}}()\ <<\ \textcolor{stringliteral}{"{}\ nodes\ of\ type\ 1,\ "{}}\ <<\ G.\mbox{\hyperlink{classdai_1_1BipartiteGraph_a709376c998449338193e10f9c2250e25}{nrNodes2}}()\ <<\ \textcolor{stringliteral}{"{}\ nodes\ of\ type\ 2\ and\ "{}}\ <<\ G.\mbox{\hyperlink{classdai_1_1BipartiteGraph_a5eb05f26b20896e6b6c9d8a801f92182}{nrEdges}}()\ <<\ \textcolor{stringliteral}{"{}\ edges."{}}\ <<\ endl\ <<\ endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Iterate\ over\ all\ nodes\ n1\ of\ type\ 1}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ n1\ =\ 0;\ n1\ <\ G.\mbox{\hyperlink{classdai_1_1BipartiteGraph_a6b4f272b57126b4dfb572674eba5c035}{nrNodes1}}();\ n1++\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Node\ "{}}\ <<\ n1\ <<\ \textcolor{stringliteral}{"{}\ of\ type\ 1\ has\ "{}}\ <<\ G.\mbox{\hyperlink{classdai_1_1BipartiteGraph_a0b31bd0db6aff70fe8ba245882783607}{nb1}}(n1).size()\ <<\ \textcolor{stringliteral}{"{}\ neighbors:"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Iterate\ over\ all\ neighbors\ n2\ of\ n1}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{util_8h_ab712ec4331593f848c40b97a80186850}{bforeach}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structdai_1_1Neighbor}{Neighbor}}\ \&n2,\ G.\mbox{\hyperlink{classdai_1_1BipartiteGraph_a0b31bd0db6aff70fe8ba245882783607}{nb1}}(n1)\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ n2.iter'th\ neighbor\ of\ n1\ is\ n2:}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{exceptions_8h_af50adc4fad1e07093579e746302bc884}{DAI\_ASSERT}}(\ G.\mbox{\hyperlink{classdai_1_1BipartiteGraph_a0b31bd0db6aff70fe8ba245882783607}{nb1}}(n1)[n2.\mbox{\hyperlink{structdai_1_1Neighbor_ade0af4c962de1250e818badfdfb92ae5}{iter}}]\ ==\ n2\ );}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ n2.dual'th\ neighbor\ of\ n2\ is\ n1:}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{exceptions_8h_af50adc4fad1e07093579e746302bc884}{DAI\_ASSERT}}(\ G.\mbox{\hyperlink{classdai_1_1BipartiteGraph_a40516848225be41f68b6381d04f8db25}{nb2}}(n2)[n2.\mbox{\hyperlink{structdai_1_1Neighbor_a0e6674603c16566ea6500830c915805e}{dual}}]\ ==\ n1\ );}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ n2\ can\ be\ used\ as\ an\ abbreviation\ of\ n2.node:}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{exceptions_8h_af50adc4fad1e07093579e746302bc884}{DAI\_ASSERT}}(\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{size\_t}\textcolor{keyword}{>}(n2)\ ==\ n2.\mbox{\hyperlink{structdai_1_1Neighbor_a1b9eb43d9c57bc445b733287fa6abbdf}{node}}\ );}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ the\ "{}}\ <<\ n2.\mbox{\hyperlink{structdai_1_1Neighbor_ade0af4c962de1250e818badfdfb92ae5}{iter}}\ <<\ \textcolor{stringliteral}{"{}'th\ neighbor\ is\ node\ "{}}\ <<\ n2\ <<\ \textcolor{stringliteral}{"{}\ of\ type\ 2"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ cout\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+ 

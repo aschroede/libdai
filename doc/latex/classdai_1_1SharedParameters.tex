@@ -1,0 +1,312 @@
+\doxysection{dai\+::Shared\+Parameters Class Reference}
+\hypertarget{classdai_1_1SharedParameters}{}\label{classdai_1_1SharedParameters}\index{dai::SharedParameters@{dai::SharedParameters}}
+
+
+Represents a single factor or set of factors whose parameters should be estimated.  
+
+
+
+
+{\ttfamily \#include $<$dai/emalg.\+h$>$}
+
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typedef}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{classdai_1_1SharedParameters_a411fec0541485841d876f53630c12fc5}{Factor\+Index}}
+\begin{DoxyCompactList}\small\item\em Convenience label for an index of a factor in a \doxylink{classdai_1_1FactorGraph}{Factor\+Graph}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typedef}} std\+::map$<$ \mbox{\hyperlink{classdai_1_1SharedParameters_a411fec0541485841d876f53630c12fc5}{Factor\+Index}}, std\+::vector$<$ \mbox{\hyperlink{classdai_1_1Var}{Var}} $>$ $>$ \mbox{\hyperlink{classdai_1_1SharedParameters_af9cec794f26b175ed0bed628bfe746f7}{Factor\+Orientations}}
+\begin{DoxyCompactList}\small\item\em Convenience label for a grouping of factor orientations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdai_1_1SharedParameters_a038dedcc2e4810bf072d829a693859bf}{Shared\+Parameters}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1SharedParameters_af9cec794f26b175ed0bed628bfe746f7}{Factor\+Orientations}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{varorders}}, \mbox{\hyperlink{classdai_1_1ParameterEstimation}{Parameter\+Estimation}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{estimation}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{own\+PE}}=\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{false}})
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1SharedParameters_aece6000831c8fad8e42364cd8ef41594}{Shared\+Parameters}} (std\+::istream \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{is}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1FactorGraph}{Factor\+Graph}} \&fg)
+\begin{DoxyCompactList}\small\item\em Construct a \doxylink{classdai_1_1SharedParameters}{Shared\+Parameters} object from an input stream {\itshape is} and a factor graph {\itshape fg}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1SharedParameters_a471d38b5a945d9eefe694fde30f78ccc}{Shared\+Parameters}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1SharedParameters}{Shared\+Parameters}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{sp}})
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1SharedParameters_a348004ef4d15e4fc35a6eed6da14f9e1}{\texorpdfstring{$\sim$}{\string~}\+Shared\+Parameters}} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1SharedParameters_ae3805b761d8750c61af23b3a1a51a0be}{collect\+Expectations}} (\mbox{\hyperlink{classdai_1_1InfAlg}{Inf\+Alg}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{alg}})
+\begin{DoxyCompactList}\small\item\em Collect the expected values (beliefs) according to {\itshape alg}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \& \mbox{\hyperlink{classdai_1_1SharedParameters_a202cac20de8e9deb105ae8970fd37211}{current\+Expectations}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Return the current accumulated expectations. \end{DoxyCompactList}\item 
+\Hypertarget{classdai_1_1SharedParameters_a70f260e207c6c1cef4c4cec285e6960a}\label{classdai_1_1SharedParameters_a70f260e207c6c1cef4c4cec285e6960a} 
+\mbox{\hyperlink{classdai_1_1ParameterEstimation}{Parameter\+Estimation}} \& {\bfseries get\+PEst} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1SharedParameters_ae1477e1babd787c9642d16e2a085697b}{set\+Parameters}} (\mbox{\hyperlink{classdai_1_1FactorGraph}{Factor\+Graph}} \&fg)
+\begin{DoxyCompactList}\small\item\em Estimate and set the shared parameters. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1SharedParameters_af9cec794f26b175ed0bed628bfe746f7}{Factor\+Orientations}} \& \mbox{\hyperlink{classdai_1_1SharedParameters_a9269e4845f7fc4d033e1f44484ff6324}{get\+Factor\+Orientations}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Return a reference to the vector of factor orientations. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1SharedParameters_a715d615d579c4a53f8cc42493e0c5b46}{clear}} ()
+\begin{DoxyCompactList}\small\item\em Reset the current expectations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1SharedParameters_aa7c6b70dbecf8379b112c205419b15ce}{set\+Perms\+And\+Var\+Sets\+From\+Var\+Orders}} ()
+\begin{DoxyCompactList}\small\item\em Initializes \+\_\+varsets and \+\_\+perms from \+\_\+varorders and checks whether their state spaces correspond with \+\_\+estimation.\+prob\+Size() \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{static}} \mbox{\hyperlink{classdai_1_1Permute}{Permute}} \mbox{\hyperlink{classdai_1_1SharedParameters_a3b73d7c4dc8c88725fb26da4d8089caa}{calculate\+Permutation}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::vector$<$ \mbox{\hyperlink{classdai_1_1Var}{Var}} $>$ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{var\+Order}}, \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{out\+VS}})
+\begin{DoxyCompactList}\small\item\em Calculates the permutation that permutes the canonical ordering into the desired ordering. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::map$<$ \mbox{\hyperlink{classdai_1_1SharedParameters_a411fec0541485841d876f53630c12fc5}{Factor\+Index}}, \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} $>$ \mbox{\hyperlink{classdai_1_1SharedParameters_a62cd242ee64440409c833cc0666d1c1d}{\+\_\+varsets}}
+\begin{DoxyCompactList}\small\item\em Maps factor indices to the corresponding Var\+Sets. \end{DoxyCompactList}\item 
+std\+::map$<$ \mbox{\hyperlink{classdai_1_1SharedParameters_a411fec0541485841d876f53630c12fc5}{Factor\+Index}}, \mbox{\hyperlink{classdai_1_1Permute}{Permute}} $>$ \mbox{\hyperlink{classdai_1_1SharedParameters_a4b122df385ac820492dac08084f1d53e}{\+\_\+perms}}
+\begin{DoxyCompactList}\small\item\em Maps factor indices to the corresponding \doxylink{classdai_1_1Permute}{Permute} objects that permute the canonical ordering into the desired ordering. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1SharedParameters_af9cec794f26b175ed0bed628bfe746f7}{Factor\+Orientations}} \mbox{\hyperlink{classdai_1_1SharedParameters_a0c86d6ef5726a83f09ee238b354e79f5}{\+\_\+varorders}}
+\begin{DoxyCompactList}\small\item\em Maps factor indices to the corresponding desired variable orderings. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1ParameterEstimation}{Parameter\+Estimation}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classdai_1_1SharedParameters_ad1ccccc2678ac4201dfe803edeb17813}{\+\_\+estimation}}
+\begin{DoxyCompactList}\small\item\em Parameter estimation method to be used. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} \mbox{\hyperlink{classdai_1_1SharedParameters_a05890ae04484ccc806684b60b3905f69}{\+\_\+own\+Estimation}}
+\begin{DoxyCompactList}\small\item\em Indicates whether {\ttfamily \texorpdfstring{$\ast$}{*}this} gets ownership of \+\_\+estimation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classdai_1_1SharedParameters_a1be956f40c4726213866dd423ce20a2e}{\+\_\+expectations}}
+\begin{DoxyCompactList}\small\item\em The accumulated expectations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a single factor or set of factors whose parameters should be estimated. 
+
+To ensure that parameters can be shared between different factors during EM learning, each factor\textquotesingle{}s values are reordered to match a desired variable ordering. The ordering of the variables in a factor may therefore differ from the canonical ordering used in lib\+DAI. The \doxylink{classdai_1_1SharedParameters}{Shared\+Parameters} class combines one or more factors (together with the specified orderings of the variables) with a \doxylink{classdai_1_1ParameterEstimation}{Parameter\+Estimation} object, taking care of the necessary permutations of the factor entries / parameters.
+
+\begin{DoxyAuthor}{Author}
+Charles Vaske 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{classdai_1_1SharedParameters_a411fec0541485841d876f53630c12fc5}\label{classdai_1_1SharedParameters_a411fec0541485841d876f53630c12fc5} 
+\index{dai::SharedParameters@{dai::SharedParameters}!FactorIndex@{FactorIndex}}
+\index{FactorIndex@{FactorIndex}!dai::SharedParameters@{dai::SharedParameters}}
+\doxysubsubsection{\texorpdfstring{FactorIndex}{FactorIndex}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typedef}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{classdai_1_1SharedParameters_a411fec0541485841d876f53630c12fc5}{dai\+::\+Shared\+Parameters\+::\+Factor\+Index}}}
+
+
+
+Convenience label for an index of a factor in a \doxylink{classdai_1_1FactorGraph}{Factor\+Graph}. 
+
+\Hypertarget{classdai_1_1SharedParameters_af9cec794f26b175ed0bed628bfe746f7}\label{classdai_1_1SharedParameters_af9cec794f26b175ed0bed628bfe746f7} 
+\index{dai::SharedParameters@{dai::SharedParameters}!FactorOrientations@{FactorOrientations}}
+\index{FactorOrientations@{FactorOrientations}!dai::SharedParameters@{dai::SharedParameters}}
+\doxysubsubsection{\texorpdfstring{FactorOrientations}{FactorOrientations}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typedef}} std\+::map$<$\mbox{\hyperlink{classdai_1_1SharedParameters_a411fec0541485841d876f53630c12fc5}{Factor\+Index}}, std\+::vector$<$\mbox{\hyperlink{classdai_1_1Var}{Var}}$>$ $>$ \mbox{\hyperlink{classdai_1_1SharedParameters_af9cec794f26b175ed0bed628bfe746f7}{dai\+::\+Shared\+Parameters\+::\+Factor\+Orientations}}}
+
+
+
+Convenience label for a grouping of factor orientations. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classdai_1_1SharedParameters_a038dedcc2e4810bf072d829a693859bf}\label{classdai_1_1SharedParameters_a038dedcc2e4810bf072d829a693859bf} 
+\index{dai::SharedParameters@{dai::SharedParameters}!SharedParameters@{SharedParameters}}
+\index{SharedParameters@{SharedParameters}!dai::SharedParameters@{dai::SharedParameters}}
+\doxysubsubsection{\texorpdfstring{SharedParameters()}{SharedParameters()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily dai\+::\+Shared\+Parameters\+::\+Shared\+Parameters (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1SharedParameters_af9cec794f26b175ed0bed628bfe746f7}{Factor\+Orientations}} \&}]{varorders,  }\item[{\mbox{\hyperlink{classdai_1_1ParameterEstimation}{Parameter\+Estimation}} \texorpdfstring{$\ast$}{*}}]{estimation,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}}}]{own\+PE = {\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{false}}} }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em varorders} & all the factor orientations for this parameter \\
+\hline
+{\em estimation} & a pointer to the parameter estimation method \\
+\hline
+{\em own\+PE} & whether the constructed object gets ownership of {\itshape estimation} \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classdai_1_1SharedParameters_aece6000831c8fad8e42364cd8ef41594}\label{classdai_1_1SharedParameters_aece6000831c8fad8e42364cd8ef41594} 
+\index{dai::SharedParameters@{dai::SharedParameters}!SharedParameters@{SharedParameters}}
+\index{SharedParameters@{SharedParameters}!dai::SharedParameters@{dai::SharedParameters}}
+\doxysubsubsection{\texorpdfstring{SharedParameters()}{SharedParameters()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily dai\+::\+Shared\+Parameters\+::\+Shared\+Parameters (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{is,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1FactorGraph}{Factor\+Graph}} \&}]{fg }\end{DoxyParamCaption})}
+
+
+
+Construct a \doxylink{classdai_1_1SharedParameters}{Shared\+Parameters} object from an input stream {\itshape is} and a factor graph {\itshape fg}. 
+
+\begin{DoxySeeAlso}{See also}
+\doxysectlink{fileformats_fileformats-emalg-sharedparameters}{Shared parameters block format}{2} 
+\end{DoxySeeAlso}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em INVALID\+\_\+\+EMALG\+\_\+\+FILE} & if the input stream is not valid \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classdai_1_1SharedParameters_a471d38b5a945d9eefe694fde30f78ccc}\label{classdai_1_1SharedParameters_a471d38b5a945d9eefe694fde30f78ccc} 
+\index{dai::SharedParameters@{dai::SharedParameters}!SharedParameters@{SharedParameters}}
+\index{SharedParameters@{SharedParameters}!dai::SharedParameters@{dai::SharedParameters}}
+\doxysubsubsection{\texorpdfstring{SharedParameters()}{SharedParameters()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily dai\+::\+Shared\+Parameters\+::\+Shared\+Parameters (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1SharedParameters}{Shared\+Parameters}} \&}]{sp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Copy constructor. 
+
+\Hypertarget{classdai_1_1SharedParameters_a348004ef4d15e4fc35a6eed6da14f9e1}\label{classdai_1_1SharedParameters_a348004ef4d15e4fc35a6eed6da14f9e1} 
+\index{dai::SharedParameters@{dai::SharedParameters}!````~SharedParameters@{\texorpdfstring{$\sim$}{\string~}SharedParameters}}
+\index{````~SharedParameters@{\texorpdfstring{$\sim$}{\string~}SharedParameters}!dai::SharedParameters@{dai::SharedParameters}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}SharedParameters()}{\string~SharedParameters()}}
+{\footnotesize\ttfamily dai\+::\+Shared\+Parameters\+::\texorpdfstring{$\sim$}{\string~}\+Shared\+Parameters (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Destructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classdai_1_1SharedParameters_a3b73d7c4dc8c88725fb26da4d8089caa}\label{classdai_1_1SharedParameters_a3b73d7c4dc8c88725fb26da4d8089caa} 
+\index{dai::SharedParameters@{dai::SharedParameters}!calculatePermutation@{calculatePermutation}}
+\index{calculatePermutation@{calculatePermutation}!dai::SharedParameters@{dai::SharedParameters}}
+\doxysubsubsection{\texorpdfstring{calculatePermutation()}{calculatePermutation()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1Permute}{Permute}} dai\+::\+Shared\+Parameters\+::calculate\+Permutation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::vector$<$ \mbox{\hyperlink{classdai_1_1Var}{Var}} $>$ \&}]{var\+Order,  }\item[{\mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} \&}]{out\+VS }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Calculates the permutation that permutes the canonical ordering into the desired ordering. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em var\+Order} & Desired ordering of variables \\
+\hline
+{\em out\+VS} & Contains variables in {\itshape var\+Order} represented as a \doxylink{classdai_1_1VarSet}{Var\+Set} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\doxylink{classdai_1_1Permute}{Permute} object for permuting variables in var\+Order from the canonical lib\+DAI ordering into the desired ordering 
+\end{DoxyReturn}
+\Hypertarget{classdai_1_1SharedParameters_aa7c6b70dbecf8379b112c205419b15ce}\label{classdai_1_1SharedParameters_aa7c6b70dbecf8379b112c205419b15ce} 
+\index{dai::SharedParameters@{dai::SharedParameters}!setPermsAndVarSetsFromVarOrders@{setPermsAndVarSetsFromVarOrders}}
+\index{setPermsAndVarSetsFromVarOrders@{setPermsAndVarSetsFromVarOrders}!dai::SharedParameters@{dai::SharedParameters}}
+\doxysubsubsection{\texorpdfstring{setPermsAndVarSetsFromVarOrders()}{setPermsAndVarSetsFromVarOrders()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+Shared\+Parameters\+::set\+Perms\+And\+Var\+Sets\+From\+Var\+Orders (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initializes \+\_\+varsets and \+\_\+perms from \+\_\+varorders and checks whether their state spaces correspond with \+\_\+estimation.\+prob\+Size() 
+
+\Hypertarget{classdai_1_1SharedParameters_ae3805b761d8750c61af23b3a1a51a0be}\label{classdai_1_1SharedParameters_ae3805b761d8750c61af23b3a1a51a0be} 
+\index{dai::SharedParameters@{dai::SharedParameters}!collectExpectations@{collectExpectations}}
+\index{collectExpectations@{collectExpectations}!dai::SharedParameters@{dai::SharedParameters}}
+\doxysubsubsection{\texorpdfstring{collectExpectations()}{collectExpectations()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+Shared\+Parameters\+::collect\+Expectations (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classdai_1_1InfAlg}{Inf\+Alg}} \&}]{alg }\end{DoxyParamCaption})}
+
+
+
+Collect the expected values (beliefs) according to {\itshape alg}. 
+
+For each of the relevant factors (that shares the parameters we are interested in), the corresponding belief according to {\itshape alg} is obtained and its entries are permuted such that their ordering corresponds with the shared parameters that we are estimating. \Hypertarget{classdai_1_1SharedParameters_a202cac20de8e9deb105ae8970fd37211}\label{classdai_1_1SharedParameters_a202cac20de8e9deb105ae8970fd37211} 
+\index{dai::SharedParameters@{dai::SharedParameters}!currentExpectations@{currentExpectations}}
+\index{currentExpectations@{currentExpectations}!dai::SharedParameters@{dai::SharedParameters}}
+\doxysubsubsection{\texorpdfstring{currentExpectations()}{currentExpectations()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \& dai\+::\+Shared\+Parameters\+::current\+Expectations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the current accumulated expectations. 
+
+\Hypertarget{classdai_1_1SharedParameters_ae1477e1babd787c9642d16e2a085697b}\label{classdai_1_1SharedParameters_ae1477e1babd787c9642d16e2a085697b} 
+\index{dai::SharedParameters@{dai::SharedParameters}!setParameters@{setParameters}}
+\index{setParameters@{setParameters}!dai::SharedParameters@{dai::SharedParameters}}
+\doxysubsubsection{\texorpdfstring{setParameters()}{setParameters()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+Shared\+Parameters\+::set\+Parameters (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classdai_1_1FactorGraph}{Factor\+Graph}} \&}]{fg }\end{DoxyParamCaption})}
+
+
+
+Estimate and set the shared parameters. 
+
+Based on the expectation statistics collected so far, the shared parameters are estimated using the parameter estimation subclass method estimate(). Then, each of the relevant factors in {\itshape fg} (that shares the parameters we are interested in) is set according to those parameters (permuting the parameters accordingly). \Hypertarget{classdai_1_1SharedParameters_a9269e4845f7fc4d033e1f44484ff6324}\label{classdai_1_1SharedParameters_a9269e4845f7fc4d033e1f44484ff6324} 
+\index{dai::SharedParameters@{dai::SharedParameters}!getFactorOrientations@{getFactorOrientations}}
+\index{getFactorOrientations@{getFactorOrientations}!dai::SharedParameters@{dai::SharedParameters}}
+\doxysubsubsection{\texorpdfstring{getFactorOrientations()}{getFactorOrientations()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1SharedParameters_af9cec794f26b175ed0bed628bfe746f7}{Factor\+Orientations}} \& dai\+::\+Shared\+Parameters\+::get\+Factor\+Orientations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return a reference to the vector of factor orientations. 
+
+This is necessary for determing which variables were used to estimate parameters, and analysis of expectations after an Estimation step has been performed. \Hypertarget{classdai_1_1SharedParameters_a715d615d579c4a53f8cc42493e0c5b46}\label{classdai_1_1SharedParameters_a715d615d579c4a53f8cc42493e0c5b46} 
+\index{dai::SharedParameters@{dai::SharedParameters}!clear@{clear}}
+\index{clear@{clear}!dai::SharedParameters@{dai::SharedParameters}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+Shared\+Parameters\+::clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reset the current expectations. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classdai_1_1SharedParameters_a62cd242ee64440409c833cc0666d1c1d}\label{classdai_1_1SharedParameters_a62cd242ee64440409c833cc0666d1c1d} 
+\index{dai::SharedParameters@{dai::SharedParameters}!\_varsets@{\_varsets}}
+\index{\_varsets@{\_varsets}!dai::SharedParameters@{dai::SharedParameters}}
+\doxysubsubsection{\texorpdfstring{\_varsets}{\_varsets}}
+{\footnotesize\ttfamily std\+::map$<$\mbox{\hyperlink{classdai_1_1SharedParameters_a411fec0541485841d876f53630c12fc5}{Factor\+Index}}, \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}}$>$ dai\+::\+Shared\+Parameters\+::\+\_\+varsets\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Maps factor indices to the corresponding Var\+Sets. 
+
+\Hypertarget{classdai_1_1SharedParameters_a4b122df385ac820492dac08084f1d53e}\label{classdai_1_1SharedParameters_a4b122df385ac820492dac08084f1d53e} 
+\index{dai::SharedParameters@{dai::SharedParameters}!\_perms@{\_perms}}
+\index{\_perms@{\_perms}!dai::SharedParameters@{dai::SharedParameters}}
+\doxysubsubsection{\texorpdfstring{\_perms}{\_perms}}
+{\footnotesize\ttfamily std\+::map$<$\mbox{\hyperlink{classdai_1_1SharedParameters_a411fec0541485841d876f53630c12fc5}{Factor\+Index}}, \mbox{\hyperlink{classdai_1_1Permute}{Permute}}$>$ dai\+::\+Shared\+Parameters\+::\+\_\+perms\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Maps factor indices to the corresponding \doxylink{classdai_1_1Permute}{Permute} objects that permute the canonical ordering into the desired ordering. 
+
+\Hypertarget{classdai_1_1SharedParameters_a0c86d6ef5726a83f09ee238b354e79f5}\label{classdai_1_1SharedParameters_a0c86d6ef5726a83f09ee238b354e79f5} 
+\index{dai::SharedParameters@{dai::SharedParameters}!\_varorders@{\_varorders}}
+\index{\_varorders@{\_varorders}!dai::SharedParameters@{dai::SharedParameters}}
+\doxysubsubsection{\texorpdfstring{\_varorders}{\_varorders}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1SharedParameters_af9cec794f26b175ed0bed628bfe746f7}{Factor\+Orientations}} dai\+::\+Shared\+Parameters\+::\+\_\+varorders\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Maps factor indices to the corresponding desired variable orderings. 
+
+\Hypertarget{classdai_1_1SharedParameters_ad1ccccc2678ac4201dfe803edeb17813}\label{classdai_1_1SharedParameters_ad1ccccc2678ac4201dfe803edeb17813} 
+\index{dai::SharedParameters@{dai::SharedParameters}!\_estimation@{\_estimation}}
+\index{\_estimation@{\_estimation}!dai::SharedParameters@{dai::SharedParameters}}
+\doxysubsubsection{\texorpdfstring{\_estimation}{\_estimation}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1ParameterEstimation}{Parameter\+Estimation}}\texorpdfstring{$\ast$}{*} dai\+::\+Shared\+Parameters\+::\+\_\+estimation\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Parameter estimation method to be used. 
+
+\Hypertarget{classdai_1_1SharedParameters_a05890ae04484ccc806684b60b3905f69}\label{classdai_1_1SharedParameters_a05890ae04484ccc806684b60b3905f69} 
+\index{dai::SharedParameters@{dai::SharedParameters}!\_ownEstimation@{\_ownEstimation}}
+\index{\_ownEstimation@{\_ownEstimation}!dai::SharedParameters@{dai::SharedParameters}}
+\doxysubsubsection{\texorpdfstring{\_ownEstimation}{\_ownEstimation}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} dai\+::\+Shared\+Parameters\+::\+\_\+own\+Estimation\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Indicates whether {\ttfamily \texorpdfstring{$\ast$}{*}this} gets ownership of \+\_\+estimation. 
+
+\Hypertarget{classdai_1_1SharedParameters_a1be956f40c4726213866dd423ce20a2e}\label{classdai_1_1SharedParameters_a1be956f40c4726213866dd423ce20a2e} 
+\index{dai::SharedParameters@{dai::SharedParameters}!\_expectations@{\_expectations}}
+\index{\_expectations@{\_expectations}!dai::SharedParameters@{dai::SharedParameters}}
+\doxysubsubsection{\texorpdfstring{\_expectations}{\_expectations}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}}\texorpdfstring{$\ast$}{*} dai\+::\+Shared\+Parameters\+::\+\_\+expectations\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The accumulated expectations. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/dai/\mbox{\hyperlink{emalg_8h}{emalg.\+h}}\item 
+src/emalg.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,39 @@
+\doxysection{include/dai/emalg.h File Reference}
+\hypertarget{emalg_8h}{}\label{emalg_8h}\index{include/dai/emalg.h@{include/dai/emalg.h}}
+
+
+Defines classes related to Expectation Maximization (EMAlg, Parameter\+Estimation, Cond\+Prob\+Estimation and Shared\+Parameters)  
+
+
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$dai/factor.\+h$>$}\newline
+{\ttfamily \#include $<$dai/daialg.\+h$>$}\newline
+{\ttfamily \#include $<$dai/evidence.\+h$>$}\newline
+{\ttfamily \#include $<$dai/index.\+h$>$}\newline
+{\ttfamily \#include $<$dai/properties.\+h$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classdai_1_1ParameterEstimation}{dai\+::\+Parameter\+Estimation}}
+\begin{DoxyCompactList}\small\item\em Base class for parameter estimation methods. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classdai_1_1CondProbEstimation}{dai\+::\+Cond\+Prob\+Estimation}}
+\begin{DoxyCompactList}\small\item\em Estimates the parameters of a conditional probability table, using pseudocounts. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classdai_1_1SharedParameters}{dai\+::\+Shared\+Parameters}}
+\begin{DoxyCompactList}\small\item\em Represents a single factor or set of factors whose parameters should be estimated. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classdai_1_1MaximizationStep}{dai\+::\+Maximization\+Step}}
+\begin{DoxyCompactList}\small\item\em A \doxylink{classdai_1_1MaximizationStep}{Maximization\+Step} groups together several parameter estimation tasks (\doxylink{classdai_1_1SharedParameters}{Shared\+Parameters} objects) into a single unit. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classdai_1_1EMAlg}{dai\+::\+EMAlg}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classdai_1_1EMAlg}{EMAlg} performs Expectation Maximization to learn factor parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacedai}{dai}}
+\begin{DoxyCompactList}\small\item\em Namespace for lib\+DAI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Defines classes related to Expectation Maximization (EMAlg, Parameter\+Estimation, Cond\+Prob\+Estimation and Shared\+Parameters) 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000011}{Todo}}]Implement parameter estimation for undirected models / factor graphs. \end{DoxyRefDesc}

@@ -1,0 +1,242 @@
+\doxysection{dag.\+h}
+\hypertarget{dag_8h_source}{}\label{dag_8h_source}\index{include/dai/dag.h@{include/dai/dag.h}}
+\mbox{\hyperlink{dag_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*\ \ This\ file\ is\ part\ of\ libDAI\ -\/\ http://www.libdai.org/}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ \ Copyright\ (c)\ 2006-\/2011,\ The\ libDAI\ authors.\ All\ rights\ reserved.}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ Use\ of\ this\ source\ code\ is\ governed\ by\ a\ BSD-\/style\ license\ that\ can\ be\ found\ in\ the\ LICENSE\ file.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#ifndef\ \_\_defined\_libdai\_dag\_h}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ \_\_defined\_libdai\_dag\_h}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <ostream>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{util_8h}{dai/util.h}}>}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{exceptions_8h}{dai/exceptions.h}}>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{smallset_8h}{dai/smallset.h}}>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{graph_8h}{dai/graph.h}}>}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacedai}{dai}}\ \{}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classdai_1_1DAG}{DAG}}\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ std::vector<Neighbors>\ \mbox{\hyperlink{classdai_1_1DAG_a84807bf73872e2d9da90aec3bbc1d9b0}{\_pa}};}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ std::vector<Neighbors>\ \mbox{\hyperlink{classdai_1_1DAG_ab9a90af854f3fb991f435c9d4656e97c}{\_ch}};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1DAG_a492535d29b681e169478bf996f4bc8ea}{DAG}}()\ :\ \mbox{\hyperlink{classdai_1_1DAG_a84807bf73872e2d9da90aec3bbc1d9b0}{\_pa}}(),\ \mbox{\hyperlink{classdai_1_1DAG_ab9a90af854f3fb991f435c9d4656e97c}{\_ch}}()\ \{\}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1DAG_a479637ba8bc537f368d343d98187a325}{DAG}}(\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{nr}}\ )\ :\ \mbox{\hyperlink{classdai_1_1DAG_a84807bf73872e2d9da90aec3bbc1d9b0}{\_pa}}(\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{nr}}\ ),\ \mbox{\hyperlink{classdai_1_1DAG_ab9a90af854f3fb991f435c9d4656e97c}{\_ch}}(\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{nr}}\ )\ \{\}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ EdgeInputIterator>}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1DAG_acfb7a32b5e8e56d4268738d2a6388a29}{DAG}}(\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{nr}},\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{EdgeInputIterator}}\ begin,\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{EdgeInputIterator}}\ end,\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{check}}=\textcolor{keyword}{true}\ )\ :\ \mbox{\hyperlink{classdai_1_1DAG_a84807bf73872e2d9da90aec3bbc1d9b0}{\_pa}}(),\ \mbox{\hyperlink{classdai_1_1DAG_ab9a90af854f3fb991f435c9d4656e97c}{\_ch}}()\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1DAG_a7b9a3e26a9275bd68e9eee5ee16933fd}{construct}}(\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{nr}},\ begin,\ end,\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{check}}\ );}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structdai_1_1Neighbor}{Neighbor}}\&\ \mbox{\hyperlink{classdai_1_1DAG_ada7483211efef87be9d2f9749cb3f3ea}{pa}}(\ \textcolor{keywordtype}{size\_t}\ n,\ \textcolor{keywordtype}{size\_t}\ \_p\ )\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{exceptions_8h_ab0d3e811b3335ac42245ec03864ede45}{DAI\_DEBASSERT}}(\ n\ <\ \mbox{\hyperlink{classdai_1_1DAG_a84807bf73872e2d9da90aec3bbc1d9b0}{\_pa}}.size()\ );}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{exceptions_8h_ab0d3e811b3335ac42245ec03864ede45}{DAI\_DEBASSERT}}(\ \_p\ <\ \mbox{\hyperlink{classdai_1_1DAG_a84807bf73872e2d9da90aec3bbc1d9b0}{\_pa}}[n].size()\ );}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classdai_1_1DAG_a84807bf73872e2d9da90aec3bbc1d9b0}{\_pa}}[n][\_p];}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structdai_1_1Neighbor}{Neighbor}}\&\ \mbox{\hyperlink{classdai_1_1DAG_a3e9f50e211405a2be4c2181a288f116f}{pa}}(\ \textcolor{keywordtype}{size\_t}\ n,\ \textcolor{keywordtype}{size\_t}\ \_p\ )\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{exceptions_8h_ab0d3e811b3335ac42245ec03864ede45}{DAI\_DEBASSERT}}(\ n\ <\ \mbox{\hyperlink{classdai_1_1DAG_a84807bf73872e2d9da90aec3bbc1d9b0}{\_pa}}.size()\ );}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{exceptions_8h_ab0d3e811b3335ac42245ec03864ede45}{DAI\_DEBASSERT}}(\ \_p\ <\ \mbox{\hyperlink{classdai_1_1DAG_a84807bf73872e2d9da90aec3bbc1d9b0}{\_pa}}[n].size()\ );}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classdai_1_1DAG_a84807bf73872e2d9da90aec3bbc1d9b0}{\_pa}}[n][\_p];}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacedai_a14c563f2e5f6acf255903cae5c3b415c}{Neighbors}}\&\ \mbox{\hyperlink{classdai_1_1DAG_a9fe2291b7fec4f23d7836fa29fb4bc2e}{pa}}(\ \textcolor{keywordtype}{size\_t}\ n\ )\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{exceptions_8h_ab0d3e811b3335ac42245ec03864ede45}{DAI\_DEBASSERT}}(\ n\ <\ \mbox{\hyperlink{classdai_1_1DAG_a84807bf73872e2d9da90aec3bbc1d9b0}{\_pa}}.size()\ );}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classdai_1_1DAG_a84807bf73872e2d9da90aec3bbc1d9b0}{\_pa}}[n];}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedai_a14c563f2e5f6acf255903cae5c3b415c}{Neighbors}}\&\ \mbox{\hyperlink{classdai_1_1DAG_afe80e0cf98d28dc49c7403f37293a65a}{pa}}(\ \textcolor{keywordtype}{size\_t}\ n\ )\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{exceptions_8h_ab0d3e811b3335ac42245ec03864ede45}{DAI\_DEBASSERT}}(\ n\ <\ \mbox{\hyperlink{classdai_1_1DAG_a84807bf73872e2d9da90aec3bbc1d9b0}{\_pa}}.size()\ );}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classdai_1_1DAG_a84807bf73872e2d9da90aec3bbc1d9b0}{\_pa}}[n];}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structdai_1_1Neighbor}{Neighbor}}\&\ \mbox{\hyperlink{classdai_1_1DAG_afc96dd9895801ea2e092493a1a18bb70}{ch}}(\ \textcolor{keywordtype}{size\_t}\ n,\ \textcolor{keywordtype}{size\_t}\ \_c\ )\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{exceptions_8h_ab0d3e811b3335ac42245ec03864ede45}{DAI\_DEBASSERT}}(\ n\ <\ \mbox{\hyperlink{classdai_1_1DAG_ab9a90af854f3fb991f435c9d4656e97c}{\_ch}}.size()\ );}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{exceptions_8h_ab0d3e811b3335ac42245ec03864ede45}{DAI\_DEBASSERT}}(\ \_c\ <\ \mbox{\hyperlink{classdai_1_1DAG_ab9a90af854f3fb991f435c9d4656e97c}{\_ch}}[n].size()\ );}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classdai_1_1DAG_ab9a90af854f3fb991f435c9d4656e97c}{\_ch}}[n][\_c];}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structdai_1_1Neighbor}{Neighbor}}\&\ \mbox{\hyperlink{classdai_1_1DAG_a73792ca4bcaba151916618dce6452459}{ch}}(\ \textcolor{keywordtype}{size\_t}\ n,\ \textcolor{keywordtype}{size\_t}\ \_c\ )\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{exceptions_8h_ab0d3e811b3335ac42245ec03864ede45}{DAI\_DEBASSERT}}(\ n\ <\ \mbox{\hyperlink{classdai_1_1DAG_ab9a90af854f3fb991f435c9d4656e97c}{\_ch}}.size()\ );}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{exceptions_8h_ab0d3e811b3335ac42245ec03864ede45}{DAI\_DEBASSERT}}(\ \_c\ <\ \mbox{\hyperlink{classdai_1_1DAG_ab9a90af854f3fb991f435c9d4656e97c}{\_ch}}[n].size()\ );}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classdai_1_1DAG_ab9a90af854f3fb991f435c9d4656e97c}{\_ch}}[n][\_c];}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacedai_a14c563f2e5f6acf255903cae5c3b415c}{Neighbors}}\&\ \mbox{\hyperlink{classdai_1_1DAG_a0153465e8909f3fb49213935fc789ed1}{ch}}(\ \textcolor{keywordtype}{size\_t}\ n\ )\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{exceptions_8h_ab0d3e811b3335ac42245ec03864ede45}{DAI\_DEBASSERT}}(\ n\ <\ \mbox{\hyperlink{classdai_1_1DAG_ab9a90af854f3fb991f435c9d4656e97c}{\_ch}}.size()\ );}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classdai_1_1DAG_ab9a90af854f3fb991f435c9d4656e97c}{\_ch}}[n];}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedai_a14c563f2e5f6acf255903cae5c3b415c}{Neighbors}}\&\ \mbox{\hyperlink{classdai_1_1DAG_af0d8fd147d78f633ab3df26ce1989ed6}{ch}}(\ \textcolor{keywordtype}{size\_t}\ n\ )\ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{exceptions_8h_ab0d3e811b3335ac42245ec03864ede45}{DAI\_DEBASSERT}}(\ n\ <\ \mbox{\hyperlink{classdai_1_1DAG_ab9a90af854f3fb991f435c9d4656e97c}{\_ch}}.size()\ );}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classdai_1_1DAG_ab9a90af854f3fb991f435c9d4656e97c}{\_ch}}[n];}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ EdgeInputIterator>}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classdai_1_1DAG_a7b9a3e26a9275bd68e9eee5ee16933fd}{construct}}(\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{nr}},\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{EdgeInputIterator}}\ begin,\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{EdgeInputIterator}}\ end,\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{check}}=\textcolor{keyword}{true}\ );}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classdai_1_1DAG_ae1840708ee5af411ecce0055c62fea77}{addNode}}()\ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1DAG_a84807bf73872e2d9da90aec3bbc1d9b0}{\_pa}}.push\_back(\ \mbox{\hyperlink{namespacedai_a14c563f2e5f6acf255903cae5c3b415c}{Neighbors}}()\ );\ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1DAG_ab9a90af854f3fb991f435c9d4656e97c}{\_ch}}.push\_back(\ \mbox{\hyperlink{namespacedai_a14c563f2e5f6acf255903cae5c3b415c}{Neighbors}}()\ );}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classdai_1_1DAG_a84807bf73872e2d9da90aec3bbc1d9b0}{\_pa}}.size()\ -\/\ 1;}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ NodeInputIterator>}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classdai_1_1DAG_a033383086ab9eb71d6c5e602fd493816}{addNode}}(\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{NodeInputIterator}}\ begin,\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{NodeInputIterator}}\ end,\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{sizeHint}}=0\ )\ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedai_a14c563f2e5f6acf255903cae5c3b415c}{Neighbors}}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{newparents}};}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{newparents}}.reserve(\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{sizeHint}}\ );}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ iter\ =\ 0;}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{NodeInputIterator}}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{it}}\ =\ begin;\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{it}}\ !=\ end;\ ++\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{it}}\ )\ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{exceptions_8h_af50adc4fad1e07093579e746302bc884}{DAI\_ASSERT}}(\ *\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{it}}\ <\ \mbox{\hyperlink{classdai_1_1DAG_a612bc2529939865352ae7d2aa4ec3566}{nrNodes}}()\ );}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structdai_1_1Neighbor}{Neighbor}}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{newparent}}(\ iter,\ *\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{it}},\ \mbox{\hyperlink{classdai_1_1DAG_afc96dd9895801ea2e092493a1a18bb70}{ch}}(*it).size()\ );}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structdai_1_1Neighbor}{Neighbor}}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{newchild}}(\ \mbox{\hyperlink{classdai_1_1DAG_afc96dd9895801ea2e092493a1a18bb70}{ch}}(*it).size(),\ \mbox{\hyperlink{classdai_1_1DAG_a612bc2529939865352ae7d2aa4ec3566}{nrNodes}}(),\ iter++\ );}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{newparents}}.push\_back(\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{newparent}}\ );}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1DAG_afc96dd9895801ea2e092493a1a18bb70}{ch}}(\ *it\ ).push\_back(\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{newchild}}\ );}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1DAG_a84807bf73872e2d9da90aec3bbc1d9b0}{\_pa}}.push\_back(\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{newparents}}\ );}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1DAG_ab9a90af854f3fb991f435c9d4656e97c}{\_ch}}.push\_back(\ \mbox{\hyperlink{namespacedai_a14c563f2e5f6acf255903cae5c3b415c}{Neighbors}}()\ );}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classdai_1_1DAG_a84807bf73872e2d9da90aec3bbc1d9b0}{\_pa}}.size()\ -\/\ 1;}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1DAG}{DAG}}\&\ \mbox{\hyperlink{classdai_1_1DAG_aeee04f48ac5d0bf68187d5325dd551bd}{addEdge}}(\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n1}},\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n2}},\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{check}}=\textcolor{keyword}{true}\ );}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classdai_1_1DAG_a1e9807a4fdd893548a4d6db807c1f48b}{eraseNode}}(\ \textcolor{keywordtype}{size\_t}\ n\ );}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classdai_1_1DAG_a187e12110645d09f7bd4271dae17d142}{eraseEdge}}(\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n1}},\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n2}}\ );}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classdai_1_1DAG_a612bc2529939865352ae7d2aa4ec3566}{nrNodes}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{exceptions_8h_ab0d3e811b3335ac42245ec03864ede45}{DAI\_DEBASSERT}}(\ \mbox{\hyperlink{classdai_1_1DAG_a84807bf73872e2d9da90aec3bbc1d9b0}{\_pa}}.size()\ ==\ \mbox{\hyperlink{classdai_1_1DAG_ab9a90af854f3fb991f435c9d4656e97c}{\_ch}}.size()\ );}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classdai_1_1DAG_a84807bf73872e2d9da90aec3bbc1d9b0}{\_pa}}.size();}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classdai_1_1DAG_afb43ebd3f17ee634c8ca3a525fdb8c90}{nrEdges}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ sum\ =\ 0;}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{classdai_1_1DAG_a84807bf73872e2d9da90aec3bbc1d9b0}{\_pa}}.size();\ i++\ )}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sum\ +=\ \mbox{\hyperlink{classdai_1_1DAG_a84807bf73872e2d9da90aec3bbc1d9b0}{\_pa}}[i].size();}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ sum;}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classdai_1_1DAG_a013c82a515b9f5cd668542fd68ad22a1}{hasEdge}}(\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n1}},\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n2}}\ )\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ \mbox{\hyperlink{classdai_1_1DAG_afc96dd9895801ea2e092493a1a18bb70}{ch}}(\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n1}}).size()\ <\ \mbox{\hyperlink{classdai_1_1DAG_ada7483211efef87be9d2f9749cb3f3ea}{pa}}(\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n2}}).size()\ )\ \{}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{\_n2}}\ =\ 0;\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{\_n2}}\ <\ \mbox{\hyperlink{classdai_1_1DAG_afc96dd9895801ea2e092493a1a18bb70}{ch}}(\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n1}}).size();\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{\_n2}}++\ )}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ \mbox{\hyperlink{classdai_1_1DAG_afc96dd9895801ea2e092493a1a18bb70}{ch}}(\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n1}},\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{\_n2}}\ )\ ==\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n2}}\ )}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{\_n1}}\ =\ 0;\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{\_n1}}\ <\ \mbox{\hyperlink{classdai_1_1DAG_ada7483211efef87be9d2f9749cb3f3ea}{pa}}(\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n2}}).size();\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{\_n1}}++\ )}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ \mbox{\hyperlink{classdai_1_1DAG_ada7483211efef87be9d2f9749cb3f3ea}{pa}}(\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n2}},\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{\_n1}}\ )\ ==\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n1}}\ )}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classdai_1_1DAG_a2a98f61d94c29070a813e4dd0a5e1263}{findPa}}(\ \textcolor{keywordtype}{size\_t}\ n,\ \textcolor{keywordtype}{size\_t}\ p\ )\ \{}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ \_p\ =\ 0;\ \_p\ <\ \mbox{\hyperlink{classdai_1_1DAG_ada7483211efef87be9d2f9749cb3f3ea}{pa}}(n).size();\ \_p++\ )}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ \mbox{\hyperlink{classdai_1_1DAG_ada7483211efef87be9d2f9749cb3f3ea}{pa}}(\ n,\ \_p\ )\ ==\ p\ )}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_p;}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ DAI\_THROW(OBJECT\_NOT\_FOUND);}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classdai_1_1DAG_ada7483211efef87be9d2f9749cb3f3ea}{pa}}(n).size();}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classdai_1_1DAG_a5807cff8d5fda8e0c6ff060fc1a01ab8}{findCh}}(\ \textcolor{keywordtype}{size\_t}\ n,\ \textcolor{keywordtype}{size\_t}\ c\ )\ \{}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ \_c\ =\ 0;\ \_c\ <\ \mbox{\hyperlink{classdai_1_1DAG_afc96dd9895801ea2e092493a1a18bb70}{ch}}(n).size();\ \_c++\ )}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ \mbox{\hyperlink{classdai_1_1DAG_afc96dd9895801ea2e092493a1a18bb70}{ch}}(\ n,\ \_c\ )\ ==\ c\ )}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_c;}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ DAI\_THROW(OBJECT\_NOT\_FOUND);}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classdai_1_1DAG_afc96dd9895801ea2e092493a1a18bb70}{ch}}(n).size();}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1SmallSet}{SmallSet<size\_t>}}\ \mbox{\hyperlink{classdai_1_1DAG_a5d8048d34c4068364ef83f7f7ad852d2}{paSet}}(\ \textcolor{keywordtype}{size\_t}\ n\ )\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1SmallSet}{SmallSet<size\_t>}}\ \mbox{\hyperlink{classdai_1_1DAG_ab8fee5e48afddda71a216a5d91a03272}{chSet}}(\ \textcolor{keywordtype}{size\_t}\ n\ )\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ std::set<size\_t>\ \mbox{\hyperlink{classdai_1_1DAG_a170032adbb114f4f96f1c20ab302849c}{ancestors}}(\ \textcolor{keywordtype}{size\_t}\ n,\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{inclusive}}\ )\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ std::set<size\_t>\ \mbox{\hyperlink{classdai_1_1DAG_a6fcc8b43368df191ae96fafd7fd2a6c7}{descendants}}(\ \textcolor{keywordtype}{size\_t}\ n,\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{inclusive}}\ )\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classdai_1_1DAG_aa00f032b2a7fed95d0f357cb1eb4580b}{existsDirectedPath}}(\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n1}},\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n2}}\ )\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classdai_1_1DAG_a3def593491a5a6571e3a160f7effa88b}{isConnected}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classdai_1_1DAG_a41f676221e1805dd8ca969147d521ac3}{checkConsistency}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classdai_1_1DAG_abb7141905e962a6419f7af43e1b85dc4}{operator==}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classdai_1_1DAG}{DAG}}\&\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}\ )\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ \mbox{\hyperlink{classdai_1_1DAG_a612bc2529939865352ae7d2aa4ec3566}{nrNodes}}()\ !=\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}.nrNodes()\ )}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n1}}\ =\ 0;\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n1}}\ <\ \mbox{\hyperlink{classdai_1_1DAG_a612bc2529939865352ae7d2aa4ec3566}{nrNodes}}();\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n1}}++\ )\ \{}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ \mbox{\hyperlink{classdai_1_1DAG_ada7483211efef87be9d2f9749cb3f3ea}{pa}}(\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n1}}).size()\ !=\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}.pa(\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n1}}).size()\ )}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{util_8h_ab712ec4331593f848c40b97a80186850}{bforeach}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structdai_1_1Neighbor}{Neighbor}}\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n2}},\ \mbox{\hyperlink{classdai_1_1DAG_ada7483211efef87be9d2f9749cb3f3ea}{pa}}(\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n1}})\ )}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ !\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}.hasEdge(\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n2}},\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n1}}\ )\ )}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{util_8h_ab712ec4331593f848c40b97a80186850}{bforeach}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structdai_1_1Neighbor}{Neighbor}}\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n2}},\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}.pa(\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n1}})\ )}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ !\mbox{\hyperlink{classdai_1_1DAG_a013c82a515b9f5cd668542fd68ad22a1}{hasEdge}}(\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n2}},\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n1}}\ )\ )}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classdai_1_1DAG_afb344895c7d2d5158d9b9ea9d3268f11}{printDot}}(\ std::ostream\&\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{os}}\ )\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ std::ostream\&\ \mbox{\hyperlink{classdai_1_1DAG_a7c9ba018159d6aafa685b1a8a6cf3d1d}{operator<<}}(\ std::ostream\&\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{os}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classdai_1_1DAG}{DAG}}\&\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{g}}\ )\ \{}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{g}}.printDot(\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{os}}\ );}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{os}};}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{classdai_1_1DAG_ae4874ef42aa48a90163192ed1eba510d}{toString}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ std::stringstream\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{ss}};}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{ss}}\ <<\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{ss}}.str();}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00298\ \};}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00301\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ EdgeInputIterator>}
+\DoxyCodeLine{00302\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classdai_1_1DAG_a7b9a3e26a9275bd68e9eee5ee16933fd}{DAG::construct}}(\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{nr}},\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{EdgeInputIterator}}\ begin,\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{EdgeInputIterator}}\ end,\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{check}}\ )\ \{}
+\DoxyCodeLine{00303\ \ \ \ \ \mbox{\hyperlink{classdai_1_1DAG_a84807bf73872e2d9da90aec3bbc1d9b0}{\_pa}}.clear();}
+\DoxyCodeLine{00304\ \ \ \ \ \mbox{\hyperlink{classdai_1_1DAG_a84807bf73872e2d9da90aec3bbc1d9b0}{\_pa}}.resize(\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{nr}}\ );}
+\DoxyCodeLine{00305\ \ \ \ \ \mbox{\hyperlink{classdai_1_1DAG_ab9a90af854f3fb991f435c9d4656e97c}{\_ch}}.clear();}
+\DoxyCodeLine{00306\ \ \ \ \ \mbox{\hyperlink{classdai_1_1DAG_ab9a90af854f3fb991f435c9d4656e97c}{\_ch}}.resize(\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{nr}}\ );}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00308\ \ \ \ \ \textcolor{keywordflow}{for}(\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{EdgeInputIterator}}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{e}}\ =\ begin;\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{e}}\ !=\ end;\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{e}}++\ )}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1DAG_aeee04f48ac5d0bf68187d5325dd551bd}{addEdge}}(\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{e}}-\/>first,\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{e}}-\/>second,\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{check}}\ );}
+\DoxyCodeLine{00310\ \}}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ }
+\DoxyCodeLine{00313\ \}\ \textcolor{comment}{//\ end\ of\ namespace\ dai}}
+\DoxyCodeLine{00314\ }
+\DoxyCodeLine{00315\ }
+\DoxyCodeLine{00316\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

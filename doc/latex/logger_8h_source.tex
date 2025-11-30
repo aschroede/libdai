@@ -1,0 +1,40 @@
+\doxysection{logger.\+h}
+\hypertarget{logger_8h_source}{}\label{logger_8h_source}\index{include/dai/logger.h@{include/dai/logger.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_defined\_libdai\_logger\_h}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_defined\_libdai\_logger\_h}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#\ include\ <iostream>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#\ include\ <fstream>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacedai}{dai}}\ \{}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keyword}{enum\ class}\ LogLevel\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ DEBUG,}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ INFO,}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ WARNING,}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ ERROR,}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ CRITICAL}
+\DoxyCodeLine{00015\ \ \ \ \ \};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{class\ }LibLogger\ \{}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ std::ofstream\ logFile;}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ LogLevel\ minLogLevel;}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ LibLogger();}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ LibLogger(\textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{filename}},\ LogLevel\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{minLevel}});}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \string~LibLogger();}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacedai_a934491ad55f57c9072271b4a32ea4919}{log}}(LogLevel\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{level}},\ \textcolor{keyword}{const}\ std::string\&\ message);}
+\DoxyCodeLine{00032\ \ \ \ \ \};}
+\DoxyCodeLine{00033\ \}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

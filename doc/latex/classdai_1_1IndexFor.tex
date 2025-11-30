@@ -1,0 +1,180 @@
+\doxysection{dai\+::Index\+For Class Reference}
+\hypertarget{classdai_1_1IndexFor}{}\label{classdai_1_1IndexFor}\index{dai::IndexFor@{dai::IndexFor}}
+
+
+Tool for looping over the states of several variables.  
+
+
+
+
+{\ttfamily \#include $<$dai/index.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdai_1_1IndexFor_a7ce4ecff14943ca0e4303d309e1e79d3}{Index\+For}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1IndexFor_a3780be9d74b4c1b0ed1713d7cab8211c}{Index\+For}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{index\+Vars}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{for\+Vars}})
+\begin{DoxyCompactList}\small\item\em Construct \doxylink{classdai_1_1IndexFor}{Index\+For} object from {\itshape index\+Vars} and {\itshape for\+Vars}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1IndexFor}{Index\+For}} \& \mbox{\hyperlink{classdai_1_1IndexFor_a4a84504fde78fb297accac7b7dc8a495}{reset}} ()
+\begin{DoxyCompactList}\small\item\em Resets the state. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1IndexFor_ad8c0a4b5bcbc40031f23302d76498046}{operator size\+\_\+t}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Conversion to {\ttfamily size\+\_\+t\+:} returns linear index of the current state of index\+Vars. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1IndexFor}{Index\+For}} \& \mbox{\hyperlink{classdai_1_1IndexFor_a8a07d5e1d968dfa4d2d8e45b3333bc1c}{operator++}} ()
+\begin{DoxyCompactList}\small\item\em Increments the current state of {\itshape for\+Vars} (prefix) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1IndexFor_a480cb14d6ea2b797bf496c423956da79}{operator++}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{int}})
+\begin{DoxyCompactList}\small\item\em Increments the current state of {\itshape for\+Vars} (postfix) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} \mbox{\hyperlink{classdai_1_1IndexFor_a4b1a0486330f8aa4450dd609cf910810}{valid}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns {\ttfamily true} if the current state is valid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{long}} \mbox{\hyperlink{classdai_1_1IndexFor_a9a91c3bea3e87c351549e9f97a8b8144}{\+\_\+index}}
+\begin{DoxyCompactList}\small\item\em The current linear index corresponding to the state of index\+Vars. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{long}} $>$ \mbox{\hyperlink{classdai_1_1IndexFor_a4fa95be43b9ad28eff1ec7cc7aa86fe1}{\+\_\+sum}}
+\begin{DoxyCompactList}\small\item\em For each variable in for\+Vars, the amount of change in \+\_\+index. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} $>$ \mbox{\hyperlink{classdai_1_1IndexFor_a2bbf76fabcc312d642bcc224d786eb84}{\+\_\+state}}
+\begin{DoxyCompactList}\small\item\em For each variable in for\+Vars, the current state. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} $>$ \mbox{\hyperlink{classdai_1_1IndexFor_aa695fe072c4ada2a22c8fdc3e7fce7f4}{\+\_\+ranges}}
+\begin{DoxyCompactList}\small\item\em For each variable in for\+Vars, its number of possible values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Tool for looping over the states of several variables. 
+
+The class \doxylink{classdai_1_1IndexFor}{Index\+For} is an important tool for indexing Factor entries. Its usage can best be explained by an example. Assume {\itshape index\+Vars}, {\itshape for\+Vars} are both \doxylink{classdai_1_1VarSet}{Var\+Set} \textquotesingle{}s. Then the following code\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{classdai_1_1IndexFor_a7ce4ecff14943ca0e4303d309e1e79d3}{IndexFor}}\ i(\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{indexVars}},\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{forVars}}\ );}
+\DoxyCodeLine{\textcolor{keywordtype}{size\_t}\ iter\ =\ 0;}
+\DoxyCodeLine{\textcolor{keywordflow}{for}(\ ;\ i.valid();\ i++,\ iter++\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{cout}}\ <<\ \textcolor{stringliteral}{"{}State\ of\ forVars:\ "{}}\ <<\ \mbox{\hyperlink{namespacedai_afcfc874f85b4a2944ec128ebd1dd19f1}{calcState}}(\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{forVars}},\ iter\ )\ <<\ \textcolor{stringliteral}{"{};\ "{}};}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{cout}}\ <<\ \textcolor{stringliteral}{"{}state\ of\ indexVars:\ "{}}\ <<\ \mbox{\hyperlink{namespacedai_afcfc874f85b4a2944ec128ebd1dd19f1}{calcState}}(\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{indexVars}},\ \textcolor{keywordtype}{size\_t}(i)\ )\ <<\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{endl}};}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ loops over all joint states of the variables in {\itshape for\+Vars}, and {\ttfamily (size\+\_\+t)i} equals the linear index of the corresponding state of {\itshape index\+Vars}, where the variables in {\itshape index\+Vars} that are not in {\itshape for\+Vars} assume their zero\textquotesingle{}th value. \begin{DoxyRefDesc}{Idea}
+\item[\mbox{\hyperlink{ideas__ideas000012}{Idea}}]Optimize all indices as follows\+: keep a cache of all (or only relatively small) indices that have been computed (use a hash). Then, instead of computing on the fly, use the precomputed ones. Here the labels of the variables don\textquotesingle{}t matter, but the ranges of the variables do. \end{DoxyRefDesc}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classdai_1_1IndexFor_a7ce4ecff14943ca0e4303d309e1e79d3}\label{classdai_1_1IndexFor_a7ce4ecff14943ca0e4303d309e1e79d3} 
+\index{dai::IndexFor@{dai::IndexFor}!IndexFor@{IndexFor}}
+\index{IndexFor@{IndexFor}!dai::IndexFor@{dai::IndexFor}}
+\doxysubsubsection{\texorpdfstring{IndexFor()}{IndexFor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily dai\+::\+Index\+For\+::\+Index\+For (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor. 
+
+\Hypertarget{classdai_1_1IndexFor_a3780be9d74b4c1b0ed1713d7cab8211c}\label{classdai_1_1IndexFor_a3780be9d74b4c1b0ed1713d7cab8211c} 
+\index{dai::IndexFor@{dai::IndexFor}!IndexFor@{IndexFor}}
+\index{IndexFor@{IndexFor}!dai::IndexFor@{dai::IndexFor}}
+\doxysubsubsection{\texorpdfstring{IndexFor()}{IndexFor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily dai\+::\+Index\+For\+::\+Index\+For (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} \&}]{index\+Vars,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} \&}]{for\+Vars }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct \doxylink{classdai_1_1IndexFor}{Index\+For} object from {\itshape index\+Vars} and {\itshape for\+Vars}. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classdai_1_1IndexFor_a4a84504fde78fb297accac7b7dc8a495}\label{classdai_1_1IndexFor_a4a84504fde78fb297accac7b7dc8a495} 
+\index{dai::IndexFor@{dai::IndexFor}!reset@{reset}}
+\index{reset@{reset}!dai::IndexFor@{dai::IndexFor}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1IndexFor}{Index\+For}} \& dai\+::\+Index\+For\+::reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Resets the state. 
+
+\Hypertarget{classdai_1_1IndexFor_ad8c0a4b5bcbc40031f23302d76498046}\label{classdai_1_1IndexFor_ad8c0a4b5bcbc40031f23302d76498046} 
+\index{dai::IndexFor@{dai::IndexFor}!operator size\_t@{operator size\_t}}
+\index{operator size\_t@{operator size\_t}!dai::IndexFor@{dai::IndexFor}}
+\doxysubsubsection{\texorpdfstring{operator size\_t()}{operator size\_t()}}
+{\footnotesize\ttfamily dai\+::\+Index\+For\+::operator \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Conversion to {\ttfamily size\+\_\+t\+:} returns linear index of the current state of index\+Vars. 
+
+\Hypertarget{classdai_1_1IndexFor_a8a07d5e1d968dfa4d2d8e45b3333bc1c}\label{classdai_1_1IndexFor_a8a07d5e1d968dfa4d2d8e45b3333bc1c} 
+\index{dai::IndexFor@{dai::IndexFor}!operator++@{operator++}}
+\index{operator++@{operator++}!dai::IndexFor@{dai::IndexFor}}
+\doxysubsubsection{\texorpdfstring{operator++()}{operator++()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1IndexFor}{Index\+For}} \& dai\+::\+Index\+For\+::operator++ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Increments the current state of {\itshape for\+Vars} (prefix) 
+
+\Hypertarget{classdai_1_1IndexFor_a480cb14d6ea2b797bf496c423956da79}\label{classdai_1_1IndexFor_a480cb14d6ea2b797bf496c423956da79} 
+\index{dai::IndexFor@{dai::IndexFor}!operator++@{operator++}}
+\index{operator++@{operator++}!dai::IndexFor@{dai::IndexFor}}
+\doxysubsubsection{\texorpdfstring{operator++()}{operator++()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+Index\+For\+::operator++ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{int}}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Increments the current state of {\itshape for\+Vars} (postfix) 
+
+\Hypertarget{classdai_1_1IndexFor_a4b1a0486330f8aa4450dd609cf910810}\label{classdai_1_1IndexFor_a4b1a0486330f8aa4450dd609cf910810} 
+\index{dai::IndexFor@{dai::IndexFor}!valid@{valid}}
+\index{valid@{valid}!dai::IndexFor@{dai::IndexFor}}
+\doxysubsubsection{\texorpdfstring{valid()}{valid()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} dai\+::\+Index\+For\+::valid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns {\ttfamily true} if the current state is valid. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classdai_1_1IndexFor_a9a91c3bea3e87c351549e9f97a8b8144}\label{classdai_1_1IndexFor_a9a91c3bea3e87c351549e9f97a8b8144} 
+\index{dai::IndexFor@{dai::IndexFor}!\_index@{\_index}}
+\index{\_index@{\_index}!dai::IndexFor@{dai::IndexFor}}
+\doxysubsubsection{\texorpdfstring{\_index}{\_index}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{long}} dai\+::\+Index\+For\+::\+\_\+index\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The current linear index corresponding to the state of index\+Vars. 
+
+\Hypertarget{classdai_1_1IndexFor_a4fa95be43b9ad28eff1ec7cc7aa86fe1}\label{classdai_1_1IndexFor_a4fa95be43b9ad28eff1ec7cc7aa86fe1} 
+\index{dai::IndexFor@{dai::IndexFor}!\_sum@{\_sum}}
+\index{\_sum@{\_sum}!dai::IndexFor@{dai::IndexFor}}
+\doxysubsubsection{\texorpdfstring{\_sum}{\_sum}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{long}}$>$ dai\+::\+Index\+For\+::\+\_\+sum\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+For each variable in for\+Vars, the amount of change in \+\_\+index. 
+
+\Hypertarget{classdai_1_1IndexFor_a2bbf76fabcc312d642bcc224d786eb84}\label{classdai_1_1IndexFor_a2bbf76fabcc312d642bcc224d786eb84} 
+\index{dai::IndexFor@{dai::IndexFor}!\_state@{\_state}}
+\index{\_state@{\_state}!dai::IndexFor@{dai::IndexFor}}
+\doxysubsubsection{\texorpdfstring{\_state}{\_state}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}$>$ dai\+::\+Index\+For\+::\+\_\+state\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+For each variable in for\+Vars, the current state. 
+
+\Hypertarget{classdai_1_1IndexFor_aa695fe072c4ada2a22c8fdc3e7fce7f4}\label{classdai_1_1IndexFor_aa695fe072c4ada2a22c8fdc3e7fce7f4} 
+\index{dai::IndexFor@{dai::IndexFor}!\_ranges@{\_ranges}}
+\index{\_ranges@{\_ranges}!dai::IndexFor@{dai::IndexFor}}
+\doxysubsubsection{\texorpdfstring{\_ranges}{\_ranges}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}$>$ dai\+::\+Index\+For\+::\+\_\+ranges\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+For each variable in for\+Vars, its number of possible values. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/dai/\mbox{\hyperlink{index_8h}{index.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,112 @@
+\doxysection{dai\+::MR\+::Properties Struct Reference}
+\hypertarget{structdai_1_1MR_1_1Properties}{}\label{structdai_1_1MR_1_1Properties}\index{dai::MR::Properties@{dai::MR::Properties}}
+
+
+Parameters for \doxylink{classdai_1_1MR}{MR}.  
+
+
+
+
+{\ttfamily \#include $<$dai/mr.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structdai_1_1MR_1_1Properties_acf2d118f93f3c548d0cdcb27167d767a}{DAI\+\_\+\+ENUM}} (Update\+Type, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{FULL}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{LINEAR}})
+\begin{DoxyCompactList}\small\item\em Enumeration of different types of update equations. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structdai_1_1MR_1_1Properties_aaab15c4cd2a391bc6817c5a947f51734}{DAI\+\_\+\+ENUM}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Init\+Type}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{RESPPROP}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{CLAMPING}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{EXACT}})
+\begin{DoxyCompactList}\small\item\em Enumeration of different ways of initializing the cavity correlations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{structdai_1_1MR_1_1Properties_ae0281396e1ee677e1b6ae15f9ae67f99}{verbose}}
+\begin{DoxyCompactList}\small\item\em Verbosity (amount of output sent to stderr) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{structdai_1_1MR_1_1Properties_ae38d65cb2ac71c50af1ed58e3dff03e8}{tol}}
+\begin{DoxyCompactList}\small\item\em Tolerance for convergence test. \end{DoxyCompactList}\item 
+Update\+Type \mbox{\hyperlink{structdai_1_1MR_1_1Properties_af1e2899da2779d1b0d7640f87d899f17}{updates}}
+\begin{DoxyCompactList}\small\item\em Update equations. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Init\+Type}} \mbox{\hyperlink{structdai_1_1MR_1_1Properties_a5c400e8635d85478270d653a8a7f351b}{inits}}
+\begin{DoxyCompactList}\small\item\em How to initialize the cavity correlations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Parameters for \doxylink{classdai_1_1MR}{MR}. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structdai_1_1MR_1_1Properties_acf2d118f93f3c548d0cdcb27167d767a}\label{structdai_1_1MR_1_1Properties_acf2d118f93f3c548d0cdcb27167d767a} 
+\index{dai::MR::Properties@{dai::MR::Properties}!DAI\_ENUM@{DAI\_ENUM}}
+\index{DAI\_ENUM@{DAI\_ENUM}!dai::MR::Properties@{dai::MR::Properties}}
+\doxysubsubsection{\texorpdfstring{DAI\_ENUM()}{DAI\_ENUM()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily dai\+::\+MR\+::\+Properties\+::\+DAI\+\_\+\+ENUM (\begin{DoxyParamCaption}\item[{Update\+Type}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{FULL}}}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{LINEAR}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Enumeration of different types of update equations. 
+
+The possible update equations are\+:
+\begin{DoxyItemize}
+\item FULL full updates, slow but accurate
+\item LINEAR linearized updates, faster but less accurate 
+\end{DoxyItemize}\Hypertarget{structdai_1_1MR_1_1Properties_aaab15c4cd2a391bc6817c5a947f51734}\label{structdai_1_1MR_1_1Properties_aaab15c4cd2a391bc6817c5a947f51734} 
+\index{dai::MR::Properties@{dai::MR::Properties}!DAI\_ENUM@{DAI\_ENUM}}
+\index{DAI\_ENUM@{DAI\_ENUM}!dai::MR::Properties@{dai::MR::Properties}}
+\doxysubsubsection{\texorpdfstring{DAI\_ENUM()}{DAI\_ENUM()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily dai\+::\+MR\+::\+Properties\+::\+DAI\+\_\+\+ENUM (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Init\+Type}}}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{RESPPROP}}}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{CLAMPING}}}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{EXACT}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Enumeration of different ways of initializing the cavity correlations. 
+
+The possible cavity initializations are\+:
+\begin{DoxyItemize}
+\item RESPPROP using response propagation ("{}linear response"{})
+\item CLAMPING using clamping and \doxylink{classdai_1_1BP}{BP}
+\item EXACT using Junction\+Tree 
+\end{DoxyItemize}
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structdai_1_1MR_1_1Properties_ae0281396e1ee677e1b6ae15f9ae67f99}\label{structdai_1_1MR_1_1Properties_ae0281396e1ee677e1b6ae15f9ae67f99} 
+\index{dai::MR::Properties@{dai::MR::Properties}!verbose@{verbose}}
+\index{verbose@{verbose}!dai::MR::Properties@{dai::MR::Properties}}
+\doxysubsubsection{\texorpdfstring{verbose}{verbose}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} dai\+::\+MR\+::\+Properties\+::verbose}
+
+
+
+Verbosity (amount of output sent to stderr) 
+
+\Hypertarget{structdai_1_1MR_1_1Properties_ae38d65cb2ac71c50af1ed58e3dff03e8}\label{structdai_1_1MR_1_1Properties_ae38d65cb2ac71c50af1ed58e3dff03e8} 
+\index{dai::MR::Properties@{dai::MR::Properties}!tol@{tol}}
+\index{tol@{tol}!dai::MR::Properties@{dai::MR::Properties}}
+\doxysubsubsection{\texorpdfstring{tol}{tol}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} dai\+::\+MR\+::\+Properties\+::tol}
+
+
+
+Tolerance for convergence test. 
+
+\Hypertarget{structdai_1_1MR_1_1Properties_af1e2899da2779d1b0d7640f87d899f17}\label{structdai_1_1MR_1_1Properties_af1e2899da2779d1b0d7640f87d899f17} 
+\index{dai::MR::Properties@{dai::MR::Properties}!updates@{updates}}
+\index{updates@{updates}!dai::MR::Properties@{dai::MR::Properties}}
+\doxysubsubsection{\texorpdfstring{updates}{updates}}
+{\footnotesize\ttfamily Update\+Type dai\+::\+MR\+::\+Properties\+::updates}
+
+
+
+Update equations. 
+
+\Hypertarget{structdai_1_1MR_1_1Properties_a5c400e8635d85478270d653a8a7f351b}\label{structdai_1_1MR_1_1Properties_a5c400e8635d85478270d653a8a7f351b} 
+\index{dai::MR::Properties@{dai::MR::Properties}!inits@{inits}}
+\index{inits@{inits}!dai::MR::Properties@{dai::MR::Properties}}
+\doxysubsubsection{\texorpdfstring{inits}{inits}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Init\+Type}} dai\+::\+MR\+::\+Properties\+::inits}
+
+
+
+How to initialize the cavity correlations. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/dai/\mbox{\hyperlink{mr_8h}{mr.\+h}}\end{DoxyCompactItemize}

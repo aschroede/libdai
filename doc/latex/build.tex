@@ -1,0 +1,115 @@
+\chapter{Building lib\+DAI}
+\hypertarget{build}{}\label{build}\index{Building libDAI@{Building libDAI}}
+\DoxyHorRuler{0}
+ \hypertarget{build_build-unix}{}\doxysection{\texorpdfstring{Building lib\+DAI under UNIX variants (\+Linux / Cygwin / Mac OS X)}{Building libDAI under UNIX variants (Linux / Cygwin / Mac OS X)}}\label{build_build-unix}
+\hypertarget{build_build-unix-preparations}{}\doxysubsection{\texorpdfstring{Preparations}{Preparations}}\label{build_build-unix-preparations}
+You need\+:
+\begin{DoxyItemize}
+\item a recent version of gcc (at least version 3.\+4)
+\item GNU make
+\item recent boost C++ libraries (at least version 1.\+37; however, version 1.\+37 shipped with Ubuntu 9.\+04 is known not to work)
+\item GMP library (or the Windows port called MPIR, for 64 bits builds MPIR 2.\+5.\+0 or higher is needed)
+\item doxygen (only for building the documentation)
+\item graphviz (only for using some of the lib\+DAI command line utilities)
+\item CImg library (only for building the image segmentation example)
+\end{DoxyItemize}
+
+On Debian/\+Ubuntu, you can easily install the required packages with a single command\+: 
+\begin{DoxyPre}  apt-\/get install g++ make doxygen graphviz libboost-\/dev libboost-\/graph-\/dev libboost-\/program-\/options-\/dev libboost-\/test-\/dev libgmp-\/dev cimg-\/dev\end{DoxyPre}
+ (root permissions needed).
+
+On Mac OS X (10.\+4 is known to work), these packages can be installed easily via Mac\+Ports. If Mac\+Ports is not already installed, install it according to the instructions at \href{http://www.macports.org/}{\texttt{ http\+://www.\+macports.\+org/}}. Then, a simple 
+\begin{DoxyPre}  sudo port install gmake boost gmp doxygen graphviz\end{DoxyPre}
+ should be enough to install everything that is needed.
+
+On Cygwin, the prebuilt Cygwin package boost-\/1.\+33.\+1-\/x is known not to work. You can however obtain the latest boost version (you need at least 1.\+37.\+0) from \href{http://www.boost.org/}{\texttt{ http\+://www.\+boost.\+org/}} and build it as described in the next subsection.\hypertarget{build_build-unix-boost}{}\doxysubsubsection{\texorpdfstring{Building boost under Cygwin}{Building boost under Cygwin}}\label{build_build-unix-boost}
+
+\begin{DoxyItemize}
+\item Download the latest boost libraries from \href{http://www.boost.org}{\texttt{ http\+://www.\+boost.\+org}}
+\item Build the required boost libraries using\+: 
+\begin{DoxyPre}
+  ./bootstrap.sh -\/-\/with-\/libraries=program\_options,math,graph,test -\/-\/prefix=/boost\_root/
+  ./bjam\end{DoxyPre}
+
+\item In order to use dynamic linking, the boost .dll\textquotesingle{}s should be somewhere in the path. This can be achieved by a command like\+: 
+\begin{DoxyPre}
+  export PATH=\$PATH:/boost\_root/stage/lib\end{DoxyPre}
+
+\end{DoxyItemize}\hypertarget{build_build-unix-libdai}{}\doxysubsection{\texorpdfstring{Building lib\+DAI}{Building libDAI}}\label{build_build-unix-libdai}
+To build the lib\+DAI source, first copy a template Makefile.\texorpdfstring{$\ast$}{*} to Makefile.\+conf (for example, copy Makefile.\+LINUX to Makefile.\+conf if you use GNU/\+Linux). Then, edit the Makefile.\+conf template to adapt it to your local setup. In case you want to use Boost libraries which are installed in non-\/standard locations, you have to tell the compiler and linker about their locations (using the -\/I, -\/L flags for GCC; also you may need to set the LD\+\_\+\+LIBRARY\+\_\+\+PATH environment variable correctly before running lib\+DAI binaries). Platform independent build options can be set in Makefile.\+ALL. Finally, run 
+\begin{DoxyPre}  make\end{DoxyPre}
+ The build includes a regression test, which may take a while to complete.
+
+If the build is successful, you can test the example program\+: 
+\begin{DoxyPre}  examples/example tests/alarm.fg\end{DoxyPre}
+ or the more extensive test program\+: 
+\begin{DoxyPre}  tests/testdai -\/-\/aliases tests/aliases.conf -\/-\/filename tests/alarm.fg -\/-\/methods JTREE\_HUGIN BP\_SEQMAX\end{DoxyPre}
+
+
+\DoxyHorRuler{0}
+ \hypertarget{build_build-windows}{}\doxysection{\texorpdfstring{Building lib\+DAI under Windows}{Building libDAI under Windows}}\label{build_build-windows}
+\hypertarget{build_build-windows-preparations}{}\doxysubsection{\texorpdfstring{Preparations}{Preparations}}\label{build_build-windows-preparations}
+You need\+:
+\begin{DoxyItemize}
+\item A recent version of Micro\+Soft Visual Studio (2008 is known to work)
+\item recent boost C++ libraries (version 1.\+37 or higher)
+\item GMP or MPIR library (for 64-\/bits builds, MPIR 2.\+5.\+0 or higher is needed)
+\item GNU make (can be obtained from \href{http://gnuwin32.sourceforge.net}{\texttt{ http\+://gnuwin32.\+sourceforge.\+net}})
+\item CImg library (only for building the image segmentation example)
+\end{DoxyItemize}
+
+For the regression test, you need\+:
+\begin{DoxyItemize}
+\item GNU diff, GNU sed (can be obtained from \href{http://gnuwin32.sourceforge.net}{\texttt{ http\+://gnuwin32.\+sourceforge.\+net}})
+\end{DoxyItemize}\hypertarget{build_build-windows-boost}{}\doxysubsubsection{\texorpdfstring{Building boost under Windows}{Building boost under Windows}}\label{build_build-windows-boost}
+Because building boost under Windows is tricky, I provide some guidance here.
+
+
+\begin{DoxyItemize}
+\item Download the boost zip file from \href{http://www.boost.org/users/download}{\texttt{ http\+://www.\+boost.\+org/users/download}} and unpack it somewhere.
+\item Download the bjam executable from \href{http://www.boost.org/users/download}{\texttt{ http\+://www.\+boost.\+org/users/download}} and unpack it somewhere else.
+\item Download Boost.\+Build (v2) from \href{http://www.boost.org/docs/tools/build/index.html}{\texttt{ http\+://www.\+boost.\+org/docs/tools/build/index.\+html}} and unpack it yet somewhere else.
+\item Edit the file {\ttfamily boost-\/build.\+jam} in the main boost directory to change the {\ttfamily BOOST\+\_\+\+BUILD} directory to the place where you put Boost.\+Build (use UNIX / instead of Windows \textbackslash{} in pathnames).
+\item Copy the {\ttfamily bjam.\+exe} executable into the main boost directory. Now if you issue {\ttfamily "{}bjam -\/-\/version"{}} you should get a version and no errors. Issueing {\ttfamily "{}bjam -\/-\/show-\/libraries"{}} will show the libraries that will be built.
+\item The following command builds the boost libraries that are relevant for lib\+DAI\+: 
+\begin{DoxyPre}
+  bjam -\/-\/with-\/graph -\/-\/with-\/math -\/-\/with-\/program\_options -\/-\/with-\/test link=static runtime-\/link=shared\end{DoxyPre}
+
+\end{DoxyItemize}\hypertarget{build_build-windows-gmp}{}\doxysubsection{\texorpdfstring{Building GMP or MPIR under Windows}{Building GMP or MPIR under Windows}}\label{build_build-windows-gmp}
+Information about how to build GPR or MPIR under Windows can be found on the internet. The user has to update Makefile.\+WINDOWS in order to link with the GPR/\+MPIR libraries. Note that for 64-\/bit builds, MPIR 2.\+5.\+0 or higher is needed.\hypertarget{build_build-windows-libdai}{}\doxysubsection{\texorpdfstring{Building lib\+DAI}{Building libDAI}}\label{build_build-windows-libdai}
+To build the source, copy Makefile.\+WINDOWS to Makefile.\+conf. Then, edit Makefile.\+conf to adapt it to your local setup. Platform independent build options can be set in Makefile.\+ALL. Finally, run (from the command line) 
+\begin{DoxyPre}  make\end{DoxyPre}
+ The build includes a regression test, which may take a while to complete.
+
+If the build is successful, you can test the example program\+: 
+\begin{DoxyPre}  examples\textbackslash{}example tests\textbackslash{}alarm.fg\end{DoxyPre}
+ or the more extensive test program\+: 
+\begin{DoxyPre}  tests\textbackslash{}testdai -\/-\/aliases tests\textbackslash{}aliases.conf -\/-\/filename tests\textbackslash{}alarm.fg -\/-\/methods JTREE\_HUGIN BP\_SEQMAX\end{DoxyPre}
+
+
+\DoxyHorRuler{0}
+ \hypertarget{build_build-matlab}{}\doxysection{\texorpdfstring{Building the lib\+DAI Mat\+Lab interface}{Building the libDAI MatLab interface}}\label{build_build-matlab}
+You need\+:
+\begin{DoxyItemize}
+\item Mat\+Lab
+\item The platform-\/dependent requirements described above
+\end{DoxyItemize}
+
+First, you need to build the lib\+DAI source as described above for your platform. By default, the Mat\+Lab interface is disabled, so before compiling the source, you have to enable it in Makefile.\+ALL by setting 
+\begin{DoxyPre}  WITH\_MATLAB=true\end{DoxyPre}
+ Also, you have to configure the Mat\+Lab-\/specific parts of Makefile.\+conf to match your system (in particular, the Makefile variables ME, MATLABDIR and MEX). The MEX file extension depends on your platform; for a 64-\/bit linux x86\+\_\+64 system this would be "{}\+ME=.\+mexa64"{}, for a 32-\/bit linux x86 system "{}\+ME=.\+mexglx"{}. If you are unsure about your MEX file extension\+: it needs to be the same as what the Mat\+Lab command "{}mexext"{} returns. The required MEX files are built by issuing 
+\begin{DoxyPre}  make\end{DoxyPre}
+ from the command line. The Mat\+Lab interface is much less powerful than using lib\+DAI from C++. There are two reasons for this\+: (i) it is boring to write MEX files; (ii) the large performance penalty paid when large data structures (like factor graphs) have to be converted between their native C++ data structure to something that Mat\+Lab understands.
+
+A simple example of how to use the Mat\+Lab interface is the following (entered at the Mat\+Lab prompt), which performs exact inference by the junction tree algorithm and approximate inference by belief propagation on the ALARM network\+: 
+\begin{DoxyPre}  cd path\_to\_libdai/matlab
+[psi] = dai\_readfg ('../tests/alarm.fg');
+[logZ,q,md,qv,qf] = dai (psi, 'JTREE', '[updates=HUGIN,verbose=0]')
+[logZ,q,md,qv,qf] = dai (psi, 'BP', '[updates=SEQMAX,tol=1e-\/9,maxiter=10000,logdomain=0]')\end{DoxyPre}
+ where "{}path\+\_\+to\+\_\+libdai"{} has to be replaced with the directory in which lib\+DAI was installed. For other algorithms and some default parameters, see the file tests/aliases.\+conf.
+
+\DoxyHorRuler{0}
+ \hypertarget{build_build-doxygen}{}\doxysection{\texorpdfstring{Building the documentation}{Building the documentation}}\label{build_build-doxygen}
+Install doxygen, graphviz and a TeX distribution and use 
+\begin{DoxyPre}  make doc\end{DoxyPre}
+ to build the documentation. If the documentation is not clear enough, feel free to send me an email (or even better, to improve the documentation and send a patch!). The documentation can also be browsed online at \href{http://www.libdai.org}{\texttt{ http\+://www.\+libdai.\+org}}. 

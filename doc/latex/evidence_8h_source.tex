@@ -1,0 +1,64 @@
+\doxysection{evidence.\+h}
+\hypertarget{evidence_8h_source}{}\label{evidence_8h_source}\index{include/dai/evidence.h@{include/dai/evidence.h}}
+\mbox{\hyperlink{evidence_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*\ \ This\ file\ is\ part\ of\ libDAI\ -\/\ http://www.libdai.org/}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ \ Copyright\ (c)\ 2006-\/2011,\ The\ libDAI\ authors.\ All\ rights\ reserved.}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ Use\ of\ this\ source\ code\ is\ governed\ by\ a\ BSD-\/style\ license\ that\ can\ be\ found\ in\ the\ LICENSE\ file.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#ifndef\ \_\_defined\_libdai\_evidence\_h}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ \_\_defined\_libdai\_evidence\_h}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <istream>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{daialg_8h}{dai/daialg.h}}>}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacedai}{dai}}\ \{}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classdai_1_1Evidence}{Evidence}}\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ std::map<Var,\ size\_t>\ \mbox{\hyperlink{classdai_1_1Evidence_ae322863268ee661c1209d6a5c4e8750e}{Observation}};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ std::vector<Observation>\ \mbox{\hyperlink{classdai_1_1Evidence_a821a5240bcc13a759fa3524303fb2b37}{\_samples}};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1Evidence_ad9de071cf650e241b9caed5b1e94c792}{Evidence}}()\ :\ \mbox{\hyperlink{classdai_1_1Evidence_a821a5240bcc13a759fa3524303fb2b37}{\_samples}}()\ \{\}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1Evidence_adf6152701bfbb28221bd2e69e662b876}{Evidence}}(\ std::vector<Observation>\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{samples}}\ )\ :\ \mbox{\hyperlink{classdai_1_1Evidence_a821a5240bcc13a759fa3524303fb2b37}{\_samples}}(\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{samples}})\ \{\}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classdai_1_1Evidence_a86aa114bd9377d0f953bf28e5e2e9e87}{addEvidenceTabFile}}(\ std::istream\&\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{is}},\ \mbox{\hyperlink{classdai_1_1FactorGraph}{FactorGraph}}\&\ fg\ );}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classdai_1_1Evidence_ae71a36b32ca257bb0743a1c1d96bac10}{nrSamples}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classdai_1_1Evidence_a821a5240bcc13a759fa3524303fb2b37}{\_samples}}.size();\ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ std::vector<Observation>::iterator\ \mbox{\hyperlink{classdai_1_1Evidence_acf26f5c6569a01ebb76fc012ddd4af04}{iterator}};}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keyword}{typedef}\ std::vector<Observation>::const\_iterator\ \mbox{\hyperlink{classdai_1_1Evidence_a576d0ce649ed6ea9a31549ac2d50f93f}{const\_iterator}};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1Evidence_acf26f5c6569a01ebb76fc012ddd4af04}{iterator}}\ \mbox{\hyperlink{classdai_1_1Evidence_aa6a7f45e2a725194d8cf6c55e9034546}{begin}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classdai_1_1Evidence_a821a5240bcc13a759fa3524303fb2b37}{\_samples}}.begin();\ \}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1Evidence_a576d0ce649ed6ea9a31549ac2d50f93f}{const\_iterator}}\ \mbox{\hyperlink{classdai_1_1Evidence_af89d4085e0e5f6ed5830c529f25bf24b}{begin}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classdai_1_1Evidence_a821a5240bcc13a759fa3524303fb2b37}{\_samples}}.begin();\ \}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1Evidence_acf26f5c6569a01ebb76fc012ddd4af04}{iterator}}\ \mbox{\hyperlink{classdai_1_1Evidence_ab4acf583dd62ba5e0fd00394355d5c15}{end}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classdai_1_1Evidence_a821a5240bcc13a759fa3524303fb2b37}{\_samples}}.end();\ \}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1Evidence_a576d0ce649ed6ea9a31549ac2d50f93f}{const\_iterator}}\ \mbox{\hyperlink{classdai_1_1Evidence_a2cf30fda8e295b8c9b95f1088a0537a9}{end}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classdai_1_1Evidence_a821a5240bcc13a759fa3524303fb2b37}{\_samples}}.end();\ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classdai_1_1Evidence_a86aa114bd9377d0f953bf28e5e2e9e87}{addEvidenceTabFile}}(\ std::istream\&\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{is}},\ std::map<std::string,\ Var>\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{varMap}}\ );}
+\DoxyCodeLine{00077\ \};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \}\ \textcolor{comment}{//\ end\ of\ namespace\ dai}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

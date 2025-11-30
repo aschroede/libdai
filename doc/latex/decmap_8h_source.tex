@@ -1,0 +1,85 @@
+\doxysection{decmap.\+h}
+\hypertarget{decmap_8h_source}{}\label{decmap_8h_source}\index{include/dai/decmap.h@{include/dai/decmap.h}}
+\mbox{\hyperlink{decmap_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*\ \ This\ file\ is\ part\ of\ libDAI\ -\/\ http://www.libdai.org/}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ \ Copyright\ (c)\ 2006-\/2011,\ The\ libDAI\ authors.\ All\ rights\ reserved.}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ Use\ of\ this\ source\ code\ is\ governed\ by\ a\ BSD-\/style\ license\ that\ can\ be\ found\ in\ the\ LICENSE\ file.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#ifndef\ \_\_defined\_libdai\_decmap\_h}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ \_\_defined\_libdai\_decmap\_h}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{dai__config_8h}{dai/dai\_config.h}}>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#ifdef\ DAI\_WITH\_DECMAP}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{daialg_8h}{dai/daialg.h}}>}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacedai}{dai}}\ \{}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{DecMAP}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{namespacedai_a4d66d71f2b2c7ac4845bba057eb7cee5}{DAIAlgFG}}\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ std::vector<size\_t>\ \_state;}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{\_logp}};}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}}\ \_maxdiff;}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \_iters;}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }Properties\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ verbose;}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ reinit;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ ianame;}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ PropertySet\ iaopts;}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \}\ props;}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{DecMAP}}()\ :\ \mbox{\hyperlink{namespacedai_a4d66d71f2b2c7ac4845bba057eb7cee5}{DAIAlgFG}}(),\ \_state(),\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{\_logp}}(),\ \_maxdiff(),\ \_iters(),\ props()\ \{\}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{DecMAP}}(\ \textcolor{keyword}{const}\ FactorGraph\ \&fg,\ \textcolor{keyword}{const}\ PropertySet\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{opts}}\ );}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{DecMAP}}*\ clone()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{DecMAP}}(*\textcolor{keyword}{this});\ \}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{DecMAP}}*\ construct(\ \textcolor{keyword}{const}\ FactorGraph\ \&fg,\ \textcolor{keyword}{const}\ PropertySet\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{opts}}\ )\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{DecMAP}}(\ fg,\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{opts}}\ );\ \}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ std::string\ name()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}DECMAP"{}};\ \}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}}\ belief(\ \textcolor{keyword}{const}\ Var\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{v}}\ )\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ beliefV(\ findVar(\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{v}}\ )\ );\ \}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}}\ belief(\ \textcolor{keyword}{const}\ VarSet\ \&\textcolor{comment}{/*vs*/}\ )\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}}\ beliefV(\ \textcolor{keywordtype}{size\_t}\ i\ )\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}}\ beliefF(\ \textcolor{keywordtype}{size\_t}\ I\ )\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ belief(\ factor(I).vars()\ );\ \}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ std::vector<Factor>\ beliefs()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}}\ logZ()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{\_logp}};\ \}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ std::vector<size\_t>\ \mbox{\hyperlink{namespacedai_ae686384295f9909532d78328f87ae260}{findMaximum}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \_state;\ \}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ init()\ \{\ \_maxdiff\ =\ 0.0;\ \_iters\ =\ 0;\ \}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ init(\ \textcolor{keyword}{const}\ VarSet\ \&\textcolor{comment}{/*ns*/}\ )\ \{\ init();\ \}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}}\ run();}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}}\ maxDiff()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \_maxdiff;\ \}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{size\_t}\ Iterations()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \_iters;\ \}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ setProperties(\ \textcolor{keyword}{const}\ PropertySet\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{opts}}\ );}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ PropertySet\ getProperties()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ std::string\ printProperties()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00091\ \};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \}\ \textcolor{comment}{//\ end\ of\ namespace\ dai}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

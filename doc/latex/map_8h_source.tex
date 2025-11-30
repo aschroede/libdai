@@ -1,0 +1,37 @@
+\doxysection{map.\+h}
+\hypertarget{map_8h_source}{}\label{map_8h_source}\index{include/dai/map.h@{include/dai/map.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_defined\_libdai\_map\_h}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_defined\_libdai\_map\_h}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <set>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{factorgraph_8h}{dai/factorgraph.h}}>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <dai/logger.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacedai}{dai}}\ \{}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ EliminationChoice>}
+\DoxyCodeLine{00015\ vector<size\_t>\ getConstrainedElimOrder(\textcolor{keyword}{const}\ FactorGraph\ \&fg,\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{EliminationChoice}}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{f}},\ std::vector<unsigned\ int>\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{map\_vars}});}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \mbox{\hyperlink{classdai_1_1TFactor}{dai::Factor}}\ get\_map\_ve(\mbox{\hyperlink{classdai_1_1FactorGraph}{dai::FactorGraph}}\ fg,\ std::vector<unsigned\ int>\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{map\_vars}},\ std::vector<unsigned\ int>\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{evidence\_vars}},}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ std::vector<unsigned\ int>\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{evidence\_values}},\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{mapList}},\ LibLogger\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{logger}});}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ std::vector<unsigned\ long\ int>\ get\_map\_jt(\mbox{\hyperlink{classdai_1_1FactorGraph}{dai::FactorGraph}}\ fg,\ std::vector<unsigned\ int>\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{hypothesis\_vars}},\ std::vector<unsigned\ int>\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{evidence\_vars}},}
+\DoxyCodeLine{00021\ \ \ \ \ std::vector<unsigned\ int>\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{evidence\_values}},\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{mapList}},\ LibLogger\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{logger}});}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \mbox{\hyperlink{classdai_1_1TFactor}{dai::Factor}}\ variableElimination(\mbox{\hyperlink{classdai_1_1FactorGraph}{dai::FactorGraph}}\ fg,\ std::vector<unsigned\ int>\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{query\_vars}},\ std::vector<unsigned\ int>\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{evidence\_vars}},}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ std::vector<unsigned\ int>\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{evidence\_values}},\ LibLogger\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{logger}});}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ std::vector<unsigned\ long\ int>\ extractMax(\mbox{\hyperlink{classdai_1_1TFactor}{dai::Factor}}\ factor,\ LibLogger\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{logger}});}
+\DoxyCodeLine{00027\ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

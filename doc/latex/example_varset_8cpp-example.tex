@@ -1,0 +1,103 @@
+\doxysection{example\+\_\+varset.\+cpp}
+\hypertarget{example_varset_8cpp-example}{}\label{example_varset_8cpp-example}This example shows how to use the Var, Var\+Set and State classes. It also explains the concept of "{}states"{} for Var\+Sets.\hypertarget{bipgraph.h_Output}{}\doxysubsection{\texorpdfstring{Output}{Output}}\label{bipgraph.h_Output}
+
+\begin{DoxyVerbInclude}
+X = {x0,x1}
+
+Var x0 has 2 states (possible values).
+Var x1 has 3 states.
+
+VarSet {x0,x1} has 6 states (joint assignments of its variables).
+
+States of VarSets correspond to states of their constituent Vars:
+  state of x0:   state of x1:   state of X:
+    0              0              0
+    1              0              1
+    0              1              2
+    1              1              3
+    0              2              4
+    1              2              5
+
+And vice versa:
+  state of x0:   state of x1:   state of X:
+    0              0              0
+    1              0              1
+    0              1              2
+    1              1              3
+    0              2              4
+    1              2              5
+\end{DoxyVerbInclude}
+\hypertarget{bipgraph.h_Source}{}\doxysubsection{\texorpdfstring{Source}{Source}}\label{bipgraph.h_Source}
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{comment}{/*\ \ This\ file\ is\ part\ of\ libDAI\ -\/\ http://www.libdai.org/}}
+\DoxyCodeLine{\textcolor{comment}{\ *}}
+\DoxyCodeLine{\textcolor{comment}{\ *\ \ Copyright\ (c)\ 2006-\/2011,\ The\ libDAI\ authors.\ All\ rights\ reserved.}}
+\DoxyCodeLine{\textcolor{comment}{\ *}}
+\DoxyCodeLine{\textcolor{comment}{\ *\ \ Use\ of\ this\ source\ code\ is\ governed\ by\ a\ BSD-\/style\ license\ that\ can\ be\ found\ in\ the\ LICENSE\ file.}}
+\DoxyCodeLine{\textcolor{comment}{\ */}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{varset_8h}{dai/varset.h}}>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{index_8h}{dai/index.h}}>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{\textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespacedai}{dai}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main()\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classdai_1_1Var}{Var}}\ x0(0,\ 2);\ \ \ \textcolor{comment}{//\ Define\ binary\ variable\ x0\ (with\ label\ 0)}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classdai_1_1Var}{Var}}\ x1(1,\ 3);\ \ \ \textcolor{comment}{//\ Define\ ternary\ variable\ x1\ (with\ label\ 1)}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Define\ set\ X\ =\ \{x0,\ x1\}}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classdai_1_1VarSet}{VarSet}}\ X;\ \textcolor{comment}{//\ empty}}
+\DoxyCodeLine{\ \ \ \ X\ |=\ x1;\ \ \textcolor{comment}{//\ X\ =\ \{x1\}}}
+\DoxyCodeLine{\ \ \ \ X\ |=\ x0;\ \ \textcolor{comment}{//\ X\ =\ \{x1,\ x0\}}}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}X\ =\ "{}}\ <<\ X\ <<\ endl\ <<\ endl;\ \textcolor{comment}{//\ Note\ that\ the\ elements\ of\ X\ are\ ordered\ according\ to\ their\ labels}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Output\ some\ information\ about\ x0,\ x1\ and\ X}}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Var\ "{}}\ <<\ x0\ <<\ \textcolor{stringliteral}{"{}\ has\ "{}}\ <<\ x0.\mbox{\hyperlink{classdai_1_1Var_a155ae28d86fb7fbc3f050428e2379f40}{states}}()\ <<\ \textcolor{stringliteral}{"{}\ states\ (possible\ values)."{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Var\ "{}}\ <<\ x1\ <<\ \textcolor{stringliteral}{"{}\ has\ "{}}\ <<\ x1.\mbox{\hyperlink{classdai_1_1Var_a155ae28d86fb7fbc3f050428e2379f40}{states}}()\ <<\ \textcolor{stringliteral}{"{}\ states."{}}\ <<\ endl\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}VarSet\ "{}}\ <<\ X\ <<\ \textcolor{stringliteral}{"{}\ has\ "{}}\ <<\ X.\mbox{\hyperlink{classdai_1_1VarSet_a0e247794f03ee52544e10a8b9f280c41}{nrStates}}()\ <<\ \textcolor{stringliteral}{"{}\ states\ (joint\ assignments\ of\ its\ variables)."{}}\ <<\ endl\ <<\ endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}States\ of\ VarSets\ correspond\ to\ states\ of\ their\ constituent\ Vars:"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ state\ of\ x0:\ \ \ state\ of\ x1:\ \ \ (linear)\ state\ of\ X:"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ s1\ =\ 0;\ s1\ <\ x1.\mbox{\hyperlink{classdai_1_1Var_a155ae28d86fb7fbc3f050428e2379f40}{states}}();\ s1++\ )\ \textcolor{comment}{//\ for\ all\ states\ s1\ of\ x1}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ s0\ =\ 0;\ s0\ <\ x0.\mbox{\hyperlink{classdai_1_1Var_a155ae28d86fb7fbc3f050428e2379f40}{states}}();\ s0++\ )\ \{\ \textcolor{comment}{//\ for\ all\ states\ s0\ of\ x0}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ store\ s0\ and\ s1\ in\ a\ map\ "{}states"{}}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ map<Var,size\_t>\ states;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ states[x0]\ =\ s0;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ states[x1]\ =\ s1;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ output\ states\ of\ x0,\ x1\ and\ corresponding\ state\ of\ X}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ "{}}\ <<\ s0\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}}\ <<\ s1\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}}\ <<\ \mbox{\hyperlink{namespacedai_a750c3807e7375265c3fb410a1f1223fe}{calcLinearState}}(X,states)\ <<\ endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ calcState()\ is\ the\ inverse\ of\ calcLinearState()}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{exceptions_8h_af50adc4fad1e07093579e746302bc884}{DAI\_ASSERT}}(\ \mbox{\hyperlink{namespacedai_afcfc874f85b4a2944ec128ebd1dd19f1}{calcState}}(X,\ \mbox{\hyperlink{namespacedai_a750c3807e7375265c3fb410a1f1223fe}{calcLinearState}}(X,\ states))\ ==\ states\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ endl\ <<\ \textcolor{stringliteral}{"{}And\ vice\ versa:"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ state\ of\ x0:\ \ \ state\ of\ x1:\ \ \ (linear)\ state\ of\ X:"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ S\ =\ 0;\ S\ <\ X.\mbox{\hyperlink{classdai_1_1VarSet_a0e247794f03ee52544e10a8b9f280c41}{nrStates}}();\ S++\ )\ \{\ \textcolor{comment}{//\ for\ all\ (joint)\ states\ of\ X}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ calculate\ states\ of\ x0\ and\ x1\ corresponding\ to\ state\ S\ of\ X}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ map<Var,size\_t>\ states\ =\ \mbox{\hyperlink{namespacedai_afcfc874f85b4a2944ec128ebd1dd19f1}{calcState}}(X,S);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ output\ state\ of\ X\ and\ corresponding\ states\ of\ x0,\ x1}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ "{}}\ <<\ states[x0]\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}}\ <<\ states[x1]\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}}\ <<\ S\ <<\ endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ calcLinearState()\ is\ the\ inverse\ of\ calcState()}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{exceptions_8h_af50adc4fad1e07093579e746302bc884}{DAI\_ASSERT}}(\ \mbox{\hyperlink{namespacedai_a750c3807e7375265c3fb410a1f1223fe}{calcLinearState}}(X,\ \mbox{\hyperlink{namespacedai_afcfc874f85b4a2944ec128ebd1dd19f1}{calcState}}(X,S))\ ==\ S\ );}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ endl\ <<\ \textcolor{stringliteral}{"{}Iterating\ over\ all\ joint\ states\ using\ the\ State\ class:"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ state\ of\ x0:\ \ \ state\ of\ x1:\ \ \ (linear)\ state\ of\ X:\ \ \ state\ of\ X\ (as\ a\ map):"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}(\ \mbox{\hyperlink{classdai_1_1State}{State}}\ S(X);\ S.\mbox{\hyperlink{classdai_1_1State_a431244125b78626784cba3ffbc1f5110}{valid}}();\ S++\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ output\ state\ of\ X\ and\ corresponding\ states\ of\ x0,\ x1}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ "{}}\ <<\ S(x0)\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}}\ <<\ S(x1)\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}}\ <<\ S\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}}\ <<\ S.get()\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+ 

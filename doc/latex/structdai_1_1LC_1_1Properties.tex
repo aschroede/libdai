@@ -1,0 +1,173 @@
+\doxysection{dai\+::LC\+::Properties Struct Reference}
+\hypertarget{structdai_1_1LC_1_1Properties}{}\label{structdai_1_1LC_1_1Properties}\index{dai::LC::Properties@{dai::LC::Properties}}
+
+
+Parameters for \doxylink{classdai_1_1LC}{LC}.  
+
+
+
+
+{\ttfamily \#include $<$dai/lc.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structdai_1_1LC_1_1Properties_ae6e87b167ff5de790a1e2db9f5af96d0}{DAI\+\_\+\+ENUM}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Cavity\+Type}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{FULL}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{PAIR}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{PAIR2}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{UNIFORM}})
+\begin{DoxyCompactList}\small\item\em Enumeration of possible ways to initialize the cavities. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structdai_1_1LC_1_1Properties_aa2d1708ee9aaee444d65ba712d41b2f4}{DAI\+\_\+\+ENUM}} (Update\+Type, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{SEQFIX}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{SEQRND}})
+\begin{DoxyCompactList}\small\item\em Enumeration of different update schedules. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{structdai_1_1LC_1_1Properties_af36169e6a7ba3a27df32007bea3a42d9}{verbose}}
+\begin{DoxyCompactList}\small\item\em Verbosity (amount of output sent to stderr) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{structdai_1_1LC_1_1Properties_a62730c262e688ac59512cf3018b5f4e8}{maxiter}}
+\begin{DoxyCompactList}\small\item\em Maximum number of iterations. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{structdai_1_1LC_1_1Properties_ae8715b5b3aaf3cfa7c7277c688a24fda}{tol}}
+\begin{DoxyCompactList}\small\item\em Tolerance for convergence test. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} \mbox{\hyperlink{structdai_1_1LC_1_1Properties_af03789fceacde90d75ebe5f1b19eaafb}{reinit}}
+\begin{DoxyCompactList}\small\item\em Complete or partial reinitialization of cavity graphs? \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{structdai_1_1LC_1_1Properties_a741949520e541904d59878b57e0b0598}{damping}}
+\begin{DoxyCompactList}\small\item\em Damping constant (0.\+0 means no damping, 1.\+0 is maximum damping) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Cavity\+Type}} \mbox{\hyperlink{structdai_1_1LC_1_1Properties_a76cb44f7bdd84b4d8fa0eb5b37d4d14d}{cavity}}
+\begin{DoxyCompactList}\small\item\em How to initialize the cavities. \end{DoxyCompactList}\item 
+Update\+Type \mbox{\hyperlink{structdai_1_1LC_1_1Properties_a771b51ab1d382bae136f76e6fcc9b481}{updates}}
+\begin{DoxyCompactList}\small\item\em What update schedule to use. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{structdai_1_1LC_1_1Properties_a8e4cbe17245261c2e6996edf3926365c}{cavainame}}
+\begin{DoxyCompactList}\small\item\em Name of the algorithm used to initialize the cavity distributions. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \mbox{\hyperlink{structdai_1_1LC_1_1Properties_a276fd4fc9a94cf5dace3de93ceefc027}{cavaiopts}}
+\begin{DoxyCompactList}\small\item\em Parameters for the algorithm used to initialize the cavity distributions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Parameters for \doxylink{classdai_1_1LC}{LC}. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structdai_1_1LC_1_1Properties_ae6e87b167ff5de790a1e2db9f5af96d0}\label{structdai_1_1LC_1_1Properties_ae6e87b167ff5de790a1e2db9f5af96d0} 
+\index{dai::LC::Properties@{dai::LC::Properties}!DAI\_ENUM@{DAI\_ENUM}}
+\index{DAI\_ENUM@{DAI\_ENUM}!dai::LC::Properties@{dai::LC::Properties}}
+\doxysubsubsection{\texorpdfstring{DAI\_ENUM()}{DAI\_ENUM()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily dai\+::\+LC\+::\+Properties\+::\+DAI\+\_\+\+ENUM (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Cavity\+Type}}}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{FULL}}}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{PAIR}}}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{PAIR2}}}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{UNIFORM}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Enumeration of possible ways to initialize the cavities. 
+
+The following initialization methods are defined\+:
+\begin{DoxyItemize}
+\item FULL calculates the marginal using \doxylink{namespacedai_aab8aabfe0fcfd4b4bd24757c101449d5}{calc\+Marginal()}
+\item PAIR calculates only second order interactions using \doxylink{namespacedai_a82e775a1e2908856f13fa1aa7c081d4c}{calc\+Pair\+Beliefs()} with {\itshape accurate} == {\ttfamily false} 
+\item PAIR2 calculates only second order interactions using \doxylink{namespacedai_a82e775a1e2908856f13fa1aa7c081d4c}{calc\+Pair\+Beliefs()} with {\itshape accurate} == {\ttfamily true} 
+\item UNIFORM uses a uniform distribution 
+\end{DoxyItemize}\Hypertarget{structdai_1_1LC_1_1Properties_aa2d1708ee9aaee444d65ba712d41b2f4}\label{structdai_1_1LC_1_1Properties_aa2d1708ee9aaee444d65ba712d41b2f4} 
+\index{dai::LC::Properties@{dai::LC::Properties}!DAI\_ENUM@{DAI\_ENUM}}
+\index{DAI\_ENUM@{DAI\_ENUM}!dai::LC::Properties@{dai::LC::Properties}}
+\doxysubsubsection{\texorpdfstring{DAI\_ENUM()}{DAI\_ENUM()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily dai\+::\+LC\+::\+Properties\+::\+DAI\+\_\+\+ENUM (\begin{DoxyParamCaption}\item[{Update\+Type}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{SEQFIX}}}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{SEQRND}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Enumeration of different update schedules. 
+
+The following update schedules are defined\+:
+\begin{DoxyItemize}
+\item SEQFIX sequential fixed schedule
+\item SEQRND sequential random schedule 
+\end{DoxyItemize}
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structdai_1_1LC_1_1Properties_af36169e6a7ba3a27df32007bea3a42d9}\label{structdai_1_1LC_1_1Properties_af36169e6a7ba3a27df32007bea3a42d9} 
+\index{dai::LC::Properties@{dai::LC::Properties}!verbose@{verbose}}
+\index{verbose@{verbose}!dai::LC::Properties@{dai::LC::Properties}}
+\doxysubsubsection{\texorpdfstring{verbose}{verbose}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} dai\+::\+LC\+::\+Properties\+::verbose}
+
+
+
+Verbosity (amount of output sent to stderr) 
+
+\Hypertarget{structdai_1_1LC_1_1Properties_a62730c262e688ac59512cf3018b5f4e8}\label{structdai_1_1LC_1_1Properties_a62730c262e688ac59512cf3018b5f4e8} 
+\index{dai::LC::Properties@{dai::LC::Properties}!maxiter@{maxiter}}
+\index{maxiter@{maxiter}!dai::LC::Properties@{dai::LC::Properties}}
+\doxysubsubsection{\texorpdfstring{maxiter}{maxiter}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} dai\+::\+LC\+::\+Properties\+::maxiter}
+
+
+
+Maximum number of iterations. 
+
+\Hypertarget{structdai_1_1LC_1_1Properties_ae8715b5b3aaf3cfa7c7277c688a24fda}\label{structdai_1_1LC_1_1Properties_ae8715b5b3aaf3cfa7c7277c688a24fda} 
+\index{dai::LC::Properties@{dai::LC::Properties}!tol@{tol}}
+\index{tol@{tol}!dai::LC::Properties@{dai::LC::Properties}}
+\doxysubsubsection{\texorpdfstring{tol}{tol}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} dai\+::\+LC\+::\+Properties\+::tol}
+
+
+
+Tolerance for convergence test. 
+
+\Hypertarget{structdai_1_1LC_1_1Properties_af03789fceacde90d75ebe5f1b19eaafb}\label{structdai_1_1LC_1_1Properties_af03789fceacde90d75ebe5f1b19eaafb} 
+\index{dai::LC::Properties@{dai::LC::Properties}!reinit@{reinit}}
+\index{reinit@{reinit}!dai::LC::Properties@{dai::LC::Properties}}
+\doxysubsubsection{\texorpdfstring{reinit}{reinit}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} dai\+::\+LC\+::\+Properties\+::reinit}
+
+
+
+Complete or partial reinitialization of cavity graphs? 
+
+\Hypertarget{structdai_1_1LC_1_1Properties_a741949520e541904d59878b57e0b0598}\label{structdai_1_1LC_1_1Properties_a741949520e541904d59878b57e0b0598} 
+\index{dai::LC::Properties@{dai::LC::Properties}!damping@{damping}}
+\index{damping@{damping}!dai::LC::Properties@{dai::LC::Properties}}
+\doxysubsubsection{\texorpdfstring{damping}{damping}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} dai\+::\+LC\+::\+Properties\+::damping}
+
+
+
+Damping constant (0.\+0 means no damping, 1.\+0 is maximum damping) 
+
+\Hypertarget{structdai_1_1LC_1_1Properties_a76cb44f7bdd84b4d8fa0eb5b37d4d14d}\label{structdai_1_1LC_1_1Properties_a76cb44f7bdd84b4d8fa0eb5b37d4d14d} 
+\index{dai::LC::Properties@{dai::LC::Properties}!cavity@{cavity}}
+\index{cavity@{cavity}!dai::LC::Properties@{dai::LC::Properties}}
+\doxysubsubsection{\texorpdfstring{cavity}{cavity}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Cavity\+Type}} dai\+::\+LC\+::\+Properties\+::cavity}
+
+
+
+How to initialize the cavities. 
+
+\Hypertarget{structdai_1_1LC_1_1Properties_a771b51ab1d382bae136f76e6fcc9b481}\label{structdai_1_1LC_1_1Properties_a771b51ab1d382bae136f76e6fcc9b481} 
+\index{dai::LC::Properties@{dai::LC::Properties}!updates@{updates}}
+\index{updates@{updates}!dai::LC::Properties@{dai::LC::Properties}}
+\doxysubsubsection{\texorpdfstring{updates}{updates}}
+{\footnotesize\ttfamily Update\+Type dai\+::\+LC\+::\+Properties\+::updates}
+
+
+
+What update schedule to use. 
+
+\Hypertarget{structdai_1_1LC_1_1Properties_a8e4cbe17245261c2e6996edf3926365c}\label{structdai_1_1LC_1_1Properties_a8e4cbe17245261c2e6996edf3926365c} 
+\index{dai::LC::Properties@{dai::LC::Properties}!cavainame@{cavainame}}
+\index{cavainame@{cavainame}!dai::LC::Properties@{dai::LC::Properties}}
+\doxysubsubsection{\texorpdfstring{cavainame}{cavainame}}
+{\footnotesize\ttfamily std\+::string dai\+::\+LC\+::\+Properties\+::cavainame}
+
+
+
+Name of the algorithm used to initialize the cavity distributions. 
+
+\Hypertarget{structdai_1_1LC_1_1Properties_a276fd4fc9a94cf5dace3de93ceefc027}\label{structdai_1_1LC_1_1Properties_a276fd4fc9a94cf5dace3de93ceefc027} 
+\index{dai::LC::Properties@{dai::LC::Properties}!cavaiopts@{cavaiopts}}
+\index{cavaiopts@{cavaiopts}!dai::LC::Properties@{dai::LC::Properties}}
+\doxysubsubsection{\texorpdfstring{cavaiopts}{cavaiopts}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} dai\+::\+LC\+::\+Properties\+::cavaiopts}
+
+
+
+Parameters for the algorithm used to initialize the cavity distributions. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/dai/\mbox{\hyperlink{lc_8h}{lc.\+h}}\end{DoxyCompactItemize}

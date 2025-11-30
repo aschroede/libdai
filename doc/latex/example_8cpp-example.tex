@@ -1,0 +1,209 @@
+\doxysection{example.\+cpp}
+\hypertarget{example_8cpp-example}{}\label{example_8cpp-example}This example illustrates how to read a factor graph from a file and how to run several inference algorithms (junction tree, loopy belief propagation, and the max-\/product algorithm) on it.
+
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{comment}{/*\ \ This\ file\ is\ part\ of\ libDAI\ -\/\ http://www.libdai.org/}}
+\DoxyCodeLine{\textcolor{comment}{\ *}}
+\DoxyCodeLine{\textcolor{comment}{\ *\ \ Copyright\ (c)\ 2006-\/2011,\ The\ libDAI\ authors.\ All\ rights\ reserved.}}
+\DoxyCodeLine{\textcolor{comment}{\ *}}
+\DoxyCodeLine{\textcolor{comment}{\ *\ \ Use\ of\ this\ source\ code\ is\ governed\ by\ a\ BSD-\/style\ license\ that\ can\ be\ found\ in\ the\ LICENSE\ file.}}
+\DoxyCodeLine{\textcolor{comment}{\ */}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{alldai_8h}{dai/alldai.h}}>}\ \ \textcolor{comment}{//\ Include\ main\ libDAI\ header\ file}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{jtree_8h}{dai/jtree.h}}>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{bp_8h}{dai/bp.h}}>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{decmap_8h}{dai/decmap.h}}>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespacedai}{dai}};}
+\DoxyCodeLine{\textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main(\ \textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ *argv[]\ )\ \{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#if\ defined(DAI\_WITH\_BP)\ \&\&\ defined(DAI\_WITH\_JTREE)}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (\ argc\ !=\ 2\ \&\&\ argc\ !=\ 3\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Usage:\ "{}}\ <<\ argv[0]\ <<\ \textcolor{stringliteral}{"{}\ <filename.fg>\ [maxstates]"{}}\ <<\ endl\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Reads\ factor\ graph\ <filename.fg>\ and\ runs"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Belief\ Propagation,\ Max-\/Product\ and\ JunctionTree\ on\ it."{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}JunctionTree\ is\ only\ run\ if\ a\ junction\ tree\ is\ found\ with"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}total\ number\ of\ states\ less\ than\ <maxstates>\ (where\ 0\ means\ unlimited)."{}}\ <<\ endl\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Report\ inference\ algorithms\ built\ into\ libDAI}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Builtin\ inference\ algorithms:\ "{}}\ <<\ \mbox{\hyperlink{namespacedai_a16d6acf1e82fdf9ae23b655a12517b91}{builtinInfAlgNames}}()\ <<\ endl\ <<\ endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Read\ FactorGraph\ from\ the\ file\ specified\ by\ the\ first\ command\ line\ argument}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1FactorGraph}{FactorGraph}}\ fg;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ fg.\mbox{\hyperlink{classdai_1_1FactorGraph_a89ee98ae7d3bc1723452e1c11ace4b51}{ReadFromFile}}(argv[1]);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ maxstates\ =\ 1000000;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ argc\ ==\ 3\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ maxstates\ =\ fromString<size\_t>(\ argv[2]\ );}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ some\ constants}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ maxiter\ =\ 10000;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}}\ \ \ tol\ =\ 1e-\/9;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ verb\ =\ 1;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Store\ the\ constants\ in\ a\ PropertySet\ object}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1PropertySet}{PropertySet}}\ opts;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ opts.\mbox{\hyperlink{classdai_1_1PropertySet_a25c2ae75e46faf88b732b1e484b5663f}{set}}(\textcolor{stringliteral}{"{}maxiter"{}},maxiter);\ \ \textcolor{comment}{//\ Maximum\ number\ of\ iterations}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ opts.\mbox{\hyperlink{classdai_1_1PropertySet_a25c2ae75e46faf88b732b1e484b5663f}{set}}(\textcolor{stringliteral}{"{}tol"{}},tol);\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Tolerance\ for\ convergence}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ opts.\mbox{\hyperlink{classdai_1_1PropertySet_a25c2ae75e46faf88b732b1e484b5663f}{set}}(\textcolor{stringliteral}{"{}verbose"{}},verb);\ \ \ \ \ \textcolor{comment}{//\ Verbosity\ (amount\ of\ output\ generated)}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bound\ treewidth\ for\ junctiontree}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ do\_jt\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ boundTreewidth(fg,\ \&\mbox{\hyperlink{namespacedai_ab6cfdf0bf047e72e324c04e96d310edb}{eliminationCost\_MinFill}},\ maxstates\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}(\ \mbox{\hyperlink{classdai_1_1Exception}{Exception}}\ \&e\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ e.\mbox{\hyperlink{classdai_1_1Exception_a93b1e529a0e0373dcad5097c71fce735}{getCode}}()\ ==\ Exception::OUT\_OF\_MEMORY\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ do\_jt\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Skipping\ junction\ tree\ (need\ more\ than\ "{}}\ <<\ maxstates\ <<\ \textcolor{stringliteral}{"{}\ states)."{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1JTree}{JTree}}\ jt,\ jtmap;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ vector<size\_t>\ jtmapstate;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ do\_jt\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Construct\ a\ JTree\ (junction\ tree)\ object\ from\ the\ FactorGraph\ fg}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ using\ the\ parameters\ specified\ by\ opts\ and\ an\ additional\ property}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ that\ specifies\ the\ type\ of\ updates\ the\ JTree\ algorithm\ should\ perform}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ jt\ =\ \mbox{\hyperlink{classdai_1_1JTree}{JTree}}(\ fg,\ opts(\textcolor{stringliteral}{"{}updates"{}},\textcolor{keywordtype}{string}(\textcolor{stringliteral}{"{}HUGIN"{}}))\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialize\ junction\ tree\ algorithm}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ jt.\mbox{\hyperlink{classdai_1_1JTree_acbb2df1dc4e64097a46fc4cb1394e76f}{init}}();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Run\ junction\ tree\ algorithm}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ jt.\mbox{\hyperlink{classdai_1_1JTree_a5596a82ebb58954804deb710892182fd}{run}}();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Construct\ another\ JTree\ (junction\ tree)\ object\ that\ is\ used\ to\ calculate}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ joint\ configuration\ of\ variables\ that\ has\ maximum\ probability\ (MAP\ state)}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ jtmap\ =\ \mbox{\hyperlink{classdai_1_1JTree}{JTree}}(\ fg,\ opts(\textcolor{stringliteral}{"{}updates"{}},\textcolor{keywordtype}{string}(\textcolor{stringliteral}{"{}HUGIN"{}}))(\textcolor{stringliteral}{"{}inference"{}},\textcolor{keywordtype}{string}(\textcolor{stringliteral}{"{}MAXPROD"{}}))\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialize\ junction\ tree\ algorithm}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ jtmap.\mbox{\hyperlink{classdai_1_1JTree_acbb2df1dc4e64097a46fc4cb1394e76f}{init}}();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Run\ junction\ tree\ algorithm}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ jtmap.\mbox{\hyperlink{classdai_1_1JTree_a5596a82ebb58954804deb710892182fd}{run}}();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ joint\ state\ of\ all\ variables\ that\ has\ maximum\ probability}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ jtmapstate\ =\ jtmap.\mbox{\hyperlink{classdai_1_1JTree_ae8918f23d3cd889705605f37987feabc}{findMaximum}}();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Construct\ a\ BP\ (belief\ propagation)\ object\ from\ the\ FactorGraph\ fg}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ using\ the\ parameters\ specified\ by\ opts\ and\ two\ additional\ properties,}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ specifying\ the\ type\ of\ updates\ the\ BP\ algorithm\ should\ perform\ and}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ whether\ they\ should\ be\ done\ in\ the\ real\ or\ in\ the\ logdomain}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1BP}{BP}}\ bp(fg,\ opts(\textcolor{stringliteral}{"{}updates"{}},\textcolor{keywordtype}{string}(\textcolor{stringliteral}{"{}SEQRND"{}}))(\textcolor{stringliteral}{"{}logdomain"{}},\textcolor{keyword}{false}));}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialize\ belief\ propagation\ algorithm}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ bp.\mbox{\hyperlink{classdai_1_1BP_a83349319b22a2d71b1f4ef39709365f9}{init}}();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Run\ belief\ propagation\ algorithm}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ bp.\mbox{\hyperlink{classdai_1_1BP_a6a47c6f0e1f4cd72a666d30f16dc217f}{run}}();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Construct\ a\ BP\ (belief\ propagation)\ object\ from\ the\ FactorGraph\ fg}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ using\ the\ parameters\ specified\ by\ opts\ and\ two\ additional\ properties,}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ specifying\ the\ type\ of\ updates\ the\ BP\ algorithm\ should\ perform\ and}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ whether\ they\ should\ be\ done\ in\ the\ real\ or\ in\ the\ logdomain}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Note\ that\ inference\ is\ set\ to\ MAXPROD,\ which\ means\ that\ the\ object}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ will\ perform\ the\ max-\/product\ algorithm\ instead\ of\ the\ sum-\/product\ algorithm}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1BP}{BP}}\ mp(fg,\ opts(\textcolor{stringliteral}{"{}updates"{}},\textcolor{keywordtype}{string}(\textcolor{stringliteral}{"{}SEQRND"{}}))(\textcolor{stringliteral}{"{}logdomain"{}},\textcolor{keyword}{false})(\textcolor{stringliteral}{"{}inference"{}},\textcolor{keywordtype}{string}(\textcolor{stringliteral}{"{}MAXPROD"{}}))(\textcolor{stringliteral}{"{}damping"{}},\textcolor{keywordtype}{string}(\textcolor{stringliteral}{"{}0.1"{}})));}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialize\ max-\/product\ algorithm}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ mp.\mbox{\hyperlink{classdai_1_1BP_a83349319b22a2d71b1f4ef39709365f9}{init}}();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Run\ max-\/product\ algorithm}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ mp.\mbox{\hyperlink{classdai_1_1BP_a6a47c6f0e1f4cd72a666d30f16dc217f}{run}}();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ joint\ state\ of\ all\ variables\ that\ has\ maximum\ probability}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ based\ on\ the\ max-\/product\ result}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ vector<size\_t>\ mpstate\ =\ mp.\mbox{\hyperlink{classdai_1_1BP_ac8145a391bc7b6fc492e83f54308d35c}{findMaximum}}();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Construct\ a\ decimation\ algorithm\ object\ from\ the\ FactorGraph\ fg}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ using\ the\ parameters\ specified\ by\ opts\ and\ three\ additional\ properties,}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ specifying\ that\ the\ decimation\ algorithm\ should\ use\ the\ max-\/product}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ algorithm\ and\ should\ completely\ reinitalize\ its\ state\ at\ every\ step}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ DecMAP\ decmap(fg,\ opts(\textcolor{stringliteral}{"{}reinit"{}},\textcolor{keyword}{true})(\textcolor{stringliteral}{"{}ianame"{}},\textcolor{keywordtype}{string}(\textcolor{stringliteral}{"{}BP"{}}))(\textcolor{stringliteral}{"{}iaopts"{}},\textcolor{keywordtype}{string}(\textcolor{stringliteral}{"{}[damping=0.1,inference=MAXPROD,logdomain=0,maxiter=1000,tol=1e-\/9,updates=SEQRND,verbose=1]"{}}))\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ decmap.init();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ decmap.run();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ vector<size\_t>\ decmapstate\ =\ decmap.findMaximum();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ do\_jt\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Report\ variable\ marginals\ for\ fg,\ calculated\ by\ the\ junction\ tree\ algorithm}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exact\ variable\ marginals:"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ fg.\mbox{\hyperlink{classdai_1_1FactorGraph_a2b8149e76290cee02816a2b2e0b666be}{nrVars}}();\ i++\ )\ \textcolor{comment}{//\ iterate\ over\ all\ variables\ in\ fg}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ jt.\mbox{\hyperlink{classdai_1_1JTree_a90e9372a870813e6b7cb2f265ad0c857}{belief}}(fg.\mbox{\hyperlink{classdai_1_1FactorGraph_a3eb28a9abb00514afc348370ee04c11c}{var}}(i))\ <<\ endl;\ \textcolor{comment}{//\ display\ the\ "{}belief"{}\ of\ jt\ for\ that\ variable}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Report\ variable\ marginals\ for\ fg,\ calculated\ by\ the\ belief\ propagation\ algorithm}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Approximate\ (loopy\ belief\ propagation)\ variable\ marginals:"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ fg.\mbox{\hyperlink{classdai_1_1FactorGraph_a2b8149e76290cee02816a2b2e0b666be}{nrVars}}();\ i++\ )\ \textcolor{comment}{//\ iterate\ over\ all\ variables\ in\ fg}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ bp.\mbox{\hyperlink{classdai_1_1BP_a7622fa73d05a63f5c2e14ae90f25ac98}{belief}}(fg.\mbox{\hyperlink{classdai_1_1FactorGraph_a3eb28a9abb00514afc348370ee04c11c}{var}}(i))\ <<\ endl;\ \textcolor{comment}{//\ display\ the\ belief\ of\ bp\ for\ that\ variable}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ do\_jt\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Report\ factor\ marginals\ for\ fg,\ calculated\ by\ the\ junction\ tree\ algorithm}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exact\ factor\ marginals:"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ I\ =\ 0;\ I\ <\ fg.\mbox{\hyperlink{classdai_1_1FactorGraph_afac1b429a0df6851810f1959d1ea8f46}{nrFactors}}();\ I++\ )\ \textcolor{comment}{//\ iterate\ over\ all\ factors\ in\ fg}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ jt.\mbox{\hyperlink{classdai_1_1JTree_a90e9372a870813e6b7cb2f265ad0c857}{belief}}(fg.\mbox{\hyperlink{classdai_1_1FactorGraph_a6aa6c8f8bdbaee7a7af917a4e7b54c8b}{factor}}(I).\mbox{\hyperlink{classdai_1_1TFactor_a52c048326197e4d8512479b71a0c1e8f}{vars}}())\ <<\ endl;\ \ \textcolor{comment}{//\ display\ the\ "{}belief"{}\ of\ jt\ for\ the\ variables\ in\ that\ factor}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Report\ factor\ marginals\ for\ fg,\ calculated\ by\ the\ belief\ propagation\ algorithm}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Approximate\ (loopy\ belief\ propagation)\ factor\ marginals:"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ I\ =\ 0;\ I\ <\ fg.\mbox{\hyperlink{classdai_1_1FactorGraph_afac1b429a0df6851810f1959d1ea8f46}{nrFactors}}();\ I++\ )\ \textcolor{comment}{//\ iterate\ over\ all\ factors\ in\ fg}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ bp.\mbox{\hyperlink{classdai_1_1BP_a7622fa73d05a63f5c2e14ae90f25ac98}{belief}}(fg.\mbox{\hyperlink{classdai_1_1FactorGraph_a6aa6c8f8bdbaee7a7af917a4e7b54c8b}{factor}}(I).\mbox{\hyperlink{classdai_1_1TFactor_a52c048326197e4d8512479b71a0c1e8f}{vars}}())\ <<\ endl;\ \textcolor{comment}{//\ display\ the\ belief\ of\ bp\ for\ the\ variables\ in\ that\ factor}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ do\_jt\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Report\ log\ partition\ sum\ (normalizing\ constant)\ of\ fg,\ calculated\ by\ the\ junction\ tree\ algorithm}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exact\ log\ partition\ sum:\ "{}}\ <<\ jt.\mbox{\hyperlink{classdai_1_1JTree_a1433cfb5d0205944e82a2cfb7e02220f}{logZ}}()\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Report\ log\ partition\ sum\ of\ fg,\ approximated\ by\ the\ belief\ propagation\ algorithm}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Approximate\ (loopy\ belief\ propagation)\ log\ partition\ sum:\ "{}}\ <<\ bp.\mbox{\hyperlink{classdai_1_1BP_a97fa7c1d5e39cb0b0fe6e9beed689b03}{logZ}}()\ <<\ endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ do\_jt\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Report\ exact\ MAP\ variable\ marginals}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exact\ MAP\ variable\ marginals:"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ fg.\mbox{\hyperlink{classdai_1_1FactorGraph_a2b8149e76290cee02816a2b2e0b666be}{nrVars}}();\ i++\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ jtmap.\mbox{\hyperlink{classdai_1_1JTree_a90e9372a870813e6b7cb2f265ad0c857}{belief}}(fg.\mbox{\hyperlink{classdai_1_1FactorGraph_a3eb28a9abb00514afc348370ee04c11c}{var}}(i))\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Report\ max-\/product\ variable\ marginals}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Approximate\ (max-\/product)\ MAP\ variable\ marginals:"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ fg.\mbox{\hyperlink{classdai_1_1FactorGraph_a2b8149e76290cee02816a2b2e0b666be}{nrVars}}();\ i++\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ mp.\mbox{\hyperlink{classdai_1_1BP_a7622fa73d05a63f5c2e14ae90f25ac98}{belief}}(fg.\mbox{\hyperlink{classdai_1_1FactorGraph_a3eb28a9abb00514afc348370ee04c11c}{var}}(i))\ <<\ endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ do\_jt\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Report\ exact\ MAP\ factor\ marginals}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exact\ MAP\ factor\ marginals:"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ I\ =\ 0;\ I\ <\ fg.\mbox{\hyperlink{classdai_1_1FactorGraph_afac1b429a0df6851810f1959d1ea8f46}{nrFactors}}();\ I++\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ jtmap.\mbox{\hyperlink{classdai_1_1JTree_a90e9372a870813e6b7cb2f265ad0c857}{belief}}(fg.\mbox{\hyperlink{classdai_1_1FactorGraph_a6aa6c8f8bdbaee7a7af917a4e7b54c8b}{factor}}(I).\mbox{\hyperlink{classdai_1_1TFactor_a52c048326197e4d8512479b71a0c1e8f}{vars}}())\ <<\ \textcolor{stringliteral}{"{}\ ==\ "{}}\ <<\ jtmap.\mbox{\hyperlink{classdai_1_1InfAlg_a7db625ef414a06961ac0d808b6102546}{beliefF}}(I)\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Report\ max-\/product\ factor\ marginals}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Approximate\ (max-\/product)\ MAP\ factor\ marginals:"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ I\ =\ 0;\ I\ <\ fg.\mbox{\hyperlink{classdai_1_1FactorGraph_afac1b429a0df6851810f1959d1ea8f46}{nrFactors}}();\ I++\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ mp.\mbox{\hyperlink{classdai_1_1BP_a7622fa73d05a63f5c2e14ae90f25ac98}{belief}}(fg.\mbox{\hyperlink{classdai_1_1FactorGraph_a6aa6c8f8bdbaee7a7af917a4e7b54c8b}{factor}}(I).\mbox{\hyperlink{classdai_1_1TFactor_a52c048326197e4d8512479b71a0c1e8f}{vars}}())\ <<\ \textcolor{stringliteral}{"{}\ ==\ "{}}\ <<\ mp.\mbox{\hyperlink{classdai_1_1BP_a6f9820fd04efbb11a68d397fb29640bc}{beliefF}}(I)\ <<\ endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ do\_jt\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Report\ exact\ MAP\ joint\ state}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Exact\ MAP\ state\ (log\ score\ =\ "{}}\ <<\ fg.\mbox{\hyperlink{classdai_1_1FactorGraph_ac79125c7aea8b3b7cf82c29326c1aa71}{logScore}}(\ jtmapstate\ )\ <<\ \textcolor{stringliteral}{"{}):"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ jtmapstate.size();\ i++\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ fg.\mbox{\hyperlink{classdai_1_1FactorGraph_a3eb28a9abb00514afc348370ee04c11c}{var}}(i)\ <<\ \textcolor{stringliteral}{"{}:\ "{}}\ <<\ jtmapstate[i]\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Report\ max-\/product\ MAP\ joint\ state}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Approximate\ (max-\/product)\ MAP\ state\ (log\ score\ =\ "{}}\ <<\ fg.\mbox{\hyperlink{classdai_1_1FactorGraph_ac79125c7aea8b3b7cf82c29326c1aa71}{logScore}}(\ mpstate\ )\ <<\ \textcolor{stringliteral}{"{}):"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ mpstate.size();\ i++\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ fg.\mbox{\hyperlink{classdai_1_1FactorGraph_a3eb28a9abb00514afc348370ee04c11c}{var}}(i)\ <<\ \textcolor{stringliteral}{"{}:\ "{}}\ <<\ mpstate[i]\ <<\ endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Report\ DecMAP\ joint\ state}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Approximate\ DecMAP\ state\ (log\ score\ =\ "{}}\ <<\ fg.\mbox{\hyperlink{classdai_1_1FactorGraph_ac79125c7aea8b3b7cf82c29326c1aa71}{logScore}}(\ decmapstate\ )\ <<\ \textcolor{stringliteral}{"{}):"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ decmapstate.size();\ i++\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ fg.\mbox{\hyperlink{classdai_1_1FactorGraph_a3eb28a9abb00514afc348370ee04c11c}{var}}(i)\ <<\ \textcolor{stringliteral}{"{}:\ "{}}\ <<\ decmapstate[i]\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}libDAI\ was\ configured\ without\ BP\ or\ JunctionTree\ (this\ can\ be\ changed\ in\ include/dai/dai\_config.h)."{}}\ <<\ endl;}
+\DoxyCodeLine{\textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+ 

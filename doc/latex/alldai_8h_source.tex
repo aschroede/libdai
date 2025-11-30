@@ -1,0 +1,109 @@
+\doxysection{alldai.\+h}
+\hypertarget{alldai_8h_source}{}\label{alldai_8h_source}\index{include/dai/alldai.h@{include/dai/alldai.h}}
+\mbox{\hyperlink{alldai_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*\ \ This\ file\ is\ part\ of\ libDAI\ -\/\ http://www.libdai.org/}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ \ Copyright\ (c)\ 2006-\/2011,\ The\ libDAI\ authors.\ All\ rights\ reserved.}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ Use\ of\ this\ source\ code\ is\ governed\ by\ a\ BSD-\/style\ license\ that\ can\ be\ found\ in\ the\ LICENSE\ file.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#ifndef\ \_\_defined\_libdai\_alldai\_h}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ \_\_defined\_libdai\_alldai\_h}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{dai__config_8h}{dai/dai\_config.h}}>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{daialg_8h}{dai/daialg.h}}>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{properties_8h}{dai/properties.h}}>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{exactinf_8h}{dai/exactinf.h}}>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{evidence_8h}{dai/evidence.h}}>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{emalg_8h}{dai/emalg.h}}>}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#ifdef\ DAI\_WITH\_BP}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\ \ \ \ \#include\ <\mbox{\hyperlink{bp_8h}{dai/bp.h}}>}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#ifdef\ DAI\_WITH\_FBP}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\ \ \ \ \#include\ <\mbox{\hyperlink{fbp_8h}{dai/fbp.h}}>}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#ifdef\ DAI\_WITH\_TRWBP}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\ \ \ \ \#include\ <\mbox{\hyperlink{trwbp_8h}{dai/trwbp.h}}>}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#ifdef\ DAI\_WITH\_MF}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\ \ \ \ \#include\ <\mbox{\hyperlink{mf_8h}{dai/mf.h}}>}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#ifdef\ DAI\_WITH\_HAK}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\ \ \ \ \#include\ <\mbox{\hyperlink{hak_8h}{dai/hak.h}}>}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#ifdef\ DAI\_WITH\_LC}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\ \ \ \ \#include\ <\mbox{\hyperlink{lc_8h}{dai/lc.h}}>}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#ifdef\ DAI\_WITH\_TREEEP}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\ \ \ \ \#include\ <\mbox{\hyperlink{treeep_8h}{dai/treeep.h}}>}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#ifdef\ DAI\_WITH\_JTREE}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\ \ \ \ \#include\ <\mbox{\hyperlink{jtree_8h}{dai/jtree.h}}>}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#ifdef\ DAI\_WITH\_MR}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\ \ \ \ \#include\ <\mbox{\hyperlink{mr_8h}{dai/mr.h}}>}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#ifdef\ DAI\_WITH\_GIBBS}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\ \ \ \ \#include\ <\mbox{\hyperlink{gibbs_8h}{dai/gibbs.h}}>}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#ifdef\ DAI\_WITH\_CBP}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\ \ \ \ \#include\ <\mbox{\hyperlink{cbp_8h}{dai/cbp.h}}>}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#ifdef\ DAI\_WITH\_DECMAP}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\ \ \ \ \#include\ <\mbox{\hyperlink{decmap_8h}{dai/decmap.h}}>}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#ifdef\ DAI\_WITH\_GLC}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\ \ \ \ \#include\ <\mbox{\hyperlink{glc_8h}{dai/glc.h}}>}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00071\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacedai}{dai}}\ \{}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00077\ std::map<std::string,\ InfAlg\ *>\&\ \mbox{\hyperlink{namespacedai_aa4fae69226f56a38066c2cac1a343fe1}{builtinInfAlgs}}();}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00081\ \textcolor{comment}{/*\ \ These\ are\ the\ names\ of\ the\ algorithms\ that\ were\ compiled\ in\ and\ can\ be\ }}
+\DoxyCodeLine{00082\ \textcolor{comment}{\ *\ \ given\ to\ \(\backslash\)ref\ newInfAlg\ and\ \(\backslash\)ref\ newInfAlgFromString.\ \ }}
+\DoxyCodeLine{00083\ \textcolor{comment}{\ *\ \ \(\backslash\)return\ A\ set\ of\ strings,\ each\ one\ corresponding\ with\ the\ name\ of\ an\ available\ inference\ algorithm.}}
+\DoxyCodeLine{00084\ \textcolor{comment}{\ *\ \ \(\backslash\)note\ The\ set\ is\ returned\ by\ value\ because\ it\ will\ be\ reasonably\ small\ }}
+\DoxyCodeLine{00085\ \textcolor{comment}{\ *\ \ enough\ and\ this\ function\ is\ expected\ to\ be\ called\ infrequently.}}
+\DoxyCodeLine{00086\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00087\ std::set<std::string>\ \mbox{\hyperlink{namespacedai_a16d6acf1e82fdf9ae23b655a12517b91}{builtinInfAlgNames}}();}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00097\ InfAlg\ *\mbox{\hyperlink{namespacedai_a4b9e5254e7ec388e69aa68dfc54509e0}{newInfAlg}}(\ \textcolor{keyword}{const}\ std::string\ \&name,\ \textcolor{keyword}{const}\ FactorGraph\ \&fg,\ \textcolor{keyword}{const}\ PropertySet\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{opts}}\ );}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00106\ InfAlg\ *\mbox{\hyperlink{namespacedai_a246c23914fee45f8b7f01f9073bdd6fe}{newInfAlgFromString}}(\ \textcolor{keyword}{const}\ std::string\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{nameOpts}},\ \textcolor{keyword}{const}\ FactorGraph\ \&fg\ );}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00116\ InfAlg\ *\mbox{\hyperlink{namespacedai_a246c23914fee45f8b7f01f9073bdd6fe}{newInfAlgFromString}}(\ \textcolor{keyword}{const}\ std::string\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{nameOpts}},\ \textcolor{keyword}{const}\ FactorGraph\ \&fg,\ \textcolor{keyword}{const}\ std::map<std::string,std::string>\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{aliases}}\ );}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00120\ std::pair<std::string,\ PropertySet>\ \mbox{\hyperlink{namespacedai_a8f6e164a012fff145d683d64ac4d7b7f}{parseNameProperties}}(\ \textcolor{keyword}{const}\ std::string\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{s}}\ );}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00128\ std::pair<std::string,\ PropertySet>\ \mbox{\hyperlink{namespacedai_a8f6e164a012fff145d683d64ac4d7b7f}{parseNameProperties}}(\ \textcolor{keyword}{const}\ std::string\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{s}},\ \textcolor{keyword}{const}\ std::map<std::string,std::string>\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{aliases}}\ );}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00136\ std::map<std::string,std::string>\ \mbox{\hyperlink{namespacedai_afffceb04ae10c57ff54a9c57ac3bfc29}{readAliasesFile}}(\ \textcolor{keyword}{const}\ std::string\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{filename}}\ );}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \}\ \textcolor{comment}{//\ end\ of\ namespace\ dai}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00167\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,167 @@
+\doxysection{treeep.\+h}
+\hypertarget{treeep_8h_source}{}\label{treeep_8h_source}\index{include/dai/treeep.h@{include/dai/treeep.h}}
+\mbox{\hyperlink{treeep_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*\ \ This\ file\ is\ part\ of\ libDAI\ -\/\ http://www.libdai.org/}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ \ Copyright\ (c)\ 2006-\/2011,\ The\ libDAI\ authors.\ All\ rights\ reserved.}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ Use\ of\ this\ source\ code\ is\ governed\ by\ a\ BSD-\/style\ license\ that\ can\ be\ found\ in\ the\ LICENSE\ file.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#ifndef\ \_\_defined\_libdai\_treeep\_h}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ \_\_defined\_libdai\_treeep\_h}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{dai__config_8h}{dai/dai\_config.h}}>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#ifdef\ DAI\_WITH\_TREEEP}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{daialg_8h}{dai/daialg.h}}>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{varset_8h}{dai/varset.h}}>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{regiongraph_8h}{dai/regiongraph.h}}>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{factorgraph_8h}{dai/factorgraph.h}}>}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{clustergraph_8h}{dai/clustergraph.h}}>}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{weightedgraph_8h}{dai/weightedgraph.h}}>}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{jtree_8h}{dai/jtree.h}}>}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{properties_8h}{dai/properties.h}}>}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{enum_8h}{dai/enum.h}}>}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacedai}{dai}}\ \{}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classdai_1_1TreeEP}{TreeEP}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classdai_1_1JTree}{JTree}}\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1TreeEP_a813fd5167dfe26cca12122697e2d9be6}{\_maxdiff}};}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1TreeEP_a1e9a1f014ff7c93a8c51c70972ea19aa}{\_iters}};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structdai_1_1TreeEP_1_1Properties}{Properties}}\ \{}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structdai_1_1TreeEP_1_1Properties_a77f56600ab4e668bb4eb1844e682eba7}{DAI\_ENUM}}(\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{TypeType}},\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{ORG}},\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{ALT}});}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{structdai_1_1TreeEP_1_1Properties_af41d83b6886eed09e080420be1fe0486}{verbose}};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{structdai_1_1TreeEP_1_1Properties_a58b7b2658dfa173a64a1683a6ac5425d}{maxiter}};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{structdai_1_1TreeEP_1_1Properties_acc03a5e0a25c210856b4f8c8f66781fe}{maxtime}};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}}\ \mbox{\hyperlink{structdai_1_1TreeEP_1_1Properties_ac9e11741633dad1adbf33d269056a193}{tol}};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{TypeType}}\ \mbox{\hyperlink{structdai_1_1TreeEP_1_1Properties_af80877d6d20176db4bc8367b6185e2d3}{type}};}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \}\ props;}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree}{TreeEPSubTree}}\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Factor>\ \ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a8ee092fe56924e5a6755aa4a8db2f1b3}{\_Qa}};}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<Factor>\ \ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a870a564b6464de22051ced18e61e8f46}{\_Qb}};}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1RootedTree}{RootedTree}}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a557ec259ffecefde3088baffbfeeb5c7}{\_RTree}};}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<size\_t>\ \ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a9cc5d855b128e6de60c7fab5c55acee1}{\_a}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<size\_t>\ \ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_abb5c16fb452f46606f08a85de6f4d7dd}{\_b}};}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classdai_1_1TFactor}{Factor}}\ *\ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a572573866619ad36f8ed8474e8ff08b5}{\_I}};}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1VarSet}{VarSet}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_af890392f433ea7a16de891bcc4a3a6ef}{\_ns}};}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1VarSet}{VarSet}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_acde8c4cad31261784f54f2114bec74da}{\_nsrem}};}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a2d59226b586690e0ba8101c90cf41a97}{\_logZ}};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a7c96bdc899f2de3782eea1717531ee10}{TreeEPSubTree}}()\ :\ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a8ee092fe56924e5a6755aa4a8db2f1b3}{\_Qa}}(),\ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a870a564b6464de22051ced18e61e8f46}{\_Qb}}(),\ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a557ec259ffecefde3088baffbfeeb5c7}{\_RTree}}(),\ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a9cc5d855b128e6de60c7fab5c55acee1}{\_a}}(),\ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_abb5c16fb452f46606f08a85de6f4d7dd}{\_b}}(),\ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a572573866619ad36f8ed8474e8ff08b5}{\_I}}(\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{NULL}}),\ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_af890392f433ea7a16de891bcc4a3a6ef}{\_ns}}(),\ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_acde8c4cad31261784f54f2114bec74da}{\_nsrem}}(),\ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a2d59226b586690e0ba8101c90cf41a97}{\_logZ}}(0.0)\ \{\}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a0ae27f56ca9a4d285772921d7555f6b1}{TreeEPSubTree}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree}{TreeEPSubTree}}\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}\ )\ :\ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a8ee092fe56924e5a6755aa4a8db2f1b3}{\_Qa}}(\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}.\mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a8ee092fe56924e5a6755aa4a8db2f1b3}{\_Qa}}),\ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a870a564b6464de22051ced18e61e8f46}{\_Qb}}(\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}.\mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a870a564b6464de22051ced18e61e8f46}{\_Qb}}),\ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a557ec259ffecefde3088baffbfeeb5c7}{\_RTree}}(\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}.\mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a557ec259ffecefde3088baffbfeeb5c7}{\_RTree}}),\ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a9cc5d855b128e6de60c7fab5c55acee1}{\_a}}(\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}.\mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a9cc5d855b128e6de60c7fab5c55acee1}{\_a}}),\ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_abb5c16fb452f46606f08a85de6f4d7dd}{\_b}}(\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}.\mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_abb5c16fb452f46606f08a85de6f4d7dd}{\_b}}),\ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a572573866619ad36f8ed8474e8ff08b5}{\_I}}(\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}.\mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a572573866619ad36f8ed8474e8ff08b5}{\_I}}),\ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_af890392f433ea7a16de891bcc4a3a6ef}{\_ns}}(\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}.\mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_af890392f433ea7a16de891bcc4a3a6ef}{\_ns}}),\ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_acde8c4cad31261784f54f2114bec74da}{\_nsrem}}(\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}.\mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_acde8c4cad31261784f54f2114bec74da}{\_nsrem}}),\ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a2d59226b586690e0ba8101c90cf41a97}{\_logZ}}(\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}.\mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a2d59226b586690e0ba8101c90cf41a97}{\_logZ}})\ \{\}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree}{TreeEPSubTree}}\ \&\ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a0b92c3ac5c604b4d22a9252022b83266}{operator=}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree}{TreeEPSubTree}}\&\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}\ )\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ \textcolor{keyword}{this}\ !=\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}\ )\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a8ee092fe56924e5a6755aa4a8db2f1b3}{\_Qa}}\ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}.\mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a8ee092fe56924e5a6755aa4a8db2f1b3}{\_Qa}};}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a870a564b6464de22051ced18e61e8f46}{\_Qb}}\ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}.\_Qb;}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a557ec259ffecefde3088baffbfeeb5c7}{\_RTree}}\ \ \ \ \ \ =\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}.\_RTree;}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a9cc5d855b128e6de60c7fab5c55acee1}{\_a}}\ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}.\_a;}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_abb5c16fb452f46606f08a85de6f4d7dd}{\_b}}\ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}.\_b;}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a572573866619ad36f8ed8474e8ff08b5}{\_I}}\ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}.\_I;}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_af890392f433ea7a16de891bcc4a3a6ef}{\_ns}}\ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}.\_ns;}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_acde8c4cad31261784f54f2114bec74da}{\_nsrem}}\ \ \ \ \ \ =\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}.\_nsrem;}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a2d59226b586690e0ba8101c90cf41a97}{\_logZ}}\ \ \ \ \ \ \ =\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}.\_logZ;}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a7c96bdc899f2de3782eea1717531ee10}{TreeEPSubTree}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classdai_1_1RootedTree}{RootedTree}}\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{subRTree}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classdai_1_1RootedTree}{RootedTree}}\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{jt\_RTree}},\ \textcolor{keyword}{const}\ std::vector<Factor>\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{jt\_Qa}},\ \textcolor{keyword}{const}\ std::vector<Factor>\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{jt\_Qb}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classdai_1_1TFactor}{Factor}}\ *\mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_ac3736b71a1e6345ec5426d9c2bc41e12}{I}}\ );}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a0b4e0ffa9d77dd18c1439f3fdbb38ba9}{init}}();}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_ae06e3d56616ed75b8b34cd945d25c2a2}{InvertAndMultiply}}(\ \textcolor{keyword}{const}\ std::vector<Factor>\ \&\mbox{\hyperlink{classdai_1_1JTree_a66cdd4d8258582aaf794466f3786dbfb}{Qa}},\ \textcolor{keyword}{const}\ std::vector<Factor>\ \&\mbox{\hyperlink{classdai_1_1JTree_a9d93e9f387d9772be5bc2b5372f7d20d}{Qb}}\ );}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_af4ebfa31613bde8eea1a9b2d67749c41}{HUGIN\_with\_I}}(\ std::vector<Factor>\ \&\mbox{\hyperlink{classdai_1_1JTree_a66cdd4d8258582aaf794466f3786dbfb}{Qa}},\ std::vector<Factor>\ \&\mbox{\hyperlink{classdai_1_1JTree_a9d93e9f387d9772be5bc2b5372f7d20d}{Qb}}\ );}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}}\ \mbox{\hyperlink{classdai_1_1TreeEP_aea75d2e2440b4a161c5ecf1102f276c9}{logZ}}(\ \textcolor{keyword}{const}\ std::vector<Factor>\ \&\mbox{\hyperlink{classdai_1_1JTree_a66cdd4d8258582aaf794466f3786dbfb}{Qa}},\ \textcolor{keyword}{const}\ std::vector<Factor>\ \&\mbox{\hyperlink{classdai_1_1JTree_a9d93e9f387d9772be5bc2b5372f7d20d}{Qb}}\ )\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classdai_1_1TFactor}{Factor}}\ *\&\ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_ac3736b71a1e6345ec5426d9c2bc41e12}{I}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a572573866619ad36f8ed8474e8ff08b5}{\_I}};\ \}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ std::map<size\_t,\ TreeEPSubTree>\ \ \mbox{\hyperlink{classdai_1_1TreeEP_a9222fc80cc7725816b26d834fe887cf0}{\_Q}};}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1TreeEP_a5220ad0f0e713305a248963ff65533f8}{TreeEP}}()\ :\ \mbox{\hyperlink{classdai_1_1JTree}{JTree}}(),\ \mbox{\hyperlink{classdai_1_1TreeEP_a813fd5167dfe26cca12122697e2d9be6}{\_maxdiff}}(0.0),\ \mbox{\hyperlink{classdai_1_1TreeEP_a1e9a1f014ff7c93a8c51c70972ea19aa}{\_iters}}(0),\ props(),\ \mbox{\hyperlink{classdai_1_1TreeEP_a9222fc80cc7725816b26d834fe887cf0}{\_Q}}()\ \{\}}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1TreeEP_aa07d388e9201b937cc7275dc9c2d2c8e}{TreeEP}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classdai_1_1TreeEP}{TreeEP}}\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}\ )\ :\ \mbox{\hyperlink{classdai_1_1JTree}{JTree}}(\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}),\ \mbox{\hyperlink{classdai_1_1TreeEP_a813fd5167dfe26cca12122697e2d9be6}{\_maxdiff}}(\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}.\mbox{\hyperlink{classdai_1_1TreeEP_a813fd5167dfe26cca12122697e2d9be6}{\_maxdiff}}),\ \mbox{\hyperlink{classdai_1_1TreeEP_a1e9a1f014ff7c93a8c51c70972ea19aa}{\_iters}}(\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}.\mbox{\hyperlink{classdai_1_1TreeEP_a1e9a1f014ff7c93a8c51c70972ea19aa}{\_iters}}),\ props(\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}.props),\ \mbox{\hyperlink{classdai_1_1TreeEP_a9222fc80cc7725816b26d834fe887cf0}{\_Q}}(\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}.\mbox{\hyperlink{classdai_1_1TreeEP_a9222fc80cc7725816b26d834fe887cf0}{\_Q}})\ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ I\ =\ 0;\ I\ <\ nrFactors();\ I++\ )}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ \mbox{\hyperlink{classdai_1_1TreeEP_abbc98554864027db26f4e703334bb861}{offtree}}(\ I\ )\ )}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1TreeEP_a9222fc80cc7725816b26d834fe887cf0}{\_Q}}[I].I()\ =\ \&factor(I);}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1TreeEP}{TreeEP}}\&\ \mbox{\hyperlink{classdai_1_1TreeEP_a68e080b77feda7d7466207ed8815cbca}{operator=}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classdai_1_1TreeEP}{TreeEP}}\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}\ )\ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ \textcolor{keyword}{this}\ !=\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}\ )\ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ JTree::operator=(\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}\ );}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1TreeEP_a813fd5167dfe26cca12122697e2d9be6}{\_maxdiff}}\ =\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}.\_maxdiff;}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1TreeEP_a1e9a1f014ff7c93a8c51c70972ea19aa}{\_iters}}\ \ \ =\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}.\_iters;}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ props\ \ \ \ =\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}.props;}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1TreeEP_a9222fc80cc7725816b26d834fe887cf0}{\_Q}}\ \ \ \ \ \ \ =\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}.\_Q;}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ I\ =\ 0;\ I\ <\ nrFactors();\ I++\ )}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ \mbox{\hyperlink{classdai_1_1TreeEP_abbc98554864027db26f4e703334bb861}{offtree}}(\ I\ )\ )}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1TreeEP_a9222fc80cc7725816b26d834fe887cf0}{\_Q}}[I].I()\ =\ \&factor(I);}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1TreeEP_a5220ad0f0e713305a248963ff65533f8}{TreeEP}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classdai_1_1FactorGraph}{FactorGraph}}\ \&\mbox{\hyperlink{classdai_1_1DAIAlg_a056caa8b537fccbd764b1c9f4e1ff615}{fg}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classdai_1_1PropertySet}{PropertySet}}\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{opts}}\ );}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classdai_1_1TreeEP}{TreeEP}}*\ \mbox{\hyperlink{classdai_1_1TreeEP_af624fc48364608ed72f8a52a426071b1}{clone}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classdai_1_1TreeEP_a5220ad0f0e713305a248963ff65533f8}{TreeEP}}(*\textcolor{keyword}{this});\ \}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classdai_1_1TreeEP}{TreeEP}}*\ \mbox{\hyperlink{classdai_1_1TreeEP_ab99677ef0fbc5effc51284dd6e7dce95}{construct}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classdai_1_1FactorGraph}{FactorGraph}}\ \&\mbox{\hyperlink{classdai_1_1DAIAlg_a056caa8b537fccbd764b1c9f4e1ff615}{fg}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classdai_1_1PropertySet}{PropertySet}}\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{opts}}\ )\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classdai_1_1TreeEP_a5220ad0f0e713305a248963ff65533f8}{TreeEP}}(\ \mbox{\hyperlink{classdai_1_1DAIAlg_a056caa8b537fccbd764b1c9f4e1ff615}{fg}},\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{opts}}\ );\ \}}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ std::string\ \mbox{\hyperlink{classdai_1_1TreeEP_a6e5e9a4bedeaaff06e618b25dcc0829b}{name}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}TREEEP"{}};\ \}}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}}\ \mbox{\hyperlink{classdai_1_1TreeEP_aea75d2e2440b4a161c5ecf1102f276c9}{logZ}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classdai_1_1TreeEP_afff5580fa87ce391223a2e2867527248}{init}}();}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classdai_1_1TreeEP_a3cc3718d1fbdf67db23a846283f99d08}{init}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classdai_1_1VarSet}{VarSet}}\ \&\textcolor{comment}{/*ns*/}\ )\ \{\ \mbox{\hyperlink{classdai_1_1TreeEP_a3cc3718d1fbdf67db23a846283f99d08}{init}}();\ \}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}}\ \mbox{\hyperlink{classdai_1_1TreeEP_a5c5b88daea7b33c582f49b0780f72622}{run}}();}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}}\ \mbox{\hyperlink{classdai_1_1TreeEP_a2cd81dcd0a92d61a29d5523fded7a9df}{maxDiff}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classdai_1_1TreeEP_a813fd5167dfe26cca12122697e2d9be6}{\_maxdiff}};\ \}}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classdai_1_1TreeEP_a7cdac399488a348056c2ff5f8847e885}{Iterations}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classdai_1_1TreeEP_a1e9a1f014ff7c93a8c51c70972ea19aa}{\_iters}};\ \}}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classdai_1_1TreeEP_a68382dc5aa8006f074a9a269ac353618}{setMaxIter}}(\ \textcolor{keywordtype}{size\_t}\ maxiter\ )\ \{\ props.\mbox{\hyperlink{structdai_1_1TreeEP_1_1Properties_a58b7b2658dfa173a64a1683a6ac5425d}{maxiter}}\ =\ maxiter;\ \}}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classdai_1_1TreeEP_ad822c8364c05c09800989bc2cd1ba56b}{setProperties}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classdai_1_1PropertySet}{PropertySet}}\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{opts}}\ );}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classdai_1_1PropertySet}{PropertySet}}\ \mbox{\hyperlink{classdai_1_1TreeEP_af81102ebd997be8c214e02c085dfafb0}{getProperties}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ std::string\ \mbox{\hyperlink{classdai_1_1TreeEP_a15b0017249f28a006ca48cc4adac819e}{printProperties}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classdai_1_1TreeEP_ab99677ef0fbc5effc51284dd6e7dce95}{construct}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classdai_1_1FactorGraph}{FactorGraph}}\&\ \mbox{\hyperlink{classdai_1_1DAIAlg_a056caa8b537fccbd764b1c9f4e1ff615}{fg}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classdai_1_1RootedTree}{RootedTree}}\&\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{tree}}\ );}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classdai_1_1TreeEP_abbc98554864027db26f4e703334bb861}{offtree}}(\ \textcolor{keywordtype}{size\_t}\ I\ )\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ (fac2OR(I)\ ==\ -\/1U);\ \}}
+\DoxyCodeLine{00205\ \};}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \}\ \textcolor{comment}{//\ end\ of\ namespace\ dai}}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

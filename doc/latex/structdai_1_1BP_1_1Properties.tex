@@ -1,0 +1,161 @@
+\doxysection{dai\+::BP\+::Properties Struct Reference}
+\hypertarget{structdai_1_1BP_1_1Properties}{}\label{structdai_1_1BP_1_1Properties}\index{dai::BP::Properties@{dai::BP::Properties}}
+
+
+Parameters for \doxylink{classdai_1_1BP}{BP}.  
+
+
+
+
+{\ttfamily \#include $<$dai/bp.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structdai_1_1BP_1_1Properties_a810365f9ebf1099a28ab9153a4289ddc}{DAI\+\_\+\+ENUM}} (Update\+Type, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{SEQFIX}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{SEQRND}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{SEQMAX}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{PARALL}})
+\begin{DoxyCompactList}\small\item\em Enumeration of possible update schedules. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structdai_1_1BP_1_1Properties_adecf51165d5f19f04633604610d04059}{DAI\+\_\+\+ENUM}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Inf\+Type}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{SUMPROD}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{MAXPROD}})
+\begin{DoxyCompactList}\small\item\em Enumeration of inference variants. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{structdai_1_1BP_1_1Properties_ad9c97ddfdf7a2dc1de3eafe8d57b61ee}{verbose}}
+\begin{DoxyCompactList}\small\item\em Verbosity (amount of output sent to stderr) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{structdai_1_1BP_1_1Properties_ad6b27ba966d824597b805d9bc8226f72}{maxiter}}
+\begin{DoxyCompactList}\small\item\em Maximum number of iterations. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{double}} \mbox{\hyperlink{structdai_1_1BP_1_1Properties_a289ca1ba41e0cc987962ccc1d337c94f}{maxtime}}
+\begin{DoxyCompactList}\small\item\em Maximum time (in seconds) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{structdai_1_1BP_1_1Properties_a45eda11657e822db49e35e23f2195496}{tol}}
+\begin{DoxyCompactList}\small\item\em Tolerance for convergence test. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} \mbox{\hyperlink{structdai_1_1BP_1_1Properties_a71181d319e94f063c6a2fddb591a2b1a}{logdomain}}
+\begin{DoxyCompactList}\small\item\em Whether updates should be done in logarithmic domain or not. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{structdai_1_1BP_1_1Properties_a1c84e0d6e84a47092ca7f895fa4e3b0e}{damping}}
+\begin{DoxyCompactList}\small\item\em Damping constant (0.\+0 means no damping, 1.\+0 is maximum damping) \end{DoxyCompactList}\item 
+Update\+Type \mbox{\hyperlink{structdai_1_1BP_1_1Properties_a4e08295ab9d02c28a73270f16ab8f7b7}{updates}}
+\begin{DoxyCompactList}\small\item\em Message update schedule. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Inf\+Type}} \mbox{\hyperlink{structdai_1_1BP_1_1Properties_a85f4804c6f8d3579a61ccb3aa3cf454d}{inference}}
+\begin{DoxyCompactList}\small\item\em Inference variant. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Parameters for \doxylink{classdai_1_1BP}{BP}. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structdai_1_1BP_1_1Properties_a810365f9ebf1099a28ab9153a4289ddc}\label{structdai_1_1BP_1_1Properties_a810365f9ebf1099a28ab9153a4289ddc} 
+\index{dai::BP::Properties@{dai::BP::Properties}!DAI\_ENUM@{DAI\_ENUM}}
+\index{DAI\_ENUM@{DAI\_ENUM}!dai::BP::Properties@{dai::BP::Properties}}
+\doxysubsubsection{\texorpdfstring{DAI\_ENUM()}{DAI\_ENUM()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily dai\+::\+BP\+::\+Properties\+::\+DAI\+\_\+\+ENUM (\begin{DoxyParamCaption}\item[{Update\+Type}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{SEQFIX}}}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{SEQRND}}}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{SEQMAX}}}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{PARALL}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Enumeration of possible update schedules. 
+
+The following update schedules have been defined\+:
+\begin{DoxyItemize}
+\item PARALL parallel updates
+\item SEQFIX sequential updates using a fixed sequence
+\item SEQRND sequential updates using a random sequence
+\item SEQMAX maximum-\/residual updates \mbox{[}\doxylink{bibliography_EMK06}{EMK06}\mbox{]} 
+\end{DoxyItemize}\Hypertarget{structdai_1_1BP_1_1Properties_adecf51165d5f19f04633604610d04059}\label{structdai_1_1BP_1_1Properties_adecf51165d5f19f04633604610d04059} 
+\index{dai::BP::Properties@{dai::BP::Properties}!DAI\_ENUM@{DAI\_ENUM}}
+\index{DAI\_ENUM@{DAI\_ENUM}!dai::BP::Properties@{dai::BP::Properties}}
+\doxysubsubsection{\texorpdfstring{DAI\_ENUM()}{DAI\_ENUM()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily dai\+::\+BP\+::\+Properties\+::\+DAI\+\_\+\+ENUM (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Inf\+Type}}}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{SUMPROD}}}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{MAXPROD}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Enumeration of inference variants. 
+
+There are two inference variants\+:
+\begin{DoxyItemize}
+\item SUMPROD Sum-\/\+Product
+\item MAXPROD Max-\/\+Product (equivalent to Min-\/\+Sum) 
+\end{DoxyItemize}
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structdai_1_1BP_1_1Properties_ad9c97ddfdf7a2dc1de3eafe8d57b61ee}\label{structdai_1_1BP_1_1Properties_ad9c97ddfdf7a2dc1de3eafe8d57b61ee} 
+\index{dai::BP::Properties@{dai::BP::Properties}!verbose@{verbose}}
+\index{verbose@{verbose}!dai::BP::Properties@{dai::BP::Properties}}
+\doxysubsubsection{\texorpdfstring{verbose}{verbose}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} dai\+::\+BP\+::\+Properties\+::verbose}
+
+
+
+Verbosity (amount of output sent to stderr) 
+
+\Hypertarget{structdai_1_1BP_1_1Properties_ad6b27ba966d824597b805d9bc8226f72}\label{structdai_1_1BP_1_1Properties_ad6b27ba966d824597b805d9bc8226f72} 
+\index{dai::BP::Properties@{dai::BP::Properties}!maxiter@{maxiter}}
+\index{maxiter@{maxiter}!dai::BP::Properties@{dai::BP::Properties}}
+\doxysubsubsection{\texorpdfstring{maxiter}{maxiter}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} dai\+::\+BP\+::\+Properties\+::maxiter}
+
+
+
+Maximum number of iterations. 
+
+\Hypertarget{structdai_1_1BP_1_1Properties_a289ca1ba41e0cc987962ccc1d337c94f}\label{structdai_1_1BP_1_1Properties_a289ca1ba41e0cc987962ccc1d337c94f} 
+\index{dai::BP::Properties@{dai::BP::Properties}!maxtime@{maxtime}}
+\index{maxtime@{maxtime}!dai::BP::Properties@{dai::BP::Properties}}
+\doxysubsubsection{\texorpdfstring{maxtime}{maxtime}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{double}} dai\+::\+BP\+::\+Properties\+::maxtime}
+
+
+
+Maximum time (in seconds) 
+
+\Hypertarget{structdai_1_1BP_1_1Properties_a45eda11657e822db49e35e23f2195496}\label{structdai_1_1BP_1_1Properties_a45eda11657e822db49e35e23f2195496} 
+\index{dai::BP::Properties@{dai::BP::Properties}!tol@{tol}}
+\index{tol@{tol}!dai::BP::Properties@{dai::BP::Properties}}
+\doxysubsubsection{\texorpdfstring{tol}{tol}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} dai\+::\+BP\+::\+Properties\+::tol}
+
+
+
+Tolerance for convergence test. 
+
+\Hypertarget{structdai_1_1BP_1_1Properties_a71181d319e94f063c6a2fddb591a2b1a}\label{structdai_1_1BP_1_1Properties_a71181d319e94f063c6a2fddb591a2b1a} 
+\index{dai::BP::Properties@{dai::BP::Properties}!logdomain@{logdomain}}
+\index{logdomain@{logdomain}!dai::BP::Properties@{dai::BP::Properties}}
+\doxysubsubsection{\texorpdfstring{logdomain}{logdomain}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} dai\+::\+BP\+::\+Properties\+::logdomain}
+
+
+
+Whether updates should be done in logarithmic domain or not. 
+
+\Hypertarget{structdai_1_1BP_1_1Properties_a1c84e0d6e84a47092ca7f895fa4e3b0e}\label{structdai_1_1BP_1_1Properties_a1c84e0d6e84a47092ca7f895fa4e3b0e} 
+\index{dai::BP::Properties@{dai::BP::Properties}!damping@{damping}}
+\index{damping@{damping}!dai::BP::Properties@{dai::BP::Properties}}
+\doxysubsubsection{\texorpdfstring{damping}{damping}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} dai\+::\+BP\+::\+Properties\+::damping}
+
+
+
+Damping constant (0.\+0 means no damping, 1.\+0 is maximum damping) 
+
+\Hypertarget{structdai_1_1BP_1_1Properties_a4e08295ab9d02c28a73270f16ab8f7b7}\label{structdai_1_1BP_1_1Properties_a4e08295ab9d02c28a73270f16ab8f7b7} 
+\index{dai::BP::Properties@{dai::BP::Properties}!updates@{updates}}
+\index{updates@{updates}!dai::BP::Properties@{dai::BP::Properties}}
+\doxysubsubsection{\texorpdfstring{updates}{updates}}
+{\footnotesize\ttfamily Update\+Type dai\+::\+BP\+::\+Properties\+::updates}
+
+
+
+Message update schedule. 
+
+\Hypertarget{structdai_1_1BP_1_1Properties_a85f4804c6f8d3579a61ccb3aa3cf454d}\label{structdai_1_1BP_1_1Properties_a85f4804c6f8d3579a61ccb3aa3cf454d} 
+\index{dai::BP::Properties@{dai::BP::Properties}!inference@{inference}}
+\index{inference@{inference}!dai::BP::Properties@{dai::BP::Properties}}
+\doxysubsubsection{\texorpdfstring{inference}{inference}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Inf\+Type}} dai\+::\+BP\+::\+Properties\+::inference}
+
+
+
+Inference variant. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/dai/\mbox{\hyperlink{bp_8h}{bp.\+h}}\end{DoxyCompactItemize}

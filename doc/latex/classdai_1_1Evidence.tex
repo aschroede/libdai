@@ -1,0 +1,232 @@
+\doxysection{dai\+::Evidence Class Reference}
+\hypertarget{classdai_1_1Evidence}{}\label{classdai_1_1Evidence}\index{dai::Evidence@{dai::Evidence}}
+
+
+Stores a data set consisting of multiple samples, where each sample is the observed joint state of some variables.  
+
+
+
+
+{\ttfamily \#include $<$dai/evidence.\+h$>$}
+
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typedef}} std\+::map$<$ \mbox{\hyperlink{classdai_1_1Var}{Var}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} $>$ \mbox{\hyperlink{classdai_1_1Evidence_ae322863268ee661c1209d6a5c4e8750e}{Observation}}
+\begin{DoxyCompactList}\small\item\em Stores joint state of a set of variables. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdai_1_1Evidence_ad9de071cf650e241b9caed5b1e94c792}{Evidence}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1Evidence_adf6152701bfbb28221bd2e69e662b876}{Evidence}} (std\+::vector$<$ \mbox{\hyperlink{classdai_1_1Evidence_ae322863268ee661c1209d6a5c4e8750e}{Observation}} $>$ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{samples}})
+\begin{DoxyCompactList}\small\item\em Construct from {\itshape samples}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1Evidence_a86aa114bd9377d0f953bf28e5e2e9e87}{add\+Evidence\+Tab\+File}} (std\+::istream \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{is}}, \mbox{\hyperlink{classdai_1_1FactorGraph}{Factor\+Graph}} \&fg)
+\begin{DoxyCompactList}\small\item\em Read in tabular data from a stream and add the read samples to {\ttfamily \texorpdfstring{$\ast$}{*}this}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{classdai_1_1Evidence_ae71a36b32ca257bb0743a1c1d96bac10}{nr\+Samples}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns number of stored samples. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classdai_1_1Evidence_ae322863268ee661c1209d6a5c4e8750e}{Observation}} $>$ \mbox{\hyperlink{classdai_1_1Evidence_a821a5240bcc13a759fa3524303fb2b37}{\+\_\+samples}}
+\begin{DoxyCompactList}\small\item\em Each sample is an observed joint state of some variables. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Iterator interface}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typedef}} std\+::vector$<$ \mbox{\hyperlink{classdai_1_1Evidence_ae322863268ee661c1209d6a5c4e8750e}{Observation}} $>$\+::iterator \mbox{\hyperlink{classdai_1_1Evidence_acf26f5c6569a01ebb76fc012ddd4af04}{iterator}}
+\begin{DoxyCompactList}\small\item\em Iterator over the samples. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typedef}} std\+::vector$<$ \mbox{\hyperlink{classdai_1_1Evidence_ae322863268ee661c1209d6a5c4e8750e}{Observation}} $>$\+::const\+\_\+iterator \mbox{\hyperlink{classdai_1_1Evidence_a576d0ce649ed6ea9a31549ac2d50f93f}{const\+\_\+iterator}}
+\begin{DoxyCompactList}\small\item\em Constant iterator over the samples. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1Evidence_acf26f5c6569a01ebb76fc012ddd4af04}{iterator}} \mbox{\hyperlink{classdai_1_1Evidence_aa6a7f45e2a725194d8cf6c55e9034546}{begin}} ()
+\begin{DoxyCompactList}\small\item\em Returns iterator that points to the first sample. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1Evidence_a576d0ce649ed6ea9a31549ac2d50f93f}{const\+\_\+iterator}} \mbox{\hyperlink{classdai_1_1Evidence_af89d4085e0e5f6ed5830c529f25bf24b}{begin}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns constant iterator that points to the first sample. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1Evidence_acf26f5c6569a01ebb76fc012ddd4af04}{iterator}} \mbox{\hyperlink{classdai_1_1Evidence_ab4acf583dd62ba5e0fd00394355d5c15}{end}} ()
+\begin{DoxyCompactList}\small\item\em Returns iterator that points beyond the last sample. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1Evidence_a576d0ce649ed6ea9a31549ac2d50f93f}{const\+\_\+iterator}} \mbox{\hyperlink{classdai_1_1Evidence_a2cf30fda8e295b8c9b95f1088a0537a9}{end}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns constant iterator that points beyond the last sample. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1Evidence_a7519ba1667a64e614f2161f2733e4a79}{add\+Evidence\+Tab\+File}} (std\+::istream \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{is}}, std\+::map$<$ std\+::string, \mbox{\hyperlink{classdai_1_1Var}{Var}} $>$ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{var\+Map}})
+\begin{DoxyCompactList}\small\item\em Read in tabular data from a stream and add the read samples to {\ttfamily \texorpdfstring{$\ast$}{*}this}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Stores a data set consisting of multiple samples, where each sample is the observed joint state of some variables. 
+
+\begin{DoxyNote}{Note}
+Each sample can describe the joint state of a different set of variables, in order to be able to deal with missing data.
+\end{DoxyNote}
+\begin{DoxyAuthor}{Author}
+Charles Vaske 
+\end{DoxyAuthor}
+\begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_sprinkler_em_8cpp-example}{example\+\_\+sprinkler\+\_\+em.\+cpp}}.\end{Desc}
+
+
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{classdai_1_1Evidence_ae322863268ee661c1209d6a5c4e8750e}\label{classdai_1_1Evidence_ae322863268ee661c1209d6a5c4e8750e} 
+\index{dai::Evidence@{dai::Evidence}!Observation@{Observation}}
+\index{Observation@{Observation}!dai::Evidence@{dai::Evidence}}
+\doxysubsubsection{\texorpdfstring{Observation}{Observation}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typedef}} std\+::map$<$\mbox{\hyperlink{classdai_1_1Var}{Var}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}$>$ \mbox{\hyperlink{classdai_1_1Evidence_ae322863268ee661c1209d6a5c4e8750e}{dai\+::\+Evidence\+::\+Observation}}}
+
+
+
+Stores joint state of a set of variables. 
+
+\Hypertarget{classdai_1_1Evidence_acf26f5c6569a01ebb76fc012ddd4af04}\label{classdai_1_1Evidence_acf26f5c6569a01ebb76fc012ddd4af04} 
+\index{dai::Evidence@{dai::Evidence}!iterator@{iterator}}
+\index{iterator@{iterator}!dai::Evidence@{dai::Evidence}}
+\doxysubsubsection{\texorpdfstring{iterator}{iterator}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typedef}} std\+::vector$<$\mbox{\hyperlink{classdai_1_1Evidence_ae322863268ee661c1209d6a5c4e8750e}{Observation}}$>$\+::iterator \mbox{\hyperlink{classdai_1_1Evidence_acf26f5c6569a01ebb76fc012ddd4af04}{dai\+::\+Evidence\+::iterator}}}
+
+
+
+Iterator over the samples. 
+
+\Hypertarget{classdai_1_1Evidence_a576d0ce649ed6ea9a31549ac2d50f93f}\label{classdai_1_1Evidence_a576d0ce649ed6ea9a31549ac2d50f93f} 
+\index{dai::Evidence@{dai::Evidence}!const\_iterator@{const\_iterator}}
+\index{const\_iterator@{const\_iterator}!dai::Evidence@{dai::Evidence}}
+\doxysubsubsection{\texorpdfstring{const\_iterator}{const\_iterator}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typedef}} std\+::vector$<$\mbox{\hyperlink{classdai_1_1Evidence_ae322863268ee661c1209d6a5c4e8750e}{Observation}}$>$\+::const\+\_\+iterator \mbox{\hyperlink{classdai_1_1Evidence_a576d0ce649ed6ea9a31549ac2d50f93f}{dai\+::\+Evidence\+::const\+\_\+iterator}}}
+
+
+
+Constant iterator over the samples. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classdai_1_1Evidence_ad9de071cf650e241b9caed5b1e94c792}\label{classdai_1_1Evidence_ad9de071cf650e241b9caed5b1e94c792} 
+\index{dai::Evidence@{dai::Evidence}!Evidence@{Evidence}}
+\index{Evidence@{Evidence}!dai::Evidence@{dai::Evidence}}
+\doxysubsubsection{\texorpdfstring{Evidence()}{Evidence()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily dai\+::\+Evidence\+::\+Evidence (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor. 
+
+\Hypertarget{classdai_1_1Evidence_adf6152701bfbb28221bd2e69e662b876}\label{classdai_1_1Evidence_adf6152701bfbb28221bd2e69e662b876} 
+\index{dai::Evidence@{dai::Evidence}!Evidence@{Evidence}}
+\index{Evidence@{Evidence}!dai::Evidence@{dai::Evidence}}
+\doxysubsubsection{\texorpdfstring{Evidence()}{Evidence()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily dai\+::\+Evidence\+::\+Evidence (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classdai_1_1Evidence_ae322863268ee661c1209d6a5c4e8750e}{Observation}} $>$ \&}]{samples }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct from {\itshape samples}. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classdai_1_1Evidence_a86aa114bd9377d0f953bf28e5e2e9e87}\label{classdai_1_1Evidence_a86aa114bd9377d0f953bf28e5e2e9e87} 
+\index{dai::Evidence@{dai::Evidence}!addEvidenceTabFile@{addEvidenceTabFile}}
+\index{addEvidenceTabFile@{addEvidenceTabFile}!dai::Evidence@{dai::Evidence}}
+\doxysubsubsection{\texorpdfstring{addEvidenceTabFile()}{addEvidenceTabFile()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+Evidence\+::add\+Evidence\+Tab\+File (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{is,  }\item[{\mbox{\hyperlink{classdai_1_1FactorGraph}{Factor\+Graph}} \&}]{fg }\end{DoxyParamCaption})}
+
+
+
+Read in tabular data from a stream and add the read samples to {\ttfamily \texorpdfstring{$\ast$}{*}this}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em is} & Input stream in .tab file format, describing joint observations of variables in {\itshape fg} \\
+\hline
+{\em fg} & Factor graph describing the corresponding variables \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxysectlink{fileformats_fileformats-evidence}{Evidence (.tab) file format}{1} 
+\end{DoxySeeAlso}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em INVALID\+\_\+\+EVIDENCE\+\_\+\+FILE} & if the input stream is not valid \\
+\hline
+\end{DoxyExceptions}
+\begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_sprinkler_em_8cpp-example}{example\+\_\+sprinkler\+\_\+em.\+cpp}}.\end{Desc}
+\Hypertarget{classdai_1_1Evidence_ae71a36b32ca257bb0743a1c1d96bac10}\label{classdai_1_1Evidence_ae71a36b32ca257bb0743a1c1d96bac10} 
+\index{dai::Evidence@{dai::Evidence}!nrSamples@{nrSamples}}
+\index{nrSamples@{nrSamples}!dai::Evidence@{dai::Evidence}}
+\doxysubsubsection{\texorpdfstring{nrSamples()}{nrSamples()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} dai\+::\+Evidence\+::nr\+Samples (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns number of stored samples. 
+
+\begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_sprinkler_em_8cpp-example}{example\+\_\+sprinkler\+\_\+em.\+cpp}}.\end{Desc}
+\Hypertarget{classdai_1_1Evidence_aa6a7f45e2a725194d8cf6c55e9034546}\label{classdai_1_1Evidence_aa6a7f45e2a725194d8cf6c55e9034546} 
+\index{dai::Evidence@{dai::Evidence}!begin@{begin}}
+\index{begin@{begin}!dai::Evidence@{dai::Evidence}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1Evidence_acf26f5c6569a01ebb76fc012ddd4af04}{iterator}} dai\+::\+Evidence\+::begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns iterator that points to the first sample. 
+
+\Hypertarget{classdai_1_1Evidence_af89d4085e0e5f6ed5830c529f25bf24b}\label{classdai_1_1Evidence_af89d4085e0e5f6ed5830c529f25bf24b} 
+\index{dai::Evidence@{dai::Evidence}!begin@{begin}}
+\index{begin@{begin}!dai::Evidence@{dai::Evidence}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1Evidence_a576d0ce649ed6ea9a31549ac2d50f93f}{const\+\_\+iterator}} dai\+::\+Evidence\+::begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns constant iterator that points to the first sample. 
+
+\Hypertarget{classdai_1_1Evidence_ab4acf583dd62ba5e0fd00394355d5c15}\label{classdai_1_1Evidence_ab4acf583dd62ba5e0fd00394355d5c15} 
+\index{dai::Evidence@{dai::Evidence}!end@{end}}
+\index{end@{end}!dai::Evidence@{dai::Evidence}}
+\doxysubsubsection{\texorpdfstring{end()}{end()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1Evidence_acf26f5c6569a01ebb76fc012ddd4af04}{iterator}} dai\+::\+Evidence\+::end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns iterator that points beyond the last sample. 
+
+\Hypertarget{classdai_1_1Evidence_a2cf30fda8e295b8c9b95f1088a0537a9}\label{classdai_1_1Evidence_a2cf30fda8e295b8c9b95f1088a0537a9} 
+\index{dai::Evidence@{dai::Evidence}!end@{end}}
+\index{end@{end}!dai::Evidence@{dai::Evidence}}
+\doxysubsubsection{\texorpdfstring{end()}{end()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1Evidence_a576d0ce649ed6ea9a31549ac2d50f93f}{const\+\_\+iterator}} dai\+::\+Evidence\+::end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns constant iterator that points beyond the last sample. 
+
+\Hypertarget{classdai_1_1Evidence_a7519ba1667a64e614f2161f2733e4a79}\label{classdai_1_1Evidence_a7519ba1667a64e614f2161f2733e4a79} 
+\index{dai::Evidence@{dai::Evidence}!addEvidenceTabFile@{addEvidenceTabFile}}
+\index{addEvidenceTabFile@{addEvidenceTabFile}!dai::Evidence@{dai::Evidence}}
+\doxysubsubsection{\texorpdfstring{addEvidenceTabFile()}{addEvidenceTabFile()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+Evidence\+::add\+Evidence\+Tab\+File (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{is,  }\item[{std\+::map$<$ std\+::string, \mbox{\hyperlink{classdai_1_1Var}{Var}} $>$ \&}]{var\+Map }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Read in tabular data from a stream and add the read samples to {\ttfamily \texorpdfstring{$\ast$}{*}this}. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classdai_1_1Evidence_a821a5240bcc13a759fa3524303fb2b37}\label{classdai_1_1Evidence_a821a5240bcc13a759fa3524303fb2b37} 
+\index{dai::Evidence@{dai::Evidence}!\_samples@{\_samples}}
+\index{\_samples@{\_samples}!dai::Evidence@{dai::Evidence}}
+\doxysubsubsection{\texorpdfstring{\_samples}{\_samples}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classdai_1_1Evidence_ae322863268ee661c1209d6a5c4e8750e}{Observation}}$>$ dai\+::\+Evidence\+::\+\_\+samples\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Each sample is an observed joint state of some variables. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/dai/\mbox{\hyperlink{evidence_8h}{evidence.\+h}}\item 
+src/evidence.\+cpp\end{DoxyCompactItemize}

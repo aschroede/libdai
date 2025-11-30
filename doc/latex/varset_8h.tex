@@ -1,0 +1,35 @@
+\doxysection{include/dai/varset.h File Reference}
+\hypertarget{varset_8h}{}\label{varset_8h}\index{include/dai/varset.h@{include/dai/varset.h}}
+
+
+Defines the Var\+Set class, which represents a set of random variables.  
+
+
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$ostream$>$}\newline
+{\ttfamily \#include $<$dai/var.\+h$>$}\newline
+{\ttfamily \#include $<$dai/util.\+h$>$}\newline
+{\ttfamily \#include $<$dai/smallset.\+h$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classdai_1_1VarSet}{dai\+::\+Var\+Set}}
+\begin{DoxyCompactList}\small\item\em Represents a set of variables. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacedai}{dai}}
+\begin{DoxyCompactList}\small\item\em Namespace for lib\+DAI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a750c3807e7375265c3fb410a1f1223fe}{dai\+::calc\+Linear\+State}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{vs}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::map$<$ \mbox{\hyperlink{classdai_1_1Var}{Var}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} $>$ \&state)
+\begin{DoxyCompactList}\small\item\em Calculates the linear index in the Cartesian product of the variables in {\itshape vs} that corresponds to a particular joint assignment of the variables, specified by {\itshape state}. \end{DoxyCompactList}\item 
+std\+::map$<$ \mbox{\hyperlink{classdai_1_1Var}{Var}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} $>$ \mbox{\hyperlink{namespacedai_afcfc874f85b4a2944ec128ebd1dd19f1}{dai\+::calc\+State}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{vs}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{linear\+State}})
+\begin{DoxyCompactList}\small\item\em Calculates the joint assignment of the variables in {\itshape vs} corresponding to the linear index {\itshape linear\+State}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Defines the Var\+Set class, which represents a set of random variables. 
+

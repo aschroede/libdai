@@ -1,0 +1,639 @@
+\doxysection{dai\+::HAK Class Reference}
+\hypertarget{classdai_1_1HAK}{}\label{classdai_1_1HAK}\index{dai::HAK@{dai::HAK}}
+
+
+Approximate inference algorithm\+: implementation of single-\/loop ("{}\+Generalized Belief Propagation"{}) and double-\/loop algorithms by Heskes, Albers and Kappen \mbox{[}\doxylink{bibliography_HAK03}{HAK03}\mbox{]}.  
+
+
+
+
+{\ttfamily \#include $<$dai/hak.\+h$>$}
+
+Inheritance diagram for dai\+::HAK\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classdai_1_1HAK}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structdai_1_1HAK_1_1Properties}{Properties}}
+\begin{DoxyCompactList}\small\item\em Parameters for \doxylink{classdai_1_1HAK}{HAK}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdai_1_1HAK_adeffdd4894e50b585d11cab9e9813d6f}{HAK}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1HAK_a5cd7000971e68e732d5dffa7c665804a}{HAK}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1FactorGraph}{Factor\+Graph}} \&\mbox{\hyperlink{classdai_1_1DAIAlg_a056caa8b537fccbd764b1c9f4e1ff615}{fg}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{opts}})
+\begin{DoxyCompactList}\small\item\em Construct from \doxylink{classdai_1_1FactorGraph}{Factor\+Graph} {\itshape fg} and \doxylink{classdai_1_1PropertySet}{Property\+Set} {\itshape opts}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1HAK_af0608983940f78bd6fefe0933404861e}{HAK}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1RegionGraph}{Region\+Graph}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{rg}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{opts}})
+\begin{DoxyCompactList}\small\item\em Construct from \doxylink{classdai_1_1RegionGraph}{Region\+Graph} {\itshape rg} and \doxylink{classdai_1_1PropertySet}{Property\+Set} {\itshape opts}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ General Inf\+Alg interface}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{classdai_1_1HAK}{HAK}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classdai_1_1HAK_a69ea0e880356f18b11ddb320dd2562ce}{clone}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns a pointer to a new, cloned copy of {\ttfamily \texorpdfstring{$\ast$}{*}this} (i.\+e., virtual copy constructor) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{classdai_1_1HAK}{HAK}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classdai_1_1HAK_a9bd07b3560ecc55506a72370384f23cd}{construct}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1FactorGraph}{Factor\+Graph}} \&\mbox{\hyperlink{classdai_1_1DAIAlg_a056caa8b537fccbd764b1c9f4e1ff615}{fg}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{opts}}) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns a pointer to a newly constructed inference algorithm. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} std\+::string \mbox{\hyperlink{classdai_1_1HAK_ae4f2ca203ed76fe051709d970c8c3c3d}{name}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns the name of the algorithm. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} \mbox{\hyperlink{classdai_1_1HAK_a78c5ebe47f8538455f85984ac326eb67}{belief}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{vs}}) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns the (approximate) marginal probability distribution of a set of variables. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} std\+::vector$<$ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} $>$ \mbox{\hyperlink{classdai_1_1HAK_af9245505f79627151bc94ea3857ee86d}{beliefs}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns all beliefs (approximate marginal probability distributions) calculated by the algorithm. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{classdai_1_1HAK_a9bdd0e17edad6d00e8c837ad144eab0f}{logZ}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns the logarithm of the (approximated) partition sum (normalizing constant of the factor graph). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1HAK_ab30055f32f2c9a84d76668ff74606697}{init}} ()
+\begin{DoxyCompactList}\small\item\em Initializes all data structures of the approximate inference algorithm. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1HAK_a1a46412aa54525a5f9ea332ad1048f2a}{init}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{vs}})
+\begin{DoxyCompactList}\small\item\em Initializes all data structures corresponding to some set of variables. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{classdai_1_1HAK_a6cb5e6da8fa2d51cade4834308d8e69a}{run}} ()
+\begin{DoxyCompactList}\small\item\em Runs the approximate inference algorithm. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{classdai_1_1HAK_a7bbee2a567842bc47cdb310d82b13393}{max\+Diff}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns maximum difference between single variable beliefs in the last iteration. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{classdai_1_1HAK_a935fa2a5800edaca923c347c257236e8}{Iterations}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns number of iterations done (one iteration passes over the complete factorgraph). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1HAK_a72a81841c700bb308ca4e28ec26e756d}{set\+Max\+Iter}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} maxiter)
+\begin{DoxyCompactList}\small\item\em Sets maximum number of iterations (one iteration passes over the complete factorgraph). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1HAK_a49d00fd7e213b351704b554c5c0039ce}{set\+Properties}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{opts}})
+\begin{DoxyCompactList}\small\item\em Set parameters of this inference algorithm. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \mbox{\hyperlink{classdai_1_1HAK_a0ecea14eb91c45ac6cc872ad3f50feb6}{get\+Properties}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns parameters of this inference algorithm converted into a \doxylink{classdai_1_1PropertySet}{Property\+Set}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} std\+::string \mbox{\hyperlink{classdai_1_1HAK_a17f467207044d4e5a624341dfb33d964}{print\+Properties}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns parameters of this inference algorithm formatted as a string in the format "{}\mbox{[}key1=val1,key2=val2,...,keyn=valn\mbox{]}"{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classdai_1_1DAIAlg}{dai\+::\+DAIAlg$<$ GRM $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdai_1_1DAIAlg_a1b66918854e70f19c8b506658c9f50e0}{DAIAlg}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1DAIAlg_a46ac57c2abad7c6870f30edc951aeff3}{DAIAlg}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} GRM \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{grm}})
+\begin{DoxyCompactList}\small\item\em Construct from GRM. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdai_1_1FactorGraph}{Factor\+Graph}} \& \mbox{\hyperlink{classdai_1_1DAIAlg_a056caa8b537fccbd764b1c9f4e1ff615}{fg}} ()
+\begin{DoxyCompactList}\small\item\em Returns reference to underlying \doxylink{classdai_1_1FactorGraph}{Factor\+Graph}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1FactorGraph}{Factor\+Graph}} \& \mbox{\hyperlink{classdai_1_1DAIAlg_afdb2f05fe4b4458a9680ddbe21ad58a9}{fg}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns constant reference to underlying \doxylink{classdai_1_1FactorGraph}{Factor\+Graph}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1DAIAlg_ac0d7b26c09d9d7db4a7eda5f66181045}{clamp}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} i, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{backup}}=\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{false}})
+\begin{DoxyCompactList}\small\item\em Clamp variable with index {\itshape i} to value {\itshape x} (i.\+e. multiply with a Kronecker delta $\delta_{x_i, x}$) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1DAIAlg_a7f0b8452352080a1e35ab9a68cb589fd}{make\+Cavity}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} i, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{backup}}=\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{false}})
+\begin{DoxyCompactList}\small\item\em Sets all factors interacting with variable with index {\itshape i} to one. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1DAIAlg_a195bcd6ad05557374c95db50c674ad7f}{make\+Region\+Cavity}} (std\+::vector$<$ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} $>$ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{fac\+Inds}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{backup}})
+\begin{DoxyCompactList}\small\item\em Sets all factors indicated by {\itshape fac\+Inds} to one. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1DAIAlg_a48ba6a58d10b8802d690e5e92ec5abe9}{backup\+Factor}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} I)
+\begin{DoxyCompactList}\small\item\em Make a backup copy of factor {\itshape I}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1DAIAlg_ac74e4ae749a3f706462bb5c0c0f204ca}{backup\+Factors}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{vs}})
+\begin{DoxyCompactList}\small\item\em Make backup copies of all factors involving the variables in {\itshape vs}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1DAIAlg_abf8dbd2797ec871e86566a6dfc0864e3}{restore\+Factor}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} I)
+\begin{DoxyCompactList}\small\item\em Restore factor {\itshape I} from its backup copy. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1DAIAlg_a333a182249b2abeb93ff21377d0e8ffd}{restore\+Factors}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{vs}})
+\begin{DoxyCompactList}\small\item\em Restore the factors involving the variables in {\itshape vs} from their backup copies. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1DAIAlg_aa4f659feb4967ba096400f4904cfe068}{restore\+Factors}} ()
+\begin{DoxyCompactList}\small\item\em Restore all factors from their backup copies. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classdai_1_1InfAlg}{dai\+::\+Inf\+Alg}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{classdai_1_1InfAlg_a00c1dba1041af038de0689cceb0a69f0}{\texorpdfstring{$\sim$}{\string~}\+Inf\+Alg}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor (needed because this class contains virtual functions) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} std\+::string \mbox{\hyperlink{classdai_1_1InfAlg_aa4284a406963b4cd55a820af98e9f03d}{identify}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Identifies itself for logging purposes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} \mbox{\hyperlink{classdai_1_1InfAlg_ab36227bbc227dfaff65d4a39ff938c34}{belief}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1Var}{Var}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{v}}) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns the (approximate) marginal probability distribution of a variable. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} \mbox{\hyperlink{classdai_1_1InfAlg_ad89814b146552be0928a772ca110b444}{beliefV}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} i) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns the (approximate) marginal probability distribution of the variable with index {\itshape i}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} \mbox{\hyperlink{classdai_1_1InfAlg_a7db625ef414a06961ac0d808b6102546}{beliefF}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} I) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns the (approximate) marginal probability distribution of the variables on which factor {\itshape I} depends. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} std\+::vector$<$ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} $>$ \mbox{\hyperlink{classdai_1_1InfAlg_a2095732e9defd30c7348703990804763}{find\+Maximum}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Calculates the joint state of all variables that has maximum probability. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdai_1_1HAK_a1716a9981ee5a4173af3ce1af7252b59}\label{classdai_1_1HAK_a1716a9981ee5a4173af3ce1af7252b59} 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{struct}} \mbox{\hyperlink{structdai_1_1HAK_1_1Properties}{dai\+::\+HAK\+::\+Properties}} {\bfseries props}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} $>$ \mbox{\hyperlink{classdai_1_1HAK_acb44f61096ad8773a358b8a25e04e0fe}{\+\_\+\+Qa}}
+\begin{DoxyCompactList}\small\item\em Outer region beliefs. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} $>$ \mbox{\hyperlink{classdai_1_1HAK_a32d1d8d3b3f79ec3f7340f3f68238e6b}{\+\_\+\+Qb}}
+\begin{DoxyCompactList}\small\item\em Inner region beliefs. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} $>$ $>$ \mbox{\hyperlink{classdai_1_1HAK_ab59fc676041a96b5b7d519a32d78db99}{\+\_\+muab}}
+\begin{DoxyCompactList}\small\item\em Messages from outer to inner regions. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} $>$ $>$ \mbox{\hyperlink{classdai_1_1HAK_af29bf7fcc77367e938bf4e0dbc3b7d26}{\+\_\+muba}}
+\begin{DoxyCompactList}\small\item\em Messages from inner to outer regions. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{classdai_1_1HAK_afbf610dab90c5b61888845503f34a1d7}{\+\_\+maxdiff}}
+\begin{DoxyCompactList}\small\item\em Maximum difference encountered so far. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{classdai_1_1HAK_add9e31b741612044bdafda80775f9ffb}{\+\_\+iters}}
+\begin{DoxyCompactList}\small\item\em Number of iterations needed. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional interface specific for HAK}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} \& \mbox{\hyperlink{classdai_1_1HAK_a8fb10dda6aeee160600cc280282ac1fe}{muab}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{alpha}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{\+\_\+beta}})
+\begin{DoxyCompactList}\small\item\em Returns reference to message from outer region {\itshape alpha} to its {\itshape \+\_\+beta} \textquotesingle{}th neighboring inner region. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} \& \mbox{\hyperlink{classdai_1_1HAK_aff90dc6d0b6a32f672792455b5d2ef0b}{muba}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{alpha}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{\+\_\+beta}})
+\begin{DoxyCompactList}\small\item\em Returns reference to message the {\itshape \+\_\+beta} \textquotesingle{}th neighboring inner region of outer region {\itshape alpha} to that outer region. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} \& \mbox{\hyperlink{classdai_1_1HAK_ad4114fef01345984ad91ea64f74893bb}{Qa}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{alpha}}) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns belief of outer region {\itshape alpha}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} \& \mbox{\hyperlink{classdai_1_1HAK_a009a562d7d88a6181abd73114513c35d}{Qb}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{beta}}) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns belief of inner region {\itshape beta}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{classdai_1_1HAK_a1dffc89daea47024771ab6997db8de6b}{do\+GBP}} ()
+\begin{DoxyCompactList}\small\item\em Runs single-\/loop algorithm (algorithm 1 in \mbox{[}\doxylink{bibliography_HAK03}{HAK03}\mbox{]}) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{classdai_1_1HAK_a8d10d882fb6463f7ae8c5772a36836c1}{do\+Double\+Loop}} ()
+\begin{DoxyCompactList}\small\item\em Runs double-\/loop algorithm (as described in section 4.\+2 of \mbox{[}\doxylink{bibliography_HAK03}{HAK03}\mbox{]}), which always convergences. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1HAK_a76107e3cf37169b16b8e474cf5356f9b}{construct}} ()
+\begin{DoxyCompactList}\small\item\em Helper function for constructors. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1HAK_a99a0d6ef936d4c27159e044fa1ef5a93}{find\+Loop\+Clusters}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1FactorGraph}{Factor\+Graph}} \&\mbox{\hyperlink{classdai_1_1DAIAlg_a056caa8b537fccbd764b1c9f4e1ff615}{fg}}, std\+::set$<$ \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} $>$ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{allcl}}, \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{newcl}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1Var}{Var}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{root}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{length}}, \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} vars)
+\begin{DoxyCompactList}\small\item\em Recursive procedure for finding clusters of variables containing loops of length at most {\itshape length}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Approximate inference algorithm\+: implementation of single-\/loop ("{}\+Generalized Belief Propagation"{}) and double-\/loop algorithms by Heskes, Albers and Kappen \mbox{[}\doxylink{bibliography_HAK03}{HAK03}\mbox{]}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classdai_1_1HAK_adeffdd4894e50b585d11cab9e9813d6f}\label{classdai_1_1HAK_adeffdd4894e50b585d11cab9e9813d6f} 
+\index{dai::HAK@{dai::HAK}!HAK@{HAK}}
+\index{HAK@{HAK}!dai::HAK@{dai::HAK}}
+\doxysubsubsection{\texorpdfstring{HAK()}{HAK()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily dai\+::\+HAK\+::\+HAK (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor. 
+
+\Hypertarget{classdai_1_1HAK_a5cd7000971e68e732d5dffa7c665804a}\label{classdai_1_1HAK_a5cd7000971e68e732d5dffa7c665804a} 
+\index{dai::HAK@{dai::HAK}!HAK@{HAK}}
+\index{HAK@{HAK}!dai::HAK@{dai::HAK}}
+\doxysubsubsection{\texorpdfstring{HAK()}{HAK()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily dai\+::\+HAK\+::\+HAK (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1FactorGraph}{Factor\+Graph}} \&}]{fg,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&}]{opts }\end{DoxyParamCaption})}
+
+
+
+Construct from \doxylink{classdai_1_1FactorGraph}{Factor\+Graph} {\itshape fg} and \doxylink{classdai_1_1PropertySet}{Property\+Set} {\itshape opts}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fg} & Factor graph. \\
+\hline
+{\em opts} & Parameters \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxylink{structdai_1_1HAK_1_1Properties}{Properties} 
+\end{DoxySeeAlso}
+\Hypertarget{classdai_1_1HAK_af0608983940f78bd6fefe0933404861e}\label{classdai_1_1HAK_af0608983940f78bd6fefe0933404861e} 
+\index{dai::HAK@{dai::HAK}!HAK@{HAK}}
+\index{HAK@{HAK}!dai::HAK@{dai::HAK}}
+\doxysubsubsection{\texorpdfstring{HAK()}{HAK()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily dai\+::\+HAK\+::\+HAK (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1RegionGraph}{Region\+Graph}} \&}]{rg,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&}]{opts }\end{DoxyParamCaption})}
+
+
+
+Construct from \doxylink{classdai_1_1RegionGraph}{Region\+Graph} {\itshape rg} and \doxylink{classdai_1_1PropertySet}{Property\+Set} {\itshape opts}. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classdai_1_1HAK_a69ea0e880356f18b11ddb320dd2562ce}\label{classdai_1_1HAK_a69ea0e880356f18b11ddb320dd2562ce} 
+\index{dai::HAK@{dai::HAK}!clone@{clone}}
+\index{clone@{clone}!dai::HAK@{dai::HAK}}
+\doxysubsubsection{\texorpdfstring{clone()}{clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{classdai_1_1HAK}{HAK}} \texorpdfstring{$\ast$}{*} dai\+::\+HAK\+::clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Returns a pointer to a new, cloned copy of {\ttfamily \texorpdfstring{$\ast$}{*}this} (i.\+e., virtual copy constructor) 
+
+
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_a4e05d62b78fc4f9a93cd417a5c807eab}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1HAK_a9bd07b3560ecc55506a72370384f23cd}\label{classdai_1_1HAK_a9bd07b3560ecc55506a72370384f23cd} 
+\index{dai::HAK@{dai::HAK}!construct@{construct}}
+\index{construct@{construct}!dai::HAK@{dai::HAK}}
+\doxysubsubsection{\texorpdfstring{construct()}{construct()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{classdai_1_1HAK}{HAK}} \texorpdfstring{$\ast$}{*} dai\+::\+HAK\+::construct (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1FactorGraph}{Factor\+Graph}} \&}]{fg,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&}]{opts }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Returns a pointer to a newly constructed inference algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fg} & Factor graph on which to perform the inference algorithm; \\
+\hline
+{\em opts} & Parameters passed to constructor of inference algorithm; \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_ac2865bb3577b103a707903010a53b6ce}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1HAK_ae4f2ca203ed76fe051709d970c8c3c3d}\label{classdai_1_1HAK_ae4f2ca203ed76fe051709d970c8c3c3d} 
+\index{dai::HAK@{dai::HAK}!name@{name}}
+\index{name@{name}!dai::HAK@{dai::HAK}}
+\doxysubsubsection{\texorpdfstring{name()}{name()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} std\+::string dai\+::\+HAK\+::name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Returns the name of the algorithm. 
+
+
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_a25108f733ca6bc54f445a4fffdc2a392}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1HAK_a78c5ebe47f8538455f85984ac326eb67}\label{classdai_1_1HAK_a78c5ebe47f8538455f85984ac326eb67} 
+\index{dai::HAK@{dai::HAK}!belief@{belief}}
+\index{belief@{belief}!dai::HAK@{dai::HAK}}
+\doxysubsubsection{\texorpdfstring{belief()}{belief()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} dai\+::\+HAK\+::belief (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} \&}]{vs }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Returns the (approximate) marginal probability distribution of a set of variables. 
+
+\begin{DoxyNote}{Note}
+Before this method is called, \doxylink{classdai_1_1HAK_a6cb5e6da8fa2d51cade4834308d8e69a}{run()} should have been called. 
+\end{DoxyNote}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em NOT\+\_\+\+IMPLEMENTED} & if not implemented/supported. \\
+\hline
+{\em BELIEF\+\_\+\+NOT\+\_\+\+AVAILABLE} & if the requested belief cannot be calculated with this algorithm. \\
+\hline
+\end{DoxyExceptions}
+
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_a4655db9d766470f1a555cba7d3ec7190}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1HAK_af9245505f79627151bc94ea3857ee86d}\label{classdai_1_1HAK_af9245505f79627151bc94ea3857ee86d} 
+\index{dai::HAK@{dai::HAK}!beliefs@{beliefs}}
+\index{beliefs@{beliefs}!dai::HAK@{dai::HAK}}
+\doxysubsubsection{\texorpdfstring{beliefs()}{beliefs()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} $>$ dai\+::\+HAK\+::beliefs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Returns all beliefs (approximate marginal probability distributions) calculated by the algorithm. 
+
+\begin{DoxyNote}{Note}
+Before this method is called, \doxylink{classdai_1_1HAK_a6cb5e6da8fa2d51cade4834308d8e69a}{run()} should have been called. 
+\end{DoxyNote}
+
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_a283601d71d62a6f60183748cbee88006}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1HAK_a9bdd0e17edad6d00e8c837ad144eab0f}\label{classdai_1_1HAK_a9bdd0e17edad6d00e8c837ad144eab0f} 
+\index{dai::HAK@{dai::HAK}!logZ@{logZ}}
+\index{logZ@{logZ}!dai::HAK@{dai::HAK}}
+\doxysubsubsection{\texorpdfstring{logZ()}{logZ()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} dai\+::\+HAK\+::logZ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Returns the logarithm of the (approximated) partition sum (normalizing constant of the factor graph). 
+
+\begin{DoxyNote}{Note}
+Before this method is called, \doxylink{classdai_1_1HAK_a6cb5e6da8fa2d51cade4834308d8e69a}{run()} should have been called. 
+\end{DoxyNote}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em NOT\+\_\+\+IMPLEMENTED} & if not implemented/supported \\
+\hline
+\end{DoxyExceptions}
+
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_a40a2353d63c358ebca834d40b0a4fc70}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1HAK_ab30055f32f2c9a84d76668ff74606697}\label{classdai_1_1HAK_ab30055f32f2c9a84d76668ff74606697} 
+\index{dai::HAK@{dai::HAK}!init@{init}}
+\index{init@{init}!dai::HAK@{dai::HAK}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+HAK\+::init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Initializes all data structures of the approximate inference algorithm. 
+
+\begin{DoxyNote}{Note}
+This method should be called at least once before \doxylink{classdai_1_1HAK_a6cb5e6da8fa2d51cade4834308d8e69a}{run()} is called. 
+\end{DoxyNote}
+
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_a99dd53d1aaccf09a4b977a49a983cc85}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1HAK_a1a46412aa54525a5f9ea332ad1048f2a}\label{classdai_1_1HAK_a1a46412aa54525a5f9ea332ad1048f2a} 
+\index{dai::HAK@{dai::HAK}!init@{init}}
+\index{init@{init}!dai::HAK@{dai::HAK}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+HAK\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} \&}]{vs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Initializes all data structures corresponding to some set of variables. 
+
+This method can be used to do a partial initialization after a part of the factor graph has changed. Instead of initializing all data structures, it only initializes those involving the variables in {\itshape vs}. 
+\begin{DoxyExceptions}{Exceptions}
+{\em NOT\+\_\+\+IMPLEMENTED} & if not implemented/supported \\
+\hline
+\end{DoxyExceptions}
+
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_a5b1e6d8af207bcc47fd954fdef382a77}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1HAK_a6cb5e6da8fa2d51cade4834308d8e69a}\label{classdai_1_1HAK_a6cb5e6da8fa2d51cade4834308d8e69a} 
+\index{dai::HAK@{dai::HAK}!run@{run}}
+\index{run@{run}!dai::HAK@{dai::HAK}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} dai\+::\+HAK\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Runs the approximate inference algorithm. 
+
+\begin{DoxyNote}{Note}
+Before \doxylink{classdai_1_1HAK_a6cb5e6da8fa2d51cade4834308d8e69a}{run()} is called the first time, \doxylink{classdai_1_1HAK_ab30055f32f2c9a84d76668ff74606697}{init()} should have been called. 
+\end{DoxyNote}
+
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_a4ac173c4d4109fd1e2229dd83532d32f}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1HAK_a7bbee2a567842bc47cdb310d82b13393}\label{classdai_1_1HAK_a7bbee2a567842bc47cdb310d82b13393} 
+\index{dai::HAK@{dai::HAK}!maxDiff@{maxDiff}}
+\index{maxDiff@{maxDiff}!dai::HAK@{dai::HAK}}
+\doxysubsubsection{\texorpdfstring{maxDiff()}{maxDiff()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} dai\+::\+HAK\+::max\+Diff (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Returns maximum difference between single variable beliefs in the last iteration. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em NOT\+\_\+\+IMPLEMENTED} & if not implemented/supported \\
+\hline
+\end{DoxyExceptions}
+
+
+Reimplemented from \mbox{\hyperlink{classdai_1_1InfAlg_a915a659034eb4c85abde912d684f8dee}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1HAK_a935fa2a5800edaca923c347c257236e8}\label{classdai_1_1HAK_a935fa2a5800edaca923c347c257236e8} 
+\index{dai::HAK@{dai::HAK}!Iterations@{Iterations}}
+\index{Iterations@{Iterations}!dai::HAK@{dai::HAK}}
+\doxysubsubsection{\texorpdfstring{Iterations()}{Iterations()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} dai\+::\+HAK\+::\+Iterations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Returns number of iterations done (one iteration passes over the complete factorgraph). 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em NOT\+\_\+\+IMPLEMENTED} & if not implemented/supported \\
+\hline
+\end{DoxyExceptions}
+
+
+Reimplemented from \mbox{\hyperlink{classdai_1_1InfAlg_a89986bbc1a42554905c6f417f2227ac5}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1HAK_a72a81841c700bb308ca4e28ec26e756d}\label{classdai_1_1HAK_a72a81841c700bb308ca4e28ec26e756d} 
+\index{dai::HAK@{dai::HAK}!setMaxIter@{setMaxIter}}
+\index{setMaxIter@{setMaxIter}!dai::HAK@{dai::HAK}}
+\doxysubsubsection{\texorpdfstring{setMaxIter()}{setMaxIter()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+HAK\+::set\+Max\+Iter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Sets maximum number of iterations (one iteration passes over the complete factorgraph). 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em NOT\+\_\+\+IMPLEMENTED} & if not implemented/supported \\
+\hline
+\end{DoxyExceptions}
+
+
+Reimplemented from \mbox{\hyperlink{classdai_1_1InfAlg_ac48656e5d42a7d288e9ca6d70e264858}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1HAK_a49d00fd7e213b351704b554c5c0039ce}\label{classdai_1_1HAK_a49d00fd7e213b351704b554c5c0039ce} 
+\index{dai::HAK@{dai::HAK}!setProperties@{setProperties}}
+\index{setProperties@{setProperties}!dai::HAK@{dai::HAK}}
+\doxysubsubsection{\texorpdfstring{setProperties()}{setProperties()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+HAK\+::set\+Properties (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&}]{opts }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Set parameters of this inference algorithm. 
+
+The parameters are set according to the \doxylink{classdai_1_1PropertySet}{Property\+Set} {\itshape opts}. The values can be stored either as std\+::string or as the type of the corresponding MF\+::props member. 
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_ac422893fd7b8e37f914860aeba9602dc}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1HAK_a0ecea14eb91c45ac6cc872ad3f50feb6}\label{classdai_1_1HAK_a0ecea14eb91c45ac6cc872ad3f50feb6} 
+\index{dai::HAK@{dai::HAK}!getProperties@{getProperties}}
+\index{getProperties@{getProperties}!dai::HAK@{dai::HAK}}
+\doxysubsubsection{\texorpdfstring{getProperties()}{getProperties()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} dai\+::\+HAK\+::get\+Properties (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Returns parameters of this inference algorithm converted into a \doxylink{classdai_1_1PropertySet}{Property\+Set}. 
+
+
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_aba3b821f6ed47b91ef4080b03c14220e}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1HAK_a17f467207044d4e5a624341dfb33d964}\label{classdai_1_1HAK_a17f467207044d4e5a624341dfb33d964} 
+\index{dai::HAK@{dai::HAK}!printProperties@{printProperties}}
+\index{printProperties@{printProperties}!dai::HAK@{dai::HAK}}
+\doxysubsubsection{\texorpdfstring{printProperties()}{printProperties()}}
+{\footnotesize\ttfamily string dai\+::\+HAK\+::print\+Properties (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Returns parameters of this inference algorithm formatted as a string in the format "{}\mbox{[}key1=val1,key2=val2,...,keyn=valn\mbox{]}"{}. 
+
+
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_a9cc7a50cbbe8825a334b16e41c92f019}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1HAK_a8fb10dda6aeee160600cc280282ac1fe}\label{classdai_1_1HAK_a8fb10dda6aeee160600cc280282ac1fe} 
+\index{dai::HAK@{dai::HAK}!muab@{muab}}
+\index{muab@{muab}!dai::HAK@{dai::HAK}}
+\doxysubsubsection{\texorpdfstring{muab()}{muab()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} \& dai\+::\+HAK\+::muab (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{alpha,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{\+\_\+beta }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns reference to message from outer region {\itshape alpha} to its {\itshape \+\_\+beta} \textquotesingle{}th neighboring inner region. 
+
+\Hypertarget{classdai_1_1HAK_aff90dc6d0b6a32f672792455b5d2ef0b}\label{classdai_1_1HAK_aff90dc6d0b6a32f672792455b5d2ef0b} 
+\index{dai::HAK@{dai::HAK}!muba@{muba}}
+\index{muba@{muba}!dai::HAK@{dai::HAK}}
+\doxysubsubsection{\texorpdfstring{muba()}{muba()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} \& dai\+::\+HAK\+::muba (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{alpha,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{\+\_\+beta }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns reference to message the {\itshape \+\_\+beta} \textquotesingle{}th neighboring inner region of outer region {\itshape alpha} to that outer region. 
+
+\Hypertarget{classdai_1_1HAK_ad4114fef01345984ad91ea64f74893bb}\label{classdai_1_1HAK_ad4114fef01345984ad91ea64f74893bb} 
+\index{dai::HAK@{dai::HAK}!Qa@{Qa}}
+\index{Qa@{Qa}!dai::HAK@{dai::HAK}}
+\doxysubsubsection{\texorpdfstring{Qa()}{Qa()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} \& dai\+::\+HAK\+::\+Qa (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{alpha }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns belief of outer region {\itshape alpha}. 
+
+\Hypertarget{classdai_1_1HAK_a009a562d7d88a6181abd73114513c35d}\label{classdai_1_1HAK_a009a562d7d88a6181abd73114513c35d} 
+\index{dai::HAK@{dai::HAK}!Qb@{Qb}}
+\index{Qb@{Qb}!dai::HAK@{dai::HAK}}
+\doxysubsubsection{\texorpdfstring{Qb()}{Qb()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} \& dai\+::\+HAK\+::\+Qb (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{beta }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns belief of inner region {\itshape beta}. 
+
+\Hypertarget{classdai_1_1HAK_a1dffc89daea47024771ab6997db8de6b}\label{classdai_1_1HAK_a1dffc89daea47024771ab6997db8de6b} 
+\index{dai::HAK@{dai::HAK}!doGBP@{doGBP}}
+\index{doGBP@{doGBP}!dai::HAK@{dai::HAK}}
+\doxysubsubsection{\texorpdfstring{doGBP()}{doGBP()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} dai\+::\+HAK\+::do\+GBP (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Runs single-\/loop algorithm (algorithm 1 in \mbox{[}\doxylink{bibliography_HAK03}{HAK03}\mbox{]}) 
+
+\Hypertarget{classdai_1_1HAK_a8d10d882fb6463f7ae8c5772a36836c1}\label{classdai_1_1HAK_a8d10d882fb6463f7ae8c5772a36836c1} 
+\index{dai::HAK@{dai::HAK}!doDoubleLoop@{doDoubleLoop}}
+\index{doDoubleLoop@{doDoubleLoop}!dai::HAK@{dai::HAK}}
+\doxysubsubsection{\texorpdfstring{doDoubleLoop()}{doDoubleLoop()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} dai\+::\+HAK\+::do\+Double\+Loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Runs double-\/loop algorithm (as described in section 4.\+2 of \mbox{[}\doxylink{bibliography_HAK03}{HAK03}\mbox{]}), which always convergences. 
+
+\Hypertarget{classdai_1_1HAK_a76107e3cf37169b16b8e474cf5356f9b}\label{classdai_1_1HAK_a76107e3cf37169b16b8e474cf5356f9b} 
+\index{dai::HAK@{dai::HAK}!construct@{construct}}
+\index{construct@{construct}!dai::HAK@{dai::HAK}}
+\doxysubsubsection{\texorpdfstring{construct()}{construct()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+HAK\+::construct (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Helper function for constructors. 
+
+\Hypertarget{classdai_1_1HAK_a99a0d6ef936d4c27159e044fa1ef5a93}\label{classdai_1_1HAK_a99a0d6ef936d4c27159e044fa1ef5a93} 
+\index{dai::HAK@{dai::HAK}!findLoopClusters@{findLoopClusters}}
+\index{findLoopClusters@{findLoopClusters}!dai::HAK@{dai::HAK}}
+\doxysubsubsection{\texorpdfstring{findLoopClusters()}{findLoopClusters()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+HAK\+::find\+Loop\+Clusters (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1FactorGraph}{Factor\+Graph}} \&}]{fg,  }\item[{std\+::set$<$ \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} $>$ \&}]{allcl,  }\item[{\mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}}}]{newcl,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1Var}{Var}} \&}]{root,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{length,  }\item[{\mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}}}]{vars }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Recursive procedure for finding clusters of variables containing loops of length at most {\itshape length}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fg} & the factor graph \\
+\hline
+{\em allcl} & the clusters found so far \\
+\hline
+{\em newcl} & partial candidate cluster \\
+\hline
+{\em root} & start (and end) point of the loop \\
+\hline
+{\em length} & number of variables that may be added to {\itshape newcl} \\
+\hline
+{\em vars} & neighboring variables of {\itshape newcl} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+allcl all clusters of variables with loops of length at most {\itshape length} passing through root 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classdai_1_1HAK_acb44f61096ad8773a358b8a25e04e0fe}\label{classdai_1_1HAK_acb44f61096ad8773a358b8a25e04e0fe} 
+\index{dai::HAK@{dai::HAK}!\_Qa@{\_Qa}}
+\index{\_Qa@{\_Qa}!dai::HAK@{dai::HAK}}
+\doxysubsubsection{\texorpdfstring{\_Qa}{\_Qa}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}}$>$ dai\+::\+HAK\+::\+\_\+\+Qa\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Outer region beliefs. 
+
+\Hypertarget{classdai_1_1HAK_a32d1d8d3b3f79ec3f7340f3f68238e6b}\label{classdai_1_1HAK_a32d1d8d3b3f79ec3f7340f3f68238e6b} 
+\index{dai::HAK@{dai::HAK}!\_Qb@{\_Qb}}
+\index{\_Qb@{\_Qb}!dai::HAK@{dai::HAK}}
+\doxysubsubsection{\texorpdfstring{\_Qb}{\_Qb}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}}$>$ dai\+::\+HAK\+::\+\_\+\+Qb\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Inner region beliefs. 
+
+\Hypertarget{classdai_1_1HAK_ab59fc676041a96b5b7d519a32d78db99}\label{classdai_1_1HAK_ab59fc676041a96b5b7d519a32d78db99} 
+\index{dai::HAK@{dai::HAK}!\_muab@{\_muab}}
+\index{\_muab@{\_muab}!dai::HAK@{dai::HAK}}
+\doxysubsubsection{\texorpdfstring{\_muab}{\_muab}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::vector$<$\mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}}$>$ $>$ dai\+::\+HAK\+::\+\_\+muab\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Messages from outer to inner regions. 
+
+\Hypertarget{classdai_1_1HAK_af29bf7fcc77367e938bf4e0dbc3b7d26}\label{classdai_1_1HAK_af29bf7fcc77367e938bf4e0dbc3b7d26} 
+\index{dai::HAK@{dai::HAK}!\_muba@{\_muba}}
+\index{\_muba@{\_muba}!dai::HAK@{dai::HAK}}
+\doxysubsubsection{\texorpdfstring{\_muba}{\_muba}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::vector$<$\mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}}$>$ $>$ dai\+::\+HAK\+::\+\_\+muba\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Messages from inner to outer regions. 
+
+\Hypertarget{classdai_1_1HAK_afbf610dab90c5b61888845503f34a1d7}\label{classdai_1_1HAK_afbf610dab90c5b61888845503f34a1d7} 
+\index{dai::HAK@{dai::HAK}!\_maxdiff@{\_maxdiff}}
+\index{\_maxdiff@{\_maxdiff}!dai::HAK@{dai::HAK}}
+\doxysubsubsection{\texorpdfstring{\_maxdiff}{\_maxdiff}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} dai\+::\+HAK\+::\+\_\+maxdiff\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Maximum difference encountered so far. 
+
+\Hypertarget{classdai_1_1HAK_add9e31b741612044bdafda80775f9ffb}\label{classdai_1_1HAK_add9e31b741612044bdafda80775f9ffb} 
+\index{dai::HAK@{dai::HAK}!\_iters@{\_iters}}
+\index{\_iters@{\_iters}!dai::HAK@{dai::HAK}}
+\doxysubsubsection{\texorpdfstring{\_iters}{\_iters}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} dai\+::\+HAK\+::\+\_\+iters\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Number of iterations needed. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/dai/\mbox{\hyperlink{hak_8h}{hak.\+h}}\item 
+src/hak.\+cpp\end{DoxyCompactItemize}

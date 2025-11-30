@@ -1,0 +1,86 @@
+\chapter{Todo List}
+\hypertarget{todo}{}\label{todo}\index{Todo List@{Todo List}}
+
+\begin{DoxyRefList}
+\item[File \doxylink{alldai_8h}{alldai.h} ]\label{todo__todo000002}%
+\Hypertarget{todo__todo000002}%
+Replace Var\+Sets by \doxylink{classdai_1_1SmallSet}{Small\+Set$<$size\+\_\+t$>$} where appropriate, in order to minimize the use of Factor\+Graph\+::find\+Var().
+
+\label{todo__todo000003}%
+\Hypertarget{todo__todo000003}%
+Improve SWIG interfaces and merge their build process with the main build process  
+\item[File \doxylink{bbp_8h}{bbp.h} ]\label{todo__todo000004}%
+\Hypertarget{todo__todo000004}%
+Clean up code  
+\item[File \doxylink{bp_8h}{bp.h} ]\label{todo__todo000005}%
+\Hypertarget{todo__todo000005}%
+Consider using a priority\+\_\+queue for maximum residual schedule  
+\item[File \doxylink{clustergraph_8h}{clustergraph.h} ]\label{todo__todo000007}%
+\Hypertarget{todo__todo000007}%
+The "{}\+Min\+Fill"{} and "{}\+Weighted\+Min\+Fill"{} variable elimination heuristics seem designed for Markov graphs; add similar heuristics which are designed for factor graphs.  
+\item[Member \doxylink{classdai_1_1BP_a6a169aace3fd0538e79cef8392cfe2a4}{dai\+::BP\+::set\+Properties} (const \doxylink{classdai_1_1PropertySet}{Property\+Set} \&opts)]\label{todo__todo000001}%
+\Hypertarget{todo__todo000001}%
+Make DAI\+\_\+\+BP\+\_\+\+FAST a compile-\/time choice, as it is a memory/speed tradeoff  
+\item[Member \doxylink{classdai_1_1CBP_aac74216a45f7a86c97b8005b11686307}{dai\+::CBP\+::get\+Inf\+Alg} ()]\label{todo__todo000006}%
+\Hypertarget{todo__todo000006}%
+At present, \doxylink{classdai_1_1CBP_aac74216a45f7a86c97b8005b11686307}{CBP\+::get\+Inf\+Alg()} only returns a \doxylink{classdai_1_1BP}{BP} instance; it should be possible to select other inference algorithms via a property  
+\item[Class \doxylink{classdai_1_1ClusterGraph}{dai\+::Cluster\+Graph} ]\label{todo__todo000008}%
+\Hypertarget{todo__todo000008}%
+Remove the \+\_\+vars and \+\_\+clusters variables and use only the graph and a contextual factor graph.  
+\item[Class \doxylink{classdai_1_1CobwebGraph}{dai\+::Cobweb\+Graph} ]\label{todo__todo000009}%
+\Hypertarget{todo__todo000009}%
+Implement unit test for Cobwebgraph  
+\item[Member \doxylink{structdai_1_1CobwebGraph_1_1Connection_a9072dfec3d0281668d29a5b3efdd8d6f}{dai\+::Cobweb\+Graph\+::Connection\+::newmsg} ]\label{todo__todo000010}%
+\Hypertarget{todo__todo000010}%
+Remove \doxylink{structdai_1_1CobwebGraph_1_1Connection_a9072dfec3d0281668d29a5b3efdd8d6f}{Cobweb\+Graph\+::\+Connection\+::newmsg}  
+\item[Class \doxylink{classdai_1_1FactorGraph}{dai\+::Factor\+Graph} ]\label{todo__todo000014}%
+\Hypertarget{todo__todo000014}%
+Write a method that applies evidence (should we represent evidence as a map$<$\+Var,size\+\_\+t$>$ or as a map$<$size\+\_\+t,size\+\_\+t$>$?)  
+\item[Class \doxylink{classdai_1_1FBP}{dai\+::FBP} ]\label{todo__todo000015}%
+\Hypertarget{todo__todo000015}%
+Add nice way to set weights  
+\item[Class \doxylink{classdai_1_1TFactor}{dai\+::TFactor\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>}} ]\label{todo__todo000012}%
+\Hypertarget{todo__todo000012}%
+Define a better fileformat for .fg files (maybe using XML)? 
+
+
+
+Add support for sparse factors. 
+
+\label{todo__todo000013}%
+\Hypertarget{todo__todo000013}%
+Define a better fileformat for .fg files (maybe using XML)? 
+
+
+
+Add support for sparse factors.  
+\item[Class \doxylink{classdai_1_1TRWBP}{dai\+::TRWBP} ]\label{todo__todo000019}%
+\Hypertarget{todo__todo000019}%
+Merge code of \doxylink{classdai_1_1FBP}{FBP} and \doxylink{classdai_1_1TRWBP}{TRWBP}  
+\item[Member \doxylink{classdai_1_1TRWBP_aa53430394d674704ec20cd3272c4b528}{dai\+::TRWBP\+::nrtrees} ]\label{todo__todo000020}%
+\Hypertarget{todo__todo000020}%
+See if there is a way to wrap \doxylink{classdai_1_1TRWBP_aa53430394d674704ec20cd3272c4b528}{TRWBP\+::nrtrees} in a props struct together with the other properties currently in TRWBP\+::props (without copying al lot of \doxylink{classdai_1_1BP}{BP} code literally)  
+\item[File \doxylink{emalg_8h}{emalg.h} ]\label{todo__todo000011}%
+\Hypertarget{todo__todo000011}%
+Implement parameter estimation for undirected models / factor graphs.  
+\item[File \doxylink{glc_8h}{glc.h} ]\label{todo__todo000016}%
+\Hypertarget{todo__todo000016}%
+Fix the init of GLC  
+\item[File \doxylink{hak_8h}{hak.h} ]\label{todo__todo000017}%
+\Hypertarget{todo__todo000017}%
+Use \doxylink{classdai_1_1ClusterGraph}{Cluster\+Graph} instead of a vector$<$\+Var\+Set$>$ for speed. 
+
+
+
+Optimize this code for large factor graphs. 
+
+
+
+Implement GBP parent-\/child algorithm.  
+\item[File \doxylink{treeep_8h}{treeep.h} ]\label{todo__todo000018}%
+\Hypertarget{todo__todo000018}%
+Clean up the \doxylink{classdai_1_1TreeEP}{Tree\+EP} code (exploiting that a large part of the code is just a special case of \doxylink{classdai_1_1JTree}{JTree}).  
+\item[File \doxylink{weightedgraph_8h}{weightedgraph.h} ]\label{todo__todo000021}%
+\Hypertarget{todo__todo000021}%
+Improve general support for graphs and trees (in particular, a good tree implementation is needed). 
+\end{DoxyRefList}

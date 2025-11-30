@@ -1,0 +1,297 @@
+\doxysection{dai\+::CBP\+::Properties Struct Reference}
+\hypertarget{structdai_1_1CBP_1_1Properties}{}\label{structdai_1_1CBP_1_1Properties}\index{dai::CBP::Properties@{dai::CBP::Properties}}
+
+
+Parameters for \doxylink{classdai_1_1CBP}{CBP}.  
+
+
+
+
+{\ttfamily \#include $<$dai/cbp.\+h$>$}
+
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typedef}} BP\+::\+Properties\+::\+Update\+Type \mbox{\hyperlink{structdai_1_1CBP_1_1Properties_a1ff365328b647a3a624063110da06065}{Update\+Type}}
+\begin{DoxyCompactList}\small\item\em Enumeration of possible update schedules. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structdai_1_1CBP_1_1Properties_ac57af551bcfd73fa64d25df2dae3c2d7}{DAI\+\_\+\+ENUM}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Recurse\+Type}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{REC\+\_\+\+FIXED}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{REC\+\_\+\+LOGZ}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{REC\+\_\+\+BDIFF}})
+\begin{DoxyCompactList}\small\item\em Enumeration of possible methods for deciding when to stop recursing. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structdai_1_1CBP_1_1Properties_a07b17f2afc1e74560ef81be3a81e5489}{DAI\+\_\+\+ENUM}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Choose\+Method\+Type}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{CHOOSE\+\_\+\+RANDOM}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{CHOOSE\+\_\+\+MAXENT}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{CHOOSE\+\_\+\+BBP}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{CHOOSE\+\_\+\+BP\+\_\+\+L1}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{CHOOSE\+\_\+\+BP\+\_\+\+CFN}})
+\begin{DoxyCompactList}\small\item\em Enumeration of possible heuristics for choosing clamping variable. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structdai_1_1CBP_1_1Properties_afd309fc80fbac4e7af40c9c0e0930c8d}{DAI\+\_\+\+ENUM}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Clamp\+Type}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{CLAMP\+\_\+\+VAR}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{CLAMP\+\_\+\+FACTOR}})
+\begin{DoxyCompactList}\small\item\em Enumeration of possible clampings\+: variables or factors. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{structdai_1_1CBP_1_1Properties_a9500b7b06612043d3d936e53d22e76ac}{set}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{opts}})
+\begin{DoxyCompactList}\small\item\em Set members from \doxylink{classdai_1_1PropertySet}{Property\+Set}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \mbox{\hyperlink{structdai_1_1CBP_1_1Properties_a9d3fc32405b638636f896293c522bc6f}{get}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Get members into \doxylink{classdai_1_1PropertySet}{Property\+Set}. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{structdai_1_1CBP_1_1Properties_a6ec43218ffc9c546b1ac6af22e9cc34b}{to\+String}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Convert to a string which can be parsed as a \doxylink{classdai_1_1PropertySet}{Property\+Set}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{structdai_1_1CBP_1_1Properties_a50f828f3446abcc978f4a798179079f4}{verbose}}
+\begin{DoxyCompactList}\small\item\em Verbosity (amount of output sent to stderr) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{structdai_1_1CBP_1_1Properties_afdee3e2454d1f8039b683542f0aeeca2}{tol}}
+\begin{DoxyCompactList}\small\item\em Tolerance for \doxylink{classdai_1_1BP}{BP} convergence test. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structdai_1_1CBP_1_1Properties_a1ff365328b647a3a624063110da06065}{Update\+Type}} \mbox{\hyperlink{structdai_1_1CBP_1_1Properties_a31784e034ff61dbe9655152d73eef936}{updates}}
+\begin{DoxyCompactList}\small\item\em Update style for \doxylink{classdai_1_1BP}{BP}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{structdai_1_1CBP_1_1Properties_adc9321280212b9686e6f51eb38ba1e40}{maxiter}}
+\begin{DoxyCompactList}\small\item\em Maximum number of iterations for \doxylink{classdai_1_1BP}{BP}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{structdai_1_1CBP_1_1Properties_ab5f537d9e2347805a7a41eb337d45801}{rec\+\_\+tol}}
+\begin{DoxyCompactList}\small\item\em Tolerance used for controlling recursion depth ({\itshape recurse} is REC\+\_\+\+LOGZ or REC\+\_\+\+BDIFF) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{structdai_1_1CBP_1_1Properties_a10d8273f9f9d84167d88d3359328afac}{max\+\_\+levels}}
+\begin{DoxyCompactList}\small\item\em Maximum number of levels of recursion ({\itshape recurse} is REC\+\_\+\+FIXED) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{structdai_1_1CBP_1_1Properties_acdc0c910192a6f385a550eda526c070c}{min\+\_\+max\+\_\+adj}}
+\begin{DoxyCompactList}\small\item\em If choose==CHOOSE\+\_\+\+BBP and maximum adjoint is less than this value, don\textquotesingle{}t recurse. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Choose\+Method\+Type}} \mbox{\hyperlink{structdai_1_1CBP_1_1Properties_a6cecedbb953499f1755b42f3c92d8300}{choose}}
+\begin{DoxyCompactList}\small\item\em Heuristic for choosing clamping variable. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Recurse\+Type}} \mbox{\hyperlink{structdai_1_1CBP_1_1Properties_abab40b5d2b50ff5dd486b0dcb7c6cc46}{recursion}}
+\begin{DoxyCompactList}\small\item\em Method for deciding when to stop recursing. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Clamp\+Type}} \mbox{\hyperlink{structdai_1_1CBP_1_1Properties_a72a1ec20db48774517006006e6367963}{clamp}}
+\begin{DoxyCompactList}\small\item\em Whether to clamp variables or factors. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \mbox{\hyperlink{structdai_1_1CBP_1_1Properties_af60c98923a3fb20d8f65cead49ce6bb5}{bbp\+\_\+props}}
+\begin{DoxyCompactList}\small\item\em \doxylink{structdai_1_1CBP_1_1Properties}{Properties} to pass to \doxylink{classdai_1_1BBP}{BBP}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1BBPCostFunction}{BBPCost\+Function}} \mbox{\hyperlink{structdai_1_1CBP_1_1Properties_aa94f22b6ef2d18b3d4bc396fc6992601}{bbp\+\_\+cfn}}
+\begin{DoxyCompactList}\small\item\em Cost function to use for \doxylink{classdai_1_1BBP}{BBP}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{structdai_1_1CBP_1_1Properties_a48f3dd8b37d22497a24d7d69d7afc3de}{rand\+\_\+seed}}
+\begin{DoxyCompactList}\small\item\em Random seed. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{structdai_1_1CBP_1_1Properties_a83867802da20b6019a06efb537b292e0}{clamp\+\_\+outfile}}
+\begin{DoxyCompactList}\small\item\em If non-\/empty, write clamping choices to this file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Parameters for \doxylink{classdai_1_1CBP}{CBP}. 
+
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{structdai_1_1CBP_1_1Properties_a1ff365328b647a3a624063110da06065}\label{structdai_1_1CBP_1_1Properties_a1ff365328b647a3a624063110da06065} 
+\index{dai::CBP::Properties@{dai::CBP::Properties}!UpdateType@{UpdateType}}
+\index{UpdateType@{UpdateType}!dai::CBP::Properties@{dai::CBP::Properties}}
+\doxysubsubsection{\texorpdfstring{UpdateType}{UpdateType}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typedef}} BP\+::\+Properties\+::\+Update\+Type \mbox{\hyperlink{structdai_1_1CBP_1_1Properties_a1ff365328b647a3a624063110da06065}{dai\+::\+CBP\+::\+Properties\+::\+Update\+Type}}}
+
+
+
+Enumeration of possible update schedules. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structdai_1_1CBP_1_1Properties_ac57af551bcfd73fa64d25df2dae3c2d7}\label{structdai_1_1CBP_1_1Properties_ac57af551bcfd73fa64d25df2dae3c2d7} 
+\index{dai::CBP::Properties@{dai::CBP::Properties}!DAI\_ENUM@{DAI\_ENUM}}
+\index{DAI\_ENUM@{DAI\_ENUM}!dai::CBP::Properties@{dai::CBP::Properties}}
+\doxysubsubsection{\texorpdfstring{DAI\_ENUM()}{DAI\_ENUM()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily dai\+::\+CBP\+::\+Properties\+::\+DAI\+\_\+\+ENUM (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Recurse\+Type}}}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{REC\+\_\+\+FIXED}}}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{REC\+\_\+\+LOGZ}}}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{REC\+\_\+\+BDIFF}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Enumeration of possible methods for deciding when to stop recursing. 
+
+\Hypertarget{structdai_1_1CBP_1_1Properties_a07b17f2afc1e74560ef81be3a81e5489}\label{structdai_1_1CBP_1_1Properties_a07b17f2afc1e74560ef81be3a81e5489} 
+\index{dai::CBP::Properties@{dai::CBP::Properties}!DAI\_ENUM@{DAI\_ENUM}}
+\index{DAI\_ENUM@{DAI\_ENUM}!dai::CBP::Properties@{dai::CBP::Properties}}
+\doxysubsubsection{\texorpdfstring{DAI\_ENUM()}{DAI\_ENUM()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily dai\+::\+CBP\+::\+Properties\+::\+DAI\+\_\+\+ENUM (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Choose\+Method\+Type}}}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{CHOOSE\+\_\+\+RANDOM}}}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{CHOOSE\+\_\+\+MAXENT}}}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{CHOOSE\+\_\+\+BBP}}}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{CHOOSE\+\_\+\+BP\+\_\+\+L1}}}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{CHOOSE\+\_\+\+BP\+\_\+\+CFN}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Enumeration of possible heuristics for choosing clamping variable. 
+
+\Hypertarget{structdai_1_1CBP_1_1Properties_afd309fc80fbac4e7af40c9c0e0930c8d}\label{structdai_1_1CBP_1_1Properties_afd309fc80fbac4e7af40c9c0e0930c8d} 
+\index{dai::CBP::Properties@{dai::CBP::Properties}!DAI\_ENUM@{DAI\_ENUM}}
+\index{DAI\_ENUM@{DAI\_ENUM}!dai::CBP::Properties@{dai::CBP::Properties}}
+\doxysubsubsection{\texorpdfstring{DAI\_ENUM()}{DAI\_ENUM()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily dai\+::\+CBP\+::\+Properties\+::\+DAI\+\_\+\+ENUM (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Clamp\+Type}}}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{CLAMP\+\_\+\+VAR}}}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{CLAMP\+\_\+\+FACTOR}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Enumeration of possible clampings\+: variables or factors. 
+
+\Hypertarget{structdai_1_1CBP_1_1Properties_a9500b7b06612043d3d936e53d22e76ac}\label{structdai_1_1CBP_1_1Properties_a9500b7b06612043d3d936e53d22e76ac} 
+\index{dai::CBP::Properties@{dai::CBP::Properties}!set@{set}}
+\index{set@{set}!dai::CBP::Properties@{dai::CBP::Properties}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+CBP\+::\+Properties\+::set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&}]{opts }\end{DoxyParamCaption})}
+
+
+
+Set members from \doxylink{classdai_1_1PropertySet}{Property\+Set}. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em UNKNOWN\+\_\+\+PROPERTY} & if a Property key is not recognized \\
+\hline
+{\em NOT\+\_\+\+ALL\+\_\+\+PROPERTIES\+\_\+\+SPECIFIED} & if an expected Property is missing \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{structdai_1_1CBP_1_1Properties_a9d3fc32405b638636f896293c522bc6f}\label{structdai_1_1CBP_1_1Properties_a9d3fc32405b638636f896293c522bc6f} 
+\index{dai::CBP::Properties@{dai::CBP::Properties}!get@{get}}
+\index{get@{get}!dai::CBP::Properties@{dai::CBP::Properties}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} dai\+::\+CBP\+::\+Properties\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get members into \doxylink{classdai_1_1PropertySet}{Property\+Set}. 
+
+\Hypertarget{structdai_1_1CBP_1_1Properties_a6ec43218ffc9c546b1ac6af22e9cc34b}\label{structdai_1_1CBP_1_1Properties_a6ec43218ffc9c546b1ac6af22e9cc34b} 
+\index{dai::CBP::Properties@{dai::CBP::Properties}!toString@{toString}}
+\index{toString@{toString}!dai::CBP::Properties@{dai::CBP::Properties}}
+\doxysubsubsection{\texorpdfstring{toString()}{toString()}}
+{\footnotesize\ttfamily string dai\+::\+CBP\+::\+Properties\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Convert to a string which can be parsed as a \doxylink{classdai_1_1PropertySet}{Property\+Set}. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structdai_1_1CBP_1_1Properties_a50f828f3446abcc978f4a798179079f4}\label{structdai_1_1CBP_1_1Properties_a50f828f3446abcc978f4a798179079f4} 
+\index{dai::CBP::Properties@{dai::CBP::Properties}!verbose@{verbose}}
+\index{verbose@{verbose}!dai::CBP::Properties@{dai::CBP::Properties}}
+\doxysubsubsection{\texorpdfstring{verbose}{verbose}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} dai\+::\+CBP\+::\+Properties\+::verbose}
+
+
+
+Verbosity (amount of output sent to stderr) 
+
+\Hypertarget{structdai_1_1CBP_1_1Properties_afdee3e2454d1f8039b683542f0aeeca2}\label{structdai_1_1CBP_1_1Properties_afdee3e2454d1f8039b683542f0aeeca2} 
+\index{dai::CBP::Properties@{dai::CBP::Properties}!tol@{tol}}
+\index{tol@{tol}!dai::CBP::Properties@{dai::CBP::Properties}}
+\doxysubsubsection{\texorpdfstring{tol}{tol}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} dai\+::\+CBP\+::\+Properties\+::tol}
+
+
+
+Tolerance for \doxylink{classdai_1_1BP}{BP} convergence test. 
+
+\Hypertarget{structdai_1_1CBP_1_1Properties_a31784e034ff61dbe9655152d73eef936}\label{structdai_1_1CBP_1_1Properties_a31784e034ff61dbe9655152d73eef936} 
+\index{dai::CBP::Properties@{dai::CBP::Properties}!updates@{updates}}
+\index{updates@{updates}!dai::CBP::Properties@{dai::CBP::Properties}}
+\doxysubsubsection{\texorpdfstring{updates}{updates}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structdai_1_1CBP_1_1Properties_a1ff365328b647a3a624063110da06065}{Update\+Type}} dai\+::\+CBP\+::\+Properties\+::updates}
+
+
+
+Update style for \doxylink{classdai_1_1BP}{BP}. 
+
+\Hypertarget{structdai_1_1CBP_1_1Properties_adc9321280212b9686e6f51eb38ba1e40}\label{structdai_1_1CBP_1_1Properties_adc9321280212b9686e6f51eb38ba1e40} 
+\index{dai::CBP::Properties@{dai::CBP::Properties}!maxiter@{maxiter}}
+\index{maxiter@{maxiter}!dai::CBP::Properties@{dai::CBP::Properties}}
+\doxysubsubsection{\texorpdfstring{maxiter}{maxiter}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} dai\+::\+CBP\+::\+Properties\+::maxiter}
+
+
+
+Maximum number of iterations for \doxylink{classdai_1_1BP}{BP}. 
+
+\Hypertarget{structdai_1_1CBP_1_1Properties_ab5f537d9e2347805a7a41eb337d45801}\label{structdai_1_1CBP_1_1Properties_ab5f537d9e2347805a7a41eb337d45801} 
+\index{dai::CBP::Properties@{dai::CBP::Properties}!rec\_tol@{rec\_tol}}
+\index{rec\_tol@{rec\_tol}!dai::CBP::Properties@{dai::CBP::Properties}}
+\doxysubsubsection{\texorpdfstring{rec\_tol}{rec\_tol}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} dai\+::\+CBP\+::\+Properties\+::rec\+\_\+tol}
+
+
+
+Tolerance used for controlling recursion depth ({\itshape recurse} is REC\+\_\+\+LOGZ or REC\+\_\+\+BDIFF) 
+
+\Hypertarget{structdai_1_1CBP_1_1Properties_a10d8273f9f9d84167d88d3359328afac}\label{structdai_1_1CBP_1_1Properties_a10d8273f9f9d84167d88d3359328afac} 
+\index{dai::CBP::Properties@{dai::CBP::Properties}!max\_levels@{max\_levels}}
+\index{max\_levels@{max\_levels}!dai::CBP::Properties@{dai::CBP::Properties}}
+\doxysubsubsection{\texorpdfstring{max\_levels}{max\_levels}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} dai\+::\+CBP\+::\+Properties\+::max\+\_\+levels}
+
+
+
+Maximum number of levels of recursion ({\itshape recurse} is REC\+\_\+\+FIXED) 
+
+\Hypertarget{structdai_1_1CBP_1_1Properties_acdc0c910192a6f385a550eda526c070c}\label{structdai_1_1CBP_1_1Properties_acdc0c910192a6f385a550eda526c070c} 
+\index{dai::CBP::Properties@{dai::CBP::Properties}!min\_max\_adj@{min\_max\_adj}}
+\index{min\_max\_adj@{min\_max\_adj}!dai::CBP::Properties@{dai::CBP::Properties}}
+\doxysubsubsection{\texorpdfstring{min\_max\_adj}{min\_max\_adj}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} dai\+::\+CBP\+::\+Properties\+::min\+\_\+max\+\_\+adj}
+
+
+
+If choose==CHOOSE\+\_\+\+BBP and maximum adjoint is less than this value, don\textquotesingle{}t recurse. 
+
+\Hypertarget{structdai_1_1CBP_1_1Properties_a6cecedbb953499f1755b42f3c92d8300}\label{structdai_1_1CBP_1_1Properties_a6cecedbb953499f1755b42f3c92d8300} 
+\index{dai::CBP::Properties@{dai::CBP::Properties}!choose@{choose}}
+\index{choose@{choose}!dai::CBP::Properties@{dai::CBP::Properties}}
+\doxysubsubsection{\texorpdfstring{choose}{choose}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Choose\+Method\+Type}} dai\+::\+CBP\+::\+Properties\+::choose}
+
+
+
+Heuristic for choosing clamping variable. 
+
+\Hypertarget{structdai_1_1CBP_1_1Properties_abab40b5d2b50ff5dd486b0dcb7c6cc46}\label{structdai_1_1CBP_1_1Properties_abab40b5d2b50ff5dd486b0dcb7c6cc46} 
+\index{dai::CBP::Properties@{dai::CBP::Properties}!recursion@{recursion}}
+\index{recursion@{recursion}!dai::CBP::Properties@{dai::CBP::Properties}}
+\doxysubsubsection{\texorpdfstring{recursion}{recursion}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Recurse\+Type}} dai\+::\+CBP\+::\+Properties\+::recursion}
+
+
+
+Method for deciding when to stop recursing. 
+
+\Hypertarget{structdai_1_1CBP_1_1Properties_a72a1ec20db48774517006006e6367963}\label{structdai_1_1CBP_1_1Properties_a72a1ec20db48774517006006e6367963} 
+\index{dai::CBP::Properties@{dai::CBP::Properties}!clamp@{clamp}}
+\index{clamp@{clamp}!dai::CBP::Properties@{dai::CBP::Properties}}
+\doxysubsubsection{\texorpdfstring{clamp}{clamp}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Clamp\+Type}} dai\+::\+CBP\+::\+Properties\+::clamp}
+
+
+
+Whether to clamp variables or factors. 
+
+\Hypertarget{structdai_1_1CBP_1_1Properties_af60c98923a3fb20d8f65cead49ce6bb5}\label{structdai_1_1CBP_1_1Properties_af60c98923a3fb20d8f65cead49ce6bb5} 
+\index{dai::CBP::Properties@{dai::CBP::Properties}!bbp\_props@{bbp\_props}}
+\index{bbp\_props@{bbp\_props}!dai::CBP::Properties@{dai::CBP::Properties}}
+\doxysubsubsection{\texorpdfstring{bbp\_props}{bbp\_props}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} dai\+::\+CBP\+::\+Properties\+::bbp\+\_\+props}
+
+
+
+\doxylink{structdai_1_1CBP_1_1Properties}{Properties} to pass to \doxylink{classdai_1_1BBP}{BBP}. 
+
+\Hypertarget{structdai_1_1CBP_1_1Properties_aa94f22b6ef2d18b3d4bc396fc6992601}\label{structdai_1_1CBP_1_1Properties_aa94f22b6ef2d18b3d4bc396fc6992601} 
+\index{dai::CBP::Properties@{dai::CBP::Properties}!bbp\_cfn@{bbp\_cfn}}
+\index{bbp\_cfn@{bbp\_cfn}!dai::CBP::Properties@{dai::CBP::Properties}}
+\doxysubsubsection{\texorpdfstring{bbp\_cfn}{bbp\_cfn}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1BBPCostFunction}{BBPCost\+Function}} dai\+::\+CBP\+::\+Properties\+::bbp\+\_\+cfn}
+
+
+
+Cost function to use for \doxylink{classdai_1_1BBP}{BBP}. 
+
+\Hypertarget{structdai_1_1CBP_1_1Properties_a48f3dd8b37d22497a24d7d69d7afc3de}\label{structdai_1_1CBP_1_1Properties_a48f3dd8b37d22497a24d7d69d7afc3de} 
+\index{dai::CBP::Properties@{dai::CBP::Properties}!rand\_seed@{rand\_seed}}
+\index{rand\_seed@{rand\_seed}!dai::CBP::Properties@{dai::CBP::Properties}}
+\doxysubsubsection{\texorpdfstring{rand\_seed}{rand\_seed}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} dai\+::\+CBP\+::\+Properties\+::rand\+\_\+seed}
+
+
+
+Random seed. 
+
+\Hypertarget{structdai_1_1CBP_1_1Properties_a83867802da20b6019a06efb537b292e0}\label{structdai_1_1CBP_1_1Properties_a83867802da20b6019a06efb537b292e0} 
+\index{dai::CBP::Properties@{dai::CBP::Properties}!clamp\_outfile@{clamp\_outfile}}
+\index{clamp\_outfile@{clamp\_outfile}!dai::CBP::Properties@{dai::CBP::Properties}}
+\doxysubsubsection{\texorpdfstring{clamp\_outfile}{clamp\_outfile}}
+{\footnotesize\ttfamily std\+::string dai\+::\+CBP\+::\+Properties\+::clamp\+\_\+outfile}
+
+
+
+If non-\/empty, write clamping choices to this file. 
+
+
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/dai/\mbox{\hyperlink{cbp_8h}{cbp.\+h}}\item 
+src/cbp.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,251 @@
+\doxysection{dai\+::Cond\+Prob\+Estimation Class Reference}
+\hypertarget{classdai_1_1CondProbEstimation}{}\label{classdai_1_1CondProbEstimation}\index{dai::CondProbEstimation@{dai::CondProbEstimation}}
+
+
+Estimates the parameters of a conditional probability table, using pseudocounts.  
+
+
+
+
+{\ttfamily \#include $<$dai/emalg.\+h$>$}
+
+Inheritance diagram for dai\+::Cond\+Prob\+Estimation\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdai_1_1CondProbEstimation}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdai_1_1CondProbEstimation_a548db9c240464901a5d5cc37fe0e8caa}{Cond\+Prob\+Estimation}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{target\+\_\+dimension}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{pseudocounts}})
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{classdai_1_1ParameterEstimation}{Parameter\+Estimation}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classdai_1_1CondProbEstimation_a2b5c681c19a10fcb4f9aa22db0dc0921}{clone}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Virtual copy constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{classdai_1_1CondProbEstimation_a5516ddc8e3aa8c528949f93a0296b588}{\texorpdfstring{$\sim$}{\string~}\+Cond\+Prob\+Estimation}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \mbox{\hyperlink{classdai_1_1CondProbEstimation_af8ac0b97fc2059c27793f81f7424fa2f}{parameters}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \&p)
+\begin{DoxyCompactList}\small\item\em Returns an estimate of the conditional probability distribution. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \mbox{\hyperlink{classdai_1_1CondProbEstimation_a27ef52cae918a8e91913d92b0e4e6fa5}{parameters\+To\+Factor}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \&p)
+\begin{DoxyCompactList}\small\item\em Convert a set of estimated parameters to a factor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{classdai_1_1CondProbEstimation_ac5f3331ed773f643653df5db6bea073e}{prob\+Size}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns the required size for arguments to \doxylink{classdai_1_1ParameterEstimation_a1f4a5f8e20582ec271009604893bb222}{estimate()}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::string \& \mbox{\hyperlink{classdai_1_1CondProbEstimation_a6b5b24510054df050cf3ab1c32385e17}{name}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \& \mbox{\hyperlink{classdai_1_1CondProbEstimation_a7d1499a543b98a0daf7b36388d81294a}{properties}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{static}} \mbox{\hyperlink{classdai_1_1ParameterEstimation}{Parameter\+Estimation}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classdai_1_1CondProbEstimation_add12b9035b91ef9d27a0c1a24bbd0064}{factory}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&p)
+\begin{DoxyCompactList}\small\item\em Virtual constructor, using a \doxylink{classdai_1_1PropertySet}{Property\+Set}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{classdai_1_1CondProbEstimation_a70903a1fe76237b43124ad2c0d76aa53}{\+\_\+target\+\_\+dim}}
+\begin{DoxyCompactList}\small\item\em Number of states of the variable of interest. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \mbox{\hyperlink{classdai_1_1CondProbEstimation_a48d8e535d871d0ae0568537f927885ac}{\+\_\+initial\+\_\+stats}}
+\begin{DoxyCompactList}\small\item\em Initial pseudocounts. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \mbox{\hyperlink{classdai_1_1CondProbEstimation_ada1e991ef0705f866c17e39440fb2d60}{\+\_\+props}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classdai_1_1PropertySet}{Property\+Set} that allows reconstruction of this estimator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdai_1_1CondProbEstimation_aca265b3240ad4e603cd575ea276ed9dd}\label{classdai_1_1CondProbEstimation_aca265b3240ad4e603cd575ea276ed9dd} 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{static}} std\+::string {\bfseries \+\_\+name} = "{}Cond\+Prob\+Estimation"{}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Private Types inherited from \mbox{\hyperlink{classdai_1_1ParameterEstimation}{dai\+::\+Parameter\+Estimation}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typedef}} \mbox{\hyperlink{classdai_1_1ParameterEstimation}{Parameter\+Estimation}} \texorpdfstring{$\ast$}{*}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classdai_1_1ParameterEstimation_aa513406d26358daf22a65916a28be64c}{Param\+Est\+Factory}}) (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&)
+\begin{DoxyCompactList}\small\item\em Type of pointer to factory function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Private Member Functions inherited from \mbox{\hyperlink{classdai_1_1ParameterEstimation}{dai\+::\+Parameter\+Estimation}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{classdai_1_1ParameterEstimation_a1f1b9e679c5d06890133466fc38d90bc}{\texorpdfstring{$\sim$}{\string~}\+Parameter\+Estimation}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for deleting pointers to derived classes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \mbox{\hyperlink{classdai_1_1ParameterEstimation_a1f4a5f8e20582ec271009604893bb222}{estimate}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \&p)
+\begin{DoxyCompactList}\small\item\em Estimate the factor using the provided expectations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Private Member Functions inherited from \mbox{\hyperlink{classdai_1_1ParameterEstimation}{dai\+::\+Parameter\+Estimation}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{static}} \mbox{\hyperlink{classdai_1_1ParameterEstimation}{Parameter\+Estimation}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classdai_1_1ParameterEstimation_a38ee418f4d5ac9136f13a087528a8718}{construct}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::string \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{method}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&p)
+\begin{DoxyCompactList}\small\item\em General factory method that constructs the desired \doxylink{classdai_1_1ParameterEstimation}{Parameter\+Estimation} subclass. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{static}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1ParameterEstimation_a3248cc18f8683a95e7d318e5c7d27258}{register\+Method}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::string \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{method}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1ParameterEstimation_aa513406d26358daf22a65916a28be64c}{Param\+Est\+Factory}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{f}})
+\begin{DoxyCompactList}\small\item\em Register a subclass so that it can be used with \doxylink{classdai_1_1ParameterEstimation_a38ee418f4d5ac9136f13a087528a8718}{construct()}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Estimates the parameters of a conditional probability table, using pseudocounts. 
+
+\begin{DoxyAuthor}{Author}
+Charles Vaske 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classdai_1_1CondProbEstimation_a548db9c240464901a5d5cc37fe0e8caa}\label{classdai_1_1CondProbEstimation_a548db9c240464901a5d5cc37fe0e8caa} 
+\index{dai::CondProbEstimation@{dai::CondProbEstimation}!CondProbEstimation@{CondProbEstimation}}
+\index{CondProbEstimation@{CondProbEstimation}!dai::CondProbEstimation@{dai::CondProbEstimation}}
+\doxysubsubsection{\texorpdfstring{CondProbEstimation()}{CondProbEstimation()}}
+{\footnotesize\ttfamily dai\+::\+Cond\+Prob\+Estimation\+::\+Cond\+Prob\+Estimation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{target\+\_\+dimension,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \&}]{pseudocounts }\end{DoxyParamCaption})}
+
+
+
+Constructor. 
+
+For a conditional probability $ P( X | Y ) $, 
+\begin{DoxyParams}{Parameters}
+{\em target\+\_\+dimension} & should equal $ | X | $ \\
+\hline
+{\em pseudocounts} & are the initial pseudocounts, of length $ |X| \cdot |Y| $ \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classdai_1_1CondProbEstimation_a5516ddc8e3aa8c528949f93a0296b588}\label{classdai_1_1CondProbEstimation_a5516ddc8e3aa8c528949f93a0296b588} 
+\index{dai::CondProbEstimation@{dai::CondProbEstimation}!````~CondProbEstimation@{\texorpdfstring{$\sim$}{\string~}CondProbEstimation}}
+\index{````~CondProbEstimation@{\texorpdfstring{$\sim$}{\string~}CondProbEstimation}!dai::CondProbEstimation@{dai::CondProbEstimation}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}CondProbEstimation()}{\string~CondProbEstimation()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} dai\+::\+Cond\+Prob\+Estimation\+::\texorpdfstring{$\sim$}{\string~}\+Cond\+Prob\+Estimation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Virtual destructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classdai_1_1CondProbEstimation_add12b9035b91ef9d27a0c1a24bbd0064}\label{classdai_1_1CondProbEstimation_add12b9035b91ef9d27a0c1a24bbd0064} 
+\index{dai::CondProbEstimation@{dai::CondProbEstimation}!factory@{factory}}
+\index{factory@{factory}!dai::CondProbEstimation@{dai::CondProbEstimation}}
+\doxysubsubsection{\texorpdfstring{factory()}{factory()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1ParameterEstimation}{Parameter\+Estimation}} \texorpdfstring{$\ast$}{*} dai\+::\+Cond\+Prob\+Estimation\+::factory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Virtual constructor, using a \doxylink{classdai_1_1PropertySet}{Property\+Set}. 
+
+Some keys in the \doxylink{classdai_1_1PropertySet}{Property\+Set} are required. For a conditional probability $ P( X | Y ) $,
+\begin{DoxyItemize}
+\item {\itshape target\+\_\+dimension} should be equal to $ | X | $
+\item {\itshape total\+\_\+dimension} should be equal to $ |X| \cdot |Y| $
+\end{DoxyItemize}
+
+An optional key is\+:
+\begin{DoxyItemize}
+\item {\itshape pseudo\+\_\+count} which specifies the initial counts (defaults to 1) 
+\end{DoxyItemize}\Hypertarget{classdai_1_1CondProbEstimation_a2b5c681c19a10fcb4f9aa22db0dc0921}\label{classdai_1_1CondProbEstimation_a2b5c681c19a10fcb4f9aa22db0dc0921} 
+\index{dai::CondProbEstimation@{dai::CondProbEstimation}!clone@{clone}}
+\index{clone@{clone}!dai::CondProbEstimation@{dai::CondProbEstimation}}
+\doxysubsubsection{\texorpdfstring{clone()}{clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{classdai_1_1ParameterEstimation}{Parameter\+Estimation}} \texorpdfstring{$\ast$}{*} dai\+::\+Cond\+Prob\+Estimation\+::clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Virtual copy constructor. 
+
+
+
+Implements \mbox{\hyperlink{classdai_1_1ParameterEstimation_a0254a591dc7b90d43551d693a0b727d5}{dai\+::\+Parameter\+Estimation}}.
+
+\Hypertarget{classdai_1_1CondProbEstimation_af8ac0b97fc2059c27793f81f7424fa2f}\label{classdai_1_1CondProbEstimation_af8ac0b97fc2059c27793f81f7424fa2f} 
+\index{dai::CondProbEstimation@{dai::CondProbEstimation}!parameters@{parameters}}
+\index{parameters@{parameters}!dai::CondProbEstimation@{dai::CondProbEstimation}}
+\doxysubsubsection{\texorpdfstring{parameters()}{parameters()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} dai\+::\+Cond\+Prob\+Estimation\+::parameters (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \&}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Returns an estimate of the conditional probability distribution. 
+
+The format of the resulting Prob keeps all the values for $ P(X | Y=y) $ in sequential order in the array. 
+
+Implements \mbox{\hyperlink{classdai_1_1ParameterEstimation_a454801bc228b5826d37f4142d79751d0}{dai\+::\+Parameter\+Estimation}}.
+
+\Hypertarget{classdai_1_1CondProbEstimation_a27ef52cae918a8e91913d92b0e4e6fa5}\label{classdai_1_1CondProbEstimation_a27ef52cae918a8e91913d92b0e4e6fa5} 
+\index{dai::CondProbEstimation@{dai::CondProbEstimation}!parametersToFactor@{parametersToFactor}}
+\index{parametersToFactor@{parametersToFactor}!dai::CondProbEstimation@{dai::CondProbEstimation}}
+\doxysubsubsection{\texorpdfstring{parametersToFactor()}{parametersToFactor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} dai\+::\+Cond\+Prob\+Estimation\+::parameters\+To\+Factor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \&}]{params }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Convert a set of estimated parameters to a factor. 
+
+
+
+Implements \mbox{\hyperlink{classdai_1_1ParameterEstimation_a5c279ce0fa2cda3fda5379252d1bdd99}{dai\+::\+Parameter\+Estimation}}.
+
+\Hypertarget{classdai_1_1CondProbEstimation_ac5f3331ed773f643653df5db6bea073e}\label{classdai_1_1CondProbEstimation_ac5f3331ed773f643653df5db6bea073e} 
+\index{dai::CondProbEstimation@{dai::CondProbEstimation}!probSize@{probSize}}
+\index{probSize@{probSize}!dai::CondProbEstimation@{dai::CondProbEstimation}}
+\doxysubsubsection{\texorpdfstring{probSize()}{probSize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} dai\+::\+Cond\+Prob\+Estimation\+::prob\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Returns the required size for arguments to \doxylink{classdai_1_1ParameterEstimation_a1f4a5f8e20582ec271009604893bb222}{estimate()}. 
+
+
+
+Implements \mbox{\hyperlink{classdai_1_1ParameterEstimation_adfaef5e88cb087d25c1e8df95adae4c5}{dai\+::\+Parameter\+Estimation}}.
+
+\Hypertarget{classdai_1_1CondProbEstimation_a6b5b24510054df050cf3ab1c32385e17}\label{classdai_1_1CondProbEstimation_a6b5b24510054df050cf3ab1c32385e17} 
+\index{dai::CondProbEstimation@{dai::CondProbEstimation}!name@{name}}
+\index{name@{name}!dai::CondProbEstimation@{dai::CondProbEstimation}}
+\doxysubsubsection{\texorpdfstring{name()}{name()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::string \& dai\+::\+Cond\+Prob\+Estimation\+::name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classdai_1_1ParameterEstimation}{dai\+::\+Parameter\+Estimation}}.
+
+\Hypertarget{classdai_1_1CondProbEstimation_a7d1499a543b98a0daf7b36388d81294a}\label{classdai_1_1CondProbEstimation_a7d1499a543b98a0daf7b36388d81294a} 
+\index{dai::CondProbEstimation@{dai::CondProbEstimation}!properties@{properties}}
+\index{properties@{properties}!dai::CondProbEstimation@{dai::CondProbEstimation}}
+\doxysubsubsection{\texorpdfstring{properties()}{properties()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \& dai\+::\+Cond\+Prob\+Estimation\+::properties (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classdai_1_1ParameterEstimation}{dai\+::\+Parameter\+Estimation}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classdai_1_1CondProbEstimation_a70903a1fe76237b43124ad2c0d76aa53}\label{classdai_1_1CondProbEstimation_a70903a1fe76237b43124ad2c0d76aa53} 
+\index{dai::CondProbEstimation@{dai::CondProbEstimation}!\_target\_dim@{\_target\_dim}}
+\index{\_target\_dim@{\_target\_dim}!dai::CondProbEstimation@{dai::CondProbEstimation}}
+\doxysubsubsection{\texorpdfstring{\_target\_dim}{\_target\_dim}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} dai\+::\+Cond\+Prob\+Estimation\+::\+\_\+target\+\_\+dim\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Number of states of the variable of interest. 
+
+\Hypertarget{classdai_1_1CondProbEstimation_a48d8e535d871d0ae0568537f927885ac}\label{classdai_1_1CondProbEstimation_a48d8e535d871d0ae0568537f927885ac} 
+\index{dai::CondProbEstimation@{dai::CondProbEstimation}!\_initial\_stats@{\_initial\_stats}}
+\index{\_initial\_stats@{\_initial\_stats}!dai::CondProbEstimation@{dai::CondProbEstimation}}
+\doxysubsubsection{\texorpdfstring{\_initial\_stats}{\_initial\_stats}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} dai\+::\+Cond\+Prob\+Estimation\+::\+\_\+initial\+\_\+stats\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Initial pseudocounts. 
+
+\Hypertarget{classdai_1_1CondProbEstimation_ada1e991ef0705f866c17e39440fb2d60}\label{classdai_1_1CondProbEstimation_ada1e991ef0705f866c17e39440fb2d60} 
+\index{dai::CondProbEstimation@{dai::CondProbEstimation}!\_props@{\_props}}
+\index{\_props@{\_props}!dai::CondProbEstimation@{dai::CondProbEstimation}}
+\doxysubsubsection{\texorpdfstring{\_props}{\_props}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} dai\+::\+Cond\+Prob\+Estimation\+::\+\_\+props\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+\doxylink{classdai_1_1PropertySet}{Property\+Set} that allows reconstruction of this estimator. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/dai/\mbox{\hyperlink{emalg_8h}{emalg.\+h}}\item 
+src/emalg.\+cpp\end{DoxyCompactItemize}

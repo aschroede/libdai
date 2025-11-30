@@ -1,0 +1,38 @@
+\doxysection{include/dai/hak.h File Reference}
+\hypertarget{hak_8h}{}\label{hak_8h}\index{include/dai/hak.h@{include/dai/hak.h}}
+
+
+Defines class HAK, which implements a variant of Generalized Belief Propagation.  
+
+
+{\ttfamily \#include $<$dai/dai\+\_\+config.\+h$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$dai/daialg.\+h$>$}\newline
+{\ttfamily \#include $<$dai/regiongraph.\+h$>$}\newline
+{\ttfamily \#include $<$dai/enum.\+h$>$}\newline
+{\ttfamily \#include $<$dai/properties.\+h$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classdai_1_1HAK}{dai\+::\+HAK}}
+\begin{DoxyCompactList}\small\item\em Approximate inference algorithm\+: implementation of single-\/loop ("{}\+Generalized Belief Propagation"{}) and double-\/loop algorithms by Heskes, Albers and Kappen \mbox{[}\doxylink{bibliography_HAK03}{HAK03}\mbox{]}. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structdai_1_1HAK_1_1Properties}{dai\+::\+HAK\+::\+Properties}}
+\begin{DoxyCompactList}\small\item\em Parameters for \doxylink{classdai_1_1HAK}{HAK}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacedai}{dai}}
+\begin{DoxyCompactList}\small\item\em Namespace for lib\+DAI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Defines class HAK, which implements a variant of Generalized Belief Propagation. 
+
+\begin{DoxyRefDesc}{Idea}
+\item[\mbox{\hyperlink{ideas__ideas000011}{Idea}}]Implement more general region graphs and corresponding Generalized Belief Propagation updates as described in \mbox{[}\doxylink{bibliography_YFW05}{YFW05}\mbox{]}. \end{DoxyRefDesc}
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000017}{Todo}}]Use Cluster\+Graph instead of a vector$<$\+Var\+Set$>$ for speed. 
+
+Optimize this code for large factor graphs. 
+
+Implement GBP parent-\/child algorithm. \end{DoxyRefDesc}

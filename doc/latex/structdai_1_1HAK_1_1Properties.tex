@@ -1,0 +1,169 @@
+\doxysection{dai\+::HAK\+::Properties Struct Reference}
+\hypertarget{structdai_1_1HAK_1_1Properties}{}\label{structdai_1_1HAK_1_1Properties}\index{dai::HAK::Properties@{dai::HAK::Properties}}
+
+
+Parameters for \doxylink{classdai_1_1HAK}{HAK}.  
+
+
+
+
+{\ttfamily \#include $<$dai/hak.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structdai_1_1HAK_1_1Properties_ac911aa4313eb3c43c48d43dac2272f33}{DAI\+\_\+\+ENUM}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Clusters\+Type}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{MIN}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{BETHE}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{DELTA}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{LOOP}})
+\begin{DoxyCompactList}\small\item\em Enumeration of possible cluster choices. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structdai_1_1HAK_1_1Properties_a224d3caacf810ee5c705b4a4626b45d3}{DAI\+\_\+\+ENUM}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Init\+Type}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{UNIFORM}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{RANDOM}})
+\begin{DoxyCompactList}\small\item\em Enumeration of possible message initializations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{structdai_1_1HAK_1_1Properties_aec022aa8f91caa4d99e929da522e639e}{verbose}}
+\begin{DoxyCompactList}\small\item\em Verbosity (amount of output sent to stderr) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{structdai_1_1HAK_1_1Properties_aac41df3900f9c3520728e30a1c28197d}{maxiter}}
+\begin{DoxyCompactList}\small\item\em Maximum number of iterations. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{double}} \mbox{\hyperlink{structdai_1_1HAK_1_1Properties_a1c4847fdf9b906287c4f3b28c6067d77}{maxtime}}
+\begin{DoxyCompactList}\small\item\em Maximum time (in seconds) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{structdai_1_1HAK_1_1Properties_aa86a5f0dd3cdac703ca9d6b341be349c}{tol}}
+\begin{DoxyCompactList}\small\item\em Tolerance for convergence test. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{structdai_1_1HAK_1_1Properties_a06021c4b7fed8f064d6da36454b38fa9}{damping}}
+\begin{DoxyCompactList}\small\item\em Damping constant (0.\+0 means no damping, 1.\+0 is maximum damping) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Clusters\+Type}} \mbox{\hyperlink{structdai_1_1HAK_1_1Properties_a26d7eba338a67cd56533b368d4e8b889}{clusters}}
+\begin{DoxyCompactList}\small\item\em How to choose the outer regions. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Init\+Type}} \mbox{\hyperlink{structdai_1_1HAK_1_1Properties_a1c6fad3f2d496f30a169901c8ea42880}{init}}
+\begin{DoxyCompactList}\small\item\em How to initialize the messages. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} \mbox{\hyperlink{structdai_1_1HAK_1_1Properties_a415c14d03f49774d4bb92988003520a2}{doubleloop}}
+\begin{DoxyCompactList}\small\item\em Use single-\/loop (GBP) or double-\/loop (\doxylink{classdai_1_1HAK}{HAK}) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{structdai_1_1HAK_1_1Properties_aeaecf3d77c6e6a2036cc652056783523}{loopdepth}}
+\begin{DoxyCompactList}\small\item\em Depth of loops (only relevant for {\itshape clusters} == {\ttfamily Clusters\+Type\+::\+LOOP}) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Parameters for \doxylink{classdai_1_1HAK}{HAK}. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structdai_1_1HAK_1_1Properties_ac911aa4313eb3c43c48d43dac2272f33}\label{structdai_1_1HAK_1_1Properties_ac911aa4313eb3c43c48d43dac2272f33} 
+\index{dai::HAK::Properties@{dai::HAK::Properties}!DAI\_ENUM@{DAI\_ENUM}}
+\index{DAI\_ENUM@{DAI\_ENUM}!dai::HAK::Properties@{dai::HAK::Properties}}
+\doxysubsubsection{\texorpdfstring{DAI\_ENUM()}{DAI\_ENUM()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily dai\+::\+HAK\+::\+Properties\+::\+DAI\+\_\+\+ENUM (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Clusters\+Type}}}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{MIN}}}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{BETHE}}}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{DELTA}}}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{LOOP}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Enumeration of possible cluster choices. 
+
+The following cluster choices are defined\+:
+\begin{DoxyItemize}
+\item MIN minimal clusters, i.\+e., one outer region for each maximal factor
+\item DELTA one outer region for each variable and its Markov blanket
+\item LOOP one cluster for each loop of length at most {\itshape \doxylink{structdai_1_1HAK_1_1Properties_aeaecf3d77c6e6a2036cc652056783523}{Properties\+::loopdepth}}, and in addition one cluster for each maximal factor
+\item BETHE Bethe approximation (one outer region for each maximal factor, inner regions are single variables) 
+\end{DoxyItemize}\Hypertarget{structdai_1_1HAK_1_1Properties_a224d3caacf810ee5c705b4a4626b45d3}\label{structdai_1_1HAK_1_1Properties_a224d3caacf810ee5c705b4a4626b45d3} 
+\index{dai::HAK::Properties@{dai::HAK::Properties}!DAI\_ENUM@{DAI\_ENUM}}
+\index{DAI\_ENUM@{DAI\_ENUM}!dai::HAK::Properties@{dai::HAK::Properties}}
+\doxysubsubsection{\texorpdfstring{DAI\_ENUM()}{DAI\_ENUM()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily dai\+::\+HAK\+::\+Properties\+::\+DAI\+\_\+\+ENUM (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Init\+Type}}}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{UNIFORM}}}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{RANDOM}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Enumeration of possible message initializations. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structdai_1_1HAK_1_1Properties_aec022aa8f91caa4d99e929da522e639e}\label{structdai_1_1HAK_1_1Properties_aec022aa8f91caa4d99e929da522e639e} 
+\index{dai::HAK::Properties@{dai::HAK::Properties}!verbose@{verbose}}
+\index{verbose@{verbose}!dai::HAK::Properties@{dai::HAK::Properties}}
+\doxysubsubsection{\texorpdfstring{verbose}{verbose}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} dai\+::\+HAK\+::\+Properties\+::verbose}
+
+
+
+Verbosity (amount of output sent to stderr) 
+
+\Hypertarget{structdai_1_1HAK_1_1Properties_aac41df3900f9c3520728e30a1c28197d}\label{structdai_1_1HAK_1_1Properties_aac41df3900f9c3520728e30a1c28197d} 
+\index{dai::HAK::Properties@{dai::HAK::Properties}!maxiter@{maxiter}}
+\index{maxiter@{maxiter}!dai::HAK::Properties@{dai::HAK::Properties}}
+\doxysubsubsection{\texorpdfstring{maxiter}{maxiter}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} dai\+::\+HAK\+::\+Properties\+::maxiter}
+
+
+
+Maximum number of iterations. 
+
+\Hypertarget{structdai_1_1HAK_1_1Properties_a1c4847fdf9b906287c4f3b28c6067d77}\label{structdai_1_1HAK_1_1Properties_a1c4847fdf9b906287c4f3b28c6067d77} 
+\index{dai::HAK::Properties@{dai::HAK::Properties}!maxtime@{maxtime}}
+\index{maxtime@{maxtime}!dai::HAK::Properties@{dai::HAK::Properties}}
+\doxysubsubsection{\texorpdfstring{maxtime}{maxtime}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{double}} dai\+::\+HAK\+::\+Properties\+::maxtime}
+
+
+
+Maximum time (in seconds) 
+
+\Hypertarget{structdai_1_1HAK_1_1Properties_aa86a5f0dd3cdac703ca9d6b341be349c}\label{structdai_1_1HAK_1_1Properties_aa86a5f0dd3cdac703ca9d6b341be349c} 
+\index{dai::HAK::Properties@{dai::HAK::Properties}!tol@{tol}}
+\index{tol@{tol}!dai::HAK::Properties@{dai::HAK::Properties}}
+\doxysubsubsection{\texorpdfstring{tol}{tol}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} dai\+::\+HAK\+::\+Properties\+::tol}
+
+
+
+Tolerance for convergence test. 
+
+\Hypertarget{structdai_1_1HAK_1_1Properties_a06021c4b7fed8f064d6da36454b38fa9}\label{structdai_1_1HAK_1_1Properties_a06021c4b7fed8f064d6da36454b38fa9} 
+\index{dai::HAK::Properties@{dai::HAK::Properties}!damping@{damping}}
+\index{damping@{damping}!dai::HAK::Properties@{dai::HAK::Properties}}
+\doxysubsubsection{\texorpdfstring{damping}{damping}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} dai\+::\+HAK\+::\+Properties\+::damping}
+
+
+
+Damping constant (0.\+0 means no damping, 1.\+0 is maximum damping) 
+
+\Hypertarget{structdai_1_1HAK_1_1Properties_a26d7eba338a67cd56533b368d4e8b889}\label{structdai_1_1HAK_1_1Properties_a26d7eba338a67cd56533b368d4e8b889} 
+\index{dai::HAK::Properties@{dai::HAK::Properties}!clusters@{clusters}}
+\index{clusters@{clusters}!dai::HAK::Properties@{dai::HAK::Properties}}
+\doxysubsubsection{\texorpdfstring{clusters}{clusters}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Clusters\+Type}} dai\+::\+HAK\+::\+Properties\+::clusters}
+
+
+
+How to choose the outer regions. 
+
+\Hypertarget{structdai_1_1HAK_1_1Properties_a1c6fad3f2d496f30a169901c8ea42880}\label{structdai_1_1HAK_1_1Properties_a1c6fad3f2d496f30a169901c8ea42880} 
+\index{dai::HAK::Properties@{dai::HAK::Properties}!init@{init}}
+\index{init@{init}!dai::HAK::Properties@{dai::HAK::Properties}}
+\doxysubsubsection{\texorpdfstring{init}{init}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Init\+Type}} dai\+::\+HAK\+::\+Properties\+::init}
+
+
+
+How to initialize the messages. 
+
+\Hypertarget{structdai_1_1HAK_1_1Properties_a415c14d03f49774d4bb92988003520a2}\label{structdai_1_1HAK_1_1Properties_a415c14d03f49774d4bb92988003520a2} 
+\index{dai::HAK::Properties@{dai::HAK::Properties}!doubleloop@{doubleloop}}
+\index{doubleloop@{doubleloop}!dai::HAK::Properties@{dai::HAK::Properties}}
+\doxysubsubsection{\texorpdfstring{doubleloop}{doubleloop}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} dai\+::\+HAK\+::\+Properties\+::doubleloop}
+
+
+
+Use single-\/loop (GBP) or double-\/loop (\doxylink{classdai_1_1HAK}{HAK}) 
+
+\Hypertarget{structdai_1_1HAK_1_1Properties_aeaecf3d77c6e6a2036cc652056783523}\label{structdai_1_1HAK_1_1Properties_aeaecf3d77c6e6a2036cc652056783523} 
+\index{dai::HAK::Properties@{dai::HAK::Properties}!loopdepth@{loopdepth}}
+\index{loopdepth@{loopdepth}!dai::HAK::Properties@{dai::HAK::Properties}}
+\doxysubsubsection{\texorpdfstring{loopdepth}{loopdepth}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} dai\+::\+HAK\+::\+Properties\+::loopdepth}
+
+
+
+Depth of loops (only relevant for {\itshape clusters} == {\ttfamily Clusters\+Type\+::\+LOOP}) 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/dai/\mbox{\hyperlink{hak_8h}{hak.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,58 @@
+\chapter{Reference manual for lib\+DAI -\/ A free/open source C++ library for Discrete Approximate Inference methods}
+\hypertarget{index}{}\label{index}\index{Reference manual for libDAI -\/ A free/open source C++ library for Discrete Approximate Inference methods@{Reference manual for libDAI -\/ A free/open source C++ library for Discrete Approximate Inference methods}}
+\begin{DoxyAuthor}{Author}
+Joris Mooij (with contributions of Frederik Eaton) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+"{}git HEAD"{} 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+July 17, 2015 -\/ or later
+\end{DoxyDate}
+\DoxyHorRuler{0}
+ \hypertarget{index_about}{}\doxysection{\texorpdfstring{About lib\+DAI}{About libDAI}}\label{index_about}
+lib\+DAI is a free/open source C++ library that provides implementations of various (approximate) inference methods for discrete graphical models. lib\+DAI supports arbitrary factor graphs with discrete variables; this includes discrete Markov Random Fields and Bayesian Networks.
+
+The library is targeted at researchers. To be able to use the library, a good understanding of graphical models is needed.
+
+The best way to use lib\+DAI is by writing C++ code that invokes the library; in addition, part of the functionality is accessibly by using the
+\begin{DoxyItemize}
+\item command line interface
+\item (limited) Mat\+Lab interface
+\item (experimental) python interface
+\item (experimental) octave interface.
+\end{DoxyItemize}
+
+lib\+DAI can be used to implement novel (approximate) inference algorithms and to easily compare the accuracy and performance with existing algorithms that have been implemented already.
+
+A solver using lib\+DAI was amongst the three winners of the UAI 2010 Approximate Inference Challenge (see \href{http://www.cs.huji.ac.il/project/UAI10/}{\texttt{ http\+://www.\+cs.\+huji.\+ac.\+il/project/\+UAI10/}} for more information). The full source code is provided as part of the library.\hypertarget{index_features}{}\doxysection{\texorpdfstring{Features}{Features}}\label{index_features}
+Currently, lib\+DAI supports the following (approximate) inference methods\+:
+\begin{DoxyItemize}
+\item Exact inference by brute force enumeration;
+\item Exact inference by junction-\/tree methods;
+\item Mean Field;
+\item Loopy Belief Propagation \mbox{[}\doxylink{bibliography_KFL01}{KFL01}\mbox{]};
+\item Fractional Belief Propagation \mbox{[}\doxylink{bibliography_WiH03}{Wi\+H03}\mbox{]};
+\item Tree-\/\+Reweighted Belief Propagation \mbox{[}\doxylink{bibliography_WJW03}{WJW03}\mbox{]};
+\item Tree Expectation Propagation \mbox{[}\doxylink{bibliography_MiQ04}{Mi\+Q04}\mbox{]};
+\item Generalized Belief Propagation \mbox{[}\doxylink{bibliography_YFW05}{YFW05}\mbox{]};
+\item Double-\/loop GBP \mbox{[}\doxylink{bibliography_HAK03}{HAK03}\mbox{]};
+\item Various variants of Loop Corrected Belief Propagation \mbox{[}\doxylink{bibliography_MoK07}{Mo\+K07}, \doxylink{bibliography_MoR05}{Mo\+R05}\mbox{]};
+\item Gibbs sampler;
+\item Conditioned Belief Propagation \mbox{[}\doxylink{bibliography_EaG09}{Ea\+G09}\mbox{]};
+\item Decimation algorithm.
+\end{DoxyItemize}
+
+These inference methods can be used to calculate partition sums, marginals over subsets of variables, and MAP states (the joint state of variables that has maximum probability).
+
+In addition, lib\+DAI supports parameter learning of conditional probability tables by Expectation Maximization.\hypertarget{index_limitations}{}\doxysection{\texorpdfstring{Limitations}{Limitations}}\label{index_limitations}
+lib\+DAI is not intended to be a complete package for approximate inference. Instead, it should be considered as an "{}inference engine"{}, providing various inference methods. In particular, it contains no GUI, currently only supports its own file format for input and output (although support for standard file formats may be added later), and provides very limited visualization functionalities. The only learning method supported currently is Expectation Maximization (or Maximum Likelihood if no data is missing) for learning factor parameters.\hypertarget{index_rationale}{}\doxysection{\texorpdfstring{Rationale}{Rationale}}\label{index_rationale}
+In my opinion, the lack of open source "{}reference"{} implementations hampers progress in research on approximate inference. Methods differ widely in terms of quality and performance characteristics, which also depend in different ways on various properties of the graphical models. Finding the best approximate inference method for a particular application therefore often requires empirical comparisons. However, implementing and debugging these methods takes a lot of time which could otherwise be spent on research. I hope that this code will aid researchers to be able to easily compare various (existing as well as new) approximate inference methods, in this way accelerating research and stimulating real-\/world applications of approximate inference.\hypertarget{index_language}{}\doxysection{\texorpdfstring{Language}{Language}}\label{index_language}
+Because lib\+DAI is implemented in C++, it is very fast compared with implementations in Mat\+Lab (a factor 1000 faster is not uncommon). lib\+DAI does provide a (limited) Mat\+Lab interface for easy integration with Mat\+Lab. It also provides a command line interface and experimental python and octave interfaces (thanks to Patrick Pletscher).\hypertarget{index_compatibility}{}\doxysection{\texorpdfstring{Compatibility}{Compatibility}}\label{index_compatibility}
+The code has been developed under Debian GNU/\+Linux with the GCC compiler suite. lib\+DAI compiles successfully with g++ versions 3.\+4 up to 4.\+7 (both 32 and 64 bits).
+
+lib\+DAI has also been successfully compiled with MS Visual Studio 2008 under Windows, MS Visual Studio 2010 under Windows 64, and with Cygwin under Windows.
+
+Finally, lib\+DAI has been compiled successfully on Mac\+OS X (both 32 and 64 bits).\hypertarget{index_download}{}\doxysection{\texorpdfstring{Downloading lib\+DAI}{Downloading libDAI}}\label{index_download}
+The lib\+DAI sources and documentation can be downloaded from the lib\+DAI website\+: \href{http://www.libdai.org}{\texttt{ http\+://www.\+libdai.\+org}}.\hypertarget{index_support}{}\doxysection{\texorpdfstring{Mailing list}{Mailing list}}\label{index_support}
+The Google group "{}lib\+DAI"{} (\href{http://groups.google.com/group/libdai}{\texttt{ http\+://groups.\+google.\+com/group/libdai}}) can be used for getting support and discussing development issues. 

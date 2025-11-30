@@ -1,0 +1,107 @@
+\doxysection{dai\+::Tree\+EP\+::Properties Struct Reference}
+\hypertarget{structdai_1_1TreeEP_1_1Properties}{}\label{structdai_1_1TreeEP_1_1Properties}\index{dai::TreeEP::Properties@{dai::TreeEP::Properties}}
+
+
+Parameters for \doxylink{classdai_1_1TreeEP}{Tree\+EP}.  
+
+
+
+
+{\ttfamily \#include $<$dai/treeep.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structdai_1_1TreeEP_1_1Properties_a77f56600ab4e668bb4eb1844e682eba7}{DAI\+\_\+\+ENUM}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Type\+Type}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{ORG}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{ALT}})
+\begin{DoxyCompactList}\small\item\em Enumeration of possible choices for the tree. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{structdai_1_1TreeEP_1_1Properties_af41d83b6886eed09e080420be1fe0486}{verbose}}
+\begin{DoxyCompactList}\small\item\em Verbosity (amount of output sent to stderr) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{structdai_1_1TreeEP_1_1Properties_a58b7b2658dfa173a64a1683a6ac5425d}{maxiter}}
+\begin{DoxyCompactList}\small\item\em Maximum number of iterations. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{double}} \mbox{\hyperlink{structdai_1_1TreeEP_1_1Properties_acc03a5e0a25c210856b4f8c8f66781fe}{maxtime}}
+\begin{DoxyCompactList}\small\item\em Maximum time (in seconds) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{structdai_1_1TreeEP_1_1Properties_ac9e11741633dad1adbf33d269056a193}{tol}}
+\begin{DoxyCompactList}\small\item\em Tolerance for convergence test. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Type\+Type}} \mbox{\hyperlink{structdai_1_1TreeEP_1_1Properties_af80877d6d20176db4bc8367b6185e2d3}{type}}
+\begin{DoxyCompactList}\small\item\em How to choose the tree. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Parameters for \doxylink{classdai_1_1TreeEP}{Tree\+EP}. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{structdai_1_1TreeEP_1_1Properties_a77f56600ab4e668bb4eb1844e682eba7}\label{structdai_1_1TreeEP_1_1Properties_a77f56600ab4e668bb4eb1844e682eba7} 
+\index{dai::TreeEP::Properties@{dai::TreeEP::Properties}!DAI\_ENUM@{DAI\_ENUM}}
+\index{DAI\_ENUM@{DAI\_ENUM}!dai::TreeEP::Properties@{dai::TreeEP::Properties}}
+\doxysubsubsection{\texorpdfstring{DAI\_ENUM()}{DAI\_ENUM()}}
+{\footnotesize\ttfamily dai\+::\+Tree\+EP\+::\+Properties\+::\+DAI\+\_\+\+ENUM (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Type\+Type}}}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{ORG}}}]{,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{ALT}}}]{ }\end{DoxyParamCaption})}
+
+
+
+Enumeration of possible choices for the tree. 
+
+The two possibilities are\+:
+\begin{DoxyItemize}
+\item {\ttfamily ORG\+:} take the maximum spanning tree where the weights are crude estimates of the mutual information between the nodes;
+\item {\ttfamily ALT\+:} take the maximum spanning tree where the weights are upper bounds on the effective interaction strengths between pairs of nodes. 
+\end{DoxyItemize}
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structdai_1_1TreeEP_1_1Properties_af41d83b6886eed09e080420be1fe0486}\label{structdai_1_1TreeEP_1_1Properties_af41d83b6886eed09e080420be1fe0486} 
+\index{dai::TreeEP::Properties@{dai::TreeEP::Properties}!verbose@{verbose}}
+\index{verbose@{verbose}!dai::TreeEP::Properties@{dai::TreeEP::Properties}}
+\doxysubsubsection{\texorpdfstring{verbose}{verbose}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} dai\+::\+Tree\+EP\+::\+Properties\+::verbose}
+
+
+
+Verbosity (amount of output sent to stderr) 
+
+\Hypertarget{structdai_1_1TreeEP_1_1Properties_a58b7b2658dfa173a64a1683a6ac5425d}\label{structdai_1_1TreeEP_1_1Properties_a58b7b2658dfa173a64a1683a6ac5425d} 
+\index{dai::TreeEP::Properties@{dai::TreeEP::Properties}!maxiter@{maxiter}}
+\index{maxiter@{maxiter}!dai::TreeEP::Properties@{dai::TreeEP::Properties}}
+\doxysubsubsection{\texorpdfstring{maxiter}{maxiter}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} dai\+::\+Tree\+EP\+::\+Properties\+::maxiter}
+
+
+
+Maximum number of iterations. 
+
+\Hypertarget{structdai_1_1TreeEP_1_1Properties_acc03a5e0a25c210856b4f8c8f66781fe}\label{structdai_1_1TreeEP_1_1Properties_acc03a5e0a25c210856b4f8c8f66781fe} 
+\index{dai::TreeEP::Properties@{dai::TreeEP::Properties}!maxtime@{maxtime}}
+\index{maxtime@{maxtime}!dai::TreeEP::Properties@{dai::TreeEP::Properties}}
+\doxysubsubsection{\texorpdfstring{maxtime}{maxtime}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{double}} dai\+::\+Tree\+EP\+::\+Properties\+::maxtime}
+
+
+
+Maximum time (in seconds) 
+
+\Hypertarget{structdai_1_1TreeEP_1_1Properties_ac9e11741633dad1adbf33d269056a193}\label{structdai_1_1TreeEP_1_1Properties_ac9e11741633dad1adbf33d269056a193} 
+\index{dai::TreeEP::Properties@{dai::TreeEP::Properties}!tol@{tol}}
+\index{tol@{tol}!dai::TreeEP::Properties@{dai::TreeEP::Properties}}
+\doxysubsubsection{\texorpdfstring{tol}{tol}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} dai\+::\+Tree\+EP\+::\+Properties\+::tol}
+
+
+
+Tolerance for convergence test. 
+
+\Hypertarget{structdai_1_1TreeEP_1_1Properties_af80877d6d20176db4bc8367b6185e2d3}\label{structdai_1_1TreeEP_1_1Properties_af80877d6d20176db4bc8367b6185e2d3} 
+\index{dai::TreeEP::Properties@{dai::TreeEP::Properties}!type@{type}}
+\index{type@{type}!dai::TreeEP::Properties@{dai::TreeEP::Properties}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Type\+Type}} dai\+::\+Tree\+EP\+::\+Properties\+::type}
+
+
+
+How to choose the tree. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/dai/\mbox{\hyperlink{treeep_8h}{treeep.\+h}}\end{DoxyCompactItemize}

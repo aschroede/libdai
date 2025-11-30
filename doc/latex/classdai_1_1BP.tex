@@ -1,0 +1,978 @@
+\doxysection{dai\+::BP Class Reference}
+\hypertarget{classdai_1_1BP}{}\label{classdai_1_1BP}\index{dai::BP@{dai::BP}}
+
+
+Approximate inference algorithm "{}(\+Loopy) Belief Propagation"{}.  
+
+
+
+
+{\ttfamily \#include $<$dai/bp.\+h$>$}
+
+Inheritance diagram for dai\+::BP\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{classdai_1_1BP}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structdai_1_1BP_1_1EdgeProp}{Edge\+Prop}}
+\begin{DoxyCompactList}\small\item\em Type used for storing edge properties. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structdai_1_1BP_1_1Properties}{Properties}}
+\begin{DoxyCompactList}\small\item\em Parameters for \doxylink{classdai_1_1BP}{BP}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdai_1_1BP_a79a81420bd4370cdaad9d6a8d85c83a5}{BP}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1BP_acdfb5e4da942d55f02540d7a5fc29145}{BP}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1FactorGraph}{Factor\+Graph}} \&\mbox{\hyperlink{classdai_1_1DAIAlg_a056caa8b537fccbd764b1c9f4e1ff615}{fg}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{opts}})
+\begin{DoxyCompactList}\small\item\em Construct from \doxylink{classdai_1_1FactorGraph}{Factor\+Graph} {\itshape fg} and \doxylink{classdai_1_1PropertySet}{Property\+Set} {\itshape opts}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1BP_ae8480cbb4a614119a211ffc03221ba47}{BP}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1BP}{BP}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}})
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1BP}{BP}} \& \mbox{\hyperlink{classdai_1_1BP_add85db1d9ceb68215bda4ea4522cbd13}{operator=}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1BP}{BP}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}})
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ General Inf\+Alg interface}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{classdai_1_1BP}{BP}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classdai_1_1BP_a26e1109e6f1a704a460e24bc23c86e44}{clone}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns a pointer to a new, cloned copy of {\ttfamily \texorpdfstring{$\ast$}{*}this} (i.\+e., virtual copy constructor) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{classdai_1_1BP}{BP}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classdai_1_1BP_ac517bcae7260b8f11f841cef6f95fbd7}{construct}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1FactorGraph}{Factor\+Graph}} \&\mbox{\hyperlink{classdai_1_1DAIAlg_a056caa8b537fccbd764b1c9f4e1ff615}{fg}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{opts}}) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns a pointer to a newly constructed inference algorithm. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} std\+::string \mbox{\hyperlink{classdai_1_1BP_a7a89e2bb58bcb7d9b6b32620aaedc971}{name}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns the name of the algorithm. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} \mbox{\hyperlink{classdai_1_1BP_a7622fa73d05a63f5c2e14ae90f25ac98}{belief}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1Var}{Var}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{v}}) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns the (approximate) marginal probability distribution of a variable. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} \mbox{\hyperlink{classdai_1_1BP_a77f67b27bf95b36387e9083b21db4797}{belief}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{vs}}) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns the (approximate) marginal probability distribution of a set of variables. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} \mbox{\hyperlink{classdai_1_1BP_a6f94ebf0170553bfc8d7020f436afc18}{beliefV}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} i) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns the (approximate) marginal probability distribution of the variable with index {\itshape i}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} \mbox{\hyperlink{classdai_1_1BP_a6f9820fd04efbb11a68d397fb29640bc}{beliefF}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} I) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns the (approximate) marginal probability distribution of the variables on which factor {\itshape I} depends. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} std\+::vector$<$ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} $>$ \mbox{\hyperlink{classdai_1_1BP_a9371a650c6d9bee7856c9d21c6e3987e}{beliefs}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns all beliefs (approximate marginal probability distributions) calculated by the algorithm. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{classdai_1_1BP_a97fa7c1d5e39cb0b0fe6e9beed689b03}{logZ}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns the logarithm of the (approximated) partition sum (normalizing constant of the factor graph). \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} $>$ \mbox{\hyperlink{classdai_1_1BP_ac8145a391bc7b6fc492e83f54308d35c}{find\+Maximum}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1BP_a83349319b22a2d71b1f4ef39709365f9}{init}} ()
+\begin{DoxyCompactList}\small\item\em Initializes all data structures of the approximate inference algorithm. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1BP_ab711dcd5db848b6d993fac482b64ee20}{init}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{ns}})
+\begin{DoxyCompactList}\small\item\em Initializes all data structures corresponding to some set of variables. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{classdai_1_1BP_a6a47c6f0e1f4cd72a666d30f16dc217f}{run}} ()
+\begin{DoxyCompactList}\small\item\em Runs the approximate inference algorithm. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{classdai_1_1BP_a7b30486b4e9a2af12bf2642857f31dc6}{max\+Diff}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns maximum difference between single variable beliefs in the last iteration. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{classdai_1_1BP_a893e0cde801d8761d1553a89937aaf00}{Iterations}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns number of iterations done (one iteration passes over the complete factorgraph). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1BP_ad55c4e707b2726a9d99e1625b31eff12}{set\+Max\+Iter}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} maxiter)
+\begin{DoxyCompactList}\small\item\em Sets maximum number of iterations (one iteration passes over the complete factorgraph). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1BP_a6a169aace3fd0538e79cef8392cfe2a4}{set\+Properties}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{opts}})
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \mbox{\hyperlink{classdai_1_1BP_ae43b21934dd55e764fc782b1c52820a3}{get\+Properties}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns parameters of this inference algorithm converted into a \doxylink{classdai_1_1PropertySet}{Property\+Set}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} std\+::string \mbox{\hyperlink{classdai_1_1BP_adc515cf32e6b41cb740ed7da363d3e65}{print\+Properties}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns parameters of this inference algorithm formatted as a string in the format "{}\mbox{[}key1=val1,key2=val2,...,keyn=valn\mbox{]}"{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classdai_1_1DAIAlg}{dai\+::\+DAIAlg$<$ GRM $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdai_1_1DAIAlg_a1b66918854e70f19c8b506658c9f50e0}{DAIAlg}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1DAIAlg_a46ac57c2abad7c6870f30edc951aeff3}{DAIAlg}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} GRM \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{grm}})
+\begin{DoxyCompactList}\small\item\em Construct from GRM. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdai_1_1FactorGraph}{Factor\+Graph}} \& \mbox{\hyperlink{classdai_1_1DAIAlg_a056caa8b537fccbd764b1c9f4e1ff615}{fg}} ()
+\begin{DoxyCompactList}\small\item\em Returns reference to underlying \doxylink{classdai_1_1FactorGraph}{Factor\+Graph}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1FactorGraph}{Factor\+Graph}} \& \mbox{\hyperlink{classdai_1_1DAIAlg_afdb2f05fe4b4458a9680ddbe21ad58a9}{fg}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns constant reference to underlying \doxylink{classdai_1_1FactorGraph}{Factor\+Graph}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1DAIAlg_ac0d7b26c09d9d7db4a7eda5f66181045}{clamp}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} i, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{backup}}=\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{false}})
+\begin{DoxyCompactList}\small\item\em Clamp variable with index {\itshape i} to value {\itshape x} (i.\+e. multiply with a Kronecker delta $\delta_{x_i, x}$) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1DAIAlg_a7f0b8452352080a1e35ab9a68cb589fd}{make\+Cavity}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} i, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{backup}}=\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{false}})
+\begin{DoxyCompactList}\small\item\em Sets all factors interacting with variable with index {\itshape i} to one. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1DAIAlg_a195bcd6ad05557374c95db50c674ad7f}{make\+Region\+Cavity}} (std\+::vector$<$ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} $>$ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{fac\+Inds}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{backup}})
+\begin{DoxyCompactList}\small\item\em Sets all factors indicated by {\itshape fac\+Inds} to one. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1DAIAlg_a48ba6a58d10b8802d690e5e92ec5abe9}{backup\+Factor}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} I)
+\begin{DoxyCompactList}\small\item\em Make a backup copy of factor {\itshape I}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1DAIAlg_ac74e4ae749a3f706462bb5c0c0f204ca}{backup\+Factors}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{vs}})
+\begin{DoxyCompactList}\small\item\em Make backup copies of all factors involving the variables in {\itshape vs}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1DAIAlg_abf8dbd2797ec871e86566a6dfc0864e3}{restore\+Factor}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} I)
+\begin{DoxyCompactList}\small\item\em Restore factor {\itshape I} from its backup copy. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1DAIAlg_a333a182249b2abeb93ff21377d0e8ffd}{restore\+Factors}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{vs}})
+\begin{DoxyCompactList}\small\item\em Restore the factors involving the variables in {\itshape vs} from their backup copies. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1DAIAlg_aa4f659feb4967ba096400f4904cfe068}{restore\+Factors}} ()
+\begin{DoxyCompactList}\small\item\em Restore all factors from their backup copies. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classdai_1_1InfAlg}{dai\+::\+Inf\+Alg}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{classdai_1_1InfAlg_a00c1dba1041af038de0689cceb0a69f0}{\texorpdfstring{$\sim$}{\string~}\+Inf\+Alg}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor (needed because this class contains virtual functions) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} std\+::string \mbox{\hyperlink{classdai_1_1InfAlg_aa4284a406963b4cd55a820af98e9f03d}{identify}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Identifies itself for logging purposes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdai_1_1BP_a0dd71edae3549d39437963c5dd3eed38}\label{classdai_1_1BP_a0dd71edae3549d39437963c5dd3eed38} 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{struct}} \mbox{\hyperlink{structdai_1_1BP_1_1Properties}{dai\+::\+BP\+::\+Properties}} {\bfseries props}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} \mbox{\hyperlink{classdai_1_1BP_a18460881ce5e2a56adf0659f13339131}{record\+Sent\+Messages}}
+\begin{DoxyCompactList}\small\item\em Specifies whether the history of message updates should be recorded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typedef}} std\+::vector$<$ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} $>$ \mbox{\hyperlink{classdai_1_1BP_af206a56f36098cb72be8bdb64b48817a}{ind\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Type used for index cache. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typedef}} std\+::multimap$<$ \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}}, std\+::pair$<$ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} $>$ $>$ \mbox{\hyperlink{classdai_1_1BP_a34e3854a6740e10a650835a0d6ca1028}{Lut\+Type}}
+\begin{DoxyCompactList}\small\item\em Type of lookup table (only used for maximum-\/residual \doxylink{classdai_1_1BP}{BP}) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{structdai_1_1BP_1_1EdgeProp}{Edge\+Prop}} $>$ $>$ \mbox{\hyperlink{classdai_1_1BP_ae061035ab3cae0cea9c2dfdceb6d92f7}{\+\_\+edges}}
+\begin{DoxyCompactList}\small\item\em Stores all edge properties. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::vector$<$ Lut\+Type\+::iterator $>$ $>$ \mbox{\hyperlink{classdai_1_1BP_aa03dc24e2e8ba6ab12d179d9528fc594}{\+\_\+edge2lut}}
+\begin{DoxyCompactList}\small\item\em Lookup table (only used for maximum-\/residual \doxylink{classdai_1_1BP}{BP}) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1BP_a34e3854a6740e10a650835a0d6ca1028}{Lut\+Type}} \mbox{\hyperlink{classdai_1_1BP_a9302f6004dad2004564ce594d85d2a20}{\+\_\+lut}}
+\begin{DoxyCompactList}\small\item\em Lookup table (only used for maximum-\/residual \doxylink{classdai_1_1BP}{BP}) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{classdai_1_1BP_a1cc44127785b369d091f9e126b4cc40e}{\+\_\+maxdiff}}
+\begin{DoxyCompactList}\small\item\em Maximum difference between variable beliefs encountered so far. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{classdai_1_1BP_a4fd3a6c1e6289d20d4caa5a6a575199d}{\+\_\+iters}}
+\begin{DoxyCompactList}\small\item\em Number of iterations needed. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} $>$ $>$ \mbox{\hyperlink{classdai_1_1BP_afdb2a63192801122b57f56e01dc824eb}{\+\_\+sent\+Messages}}
+\begin{DoxyCompactList}\small\item\em The history of message updates (only recorded if {\itshape record\+Sent\+Messages} is {\ttfamily true}) \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} $>$ \mbox{\hyperlink{classdai_1_1BP_aef9ddfd20780ac70497361ff46d66c60}{\+\_\+old\+BeliefsV}}
+\begin{DoxyCompactList}\small\item\em Stores variable beliefs of previous iteration. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} $>$ \mbox{\hyperlink{classdai_1_1BP_a1d968fb22f5c06a987e66af271597f95}{\+\_\+old\+BeliefsF}}
+\begin{DoxyCompactList}\small\item\em Stores factor beliefs of previous iteration. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{namespacedai_aca51f13415f708db9eabda981b107a14}{Edge}} $>$ \mbox{\hyperlink{classdai_1_1BP_ad9b0eff556c76be0369cf7fb55b7493e}{\+\_\+update\+Seq}}
+\begin{DoxyCompactList}\small\item\em Stores the update schedule. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional interface specific for BP}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} $>$ $>$ \& \mbox{\hyperlink{classdai_1_1BP_ab3bdb6f0cdc0f4f5f32f88eed33b5219}{get\+Sent\+Messages}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns history of which messages have been updated. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1BP_a27279d1154f031be6fcec443ecdaa49f}{clear\+Sent\+Messages}} ()
+\begin{DoxyCompactList}\small\item\em Clears history of which messages have been updated. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \& \mbox{\hyperlink{classdai_1_1BP_aeea4b077f1f6cfede1ceadc79d309ae0}{message}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} i, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \+\_\+I) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns constant reference to message from the {\itshape \+\_\+I} \textquotesingle{}th neighbor of variable {\itshape i} to variable {\itshape i}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \& \mbox{\hyperlink{classdai_1_1BP_a7c58d619ae50833fff965e69e2f6f100}{message}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} i, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \+\_\+I)
+\begin{DoxyCompactList}\small\item\em Returns reference to message from the {\itshape \+\_\+I} \textquotesingle{}th neighbor of variable {\itshape i} to variable {\itshape i}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \& \mbox{\hyperlink{classdai_1_1BP_a16415550170a9c7a41fef259db780b19}{new\+Message}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} i, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \+\_\+I) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns constant reference to updated message from the {\itshape \+\_\+I} \textquotesingle{}th neighbor of variable {\itshape i} to variable {\itshape i}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \& \mbox{\hyperlink{classdai_1_1BP_a8009fb2930da86786c580d06820a9051}{new\+Message}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} i, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \+\_\+I)
+\begin{DoxyCompactList}\small\item\em Returns reference to updated message from the {\itshape \+\_\+I} \textquotesingle{}th neighbor of variable {\itshape i} to variable {\itshape i}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1BP_af206a56f36098cb72be8bdb64b48817a}{ind\+\_\+t}} \& \mbox{\hyperlink{classdai_1_1BP_a7a102237451487df768fdab987689f58}{index}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} i, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \+\_\+I) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns constant reference to cached index for the edge between variable {\itshape i} and its {\itshape \+\_\+I} \textquotesingle{}th neighbor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1BP_af206a56f36098cb72be8bdb64b48817a}{ind\+\_\+t}} \& \mbox{\hyperlink{classdai_1_1BP_ae54018825f62b824b1588c6b4ec76ffb}{index}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} i, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \+\_\+I)
+\begin{DoxyCompactList}\small\item\em Returns reference to cached index for the edge between variable {\itshape i} and its {\itshape \+\_\+I} \textquotesingle{}th neighbor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \& \mbox{\hyperlink{classdai_1_1BP_a3ce171d3abbd217b73e82dfc80f10cf6}{residual}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} i, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \+\_\+I) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns constant reference to residual for the edge between variable {\itshape i} and its {\itshape \+\_\+I} \textquotesingle{}th neighbor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \& \mbox{\hyperlink{classdai_1_1BP_a9f8ac76a2b73099c4bc248461bed0da8}{residual}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} i, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \+\_\+I)
+\begin{DoxyCompactList}\small\item\em Returns reference to residual for the edge between variable {\itshape i} and its {\itshape \+\_\+I} \textquotesingle{}th neighbor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \mbox{\hyperlink{classdai_1_1BP_a15005a6fe1481ce5a2a5e3a4f6694074}{calc\+Incoming\+Message\+Product}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} I, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{without\+\_\+i}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} i) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Calculate the product of factor {\itshape I} and the incoming messages. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1BP_ab3201c4c9099656bf76098cb5ecca486}{calc\+New\+Message}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} i, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \+\_\+I)
+\begin{DoxyCompactList}\small\item\em Calculate the updated message from the {\itshape \+\_\+I} \textquotesingle{}th neighbor of variable {\itshape i} to variable {\itshape i}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1BP_a758936c7ddec33145d364b29f75eeda4}{update\+Message}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} i, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \+\_\+I)
+\begin{DoxyCompactList}\small\item\em Replace the "{}old"{} message from the {\itshape \+\_\+I} \textquotesingle{}th neighbor of variable {\itshape i} to variable {\itshape i} by the "{}new"{} (updated) message. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1BP_aadcfd932c08690541849847e720e950f}{update\+Residual}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} i, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \+\_\+I, \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{r}})
+\begin{DoxyCompactList}\small\item\em Set the residual (difference between new and old message) for the edge between variable {\itshape i} and its {\itshape \+\_\+I} \textquotesingle{}th neighbor to {\itshape r}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1BP_a3a4f648b3d03bd311edb9d8b532897aa}{find\+Max\+Residual}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \&i, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \&\+\_\+I)
+\begin{DoxyCompactList}\small\item\em Finds the edge which has the maximum residual (difference between new and old message) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1BP_aeb53916a0ce55cc0ea56c2685ca8b76b}{calc\+BeliefV}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} i, \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \&p) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Calculates unnormalized belief of variable {\itshape i}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1BP_a44befb376a313dd0310f0bc310bb0b71}{calc\+BeliefF}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} I, \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \&p) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Calculates unnormalized belief of factor {\itshape I}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1BP_ac1ebfbe0a328c5f460ec6ce55e79b22d}{construct}} ()
+\begin{DoxyCompactList}\small\item\em Helper function for constructors. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Approximate inference algorithm "{}(\+Loopy) Belief Propagation"{}. 
+
+The Loopy Belief Propagation algorithm uses message passing to approximate marginal probability distributions ("{}beliefs"{}) for variables and factors (more precisely, for the subset of variables depending on the factor). There are two variants, the sum-\/product algorithm (corresponding to finite temperature) and the max-\/product algorithm (corresponding to zero temperature).
+
+The messages $m_{I\to i}(x_i)$ are passed from factors $I$ to variables $i$. In case of the sum-\/product algorith, the update equation is\+: \[ m_{I\to i}(x_i) \propto \sum_{x_{N_I\setminus\{i\}}} f_I(x_I) \prod_{j\in N_I\setminus\{i\}} \prod_{J\in N_j\setminus\{I\}} m_{J\to j}\] and in case of the max-\/product algorithm\+: \[ m_{I\to i}(x_i) \propto \max_{x_{N_I\setminus\{i\}}} f_I(x_I) \prod_{j\in N_I\setminus\{i\}} \prod_{J\in N_j\setminus\{I\}} m_{J\to j}\] In order to improve convergence, the updates can be damped. For improved numerical stability, the updates can be done in the log-\/domain alternatively.
+
+After convergence, the variable beliefs are calculated by\+: \[ b_i(x_i) \propto \prod_{I\in N_i} m_{I\to i}(x_i)\] and the factor beliefs are calculated by\+: \[ b_I(x_I) \propto f_I(x_I) \prod_{j\in N_I} \prod_{J\in N_j\setminus\{I\}} m_{J\to j}(x_j) \] The logarithm of the partition sum is calculated by\+: \[ \log Z = \sum_i (1 - |N_i|) \sum_{x_i} b_i(x_i) \log b_i(x_i) - \sum_I \sum_{x_I} b_I(x_I) \log \frac{b_I(x_I)}{f_I(x_I)} \]
+
+For the max-\/product algorithm, a heuristic way of finding the MAP state (the joint configuration of all variables which has maximum probability) is provided by the \doxylink{classdai_1_1BP_ac8145a391bc7b6fc492e83f54308d35c}{find\+Maximum()} method, which can be called after convergence.
+
+\begin{DoxyNote}{Note}
+There are two implementations, an optimized one (the default) which caches \doxylink{classdai_1_1IndexFor}{Index\+For} objects, and a slower, less complicated one which is easier to maintain/understand. The slower one can be enabled by defining DAI\+\_\+\+BP\+\_\+\+FAST as false in the source file. 
+\end{DoxyNote}
+\begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_8cpp-example}{example.\+cpp}}.\end{Desc}
+
+
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{classdai_1_1BP_af206a56f36098cb72be8bdb64b48817a}\label{classdai_1_1BP_af206a56f36098cb72be8bdb64b48817a} 
+\index{dai::BP@{dai::BP}!ind\_t@{ind\_t}}
+\index{ind\_t@{ind\_t}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{ind\_t}{ind\_t}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typedef}} std\+::vector$<$\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}$>$ \mbox{\hyperlink{classdai_1_1BP_af206a56f36098cb72be8bdb64b48817a}{dai\+::\+BP\+::ind\+\_\+t}}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Type used for index cache. 
+
+\Hypertarget{classdai_1_1BP_a34e3854a6740e10a650835a0d6ca1028}\label{classdai_1_1BP_a34e3854a6740e10a650835a0d6ca1028} 
+\index{dai::BP@{dai::BP}!LutType@{LutType}}
+\index{LutType@{LutType}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{LutType}{LutType}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typedef}} std\+::multimap$<$\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}}, std\+::pair$<$\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}$>$ $>$ \mbox{\hyperlink{classdai_1_1BP_a34e3854a6740e10a650835a0d6ca1028}{dai\+::\+BP\+::\+Lut\+Type}}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Type of lookup table (only used for maximum-\/residual \doxylink{classdai_1_1BP}{BP}) 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classdai_1_1BP_a79a81420bd4370cdaad9d6a8d85c83a5}\label{classdai_1_1BP_a79a81420bd4370cdaad9d6a8d85c83a5} 
+\index{dai::BP@{dai::BP}!BP@{BP}}
+\index{BP@{BP}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{BP()}{BP()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily dai\+::\+BP\+::\+BP (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor. 
+
+\Hypertarget{classdai_1_1BP_acdfb5e4da942d55f02540d7a5fc29145}\label{classdai_1_1BP_acdfb5e4da942d55f02540d7a5fc29145} 
+\index{dai::BP@{dai::BP}!BP@{BP}}
+\index{BP@{BP}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{BP()}{BP()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily dai\+::\+BP\+::\+BP (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1FactorGraph}{Factor\+Graph}} \&}]{fg,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&}]{opts }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct from \doxylink{classdai_1_1FactorGraph}{Factor\+Graph} {\itshape fg} and \doxylink{classdai_1_1PropertySet}{Property\+Set} {\itshape opts}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fg} & Factor graph. \\
+\hline
+{\em opts} & Parameters \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxylink{structdai_1_1BP_1_1Properties}{Properties} 
+\end{DoxySeeAlso}
+\Hypertarget{classdai_1_1BP_ae8480cbb4a614119a211ffc03221ba47}\label{classdai_1_1BP_ae8480cbb4a614119a211ffc03221ba47} 
+\index{dai::BP@{dai::BP}!BP@{BP}}
+\index{BP@{BP}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{BP()}{BP()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily dai\+::\+BP\+::\+BP (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1BP}{BP}} \&}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Copy constructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classdai_1_1BP_add85db1d9ceb68215bda4ea4522cbd13}\label{classdai_1_1BP_add85db1d9ceb68215bda4ea4522cbd13} 
+\index{dai::BP@{dai::BP}!operator=@{operator=}}
+\index{operator=@{operator=}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1BP}{BP}} \& dai\+::\+BP\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1BP}{BP}} \&}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Assignment operator. 
+
+\Hypertarget{classdai_1_1BP_a26e1109e6f1a704a460e24bc23c86e44}\label{classdai_1_1BP_a26e1109e6f1a704a460e24bc23c86e44} 
+\index{dai::BP@{dai::BP}!clone@{clone}}
+\index{clone@{clone}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{clone()}{clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{classdai_1_1BP}{BP}} \texorpdfstring{$\ast$}{*} dai\+::\+BP\+::clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Returns a pointer to a new, cloned copy of {\ttfamily \texorpdfstring{$\ast$}{*}this} (i.\+e., virtual copy constructor) 
+
+
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_a4e05d62b78fc4f9a93cd417a5c807eab}{dai\+::\+Inf\+Alg}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classdai_1_1FBP_acfcc99690341c16f50dbbebd2bce74e8}{dai\+::\+FBP}}, and \mbox{\hyperlink{classdai_1_1TRWBP_a49a16e075233975cb5f363a885952064}{dai\+::\+TRWBP}}.
+
+\Hypertarget{classdai_1_1BP_ac517bcae7260b8f11f841cef6f95fbd7}\label{classdai_1_1BP_ac517bcae7260b8f11f841cef6f95fbd7} 
+\index{dai::BP@{dai::BP}!construct@{construct}}
+\index{construct@{construct}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{construct()}{construct()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{classdai_1_1BP}{BP}} \texorpdfstring{$\ast$}{*} dai\+::\+BP\+::construct (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1FactorGraph}{Factor\+Graph}} \&}]{fg,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&}]{opts }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Returns a pointer to a newly constructed inference algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fg} & Factor graph on which to perform the inference algorithm; \\
+\hline
+{\em opts} & Parameters passed to constructor of inference algorithm; \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_ac2865bb3577b103a707903010a53b6ce}{dai\+::\+Inf\+Alg}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classdai_1_1FBP_a47cdd47222aad1c06cd6f3497761d965}{dai\+::\+FBP}}, and \mbox{\hyperlink{classdai_1_1TRWBP_a927a6ac0eb42a08c97ddbbb52cfd55b0}{dai\+::\+TRWBP}}.
+
+\Hypertarget{classdai_1_1BP_a7a89e2bb58bcb7d9b6b32620aaedc971}\label{classdai_1_1BP_a7a89e2bb58bcb7d9b6b32620aaedc971} 
+\index{dai::BP@{dai::BP}!name@{name}}
+\index{name@{name}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{name()}{name()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} std\+::string dai\+::\+BP\+::name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Returns the name of the algorithm. 
+
+
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_a25108f733ca6bc54f445a4fffdc2a392}{dai\+::\+Inf\+Alg}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classdai_1_1FBP_a53da649128ac123fcba40caec59b61ba}{dai\+::\+FBP}}, and \mbox{\hyperlink{classdai_1_1TRWBP_a5fa060f72821df8686a0acc9ff409dac}{dai\+::\+TRWBP}}.
+
+\Hypertarget{classdai_1_1BP_a7622fa73d05a63f5c2e14ae90f25ac98}\label{classdai_1_1BP_a7622fa73d05a63f5c2e14ae90f25ac98} 
+\index{dai::BP@{dai::BP}!belief@{belief}}
+\index{belief@{belief}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{belief()}{belief()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} dai\+::\+BP\+::belief (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1Var}{Var}} \&}]{v }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Returns the (approximate) marginal probability distribution of a variable. 
+
+\begin{DoxyNote}{Note}
+Before this method is called, \doxylink{classdai_1_1BP_a6a47c6f0e1f4cd72a666d30f16dc217f}{run()} should have been called. 
+\end{DoxyNote}
+
+
+Reimplemented from \mbox{\hyperlink{classdai_1_1InfAlg_ab36227bbc227dfaff65d4a39ff938c34}{dai\+::\+Inf\+Alg}}.
+
+\begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_8cpp-example}{example.\+cpp}}.\end{Desc}
+\Hypertarget{classdai_1_1BP_a77f67b27bf95b36387e9083b21db4797}\label{classdai_1_1BP_a77f67b27bf95b36387e9083b21db4797} 
+\index{dai::BP@{dai::BP}!belief@{belief}}
+\index{belief@{belief}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{belief()}{belief()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} dai\+::\+BP\+::belief (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} \&}]{vs }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Returns the (approximate) marginal probability distribution of a set of variables. 
+
+\begin{DoxyNote}{Note}
+Before this method is called, \doxylink{classdai_1_1BP_a6a47c6f0e1f4cd72a666d30f16dc217f}{run()} should have been called. 
+\end{DoxyNote}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em NOT\+\_\+\+IMPLEMENTED} & if not implemented/supported. \\
+\hline
+{\em BELIEF\+\_\+\+NOT\+\_\+\+AVAILABLE} & if the requested belief cannot be calculated with this algorithm. \\
+\hline
+\end{DoxyExceptions}
+
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_a4655db9d766470f1a555cba7d3ec7190}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1BP_a6f94ebf0170553bfc8d7020f436afc18}\label{classdai_1_1BP_a6f94ebf0170553bfc8d7020f436afc18} 
+\index{dai::BP@{dai::BP}!beliefV@{beliefV}}
+\index{beliefV@{beliefV}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{beliefV()}{beliefV()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} dai\+::\+BP\+::beliefV (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{i }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Returns the (approximate) marginal probability distribution of the variable with index {\itshape i}. 
+
+For some approximate inference algorithms, using \doxylink{classdai_1_1BP_a6f94ebf0170553bfc8d7020f436afc18}{belief\+V()} is preferred to \doxylink{classdai_1_1BP_a7622fa73d05a63f5c2e14ae90f25ac98}{belief()} for performance reasons. \begin{DoxyNote}{Note}
+Before this method is called, \doxylink{classdai_1_1BP_a6a47c6f0e1f4cd72a666d30f16dc217f}{run()} should have been called. 
+\end{DoxyNote}
+
+
+Reimplemented from \mbox{\hyperlink{classdai_1_1InfAlg_ad89814b146552be0928a772ca110b444}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1BP_a6f9820fd04efbb11a68d397fb29640bc}\label{classdai_1_1BP_a6f9820fd04efbb11a68d397fb29640bc} 
+\index{dai::BP@{dai::BP}!beliefF@{beliefF}}
+\index{beliefF@{beliefF}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{beliefF()}{beliefF()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} dai\+::\+BP\+::beliefF (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{I }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Returns the (approximate) marginal probability distribution of the variables on which factor {\itshape I} depends. 
+
+For some approximate inference algorithms, using \doxylink{classdai_1_1BP_a6f9820fd04efbb11a68d397fb29640bc}{belief\+F()} is preferred to \doxylink{classdai_1_1BP_a7622fa73d05a63f5c2e14ae90f25ac98}{belief()} for performance reasons. \begin{DoxyNote}{Note}
+Before this method is called, \doxylink{classdai_1_1BP_a6a47c6f0e1f4cd72a666d30f16dc217f}{run()} should have been called. 
+\end{DoxyNote}
+
+
+Reimplemented from \mbox{\hyperlink{classdai_1_1InfAlg_a7db625ef414a06961ac0d808b6102546}{dai\+::\+Inf\+Alg}}.
+
+\begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_8cpp-example}{example.\+cpp}}.\end{Desc}
+\Hypertarget{classdai_1_1BP_a9371a650c6d9bee7856c9d21c6e3987e}\label{classdai_1_1BP_a9371a650c6d9bee7856c9d21c6e3987e} 
+\index{dai::BP@{dai::BP}!beliefs@{beliefs}}
+\index{beliefs@{beliefs}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{beliefs()}{beliefs()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} $>$ dai\+::\+BP\+::beliefs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Returns all beliefs (approximate marginal probability distributions) calculated by the algorithm. 
+
+\begin{DoxyNote}{Note}
+Before this method is called, \doxylink{classdai_1_1BP_a6a47c6f0e1f4cd72a666d30f16dc217f}{run()} should have been called. 
+\end{DoxyNote}
+
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_a283601d71d62a6f60183748cbee88006}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1BP_a97fa7c1d5e39cb0b0fe6e9beed689b03}\label{classdai_1_1BP_a97fa7c1d5e39cb0b0fe6e9beed689b03} 
+\index{dai::BP@{dai::BP}!logZ@{logZ}}
+\index{logZ@{logZ}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{logZ()}{logZ()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} dai\+::\+BP\+::logZ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Returns the logarithm of the (approximated) partition sum (normalizing constant of the factor graph). 
+
+\begin{DoxyNote}{Note}
+Before this method is called, \doxylink{classdai_1_1BP_a6a47c6f0e1f4cd72a666d30f16dc217f}{run()} should have been called. 
+\end{DoxyNote}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em NOT\+\_\+\+IMPLEMENTED} & if not implemented/supported \\
+\hline
+\end{DoxyExceptions}
+
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_a40a2353d63c358ebca834d40b0a4fc70}{dai\+::\+Inf\+Alg}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classdai_1_1FBP_ace00afca41dd5772f226b7309831bb01}{dai\+::\+FBP}}, and \mbox{\hyperlink{classdai_1_1TRWBP_acdea16043ffbe12926d18fd4dbce38cd}{dai\+::\+TRWBP}}.
+
+\begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_8cpp-example}{example.\+cpp}}.\end{Desc}
+\Hypertarget{classdai_1_1BP_ac8145a391bc7b6fc492e83f54308d35c}\label{classdai_1_1BP_ac8145a391bc7b6fc492e83f54308d35c} 
+\index{dai::BP@{dai::BP}!findMaximum@{findMaximum}}
+\index{findMaximum@{findMaximum}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{findMaximum()}{findMaximum()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} $>$ dai\+::\+BP\+::find\+Maximum (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+\begin{DoxyPrecond}{Precondition}
+Assumes that \doxylink{classdai_1_1BP_a6a47c6f0e1f4cd72a666d30f16dc217f}{run()} has been called and that {\itshape props.\+inference} == {\ttfamily MAXPROD} 
+\end{DoxyPrecond}
+
+
+Reimplemented from \mbox{\hyperlink{classdai_1_1InfAlg_a2095732e9defd30c7348703990804763}{dai\+::\+Inf\+Alg}}.
+
+\begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_8cpp-example}{example.\+cpp}}.\end{Desc}
+\Hypertarget{classdai_1_1BP_a83349319b22a2d71b1f4ef39709365f9}\label{classdai_1_1BP_a83349319b22a2d71b1f4ef39709365f9} 
+\index{dai::BP@{dai::BP}!init@{init}}
+\index{init@{init}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+BP\+::init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Initializes all data structures of the approximate inference algorithm. 
+
+\begin{DoxyNote}{Note}
+This method should be called at least once before \doxylink{classdai_1_1BP_a6a47c6f0e1f4cd72a666d30f16dc217f}{run()} is called. 
+\end{DoxyNote}
+
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_a99dd53d1aaccf09a4b977a49a983cc85}{dai\+::\+Inf\+Alg}}.
+
+\begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_8cpp-example}{example.\+cpp}}.\end{Desc}
+\Hypertarget{classdai_1_1BP_ab711dcd5db848b6d993fac482b64ee20}\label{classdai_1_1BP_ab711dcd5db848b6d993fac482b64ee20} 
+\index{dai::BP@{dai::BP}!init@{init}}
+\index{init@{init}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+BP\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} \&}]{vs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Initializes all data structures corresponding to some set of variables. 
+
+This method can be used to do a partial initialization after a part of the factor graph has changed. Instead of initializing all data structures, it only initializes those involving the variables in {\itshape vs}. 
+\begin{DoxyExceptions}{Exceptions}
+{\em NOT\+\_\+\+IMPLEMENTED} & if not implemented/supported \\
+\hline
+\end{DoxyExceptions}
+
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_a5b1e6d8af207bcc47fd954fdef382a77}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1BP_a6a47c6f0e1f4cd72a666d30f16dc217f}\label{classdai_1_1BP_a6a47c6f0e1f4cd72a666d30f16dc217f} 
+\index{dai::BP@{dai::BP}!run@{run}}
+\index{run@{run}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} dai\+::\+BP\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Runs the approximate inference algorithm. 
+
+\begin{DoxyNote}{Note}
+Before \doxylink{classdai_1_1BP_a6a47c6f0e1f4cd72a666d30f16dc217f}{run()} is called the first time, \doxylink{classdai_1_1BP_a83349319b22a2d71b1f4ef39709365f9}{init()} should have been called. 
+\end{DoxyNote}
+
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_a4ac173c4d4109fd1e2229dd83532d32f}{dai\+::\+Inf\+Alg}}.
+
+\begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_8cpp-example}{example.\+cpp}}.\end{Desc}
+\Hypertarget{classdai_1_1BP_a7b30486b4e9a2af12bf2642857f31dc6}\label{classdai_1_1BP_a7b30486b4e9a2af12bf2642857f31dc6} 
+\index{dai::BP@{dai::BP}!maxDiff@{maxDiff}}
+\index{maxDiff@{maxDiff}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{maxDiff()}{maxDiff()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} dai\+::\+BP\+::max\+Diff (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Returns maximum difference between single variable beliefs in the last iteration. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em NOT\+\_\+\+IMPLEMENTED} & if not implemented/supported \\
+\hline
+\end{DoxyExceptions}
+
+
+Reimplemented from \mbox{\hyperlink{classdai_1_1InfAlg_a915a659034eb4c85abde912d684f8dee}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1BP_a893e0cde801d8761d1553a89937aaf00}\label{classdai_1_1BP_a893e0cde801d8761d1553a89937aaf00} 
+\index{dai::BP@{dai::BP}!Iterations@{Iterations}}
+\index{Iterations@{Iterations}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{Iterations()}{Iterations()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} dai\+::\+BP\+::\+Iterations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Returns number of iterations done (one iteration passes over the complete factorgraph). 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em NOT\+\_\+\+IMPLEMENTED} & if not implemented/supported \\
+\hline
+\end{DoxyExceptions}
+
+
+Reimplemented from \mbox{\hyperlink{classdai_1_1InfAlg_a89986bbc1a42554905c6f417f2227ac5}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1BP_ad55c4e707b2726a9d99e1625b31eff12}\label{classdai_1_1BP_ad55c4e707b2726a9d99e1625b31eff12} 
+\index{dai::BP@{dai::BP}!setMaxIter@{setMaxIter}}
+\index{setMaxIter@{setMaxIter}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{setMaxIter()}{setMaxIter()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+BP\+::set\+Max\+Iter (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Sets maximum number of iterations (one iteration passes over the complete factorgraph). 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em NOT\+\_\+\+IMPLEMENTED} & if not implemented/supported \\
+\hline
+\end{DoxyExceptions}
+
+
+Reimplemented from \mbox{\hyperlink{classdai_1_1InfAlg_ac48656e5d42a7d288e9ca6d70e264858}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1BP_a6a169aace3fd0538e79cef8392cfe2a4}\label{classdai_1_1BP_a6a169aace3fd0538e79cef8392cfe2a4} 
+\index{dai::BP@{dai::BP}!setProperties@{setProperties}}
+\index{setProperties@{setProperties}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{setProperties()}{setProperties()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+BP\+::set\+Properties (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&}]{opts }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000001}{Todo}}]Make DAI\+\_\+\+BP\+\_\+\+FAST a compile-\/time choice, as it is a memory/speed tradeoff \end{DoxyRefDesc}
+
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_ac422893fd7b8e37f914860aeba9602dc}{dai\+::\+Inf\+Alg}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classdai_1_1TRWBP_a2aeaf6c4106d09935a038895d9563bc9}{dai\+::\+TRWBP}}.
+
+\Hypertarget{classdai_1_1BP_ae43b21934dd55e764fc782b1c52820a3}\label{classdai_1_1BP_ae43b21934dd55e764fc782b1c52820a3} 
+\index{dai::BP@{dai::BP}!getProperties@{getProperties}}
+\index{getProperties@{getProperties}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{getProperties()}{getProperties()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} dai\+::\+BP\+::get\+Properties (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Returns parameters of this inference algorithm converted into a \doxylink{classdai_1_1PropertySet}{Property\+Set}. 
+
+
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_aba3b821f6ed47b91ef4080b03c14220e}{dai\+::\+Inf\+Alg}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classdai_1_1TRWBP_a7aabfb63e3d54d054bc15dd243e0b345}{dai\+::\+TRWBP}}.
+
+\Hypertarget{classdai_1_1BP_adc515cf32e6b41cb740ed7da363d3e65}\label{classdai_1_1BP_adc515cf32e6b41cb740ed7da363d3e65} 
+\index{dai::BP@{dai::BP}!printProperties@{printProperties}}
+\index{printProperties@{printProperties}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{printProperties()}{printProperties()}}
+{\footnotesize\ttfamily string dai\+::\+BP\+::print\+Properties (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Returns parameters of this inference algorithm formatted as a string in the format "{}\mbox{[}key1=val1,key2=val2,...,keyn=valn\mbox{]}"{}. 
+
+
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_a9cc7a50cbbe8825a334b16e41c92f019}{dai\+::\+Inf\+Alg}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{classdai_1_1TRWBP_a36687450d0502707138520fbea015519}{dai\+::\+TRWBP}}.
+
+\Hypertarget{classdai_1_1BP_ab3bdb6f0cdc0f4f5f32f88eed33b5219}\label{classdai_1_1BP_ab3bdb6f0cdc0f4f5f32f88eed33b5219} 
+\index{dai::BP@{dai::BP}!getSentMessages@{getSentMessages}}
+\index{getSentMessages@{getSentMessages}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{getSentMessages()}{getSentMessages()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::vector$<$ std\+::pair$<$ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} $>$ $>$ \& dai\+::\+BP\+::get\+Sent\+Messages (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns history of which messages have been updated. 
+
+\Hypertarget{classdai_1_1BP_a27279d1154f031be6fcec443ecdaa49f}\label{classdai_1_1BP_a27279d1154f031be6fcec443ecdaa49f} 
+\index{dai::BP@{dai::BP}!clearSentMessages@{clearSentMessages}}
+\index{clearSentMessages@{clearSentMessages}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{clearSentMessages()}{clearSentMessages()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+BP\+::clear\+Sent\+Messages (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Clears history of which messages have been updated. 
+
+\Hypertarget{classdai_1_1BP_aeea4b077f1f6cfede1ceadc79d309ae0}\label{classdai_1_1BP_aeea4b077f1f6cfede1ceadc79d309ae0} 
+\index{dai::BP@{dai::BP}!message@{message}}
+\index{message@{message}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{message()}{message()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \& dai\+::\+BP\+::message (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{i,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{\+\_\+I }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Returns constant reference to message from the {\itshape \+\_\+I} \textquotesingle{}th neighbor of variable {\itshape i} to variable {\itshape i}. 
+
+\Hypertarget{classdai_1_1BP_a7c58d619ae50833fff965e69e2f6f100}\label{classdai_1_1BP_a7c58d619ae50833fff965e69e2f6f100} 
+\index{dai::BP@{dai::BP}!message@{message}}
+\index{message@{message}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{message()}{message()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \& dai\+::\+BP\+::message (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{i,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{\+\_\+I }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Returns reference to message from the {\itshape \+\_\+I} \textquotesingle{}th neighbor of variable {\itshape i} to variable {\itshape i}. 
+
+\Hypertarget{classdai_1_1BP_a16415550170a9c7a41fef259db780b19}\label{classdai_1_1BP_a16415550170a9c7a41fef259db780b19} 
+\index{dai::BP@{dai::BP}!newMessage@{newMessage}}
+\index{newMessage@{newMessage}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{newMessage()}{newMessage()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \& dai\+::\+BP\+::new\+Message (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{i,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{\+\_\+I }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Returns constant reference to updated message from the {\itshape \+\_\+I} \textquotesingle{}th neighbor of variable {\itshape i} to variable {\itshape i}. 
+
+\Hypertarget{classdai_1_1BP_a8009fb2930da86786c580d06820a9051}\label{classdai_1_1BP_a8009fb2930da86786c580d06820a9051} 
+\index{dai::BP@{dai::BP}!newMessage@{newMessage}}
+\index{newMessage@{newMessage}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{newMessage()}{newMessage()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \& dai\+::\+BP\+::new\+Message (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{i,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{\+\_\+I }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Returns reference to updated message from the {\itshape \+\_\+I} \textquotesingle{}th neighbor of variable {\itshape i} to variable {\itshape i}. 
+
+\Hypertarget{classdai_1_1BP_a7a102237451487df768fdab987689f58}\label{classdai_1_1BP_a7a102237451487df768fdab987689f58} 
+\index{dai::BP@{dai::BP}!index@{index}}
+\index{index@{index}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{index()}{index()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1BP_af206a56f36098cb72be8bdb64b48817a}{ind\+\_\+t}} \& dai\+::\+BP\+::index (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{i,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{\+\_\+I }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Returns constant reference to cached index for the edge between variable {\itshape i} and its {\itshape \+\_\+I} \textquotesingle{}th neighbor. 
+
+\Hypertarget{classdai_1_1BP_ae54018825f62b824b1588c6b4ec76ffb}\label{classdai_1_1BP_ae54018825f62b824b1588c6b4ec76ffb} 
+\index{dai::BP@{dai::BP}!index@{index}}
+\index{index@{index}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{index()}{index()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1BP_af206a56f36098cb72be8bdb64b48817a}{ind\+\_\+t}} \& dai\+::\+BP\+::index (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{i,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{\+\_\+I }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Returns reference to cached index for the edge between variable {\itshape i} and its {\itshape \+\_\+I} \textquotesingle{}th neighbor. 
+
+\Hypertarget{classdai_1_1BP_a3ce171d3abbd217b73e82dfc80f10cf6}\label{classdai_1_1BP_a3ce171d3abbd217b73e82dfc80f10cf6} 
+\index{dai::BP@{dai::BP}!residual@{residual}}
+\index{residual@{residual}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{residual()}{residual()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \& dai\+::\+BP\+::residual (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{i,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{\+\_\+I }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Returns constant reference to residual for the edge between variable {\itshape i} and its {\itshape \+\_\+I} \textquotesingle{}th neighbor. 
+
+\Hypertarget{classdai_1_1BP_a9f8ac76a2b73099c4bc248461bed0da8}\label{classdai_1_1BP_a9f8ac76a2b73099c4bc248461bed0da8} 
+\index{dai::BP@{dai::BP}!residual@{residual}}
+\index{residual@{residual}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{residual()}{residual()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \& dai\+::\+BP\+::residual (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{i,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{\+\_\+I }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Returns reference to residual for the edge between variable {\itshape i} and its {\itshape \+\_\+I} \textquotesingle{}th neighbor. 
+
+\Hypertarget{classdai_1_1BP_a15005a6fe1481ce5a2a5e3a4f6694074}\label{classdai_1_1BP_a15005a6fe1481ce5a2a5e3a4f6694074} 
+\index{dai::BP@{dai::BP}!calcIncomingMessageProduct@{calcIncomingMessageProduct}}
+\index{calcIncomingMessageProduct@{calcIncomingMessageProduct}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{calcIncomingMessageProduct()}{calcIncomingMessageProduct()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} dai\+::\+BP\+::calc\+Incoming\+Message\+Product (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{I,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}}}]{without\+\_\+i,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{i }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Calculate the product of factor {\itshape I} and the incoming messages. 
+
+If {\itshape without\+\_\+i} == {\ttfamily true}, the message coming from variable {\itshape i} is omitted from the product \begin{DoxyNote}{Note}
+This function is used by \doxylink{classdai_1_1BP_ab3201c4c9099656bf76098cb5ecca486}{calc\+New\+Message()} and \doxylink{classdai_1_1BP_a44befb376a313dd0310f0bc310bb0b71}{calc\+Belief\+F()} 
+\end{DoxyNote}
+
+
+Reimplemented in \mbox{\hyperlink{classdai_1_1FBP_abc7d62cc1f5fc8a251d38ca0873e77cf}{dai\+::\+FBP}}, and \mbox{\hyperlink{classdai_1_1TRWBP_aec7dad36c42dc18ac284e448bf571ca1}{dai\+::\+TRWBP}}.
+
+\Hypertarget{classdai_1_1BP_ab3201c4c9099656bf76098cb5ecca486}\label{classdai_1_1BP_ab3201c4c9099656bf76098cb5ecca486} 
+\index{dai::BP@{dai::BP}!calcNewMessage@{calcNewMessage}}
+\index{calcNewMessage@{calcNewMessage}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{calcNewMessage()}{calcNewMessage()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+BP\+::calc\+New\+Message (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{i,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{\+\_\+I }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Calculate the updated message from the {\itshape \+\_\+I} \textquotesingle{}th neighbor of variable {\itshape i} to variable {\itshape i}. 
+
+
+
+Reimplemented in \mbox{\hyperlink{classdai_1_1FBP_acb78219ff88ff5eabd68583175ab09d8}{dai\+::\+FBP}}.
+
+\Hypertarget{classdai_1_1BP_a758936c7ddec33145d364b29f75eeda4}\label{classdai_1_1BP_a758936c7ddec33145d364b29f75eeda4} 
+\index{dai::BP@{dai::BP}!updateMessage@{updateMessage}}
+\index{updateMessage@{updateMessage}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{updateMessage()}{updateMessage()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+BP\+::update\+Message (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{i,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{\+\_\+I }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Replace the "{}old"{} message from the {\itshape \+\_\+I} \textquotesingle{}th neighbor of variable {\itshape i} to variable {\itshape i} by the "{}new"{} (updated) message. 
+
+\Hypertarget{classdai_1_1BP_aadcfd932c08690541849847e720e950f}\label{classdai_1_1BP_aadcfd932c08690541849847e720e950f} 
+\index{dai::BP@{dai::BP}!updateResidual@{updateResidual}}
+\index{updateResidual@{updateResidual}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{updateResidual()}{updateResidual()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+BP\+::update\+Residual (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{i,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{\+\_\+I,  }\item[{\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}}}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Set the residual (difference between new and old message) for the edge between variable {\itshape i} and its {\itshape \+\_\+I} \textquotesingle{}th neighbor to {\itshape r}. 
+
+\Hypertarget{classdai_1_1BP_a3a4f648b3d03bd311edb9d8b532897aa}\label{classdai_1_1BP_a3a4f648b3d03bd311edb9d8b532897aa} 
+\index{dai::BP@{dai::BP}!findMaxResidual@{findMaxResidual}}
+\index{findMaxResidual@{findMaxResidual}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{findMaxResidual()}{findMaxResidual()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+BP\+::find\+Max\+Residual (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \&}]{i,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \&}]{\+\_\+I }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Finds the edge which has the maximum residual (difference between new and old message) 
+
+\Hypertarget{classdai_1_1BP_aeb53916a0ce55cc0ea56c2685ca8b76b}\label{classdai_1_1BP_aeb53916a0ce55cc0ea56c2685ca8b76b} 
+\index{dai::BP@{dai::BP}!calcBeliefV@{calcBeliefV}}
+\index{calcBeliefV@{calcBeliefV}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{calcBeliefV()}{calcBeliefV()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+BP\+::calc\+BeliefV (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{i,  }\item[{\mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \&}]{p }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Calculates unnormalized belief of variable {\itshape i}. 
+
+
+
+Reimplemented in \mbox{\hyperlink{classdai_1_1TRWBP_a968f4236748e249379216750ff146e3a}{dai\+::\+TRWBP}}.
+
+\Hypertarget{classdai_1_1BP_a44befb376a313dd0310f0bc310bb0b71}\label{classdai_1_1BP_a44befb376a313dd0310f0bc310bb0b71} 
+\index{dai::BP@{dai::BP}!calcBeliefF@{calcBeliefF}}
+\index{calcBeliefF@{calcBeliefF}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{calcBeliefF()}{calcBeliefF()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+BP\+::calc\+BeliefF (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{I,  }\item[{\mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \&}]{p }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Calculates unnormalized belief of factor {\itshape I}. 
+
+
+
+Reimplemented in \mbox{\hyperlink{classdai_1_1FBP_af2c23579457b5079100797b36a4e7f0e}{dai\+::\+FBP}}, and \mbox{\hyperlink{classdai_1_1TRWBP_ab42ea7809a841a7cf6a043ede7c2f22d}{dai\+::\+TRWBP}}.
+
+\Hypertarget{classdai_1_1BP_ac1ebfbe0a328c5f460ec6ce55e79b22d}\label{classdai_1_1BP_ac1ebfbe0a328c5f460ec6ce55e79b22d} 
+\index{dai::BP@{dai::BP}!construct@{construct}}
+\index{construct@{construct}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{construct()}{construct()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+BP\+::construct (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Helper function for constructors. 
+
+
+
+Reimplemented in \mbox{\hyperlink{classdai_1_1FBP_a854db7b2ada840026a17b837ca9897f1}{dai\+::\+FBP}}, and \mbox{\hyperlink{classdai_1_1TRWBP_acb2edaf2a224aa7643932878fe54699c}{dai\+::\+TRWBP}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classdai_1_1BP_ae061035ab3cae0cea9c2dfdceb6d92f7}\label{classdai_1_1BP_ae061035ab3cae0cea9c2dfdceb6d92f7} 
+\index{dai::BP@{dai::BP}!\_edges@{\_edges}}
+\index{\_edges@{\_edges}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{\_edges}{\_edges}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::vector$<$\mbox{\hyperlink{structdai_1_1BP_1_1EdgeProp}{Edge\+Prop}}$>$ $>$ dai\+::\+BP\+::\+\_\+edges\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Stores all edge properties. 
+
+\Hypertarget{classdai_1_1BP_aa03dc24e2e8ba6ab12d179d9528fc594}\label{classdai_1_1BP_aa03dc24e2e8ba6ab12d179d9528fc594} 
+\index{dai::BP@{dai::BP}!\_edge2lut@{\_edge2lut}}
+\index{\_edge2lut@{\_edge2lut}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{\_edge2lut}{\_edge2lut}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::vector$<$Lut\+Type\+::iterator$>$ $>$ dai\+::\+BP\+::\+\_\+edge2lut\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Lookup table (only used for maximum-\/residual \doxylink{classdai_1_1BP}{BP}) 
+
+\Hypertarget{classdai_1_1BP_a9302f6004dad2004564ce594d85d2a20}\label{classdai_1_1BP_a9302f6004dad2004564ce594d85d2a20} 
+\index{dai::BP@{dai::BP}!\_lut@{\_lut}}
+\index{\_lut@{\_lut}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{\_lut}{\_lut}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1BP_a34e3854a6740e10a650835a0d6ca1028}{Lut\+Type}} dai\+::\+BP\+::\+\_\+lut\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Lookup table (only used for maximum-\/residual \doxylink{classdai_1_1BP}{BP}) 
+
+\Hypertarget{classdai_1_1BP_a1cc44127785b369d091f9e126b4cc40e}\label{classdai_1_1BP_a1cc44127785b369d091f9e126b4cc40e} 
+\index{dai::BP@{dai::BP}!\_maxdiff@{\_maxdiff}}
+\index{\_maxdiff@{\_maxdiff}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{\_maxdiff}{\_maxdiff}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} dai\+::\+BP\+::\+\_\+maxdiff\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Maximum difference between variable beliefs encountered so far. 
+
+\Hypertarget{classdai_1_1BP_a4fd3a6c1e6289d20d4caa5a6a575199d}\label{classdai_1_1BP_a4fd3a6c1e6289d20d4caa5a6a575199d} 
+\index{dai::BP@{dai::BP}!\_iters@{\_iters}}
+\index{\_iters@{\_iters}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{\_iters}{\_iters}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} dai\+::\+BP\+::\+\_\+iters\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Number of iterations needed. 
+
+\Hypertarget{classdai_1_1BP_afdb2a63192801122b57f56e01dc824eb}\label{classdai_1_1BP_afdb2a63192801122b57f56e01dc824eb} 
+\index{dai::BP@{dai::BP}!\_sentMessages@{\_sentMessages}}
+\index{\_sentMessages@{\_sentMessages}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{\_sentMessages}{\_sentMessages}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::pair$<$\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}$>$ $>$ dai\+::\+BP\+::\+\_\+sent\+Messages\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+The history of message updates (only recorded if {\itshape record\+Sent\+Messages} is {\ttfamily true}) 
+
+\Hypertarget{classdai_1_1BP_aef9ddfd20780ac70497361ff46d66c60}\label{classdai_1_1BP_aef9ddfd20780ac70497361ff46d66c60} 
+\index{dai::BP@{dai::BP}!\_oldBeliefsV@{\_oldBeliefsV}}
+\index{\_oldBeliefsV@{\_oldBeliefsV}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{\_oldBeliefsV}{\_oldBeliefsV}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}}$>$ dai\+::\+BP\+::\+\_\+old\+BeliefsV\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Stores variable beliefs of previous iteration. 
+
+\Hypertarget{classdai_1_1BP_a1d968fb22f5c06a987e66af271597f95}\label{classdai_1_1BP_a1d968fb22f5c06a987e66af271597f95} 
+\index{dai::BP@{dai::BP}!\_oldBeliefsF@{\_oldBeliefsF}}
+\index{\_oldBeliefsF@{\_oldBeliefsF}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{\_oldBeliefsF}{\_oldBeliefsF}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}}$>$ dai\+::\+BP\+::\+\_\+old\+BeliefsF\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Stores factor beliefs of previous iteration. 
+
+\Hypertarget{classdai_1_1BP_ad9b0eff556c76be0369cf7fb55b7493e}\label{classdai_1_1BP_ad9b0eff556c76be0369cf7fb55b7493e} 
+\index{dai::BP@{dai::BP}!\_updateSeq@{\_updateSeq}}
+\index{\_updateSeq@{\_updateSeq}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{\_updateSeq}{\_updateSeq}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{namespacedai_aca51f13415f708db9eabda981b107a14}{Edge}}$>$ dai\+::\+BP\+::\+\_\+update\+Seq\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Stores the update schedule. 
+
+\Hypertarget{classdai_1_1BP_a18460881ce5e2a56adf0659f13339131}\label{classdai_1_1BP_a18460881ce5e2a56adf0659f13339131} 
+\index{dai::BP@{dai::BP}!recordSentMessages@{recordSentMessages}}
+\index{recordSentMessages@{recordSentMessages}!dai::BP@{dai::BP}}
+\doxysubsubsection{\texorpdfstring{recordSentMessages}{recordSentMessages}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} dai\+::\+BP\+::record\+Sent\+Messages}
+
+
+
+Specifies whether the history of message updates should be recorded. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/dai/\mbox{\hyperlink{bp_8h}{bp.\+h}}\item 
+src/bp.\+cpp\end{DoxyCompactItemize}

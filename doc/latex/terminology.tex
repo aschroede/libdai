@@ -1,0 +1,69 @@
+\chapter{Terminology and conventions}
+\hypertarget{terminology}{}\label{terminology}\index{Terminology and conventions@{Terminology and conventions}}
+\hypertarget{terminology_terminology-graphicalmodels}{}\doxysection{\texorpdfstring{Graphical models}{Graphical models}}\label{terminology_terminology-graphicalmodels}
+Commonly used graphical models are Bayesian networks and Markov random fields. In lib\+DAI, both types of graphical models are represented by a slightly more general type of graphical model\+: a factor graph \mbox{[}\doxylink{bibliography_KFL01}{KFL01}\mbox{]}.
+
+An example of a Bayesian network is\+:  The probability distribution of a Bayesian network factorizes as\+: \[ P(\mathbf{x}) = \prod_{i\in\mathcal{V}} P(x_i \,|\, x_{\mathrm{pa}(i)}) \] where $\mathrm{pa}(i)$ are the parents of node {\itshape i} in a DAG.
+
+The same probability distribution can be represented as a Markov random field\+: 
+
+The probability distribution of a Markov random field factorizes as\+: \[ P(\mathbf{x}) = \frac{1}{Z} \prod_{C\in\mathcal{C}} \psi_C(x_C) \] where $ \mathcal{C} $ are the cliques of an undirected graph, $ \psi_C(x_C) $ are "{}potentials"{} or "{}compatibility functions"{}, and $ Z $ is the partition sum which properly normalizes the probability distribution.
+
+Finally, the same probability distribution can be represented as a factor graph\+: 
+
+The probability distribution of a factor graph factorizes as\+: \[ P(\mathbf{x}) = \frac{1}{Z} \prod_{I\in \mathcal{F}} f_I(x_I) \] where $ \mathcal{F} $ are the factor nodes of a factor graph (a bipartite graph consisting of variable nodes and factor nodes), $ f_I(x_I) $ are the factors, and $ Z $ is the partition sum which properly normalizes the probability distribution.
+
+Looking at the expressions for the joint probability distributions, it is obvious that Bayesian networks and Markov random fields can both be easily represented as factor graphs. Factor graphs most naturally express the factorization structure of a probability distribution, and hence are a convenient representation for approximate inference algorithms, which all try to exploit this factorization. This is why lib\+DAI uses a factor graph as representation of a graphical model, implemented in the \doxylink{classdai_1_1FactorGraph}{dai\+::\+Factor\+Graph} class.\hypertarget{terminology_terminology-inference}{}\doxysection{\texorpdfstring{Inference tasks}{Inference tasks}}\label{terminology_terminology-inference}
+Given a factor graph, specified by the variable nodes $\{x_i\}_{i\in\mathcal{V}}$ the factor nodes $ \mathcal{F} $, the graph structure, and the factors $\{f_I(x_I)\}_{I\in\mathcal{F}}$, the following tasks are important\+:
+
+
+\begin{DoxyItemize}
+\item Calculating the partition sum\+: \[ Z = \sum_{\mathbf{x}_{\mathcal{V}}} \prod_{I \in \mathcal{F}} f_I(x_I) \]
+\item Calculating the marginal distribution of a subset of variables $\{x_i\}_{i\in A}$\+: \[ P(\mathbf{x}_{A}) = \frac{1}{Z} \sum_{\mathbf{x}_{\mathcal{V}\setminus A}} \prod_{I \in \mathcal{F}} f_I(x_I) \]
+\item Calculating the MAP state which has the maximum probability mass\+: \[ \mathrm{argmax}_{\mathbf{x}}\,\prod_{I\in\mathcal{F}} f_I(x_I) \]
+\end{DoxyItemize}
+
+lib\+DAI offers several inference algorithms, which solve (a subset of) these tasks either approximately or exactly, for factor graphs with discrete variables. The following algorithms are implemented\+:
+
+Exact inference\+:
+\begin{DoxyItemize}
+\item Brute force enumeration\+: \doxylink{classdai_1_1ExactInf}{dai\+::\+Exact\+Inf}
+\item Junction-\/tree method\+: \doxylink{classdai_1_1JTree}{dai\+::\+JTree}
+\end{DoxyItemize}
+
+Approximate inference\+:
+\begin{DoxyItemize}
+\item Mean Field\+: \doxylink{classdai_1_1MF}{dai\+::\+MF}
+\item (Loopy) Belief Propagation\+: \doxylink{classdai_1_1BP}{dai\+::\+BP} \mbox{[}\doxylink{bibliography_KFL01}{KFL01}\mbox{]}
+\item Fractional Belief Propagation\+: \doxylink{classdai_1_1FBP}{dai\+::\+FBP} \mbox{[}\doxylink{bibliography_WiH03}{Wi\+H03}\mbox{]}
+\item Tree-\/\+Reweighted Belief Propagation\+: \doxylink{classdai_1_1TRWBP}{dai\+::\+TRWBP} \mbox{[}\doxylink{bibliography_WJW03}{WJW03}\mbox{]}
+\item Tree Expectation Propagation\+: \doxylink{classdai_1_1TreeEP}{dai\+::\+Tree\+EP} \mbox{[}\doxylink{bibliography_MiQ04}{Mi\+Q04}\mbox{]}
+\item Generalized Belief Propagation\+: \doxylink{classdai_1_1HAK}{dai\+::\+HAK} \mbox{[}\doxylink{bibliography_YFW05}{YFW05}\mbox{]}
+\item Double-\/loop GBP\+: \doxylink{classdai_1_1HAK}{dai\+::\+HAK} \mbox{[}\doxylink{bibliography_HAK03}{HAK03}\mbox{]}
+\item Loop Corrected Belief Propagation\+: \doxylink{classdai_1_1MR}{dai\+::\+MR} \mbox{[}\doxylink{bibliography_MoR05}{Mo\+R05}\mbox{]} and \doxylink{classdai_1_1LC}{dai\+::\+LC} \mbox{[}\doxylink{bibliography_MoK07}{Mo\+K07}\mbox{]}
+\item Gibbs sampling\+: \doxylink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{dai\+::\+Gibbs}
+\item Conditioned Belief Propagation\+: \doxylink{classdai_1_1CBP}{dai\+::\+CBP} \mbox{[}\doxylink{bibliography_EaG09}{Ea\+G09}\mbox{]}
+\item Decimation algorithm\+: \doxylink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{dai\+::\+Dec\+MAP}
+\end{DoxyItemize}
+
+Not all inference tasks are implemented by each method\+: calculating MAP states is only possible with \doxylink{classdai_1_1JTree}{dai\+::\+JTree}, \doxylink{classdai_1_1BP}{dai\+::\+BP} and \doxylink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{dai\+::\+DECMAP}; calculating partition sums is not possible with \doxylink{classdai_1_1MR}{dai\+::\+MR}, \doxylink{classdai_1_1LC}{dai\+::\+LC} and \doxylink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{dai\+::\+Gibbs}.\hypertarget{terminology_terminology-learning}{}\doxysection{\texorpdfstring{Parameter learning}{Parameter learning}}\label{terminology_terminology-learning}
+In addition, lib\+DAI supports parameter learning of conditional probability tables by Expectation Maximization (or Maximum Likelihood, if there is no missing data). This is implemented in \doxylink{classdai_1_1EMAlg}{dai\+::\+EMAlg}.\hypertarget{terminology_terminology-variables-states}{}\doxysection{\texorpdfstring{Variables and states}{Variables and states}}\label{terminology_terminology-variables-states}
+Linear states are a concept that is used often in lib\+DAI, for example for storing and accessing factors, which are functions mapping from states of a set of variables to the real numbers. Internally, a factor is stored as an array, and the array index of an entry corresponds with the linear state of the set of variables. Below we will define variables, states and linear states of (sets of) variables.\hypertarget{terminology_terminology-variables}{}\doxysubsection{\texorpdfstring{Variables}{Variables}}\label{terminology_terminology-variables}
+Each (random) {\itshape variable} has a unique identifier, its {\itshape label} (which has a non-\/negative integer value). If two variables have the same label, they are considered as identical. A variable can take on a finite number of different values or {\itshape states}.
+
+We use the following notational conventions. The discrete random variable with label $l$ is denoted as $x_l$, and the number of possible values of this variable as $S_{x_l}$ or simply $S_l$. The set of possible values of variable $x_l$ is denoted $X_l := \{0,1,\dots,S_l-1\}$ and called its {\itshape state} {\itshape space}.\hypertarget{terminology_terminology-variable-sets}{}\doxysubsection{\texorpdfstring{Sets of variables and the canonical ordering}{Sets of variables and the canonical ordering}}\label{terminology_terminology-variable-sets}
+Let $A := \{x_{l_1},x_{l_2},\dots,x_{l_n}\}$ be a set of variables.
+
+The {\itshape canonical} {\itshape ordering} of the variables in {\itshape A} is induced by their labels. That is\+: if $l_1 < l_2$, then $x_{l_1}$ occurs before $x_{l_2}$ in the canonical ordering. Below, we will assume that $(l_i)_{i=1}^n$ is ordered according to the canonical ordering, i.\+e., $l_1 < l_2 < \dots < l_n$.\hypertarget{terminology_terminology-variable-states}{}\doxysubsection{\texorpdfstring{States and linear states of sets of variables}{States and linear states of sets of variables}}\label{terminology_terminology-variable-states}
+A {\itshape state} of the variables in {\itshape A} refers to a joint assignment of the variables, or in other words, to an element of the Cartesian product $ \prod_{i=1}^n X_{l_i}$ of the state spaces of the variables in {\itshape A}. Note that a state can also be interpreted as a mapping from variables (or variable labels) to the natural numbers, which assigns to a variable (or its label) the corresponding state of the variable.
+
+A state of {\itshape n} variables can be represented as an n-\/tuple of non-\/negative integers\+: $(s_1,s_2,\dots,s_n)$ corresponds to the joint assignment $x_{l_1} = s_1, \dots, x_{l_n} = s_n$. Alternatively, a state can be represented compactly as one non-\/negative integer; this representation is called a {\itshape linear} {\itshape state}. The linear state {\itshape s} corresponding to the state $(s_1,s_2,\dots,s_n)$ would be\+:  \[
+  s := \sum_{i=1}^n s_i \prod_{j=1}^{i-1} S_{l_j} 
+     = s_1 + s_2 S_{l_1} + s_3 S_{l_1} S_{l_2} + \dots + s_n S_{l_1} \cdots S_{l_{n-1}}.
+\]
+
+Vice versa, given a linear state {\itshape s} for the variables {\itshape A}, the corresponding state $s_i$ of the {\itshape i} \textquotesingle{}th variable $x_{l_i}$ (according to the canonical ordering of the variables in {\itshape A}) is given by  \[
+  s_i = \left\lfloor\frac{s \mbox { mod } \prod_{j=1}^i S_{l_j}}{\prod_{j=1}^{i-1} S_{l_j}}\right\rfloor.
+\]
+
+Finally, the {\itshape number} {\itshape of} {\itshape states} of the set of variables {\itshape A} is simply the number of different joint assignments of the variables, that is, $\prod_{i=1}^n S_{l_i}$. 

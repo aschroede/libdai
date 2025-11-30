@@ -1,0 +1,513 @@
+\doxysection{uai2010-\/aie-\/solver.\+cpp}
+\hypertarget{uai2010-aie-solver_8cpp-example}{}\label{uai2010-aie-solver_8cpp-example}This example contains the full source code of the solver that was one of the winners (the \textquotesingle{}lib\+DAI2\textquotesingle{} solver) in the UAI 2010 Approximate Inference Challenge (see \href{http://www.cs.huji.ac.il/project/UAI10/}{\texttt{ http\+://www.\+cs.\+huji.\+ac.\+il/project/\+UAI10/}} for more information).
+
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{comment}{/*\ \ This\ file\ is\ part\ of\ libDAI\ -\/\ http://www.libdai.org/}}
+\DoxyCodeLine{\textcolor{comment}{\ *}}
+\DoxyCodeLine{\textcolor{comment}{\ *\ \ Copyright\ (c)\ 2006-\/2011,\ The\ libDAI\ authors.\ All\ rights\ reserved.}}
+\DoxyCodeLine{\textcolor{comment}{\ *}}
+\DoxyCodeLine{\textcolor{comment}{\ *\ \ Use\ of\ this\ source\ code\ is\ governed\ by\ a\ BSD-\/style\ license\ that\ can\ be\ found\ in\ the\ LICENSE\ file.}}
+\DoxyCodeLine{\textcolor{comment}{\ */}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <ostream>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <cstdlib>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{alldai_8h}{dai/alldai.h}}>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{io_8h}{dai/io.h}}>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{\textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespacedai}{dai}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ Type\ for\ storing\ a\ joint\ state\ of\ all\ variables}}
+\DoxyCodeLine{\textcolor{keyword}{typedef}\ std::vector<size\_t>\ stateVec;}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{struct\ }PRbest\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}}\ value;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}}\ maxdiff;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{bool}\ ready;}
+\DoxyCodeLine{\ \ \ \ PRbest()\ :\ value(0.0),\ maxdiff(INFINITY),\ ready(\textcolor{keyword}{false})\ \{\}}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{struct\ }MARbest\ \{}
+\DoxyCodeLine{\ \ \ \ vector<Factor>\ beliefs;}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}}\ maxdiff;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{bool}\ ready;}
+\DoxyCodeLine{\ \ \ \ MARbest()\ :\ beliefs(),\ maxdiff(INFINITY),\ ready(false)\ \{\}}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{struct\ }MPEbest\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}}\ value;}
+\DoxyCodeLine{\ \ \ \ stateVec\ state;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{bool}\ ready;}
+\DoxyCodeLine{\ \ \ \ MPEbest()\ :\ value(-\/INFINITY),\ state(),\ ready(false)\ \{\}}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main(\ \textcolor{keywordtype}{int}\ argc,\ \textcolor{keywordtype}{char}\ *argv[]\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (\ argc\ !=\ 5\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}This\ program\ is\ part\ of\ libDAI\ -\/\ http://www.libdai.org/"{}}\ <<\ endl\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}It\ is\ one\ of\ the\ winning\ solvers\ that\ participated\ in\ the"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}UAI\ 2010\ Approximate\ Inference\ Challenge"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}(see\ http://www.cs.huji.ac.il/project/UAI10/)"{}}\ <<\ endl\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Usage:\ "{}}\ <<\ argv[0]\ <<\ \textcolor{stringliteral}{"{}\ <filename.uai>\ <filename.uai.evid>\ <seed>\ <task>"{}}\ <<\ endl\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{\ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ starttic\ =\ \mbox{\hyperlink{namespacedai_ab27c0799ddef29bb3833477e32c53862}{toc}}();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ verbose\ =\ 1;\ \ \ \ \textcolor{comment}{//\ verbosity}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ ia\_verbose\ =\ 0;\ \textcolor{comment}{//\ verbosity\ of\ inference\ algorithms}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ surgery\ =\ \textcolor{keyword}{true};\ \ \ \textcolor{comment}{//\ change\ factor\ graph\ structure\ based\ on\ evidence}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Solver:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}}\ <<\ argv[0]\ <<\ endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ set\ random\ seed}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ seed\ =\ fromString<size\_t>(\ argv[3]\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedai_ae699eca7ca4d6e971b54c2b4a95942d4}{rnd\_seed}}(\ seed\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Seed:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}}\ <<\ seed\ <<\ endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ check\ whether\ the\ task\ is\ valid}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ task(\ argv[4]\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ task\ !=\ \textcolor{keywordtype}{string}(\textcolor{stringliteral}{"{}PR"{}})\ \&\&\ task\ !=\ \textcolor{keywordtype}{string}(\textcolor{stringliteral}{"{}MPE"{}})\ \&\&\ task\ !=\ \textcolor{keywordtype}{string}(\textcolor{stringliteral}{"{}MAR"{}})\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{exceptions_8h_a29c0e906e26c7484c268d111c71f79da}{DAI\_THROWE}}(RUNTIME\_ERROR,\textcolor{stringliteral}{"{}Unknown\ task"{}});}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Task:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}}\ <<\ task\ <<\ endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ output\ other\ command\ line\ options}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Factorgraph\ filename:\ "{}}\ <<\ argv[1]\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Evidence\ filename:\ \ \ \ "{}}\ <<\ argv[2]\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ get\ time\ and\ memory\ limits}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ *buf\ =\ getenv(\ \textcolor{stringliteral}{"{}UAI\_TIME"{}}\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ UAI\_time\ =\ INFINITY;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ buf\ !=\ NULL\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ UAI\_time\ =\ fromString<double>(\ buf\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ buf\ =\ getenv(\ \textcolor{stringliteral}{"{}UAI\_MEMORY"{}}\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ UAI\_memory\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ buf\ !=\ NULL\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ UAI\_memory\ =\ fromString<double>(\ buf\ )\ *\ 1024\ *\ 1024\ *\ 1024;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Time\ limit:\ \ \ \ \ \ \ \ \ \ \ "{}}\ <<\ UAI\_time\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Memory\ limit:\ \ \ \ \ \ \ \ \ "{}}\ <<\ UAI\_memory\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ build\ output\ file\ name}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ vector<string>\ pathComponents\ =\ \mbox{\hyperlink{namespacedai_a87303da2767f4906ea37216bdc9278ca}{tokenizeString}}(\ \textcolor{keywordtype}{string}(argv[1]),\ \textcolor{keyword}{true},\ \textcolor{stringliteral}{"{}/"{}}\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ outfile\ =\ pathComponents.back()\ +\ \textcolor{stringliteral}{"{}."{}}\ +\ task;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Output\ filename:\ \ \ \ \ \ "{}}\ <<\ outfile\ <<\ endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ open\ output\ stream}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ofstream\ os;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ os.open(\ outfile.c\_str()\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ !os.is\_open()\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{exceptions_8h_a29c0e906e26c7484c268d111c71f79da}{DAI\_THROWE}}(CANNOT\_WRITE\_FILE,\textcolor{stringliteral}{"{}Cannot\ write\ to\ file\ "{}}\ +\ outfile);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Opened\ output\ stream"{}}\ <<\ endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ read\ factor\ graph}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ vector<Var>\ vars;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ vector<Factor>\ facs0;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ vector<Permute>\ permutations;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Reading\ factor\ graph..."{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedai_afbde3d057ec404d5f4f962da46bccced}{ReadUaiAieFactorGraphFile}}(\ argv[1],\ verbose,\ vars,\ facs0,\ permutations\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Successfully\ read\ factor\ graph"{}}\ <<\ endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ check\ if\ it\ could\ be\ a\ grid}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ couldBeGrid\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1FactorGraph}{FactorGraph}}\ fg0(\ facs0.begin(),\ facs0.end(),\ vars.begin(),\ vars.end(),\ facs0.size(),\ vars.size()\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ fg0.nrVars();\ i++\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ fg0.delta(i).size()\ >\ 4\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ couldBeGrid\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ couldBeGrid\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ I\ =\ 0;\ I\ <\ fg0.nrFactors();\ I++\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ fg0.factor(I).vars().size()\ >\ 2\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ couldBeGrid\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ couldBeGrid\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}This\ could\ be\ a\ grid!"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}This\ cannot\ be\ a\ grid!"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ read\ evidence}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Reading\ evidence..."{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ vector<map<size\_t,size\_t>\ >\ evid\ =\ \mbox{\hyperlink{namespacedai_ab5cba3982dd0cd9d5fa3a06c05aef8b1}{ReadUaiAieEvidenceFile}}(\ argv[2],\ verbose\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Successfully\ read\ "{}}\ <<\ evid.size()\ <<\ \textcolor{stringliteral}{"{}\ evidence\ cases"{}}\ <<\ endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ write\ output\ header}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ Writing\ header\ to\ file..."{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ os\ <<\ task\ <<\ endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ construct\ clamped\ factor\ graphs}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Constructing\ clamped\ factor\ graphs..."{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ vector<FactorGraph>\ fgs;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ fgs.reserve(\ evid.size()\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ ev\ =\ 0;\ ev\ <\ evid.size();\ ev++\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ Evidence\ case\ "{}}\ <<\ ev\ <<\ \textcolor{stringliteral}{"{}..."{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ copy\ vector\ of\ factors}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ vector<Factor>\ facs(\ facs0\ );}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ change\ factor\ graph\ to\ reflect\ observed\ evidence}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ Applying\ evidence..."{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ surgery\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ replace\ factors\ with\ clamped\ variables\ with\ slices}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ I\ =\ 0;\ I\ <\ facs.size();\ I++\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ map<size\_t,size\_t>::const\_iterator\ e\ =\ evid[ev].begin();\ e\ !=\ evid[ev].end();\ e++\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ facs[I].vars()\ >>\ vars[e-\/>first]\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ >=\ 2\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ \ \ Clamping\ "{}}\ <<\ e-\/>first\ <<\ \textcolor{stringliteral}{"{}\ to\ value\ "{}}\ <<\ e-\/>second\ <<\ \textcolor{stringliteral}{"{}\ in\ factor\ "{}}\ <<\ I\ <<\ \textcolor{stringliteral}{"{}\ =\ "{}}\ <<\ facs[I].vars()\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ facs[I]\ =\ facs[I].slice(\ vars[e-\/>first],\ e-\/>second\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ >=\ 2\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ \ \ ...remaining\ vars:\ "{}}\ <<\ facs[I].vars()\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ remove\ empty\ factors}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}}\ logZcorr\ =\ 0.0;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ vector<Factor>::iterator\ I\ =\ facs.begin();\ I\ !=\ facs.end();\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ I-\/>vars().size()\ ==\ 0\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ logZcorr\ +=\ std::log(\ (\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}})(*I)[0]\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ I\ =\ facs.erase(\ I\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ I++;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ multiply\ with\ logZcorr\ constant}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ facs.size()\ ==\ 0\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ facs.push\_back(\ \mbox{\hyperlink{classdai_1_1TFactor}{Factor}}(\ \mbox{\hyperlink{classdai_1_1VarSet}{VarSet}}(),\ std::exp(logZcorr)\ )\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ facs.front()\ *=\ std::exp(logZcorr);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ add\ delta\ factors\ corresponding\ to\ observed\ variable\ values}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ map<size\_t,size\_t>::const\_iterator\ e\ =\ evid[ev].begin();\ e\ !=\ evid[ev].end();\ e++\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ facs.push\_back(\ \mbox{\hyperlink{namespacedai_adf624997c47362bc5db95242b76a66a4}{createFactorDelta}}(\ vars[e-\/>first],\ e-\/>second\ )\ );}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ construct\ clamped\ factor\ graph}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ Constructing\ factor\ graph..."{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ fgs.push\_back(\ \mbox{\hyperlink{classdai_1_1FactorGraph}{FactorGraph}}(\ facs.begin(),\ facs.end(),\ vars.begin(),\ vars.end(),\ facs.size(),\ vars.size()\ )\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ variables\ for\ storing\ best\ results\ so\ far}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ vector<PRbest>\ bestPR(\ evid.size()\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ vector<MARbest>\ bestMAR(\ evid.size()\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ vector<MPEbest>\ bestMPE(\ evid.size()\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ ev\ =\ 0;\ ev\ <\ evid.size();\ ev++\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ bestMPE[ev].state\ =\ stateVec(\ fgs[ev].nrVars(),\ 0\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ vector<size\_t>\ ev2go;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ ev2go.reserve(\ evid.size()\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ ev\ =\ 0;\ ev\ <\ evid.size();\ ev++\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ ev2go.push\_back(\ ev\ );}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ solve\ inference\ problems}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Solving\ inference\ problems..."{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ first\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ nrsolvers\ =\ 3;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ vector<size\_t>\ nrsubsolvers(\ nrsolvers\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ nrsubsolvers[0]\ =\ 2;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ nrsubsolvers[1]\ =\ 1;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ nrsubsolvers[2]\ =\ 1;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ MPEdamping\ =\ 0.49;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ for\ each\ (sub)solver}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ solver\ =\ 0;\ solver\ <\ nrsolvers;\ solver++\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ Solver\ "{}}\ <<\ solver\ <<\ endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ for\ each\ evidence\ case}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ subsolver\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{long}\ \_ev\ =\ 0;\ \_ev\ <\ (long)ev2go.size();\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ improved\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ ev\ =\ ev2go[\_ev];}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ Evidence\ case\ "{}}\ <<\ ev\ <<\ \textcolor{stringliteral}{"{},\ subsolver\ =\ "{}}\ <<\ subsolver\ <<\ \textcolor{stringliteral}{"{}..."{}}\ <<\ endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ construct\ inference\ algorithm\ on\ clamped\ factor\ graph}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ \ \ Constructing\ inference\ algorithm..."{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1InfAlg}{InfAlg}}\ *ia\ =\ NULL;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ tic\ =\ \mbox{\hyperlink{namespacedai_ab27c0799ddef29bb3833477e32c53862}{toc}}();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ failed\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ construct}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ solver\ ==\ 0\ )\ \{\ \textcolor{comment}{//\ the\ quick\ one}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ remtime\ =\ (UAI\_time\ -\/\ (\mbox{\hyperlink{namespacedai_ab27c0799ddef29bb3833477e32c53862}{toc}}()\ -\/\ starttic))\ *\ 0.9;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ remtime\ <\ 1.0\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ remtime\ =\ 1.0\ ;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ maxtime\ =\ remtime\ /\ (ev2go.size()\ -\/\ \_ev);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ \ \ Past\ time:\ \ \ \ \ "{}}\ <<\ (\mbox{\hyperlink{namespacedai_ab27c0799ddef29bb3833477e32c53862}{toc}}()\ -\/\ starttic)\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ \ \ Remaining\ time:"{}}\ <<\ remtime\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ \ \ Allotted\ time:\ "{}}\ <<\ maxtime\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ maxtimestr;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ maxtime\ !=\ INFINITY\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ maxtimestr\ =\ \textcolor{stringliteral}{"{},maxtime="{}}\ +\ \mbox{\hyperlink{namespacedai_a20efc75c125a2a3e97eda59fbb77b4f5}{toString}}(maxtime);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ quick\ and\ dirty...}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ task\ ==\ \textcolor{stringliteral}{"{}MPE"{}}\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ia\ =\ \mbox{\hyperlink{namespacedai_a246c23914fee45f8b7f01f9073bdd6fe}{newInfAlgFromString}}(\ \textcolor{stringliteral}{"{}BP[inference=MAXPROD,updates=SEQRND,logdomain="{}}\ +\ \mbox{\hyperlink{namespacedai_a20efc75c125a2a3e97eda59fbb77b4f5}{toString}}(subsolver)\ +\ \textcolor{stringliteral}{"{},tol=1e-\/9,maxiter=10000"{}}\ +\ maxtimestr\ +\ \textcolor{stringliteral}{"{},damping=0.1,verbose="{}}\ +\ \mbox{\hyperlink{namespacedai_a20efc75c125a2a3e97eda59fbb77b4f5}{toString}}(ia\_verbose)\ +\ \textcolor{stringliteral}{"{}]"{}},\ fgs[ev]\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ couldBeGrid\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ia\ =\ \mbox{\hyperlink{namespacedai_a246c23914fee45f8b7f01f9073bdd6fe}{newInfAlgFromString}}(\ \textcolor{stringliteral}{"{}HAK[doubleloop=1,clusters=LOOP,init=UNIFORM,loopdepth=4,tol=1e-\/9,maxiter=10000"{}}\ +\ maxtimestr\ +\ \textcolor{stringliteral}{"{},verbose="{}}\ +\ \mbox{\hyperlink{namespacedai_a20efc75c125a2a3e97eda59fbb77b4f5}{toString}}(ia\_verbose)\ +\ \textcolor{stringliteral}{"{}]"{}},\ fgs[ev]\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ia\ =\ \mbox{\hyperlink{namespacedai_a246c23914fee45f8b7f01f9073bdd6fe}{newInfAlgFromString}}(\ \textcolor{stringliteral}{"{}BP[inference=SUMPROD,updates=SEQRND,logdomain="{}}\ +\ \mbox{\hyperlink{namespacedai_a20efc75c125a2a3e97eda59fbb77b4f5}{toString}}(subsolver)\ +\ \textcolor{stringliteral}{"{},tol=1e-\/9,maxiter=10000"{}}\ +\ maxtimestr\ +\ \textcolor{stringliteral}{"{},damping=0.0,verbose="{}}\ +\ \mbox{\hyperlink{namespacedai_a20efc75c125a2a3e97eda59fbb77b4f5}{toString}}(ia\_verbose)\ +\ \textcolor{stringliteral}{"{}]"{}},\ fgs[ev]\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(\ solver\ ==\ 1\ )\ \{\ \textcolor{comment}{//\ the\ exact\ one}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ maxmemstr;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ UAI\_memory\ !=\ 0\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ maxmemstr\ =\ \textcolor{stringliteral}{"{},maxmem="{}}\ +\ \mbox{\hyperlink{namespacedai_a20efc75c125a2a3e97eda59fbb77b4f5}{toString}}(UAI\_memory);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ task\ ==\ \textcolor{stringliteral}{"{}MPE"{}}\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ia\ =\ \mbox{\hyperlink{namespacedai_a246c23914fee45f8b7f01f9073bdd6fe}{newInfAlgFromString}}(\ \textcolor{stringliteral}{"{}JTREE[inference=MAXPROD,updates=HUGIN"{}}\ +\ maxmemstr\ +\ \textcolor{stringliteral}{"{},verbose="{}}\ +\ \mbox{\hyperlink{namespacedai_a20efc75c125a2a3e97eda59fbb77b4f5}{toString}}(ia\_verbose)\ +\ \textcolor{stringliteral}{"{}]"{}},\ fgs[ev]\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ia\ =\ \mbox{\hyperlink{namespacedai_a246c23914fee45f8b7f01f9073bdd6fe}{newInfAlgFromString}}(\ \textcolor{stringliteral}{"{}JTREE[inference=SUMPROD,updates=HUGIN"{}}\ +\ maxmemstr\ +\ \textcolor{stringliteral}{"{},verbose="{}}\ +\ \mbox{\hyperlink{namespacedai_a20efc75c125a2a3e97eda59fbb77b4f5}{toString}}(ia\_verbose)\ +\ \textcolor{stringliteral}{"{}]"{}},\ fgs[ev]\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(\ solver\ ==\ 2\ )\ \{\ \textcolor{comment}{//\ the\ decent\ one}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ remtime\ =\ (UAI\_time\ -\/\ (\mbox{\hyperlink{namespacedai_ab27c0799ddef29bb3833477e32c53862}{toc}}()\ -\/\ starttic));}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ remtime\ <\ 1.0\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ remtime\ =\ 1.0;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ maxtime\ =\ 0.95\ *\ remtime\ /\ (ev2go.size()\ -\/\ \_ev);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ \ \ Past\ time:\ \ \ \ \ "{}}\ <<\ (\mbox{\hyperlink{namespacedai_ab27c0799ddef29bb3833477e32c53862}{toc}}()\ -\/\ starttic)\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ \ \ Remaining\ time:"{}}\ <<\ remtime\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ \ \ Allotted\ time:\ "{}}\ <<\ maxtime\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ task\ ==\ \textcolor{stringliteral}{"{}MPE"{}}\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ maxtime\ /=\ fgs[ev].nrVars();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ maxtimestr;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ maxtime\ !=\ INFINITY\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ maxtimestr\ =\ \textcolor{stringliteral}{"{},maxtime="{}}\ +\ \mbox{\hyperlink{namespacedai_a20efc75c125a2a3e97eda59fbb77b4f5}{toString}}(maxtime);}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ task\ ==\ \textcolor{stringliteral}{"{}MPE"{}}\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ia\ =\ \mbox{\hyperlink{namespacedai_a246c23914fee45f8b7f01f9073bdd6fe}{newInfAlgFromString}}(\ \textcolor{stringliteral}{"{}DECMAP[ianame=BP,iaopts=[inference=MAXPROD,updates=SEQRND,logdomain=1,tol=1e-\/9,maxiter=10000"{}}\ +\ maxtimestr\ +\ \textcolor{stringliteral}{"{},damping="{}}\ +\ \mbox{\hyperlink{namespacedai_a20efc75c125a2a3e97eda59fbb77b4f5}{toString}}(MPEdamping)\ +\ \textcolor{stringliteral}{"{},verbose=0],reinit=1,verbose="{}}\ +\ \mbox{\hyperlink{namespacedai_a20efc75c125a2a3e97eda59fbb77b4f5}{toString}}(ia\_verbose)\ +\ \textcolor{stringliteral}{"{}]"{}},\ fgs[ev]\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ couldBeGrid\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ia\ =\ \mbox{\hyperlink{namespacedai_a246c23914fee45f8b7f01f9073bdd6fe}{newInfAlgFromString}}(\ \textcolor{stringliteral}{"{}HAK[doubleloop=1,clusters=LOOP,init=UNIFORM,loopdepth=4,tol=1e-\/9"{}}\ +\ maxtimestr\ +\ \textcolor{stringliteral}{"{},maxiter=100000,verbose="{}}\ +\ \mbox{\hyperlink{namespacedai_a20efc75c125a2a3e97eda59fbb77b4f5}{toString}}(ia\_verbose)\ +\ \textcolor{stringliteral}{"{}]"{}},\ fgs[ev]\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ task\ ==\ \textcolor{stringliteral}{"{}PR"{}}\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ia\ =\ \mbox{\hyperlink{namespacedai_a246c23914fee45f8b7f01f9073bdd6fe}{newInfAlgFromString}}(\ \textcolor{stringliteral}{"{}HAK[doubleloop=1,clusters=MIN,init=UNIFORM,tol=1e-\/9"{}}\ +\ maxtimestr\ +\ \textcolor{stringliteral}{"{},maxiter=100000,verbose="{}}\ +\ \mbox{\hyperlink{namespacedai_a20efc75c125a2a3e97eda59fbb77b4f5}{toString}}(ia\_verbose)\ +\ \textcolor{stringliteral}{"{}]"{}},\ fgs[ev]\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ia\ =\ \mbox{\hyperlink{namespacedai_a246c23914fee45f8b7f01f9073bdd6fe}{newInfAlgFromString}}(\ \textcolor{stringliteral}{"{}GIBBS[maxiter=1000000000,burnin=1000,restart=10000000"{}}\ +\ maxtimestr\ +\ \textcolor{stringliteral}{"{},verbose="{}}\ +\ \mbox{\hyperlink{namespacedai_a20efc75c125a2a3e97eda59fbb77b4f5}{toString}}(ia\_verbose)\ +\ \textcolor{stringliteral}{"{}]"{}},\ fgs[ev]\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ initialize}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ \ \ Initializing\ inference\ algorithm..."{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ia-\/>\mbox{\hyperlink{classdai_1_1InfAlg_a99dd53d1aaccf09a4b977a49a983cc85}{init}}();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ run}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ \ \ Running\ inference\ algorithm..."{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ia-\/>\mbox{\hyperlink{classdai_1_1InfAlg_a4ac173c4d4109fd1e2229dd83532d32f}{run}}();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ \ \ Inference\ algorithm\ finished..."{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}(\ \mbox{\hyperlink{classdai_1_1Exception}{Exception}}\ \&e\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ failed\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ \ \ Inference\ algorithm\ failed...!"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ \ \ Exception:\ "{}}\ <<\ e.what()\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ \ \ Used\ time:\ \ \ \ \ \ \ \ \ \ \ \ \ "{}}\ <<\ \mbox{\hyperlink{namespacedai_ab27c0799ddef29bb3833477e32c53862}{toc}}()\ -\/\ tic\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ !failed\ \&\&\ verbose\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ \ \ Number\ of\ iterations:\ \ "{}}\ <<\ ia-\/>\mbox{\hyperlink{classdai_1_1InfAlg_a89986bbc1a42554905c6f417f2227ac5}{Iterations}}()\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}(\ \mbox{\hyperlink{classdai_1_1Exception}{Exception}}\ \&e\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ \ \ Number\ of\ iterations:\ \ \ N/A"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ \ \ Final\ maxdiff:\ \ \ \ \ \ \ \ \ "{}}\ <<\ ia-\/>\mbox{\hyperlink{classdai_1_1InfAlg_a915a659034eb4c85abde912d684f8dee}{maxDiff}}()\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}(\ \mbox{\hyperlink{classdai_1_1Exception}{Exception}}\ \&e\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ \ \ Final\ maxdiff:\ \ \ \ \ \ \ \ \ \ N/A"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ update\ results\ for\ inference\ task}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ !failed\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ task\ ==\ \textcolor{stringliteral}{"{}PR"{}}\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PRbest\ cur;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ calculate\ PR\ value}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cur.value\ =\ ia-\/>\mbox{\hyperlink{classdai_1_1InfAlg_a40a2353d63c358ebca834d40b0a4fc70}{logZ}}()\ /\ \mbox{\hyperlink{namespacedai_a934491ad55f57c9072271b4a32ea4919}{dai::log}}((\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}})10.0);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ get\ maxdiff}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cur.maxdiff\ =\ ia-\/>\mbox{\hyperlink{classdai_1_1InfAlg_a915a659034eb4c85abde912d684f8dee}{maxDiff}}();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}(\ \mbox{\hyperlink{classdai_1_1Exception}{Exception}}\ \&e\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cur.maxdiff\ =\ 1e-\/9;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ only\ update\ if\ this\ run\ has\ converged}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ ((cur.maxdiff\ <=\ 1e-\/9)\ ||\ (cur.maxdiff\ <=\ bestPR[ev].maxdiff))\ \&\&\ !\mbox{\hyperlink{namespacedai_a9886ca4103eac52b3f82698e12e86672}{dai::isnan}}(cur.value)\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ if\ this\ was\ exact\ inference,\ we\ are\ ready}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ solver\ ==\ 1\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ev2go.erase(\ ev2go.begin()\ +\ \_ev\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_ev-\/-\/;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cur.ready\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ Replacing\ best\ PR\ value\ so\ far\ ("{}}\ <<\ bestPR[ev].value\ <<\ \textcolor{stringliteral}{"{})\ with\ new\ value\ "{}}\ <<\ cur.value\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bestPR[ev]\ =\ cur;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ improved\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ Discarding\ PR\ value\ "{}}\ <<\ cur.value\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(\ task\ ==\ \textcolor{stringliteral}{"{}MAR"{}}\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MARbest\ cur;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ get\ variable\ beliefs}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ hasnans\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cur.beliefs.reserve(\ fgs[ev].nrVars()\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ fgs[ev].nrVars();\ i++\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cur.beliefs.push\_back(\ ia-\/>\mbox{\hyperlink{classdai_1_1InfAlg_ad89814b146552be0928a772ca110b444}{beliefV}}(i)\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ cur.beliefs.back().hasNaNs()\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hasnans\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ get\ maxdiff}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cur.maxdiff\ =\ ia-\/>\mbox{\hyperlink{classdai_1_1InfAlg_a915a659034eb4c85abde912d684f8dee}{maxDiff}}();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{catch}(\ \mbox{\hyperlink{classdai_1_1Exception}{Exception}}\ \&e\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cur.maxdiff\ =\ 1e-\/9;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ only\ update\ if\ this\ run\ has\ converged}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ ((cur.maxdiff\ <=\ 1e-\/9)\ ||\ (cur.maxdiff\ <=\ bestMAR[ev].maxdiff))\ \&\&\ !hasnans\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ if\ this\ was\ exact\ inference,\ we\ are\ ready}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ solver\ ==\ 1\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ev2go.erase(\ ev2go.begin()\ +\ \_ev\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_ev-\/-\/;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cur.ready\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ Replacing\ best\ beliefs\ so\ far\ with\ new\ beliefs"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bestMAR[ev]\ =\ cur;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ improved\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ Discarding\ beliefs"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(\ task\ ==\ \textcolor{stringliteral}{"{}MPE"{}}\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MPEbest\ cur;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ calculate\ MPE\ state}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cur.state\ =\ ia-\/>\mbox{\hyperlink{classdai_1_1InfAlg_a2095732e9defd30c7348703990804763}{findMaximum}}();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ calculate\ MPE\ value}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cur.value\ =\ fgs[ev].logScore(\ cur.state\ );}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ update\ best\ MPE\ state\ and\ value}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ cur.value\ >\ bestMPE[ev].value\ \&\&\ !\mbox{\hyperlink{namespacedai_a9886ca4103eac52b3f82698e12e86672}{dai::isnan}}(cur.value)\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ if\ this\ was\ exact\ inference,\ we\ are\ ready}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ solver\ ==\ 1\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ev2go.erase(\ ev2go.begin()\ +\ \_ev\ );}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_ev-\/-\/;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cur.ready\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ Replacing\ best\ MPE\ value\ so\ far\ ("{}}\ <<\ bestMPE[ev].value\ <<\ \textcolor{stringliteral}{"{})\ with\ new\ value\ "{}}\ <<\ cur.value\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bestMPE[ev]\ =\ cur;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ improved\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ New\ MPE\ value\ "{}}\ <<\ cur.value\ <<\ \textcolor{stringliteral}{"{}\ not\ better\ than\ best\ one\ so\ far\ "{}}\ <<\ bestMPE[ev].value\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ remove\ inference\ algorithm}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ Cleaning\ up..."{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ !failed\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ ia;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ write\ current\ best\ output\ to\ stream}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ improved\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ Writing\ output..."{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ first\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ first\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ os\ <<\ \textcolor{stringliteral}{"{}-\/BEGIN-\/"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ os\ <<\ evid.size()\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ ev\ =\ 0;\ ev\ <\ evid.size();\ ev++\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ task\ ==\ \textcolor{stringliteral}{"{}PR"{}}\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ output\ probability\ of\ evidence}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ os\ <<\ bestPR[ev].value\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(\ task\ ==\ \textcolor{stringliteral}{"{}MAR"{}}\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ output\ variable\ marginals}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ os\ <<\ bestMAR[ev].\mbox{\hyperlink{classdai_1_1InfAlg_a283601d71d62a6f60183748cbee88006}{beliefs}}.size()\ <<\ \textcolor{stringliteral}{"{}\ "{}};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ bestMAR[ev].beliefs.size();\ i++\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ os\ <<\ bestMAR[ev].beliefs[i].nrStates()\ <<\ \textcolor{stringliteral}{"{}\ "{}};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ s\ =\ 0;\ s\ <\ bestMAR[ev].beliefs[i].nrStates();\ s++\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ os\ <<\ bestMAR[ev].beliefs[i][s]\ <<\ \textcolor{stringliteral}{"{}\ "{}};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ os\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(\ task\ ==\ \textcolor{stringliteral}{"{}MPE"{}}\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ output\ MPE\ state}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ os\ <<\ fgs[ev].nrVars()\ <<\ \textcolor{stringliteral}{"{}\ "{}};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ fgs[ev].nrVars();\ i++\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ os\ <<\ bestMPE[ev].state[i]\ <<\ \textcolor{stringliteral}{"{}\ "{}};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ os\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ os.flush();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}\ \ \ \ Done..."{}}\ <<\ endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ !improved\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ subsolver++;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ improved\ ||\ subsolver\ >=\ nrsubsolvers[solver]\ ||\ couldBeGrid\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ subsolver\ =\ 0;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_ev++;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ task\ ==\ \textcolor{stringliteral}{"{}MPE"{}}\ \&\&\ solver\ ==\ 2\ \&\&\ (\mbox{\hyperlink{namespacedai_ab27c0799ddef29bb3833477e32c53862}{toc}}()\ -\/\ starttic)\ <\ UAI\_time\ \&\&\ MPEdamping\ !=\ 0.0\ )\ \{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MPEdamping\ /=\ 2.0;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ solver-\/-\/;\ \ \textcolor{comment}{//\ repeat\ this\ one}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ ev2go.size()\ ==\ 0\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{comment}{//\ close\ output\ file}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Closing\ output\ file..."{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ os.close();}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ verbose\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Done!"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+ 

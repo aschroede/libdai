@@ -1,0 +1,429 @@
+\doxysection{dai\+::EMAlg Class Reference}
+\hypertarget{classdai_1_1EMAlg}{}\label{classdai_1_1EMAlg}\index{dai::EMAlg@{dai::EMAlg}}
+
+
+\doxylink{classdai_1_1EMAlg}{EMAlg} performs Expectation Maximization to learn factor parameters.  
+
+
+
+
+{\ttfamily \#include $<$dai/emalg.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdai_1_1EMAlg_af062d83cd85b5eb6571373aef78bcc78}{EMAlg}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1Evidence}{Evidence}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{evidence}}, \mbox{\hyperlink{classdai_1_1InfAlg}{Inf\+Alg}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{estep}}, std\+::vector$<$ \mbox{\hyperlink{classdai_1_1MaximizationStep}{Maximization\+Step}} $>$ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{msteps}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{termconditions}})
+\begin{DoxyCompactList}\small\item\em Construct an \doxylink{classdai_1_1EMAlg}{EMAlg} from several objects. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1EMAlg_a3800b4fc0c176d6d05b776289b11ad69}{EMAlg}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1Evidence}{Evidence}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{evidence}}, \mbox{\hyperlink{classdai_1_1InfAlg}{Inf\+Alg}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{estep}}, std\+::istream \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{mstep\+\_\+file}})
+\begin{DoxyCompactList}\small\item\em Construct an \doxylink{classdai_1_1EMAlg}{EMAlg} from \doxylink{classdai_1_1Evidence}{Evidence} {\itshape evidence}, an \doxylink{classdai_1_1InfAlg}{Inf\+Alg} {\itshape estep}, and an input stream {\itshape mstep\+\_\+file}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1EMAlg_ab05088fa0e00f7bc2cf3b86c6aeadc07}{set\+Term\+Conditions}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&p)
+\begin{DoxyCompactList}\small\item\em Change the conditions for termination. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} \mbox{\hyperlink{classdai_1_1EMAlg_a2e5ca74dca46d4f5fd04b7f8cfe11202}{has\+Satisfied\+Term\+Conditions}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Determine if the termination conditions have been met. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{classdai_1_1EMAlg_a1ab7f19b21deeaed692d237cf9b8e090}{logZ}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Return the last calculated log likelihood. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{classdai_1_1EMAlg_aced47975e8ab11c886cb8a5e9ad06010}{Iterations}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns number of iterations done so far. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1InfAlg}{Inf\+Alg}} \& \mbox{\hyperlink{classdai_1_1EMAlg_a9be2366481d5d9615cd18c7dcb5c1b4c}{e\+Step}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Get the E-\/step method used. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{classdai_1_1EMAlg_ae6212c799c73ffd223ee21d2293fca14}{iterate}} ()
+\begin{DoxyCompactList}\small\item\em Iterate once over all maximization steps. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{classdai_1_1EMAlg_a10a491805ac80fb701028bf0e8fcda7e}{iterate}} (\mbox{\hyperlink{classdai_1_1MaximizationStep}{Maximization\+Step}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{mstep}})
+\begin{DoxyCompactList}\small\item\em Iterate over a single \doxylink{classdai_1_1MaximizationStep}{Maximization\+Step}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1EMAlg_a61babd96fa4d1cfc3f2099cfd067770f}{run}} ()
+\begin{DoxyCompactList}\small\item\em Iterate until termination conditions are satisfied. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{static}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::string \mbox{\hyperlink{classdai_1_1EMAlg_a970d673ac70094fb31d7980b419be971}{MAX\+\_\+\+ITERS\+\_\+\+KEY}}
+\begin{DoxyCompactList}\small\item\em Key for setting maximum iterations. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{static}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{classdai_1_1EMAlg_a3b04ac8328d41b0c3139ff0ae7f68176}{MAX\+\_\+\+ITERS\+\_\+\+DEFAULT}} = 30
+\begin{DoxyCompactList}\small\item\em Default maximum iterations. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{static}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::string \mbox{\hyperlink{classdai_1_1EMAlg_a7c0a7c2887d512b006990ef7f0c3d124}{LOG\+\_\+\+Z\+\_\+\+TOL\+\_\+\+KEY}}
+\begin{DoxyCompactList}\small\item\em Key for setting likelihood termination condition. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{static}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{classdai_1_1EMAlg_a2c80ff5a9139cd83e8927cb38fade6f5}{LOG\+\_\+\+Z\+\_\+\+TOL\+\_\+\+DEFAULT}} = 0.\+01
+\begin{DoxyCompactList}\small\item\em Default likelihood tolerance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1Evidence}{Evidence}} \& \mbox{\hyperlink{classdai_1_1EMAlg_a03a491055d75d86ccdc1cdf976423774}{\+\_\+evidence}}
+\begin{DoxyCompactList}\small\item\em All the data samples used during learning. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1InfAlg}{Inf\+Alg}} \& \mbox{\hyperlink{classdai_1_1EMAlg_abc77f7d981993c58380d4f230d7e58b4}{\+\_\+estep}}
+\begin{DoxyCompactList}\small\item\em How to do the expectation step. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classdai_1_1MaximizationStep}{Maximization\+Step}} $>$ \mbox{\hyperlink{classdai_1_1EMAlg_a0538911f3e9f1c2ffda8718ba03b377d}{\+\_\+msteps}}
+\begin{DoxyCompactList}\small\item\em The maximization steps to take. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{classdai_1_1EMAlg_a1b6efd4a619f7362cc5313dca46dab46}{\+\_\+iters}}
+\begin{DoxyCompactList}\small\item\em Number of iterations done. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} $>$ \mbox{\hyperlink{classdai_1_1EMAlg_aa2bd99ed48286a5f955858c1d6194128}{\+\_\+last\+LogZ}}
+\begin{DoxyCompactList}\small\item\em History of likelihoods. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{classdai_1_1EMAlg_a041e98d7dcb8f46054e0111bf9464bd3}{\+\_\+max\+\_\+iters}}
+\begin{DoxyCompactList}\small\item\em Maximum number of iterations. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{classdai_1_1EMAlg_a7d57039f534b60af035823ff6502575a}{\+\_\+log\+\_\+z\+\_\+tol}}
+\begin{DoxyCompactList}\small\item\em Convergence tolerance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Iterator interface}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typedef}} std\+::vector$<$ \mbox{\hyperlink{classdai_1_1MaximizationStep}{Maximization\+Step}} $>$\+::iterator \mbox{\hyperlink{classdai_1_1EMAlg_a7e83053aaf06ae539ce21008cf1124c4}{s\+\_\+iterator}}
+\begin{DoxyCompactList}\small\item\em Iterator over the maximization steps. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typedef}} std\+::vector$<$ \mbox{\hyperlink{classdai_1_1MaximizationStep}{Maximization\+Step}} $>$\+::const\+\_\+iterator \mbox{\hyperlink{classdai_1_1EMAlg_a8dbcc457eeec656a77b5fb458691e726}{const\+\_\+s\+\_\+iterator}}
+\begin{DoxyCompactList}\small\item\em Constant iterator over the maximization steps. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1EMAlg_a7e83053aaf06ae539ce21008cf1124c4}{s\+\_\+iterator}} \mbox{\hyperlink{classdai_1_1EMAlg_a1e0c34c019d5399a303b806d6b9c8be5}{s\+\_\+begin}} ()
+\begin{DoxyCompactList}\small\item\em Returns iterator that points to the first maximization step. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1EMAlg_a8dbcc457eeec656a77b5fb458691e726}{const\+\_\+s\+\_\+iterator}} \mbox{\hyperlink{classdai_1_1EMAlg_a196517554776ffa1d031cd32315c620b}{s\+\_\+begin}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns constant iterator that points to the first maximization step. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1EMAlg_a7e83053aaf06ae539ce21008cf1124c4}{s\+\_\+iterator}} \mbox{\hyperlink{classdai_1_1EMAlg_ae5dbc93dc3f028630a4fc85d079730e4}{s\+\_\+end}} ()
+\begin{DoxyCompactList}\small\item\em Returns iterator that points beyond the last maximization step. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1EMAlg_a8dbcc457eeec656a77b5fb458691e726}{const\+\_\+s\+\_\+iterator}} \mbox{\hyperlink{classdai_1_1EMAlg_a692eac982f8b291925f4577cb447044d}{s\+\_\+end}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns constant iterator that points beyond the last maximization step. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{classdai_1_1EMAlg}{EMAlg} performs Expectation Maximization to learn factor parameters. 
+
+This requires specifying\+:
+\begin{DoxyItemize}
+\item \doxylink{classdai_1_1Evidence}{Evidence} (instances of observations from the graphical model),
+\item \doxylink{classdai_1_1InfAlg}{Inf\+Alg} for performing the E-\/step (which includes the factor graph),
+\item a vector of \doxylink{classdai_1_1MaximizationStep}{Maximization\+Step} \textquotesingle{}s steps to be performed.
+\end{DoxyItemize}
+
+This implementation can perform incremental EM by using multiple Maximization\+Steps. An expectation step is performed between execution of each \doxylink{classdai_1_1MaximizationStep}{Maximization\+Step}. A call to \doxylink{classdai_1_1EMAlg_ae6212c799c73ffd223ee21d2293fca14}{iterate()} will cycle through all \doxylink{classdai_1_1MaximizationStep}{Maximization\+Step} \textquotesingle{}s. A call to \doxylink{classdai_1_1EMAlg_a61babd96fa4d1cfc3f2099cfd067770f}{run()} will call \doxylink{classdai_1_1EMAlg_ae6212c799c73ffd223ee21d2293fca14}{iterate()} until the termination criteria have been met.
+
+Having multiple and separate maximization steps allows for maximizing some parameters, performing another E-\/step, and then maximizing separate parameters, which may result in faster convergence in some cases.
+
+\begin{DoxyAuthor}{Author}
+Charles Vaske 
+\end{DoxyAuthor}
+\begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_sprinkler_em_8cpp-example}{example\+\_\+sprinkler\+\_\+em.\+cpp}}.\end{Desc}
+
+
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{classdai_1_1EMAlg_a7e83053aaf06ae539ce21008cf1124c4}\label{classdai_1_1EMAlg_a7e83053aaf06ae539ce21008cf1124c4} 
+\index{dai::EMAlg@{dai::EMAlg}!s\_iterator@{s\_iterator}}
+\index{s\_iterator@{s\_iterator}!dai::EMAlg@{dai::EMAlg}}
+\doxysubsubsection{\texorpdfstring{s\_iterator}{s\_iterator}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typedef}} std\+::vector$<$\mbox{\hyperlink{classdai_1_1MaximizationStep}{Maximization\+Step}}$>$\+::iterator \mbox{\hyperlink{classdai_1_1EMAlg_a7e83053aaf06ae539ce21008cf1124c4}{dai\+::\+EMAlg\+::s\+\_\+iterator}}}
+
+
+
+Iterator over the maximization steps. 
+
+\Hypertarget{classdai_1_1EMAlg_a8dbcc457eeec656a77b5fb458691e726}\label{classdai_1_1EMAlg_a8dbcc457eeec656a77b5fb458691e726} 
+\index{dai::EMAlg@{dai::EMAlg}!const\_s\_iterator@{const\_s\_iterator}}
+\index{const\_s\_iterator@{const\_s\_iterator}!dai::EMAlg@{dai::EMAlg}}
+\doxysubsubsection{\texorpdfstring{const\_s\_iterator}{const\_s\_iterator}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typedef}} std\+::vector$<$\mbox{\hyperlink{classdai_1_1MaximizationStep}{Maximization\+Step}}$>$\+::const\+\_\+iterator \mbox{\hyperlink{classdai_1_1EMAlg_a8dbcc457eeec656a77b5fb458691e726}{dai\+::\+EMAlg\+::const\+\_\+s\+\_\+iterator}}}
+
+
+
+Constant iterator over the maximization steps. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classdai_1_1EMAlg_af062d83cd85b5eb6571373aef78bcc78}\label{classdai_1_1EMAlg_af062d83cd85b5eb6571373aef78bcc78} 
+\index{dai::EMAlg@{dai::EMAlg}!EMAlg@{EMAlg}}
+\index{EMAlg@{EMAlg}!dai::EMAlg@{dai::EMAlg}}
+\doxysubsubsection{\texorpdfstring{EMAlg()}{EMAlg()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily dai\+::\+EMAlg\+::\+EMAlg (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1Evidence}{Evidence}} \&}]{evidence,  }\item[{\mbox{\hyperlink{classdai_1_1InfAlg}{Inf\+Alg}} \&}]{estep,  }\item[{std\+::vector$<$ \mbox{\hyperlink{classdai_1_1MaximizationStep}{Maximization\+Step}} $>$ \&}]{msteps,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&}]{termconditions }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct an \doxylink{classdai_1_1EMAlg}{EMAlg} from several objects. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em evidence} & Specifies the observed evidence \\
+\hline
+{\em estep} & Inference algorithm to be used for the E-\/step \\
+\hline
+{\em msteps} & Vector of maximization steps, each of which is a group of parameter estimation tasks \\
+\hline
+{\em termconditions} & Termination conditions \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxylink{classdai_1_1EMAlg_ab05088fa0e00f7bc2cf3b86c6aeadc07}{set\+Term\+Conditions()} 
+\end{DoxySeeAlso}
+\Hypertarget{classdai_1_1EMAlg_a3800b4fc0c176d6d05b776289b11ad69}\label{classdai_1_1EMAlg_a3800b4fc0c176d6d05b776289b11ad69} 
+\index{dai::EMAlg@{dai::EMAlg}!EMAlg@{EMAlg}}
+\index{EMAlg@{EMAlg}!dai::EMAlg@{dai::EMAlg}}
+\doxysubsubsection{\texorpdfstring{EMAlg()}{EMAlg()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily dai\+::\+EMAlg\+::\+EMAlg (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1Evidence}{Evidence}} \&}]{evidence,  }\item[{\mbox{\hyperlink{classdai_1_1InfAlg}{Inf\+Alg}} \&}]{estep,  }\item[{std\+::istream \&}]{mstep\+\_\+file }\end{DoxyParamCaption})}
+
+
+
+Construct an \doxylink{classdai_1_1EMAlg}{EMAlg} from \doxylink{classdai_1_1Evidence}{Evidence} {\itshape evidence}, an \doxylink{classdai_1_1InfAlg}{Inf\+Alg} {\itshape estep}, and an input stream {\itshape mstep\+\_\+file}. 
+
+\begin{DoxySeeAlso}{See also}
+\doxysectlink{fileformats_fileformats-emalg}{Expectation Maximization (.em) file format}{1} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classdai_1_1EMAlg_ab05088fa0e00f7bc2cf3b86c6aeadc07}\label{classdai_1_1EMAlg_ab05088fa0e00f7bc2cf3b86c6aeadc07} 
+\index{dai::EMAlg@{dai::EMAlg}!setTermConditions@{setTermConditions}}
+\index{setTermConditions@{setTermConditions}!dai::EMAlg@{dai::EMAlg}}
+\doxysubsubsection{\texorpdfstring{setTermConditions()}{setTermConditions()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+EMAlg\+::set\+Term\+Conditions (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&}]{p }\end{DoxyParamCaption})}
+
+
+
+Change the conditions for termination. 
+
+There are two possible parameters in the \doxylink{classdai_1_1PropertySet}{Property\+Set} {\itshape p\+:} 
+\begin{DoxyItemize}
+\item {\itshape max\+\_\+iters} maximum number of iterations
+\item {\itshape log\+\_\+z\+\_\+tol} critical proportion of increase in logZ
+\end{DoxyItemize}
+
+\begin{DoxySeeAlso}{See also}
+\doxylink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{has\+Satisified\+Term\+Conditions()} 
+\end{DoxySeeAlso}
+\Hypertarget{classdai_1_1EMAlg_a2e5ca74dca46d4f5fd04b7f8cfe11202}\label{classdai_1_1EMAlg_a2e5ca74dca46d4f5fd04b7f8cfe11202} 
+\index{dai::EMAlg@{dai::EMAlg}!hasSatisfiedTermConditions@{hasSatisfiedTermConditions}}
+\index{hasSatisfiedTermConditions@{hasSatisfiedTermConditions}!dai::EMAlg@{dai::EMAlg}}
+\doxysubsubsection{\texorpdfstring{hasSatisfiedTermConditions()}{hasSatisfiedTermConditions()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} dai\+::\+EMAlg\+::has\+Satisfied\+Term\+Conditions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Determine if the termination conditions have been met. 
+
+There are two sufficient termination conditions\+:
+\begin{DoxyEnumerate}
+\item the maximum number of iterations has been performed
+\item the ratio of logZ increase over previous logZ is less than the tolerance, i.\+e., $ \frac{\log(Z_t) - \log(Z_{t-1})}{| \log(Z_{t-1}) | } < \mathrm{tol} $. 
+\end{DoxyEnumerate}\begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_sprinkler_em_8cpp-example}{example\+\_\+sprinkler\+\_\+em.\+cpp}}.\end{Desc}
+\Hypertarget{classdai_1_1EMAlg_a1ab7f19b21deeaed692d237cf9b8e090}\label{classdai_1_1EMAlg_a1ab7f19b21deeaed692d237cf9b8e090} 
+\index{dai::EMAlg@{dai::EMAlg}!logZ@{logZ}}
+\index{logZ@{logZ}!dai::EMAlg@{dai::EMAlg}}
+\doxysubsubsection{\texorpdfstring{logZ()}{logZ()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} dai\+::\+EMAlg\+::logZ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Return the last calculated log likelihood. 
+
+\Hypertarget{classdai_1_1EMAlg_aced47975e8ab11c886cb8a5e9ad06010}\label{classdai_1_1EMAlg_aced47975e8ab11c886cb8a5e9ad06010} 
+\index{dai::EMAlg@{dai::EMAlg}!Iterations@{Iterations}}
+\index{Iterations@{Iterations}!dai::EMAlg@{dai::EMAlg}}
+\doxysubsubsection{\texorpdfstring{Iterations()}{Iterations()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} dai\+::\+EMAlg\+::\+Iterations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns number of iterations done so far. 
+
+\begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_sprinkler_em_8cpp-example}{example\+\_\+sprinkler\+\_\+em.\+cpp}}.\end{Desc}
+\Hypertarget{classdai_1_1EMAlg_a9be2366481d5d9615cd18c7dcb5c1b4c}\label{classdai_1_1EMAlg_a9be2366481d5d9615cd18c7dcb5c1b4c} 
+\index{dai::EMAlg@{dai::EMAlg}!eStep@{eStep}}
+\index{eStep@{eStep}!dai::EMAlg@{dai::EMAlg}}
+\doxysubsubsection{\texorpdfstring{eStep()}{eStep()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1InfAlg}{Inf\+Alg}} \& dai\+::\+EMAlg\+::e\+Step (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the E-\/step method used. 
+
+\Hypertarget{classdai_1_1EMAlg_ae6212c799c73ffd223ee21d2293fca14}\label{classdai_1_1EMAlg_ae6212c799c73ffd223ee21d2293fca14} 
+\index{dai::EMAlg@{dai::EMAlg}!iterate@{iterate}}
+\index{iterate@{iterate}!dai::EMAlg@{dai::EMAlg}}
+\doxysubsubsection{\texorpdfstring{iterate()}{iterate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} dai\+::\+EMAlg\+::iterate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Iterate once over all maximization steps. 
+
+\begin{DoxyReturn}{Returns}
+Log-\/likelihood after iteration 
+\end{DoxyReturn}
+\begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_sprinkler_em_8cpp-example}{example\+\_\+sprinkler\+\_\+em.\+cpp}}.\end{Desc}
+\Hypertarget{classdai_1_1EMAlg_a10a491805ac80fb701028bf0e8fcda7e}\label{classdai_1_1EMAlg_a10a491805ac80fb701028bf0e8fcda7e} 
+\index{dai::EMAlg@{dai::EMAlg}!iterate@{iterate}}
+\index{iterate@{iterate}!dai::EMAlg@{dai::EMAlg}}
+\doxysubsubsection{\texorpdfstring{iterate()}{iterate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} dai\+::\+EMAlg\+::iterate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classdai_1_1MaximizationStep}{Maximization\+Step}} \&}]{mstep }\end{DoxyParamCaption})}
+
+
+
+Iterate over a single \doxylink{classdai_1_1MaximizationStep}{Maximization\+Step}. 
+
+\Hypertarget{classdai_1_1EMAlg_a61babd96fa4d1cfc3f2099cfd067770f}\label{classdai_1_1EMAlg_a61babd96fa4d1cfc3f2099cfd067770f} 
+\index{dai::EMAlg@{dai::EMAlg}!run@{run}}
+\index{run@{run}!dai::EMAlg@{dai::EMAlg}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+EMAlg\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Iterate until termination conditions are satisfied. 
+
+\Hypertarget{classdai_1_1EMAlg_a1e0c34c019d5399a303b806d6b9c8be5}\label{classdai_1_1EMAlg_a1e0c34c019d5399a303b806d6b9c8be5} 
+\index{dai::EMAlg@{dai::EMAlg}!s\_begin@{s\_begin}}
+\index{s\_begin@{s\_begin}!dai::EMAlg@{dai::EMAlg}}
+\doxysubsubsection{\texorpdfstring{s\_begin()}{s\_begin()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1EMAlg_a7e83053aaf06ae539ce21008cf1124c4}{s\+\_\+iterator}} dai\+::\+EMAlg\+::s\+\_\+begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns iterator that points to the first maximization step. 
+
+\Hypertarget{classdai_1_1EMAlg_a196517554776ffa1d031cd32315c620b}\label{classdai_1_1EMAlg_a196517554776ffa1d031cd32315c620b} 
+\index{dai::EMAlg@{dai::EMAlg}!s\_begin@{s\_begin}}
+\index{s\_begin@{s\_begin}!dai::EMAlg@{dai::EMAlg}}
+\doxysubsubsection{\texorpdfstring{s\_begin()}{s\_begin()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1EMAlg_a8dbcc457eeec656a77b5fb458691e726}{const\+\_\+s\+\_\+iterator}} dai\+::\+EMAlg\+::s\+\_\+begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns constant iterator that points to the first maximization step. 
+
+\Hypertarget{classdai_1_1EMAlg_ae5dbc93dc3f028630a4fc85d079730e4}\label{classdai_1_1EMAlg_ae5dbc93dc3f028630a4fc85d079730e4} 
+\index{dai::EMAlg@{dai::EMAlg}!s\_end@{s\_end}}
+\index{s\_end@{s\_end}!dai::EMAlg@{dai::EMAlg}}
+\doxysubsubsection{\texorpdfstring{s\_end()}{s\_end()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1EMAlg_a7e83053aaf06ae539ce21008cf1124c4}{s\+\_\+iterator}} dai\+::\+EMAlg\+::s\+\_\+end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns iterator that points beyond the last maximization step. 
+
+\Hypertarget{classdai_1_1EMAlg_a692eac982f8b291925f4577cb447044d}\label{classdai_1_1EMAlg_a692eac982f8b291925f4577cb447044d} 
+\index{dai::EMAlg@{dai::EMAlg}!s\_end@{s\_end}}
+\index{s\_end@{s\_end}!dai::EMAlg@{dai::EMAlg}}
+\doxysubsubsection{\texorpdfstring{s\_end()}{s\_end()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1EMAlg_a8dbcc457eeec656a77b5fb458691e726}{const\+\_\+s\+\_\+iterator}} dai\+::\+EMAlg\+::s\+\_\+end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns constant iterator that points beyond the last maximization step. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classdai_1_1EMAlg_a03a491055d75d86ccdc1cdf976423774}\label{classdai_1_1EMAlg_a03a491055d75d86ccdc1cdf976423774} 
+\index{dai::EMAlg@{dai::EMAlg}!\_evidence@{\_evidence}}
+\index{\_evidence@{\_evidence}!dai::EMAlg@{dai::EMAlg}}
+\doxysubsubsection{\texorpdfstring{\_evidence}{\_evidence}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1Evidence}{Evidence}}\& dai\+::\+EMAlg\+::\+\_\+evidence\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+All the data samples used during learning. 
+
+\Hypertarget{classdai_1_1EMAlg_abc77f7d981993c58380d4f230d7e58b4}\label{classdai_1_1EMAlg_abc77f7d981993c58380d4f230d7e58b4} 
+\index{dai::EMAlg@{dai::EMAlg}!\_estep@{\_estep}}
+\index{\_estep@{\_estep}!dai::EMAlg@{dai::EMAlg}}
+\doxysubsubsection{\texorpdfstring{\_estep}{\_estep}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1InfAlg}{Inf\+Alg}}\& dai\+::\+EMAlg\+::\+\_\+estep\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+How to do the expectation step. 
+
+\Hypertarget{classdai_1_1EMAlg_a0538911f3e9f1c2ffda8718ba03b377d}\label{classdai_1_1EMAlg_a0538911f3e9f1c2ffda8718ba03b377d} 
+\index{dai::EMAlg@{dai::EMAlg}!\_msteps@{\_msteps}}
+\index{\_msteps@{\_msteps}!dai::EMAlg@{dai::EMAlg}}
+\doxysubsubsection{\texorpdfstring{\_msteps}{\_msteps}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classdai_1_1MaximizationStep}{Maximization\+Step}}$>$ dai\+::\+EMAlg\+::\+\_\+msteps\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The maximization steps to take. 
+
+\Hypertarget{classdai_1_1EMAlg_a1b6efd4a619f7362cc5313dca46dab46}\label{classdai_1_1EMAlg_a1b6efd4a619f7362cc5313dca46dab46} 
+\index{dai::EMAlg@{dai::EMAlg}!\_iters@{\_iters}}
+\index{\_iters@{\_iters}!dai::EMAlg@{dai::EMAlg}}
+\doxysubsubsection{\texorpdfstring{\_iters}{\_iters}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} dai\+::\+EMAlg\+::\+\_\+iters\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Number of iterations done. 
+
+\Hypertarget{classdai_1_1EMAlg_aa2bd99ed48286a5f955858c1d6194128}\label{classdai_1_1EMAlg_aa2bd99ed48286a5f955858c1d6194128} 
+\index{dai::EMAlg@{dai::EMAlg}!\_lastLogZ@{\_lastLogZ}}
+\index{\_lastLogZ@{\_lastLogZ}!dai::EMAlg@{dai::EMAlg}}
+\doxysubsubsection{\texorpdfstring{\_lastLogZ}{\_lastLogZ}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}}$>$ dai\+::\+EMAlg\+::\+\_\+last\+LogZ\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+History of likelihoods. 
+
+\Hypertarget{classdai_1_1EMAlg_a041e98d7dcb8f46054e0111bf9464bd3}\label{classdai_1_1EMAlg_a041e98d7dcb8f46054e0111bf9464bd3} 
+\index{dai::EMAlg@{dai::EMAlg}!\_max\_iters@{\_max\_iters}}
+\index{\_max\_iters@{\_max\_iters}!dai::EMAlg@{dai::EMAlg}}
+\doxysubsubsection{\texorpdfstring{\_max\_iters}{\_max\_iters}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} dai\+::\+EMAlg\+::\+\_\+max\+\_\+iters\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Maximum number of iterations. 
+
+\Hypertarget{classdai_1_1EMAlg_a7d57039f534b60af035823ff6502575a}\label{classdai_1_1EMAlg_a7d57039f534b60af035823ff6502575a} 
+\index{dai::EMAlg@{dai::EMAlg}!\_log\_z\_tol@{\_log\_z\_tol}}
+\index{\_log\_z\_tol@{\_log\_z\_tol}!dai::EMAlg@{dai::EMAlg}}
+\doxysubsubsection{\texorpdfstring{\_log\_z\_tol}{\_log\_z\_tol}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} dai\+::\+EMAlg\+::\+\_\+log\+\_\+z\+\_\+tol\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Convergence tolerance. 
+
+\Hypertarget{classdai_1_1EMAlg_a970d673ac70094fb31d7980b419be971}\label{classdai_1_1EMAlg_a970d673ac70094fb31d7980b419be971} 
+\index{dai::EMAlg@{dai::EMAlg}!MAX\_ITERS\_KEY@{MAX\_ITERS\_KEY}}
+\index{MAX\_ITERS\_KEY@{MAX\_ITERS\_KEY}!dai::EMAlg@{dai::EMAlg}}
+\doxysubsubsection{\texorpdfstring{MAX\_ITERS\_KEY}{MAX\_ITERS\_KEY}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::string dai\+::\+EMAlg\+::\+MAX\+\_\+\+ITERS\+\_\+\+KEY\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Key for setting maximum iterations. 
+
+\Hypertarget{classdai_1_1EMAlg_a3b04ac8328d41b0c3139ff0ae7f68176}\label{classdai_1_1EMAlg_a3b04ac8328d41b0c3139ff0ae7f68176} 
+\index{dai::EMAlg@{dai::EMAlg}!MAX\_ITERS\_DEFAULT@{MAX\_ITERS\_DEFAULT}}
+\index{MAX\_ITERS\_DEFAULT@{MAX\_ITERS\_DEFAULT}!dai::EMAlg@{dai::EMAlg}}
+\doxysubsubsection{\texorpdfstring{MAX\_ITERS\_DEFAULT}{MAX\_ITERS\_DEFAULT}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} dai\+::\+EMAlg\+::\+MAX\+\_\+\+ITERS\+\_\+\+DEFAULT = 30\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Default maximum iterations. 
+
+\Hypertarget{classdai_1_1EMAlg_a7c0a7c2887d512b006990ef7f0c3d124}\label{classdai_1_1EMAlg_a7c0a7c2887d512b006990ef7f0c3d124} 
+\index{dai::EMAlg@{dai::EMAlg}!LOG\_Z\_TOL\_KEY@{LOG\_Z\_TOL\_KEY}}
+\index{LOG\_Z\_TOL\_KEY@{LOG\_Z\_TOL\_KEY}!dai::EMAlg@{dai::EMAlg}}
+\doxysubsubsection{\texorpdfstring{LOG\_Z\_TOL\_KEY}{LOG\_Z\_TOL\_KEY}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::string dai\+::\+EMAlg\+::\+LOG\+\_\+\+Z\+\_\+\+TOL\+\_\+\+KEY\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Key for setting likelihood termination condition. 
+
+\Hypertarget{classdai_1_1EMAlg_a2c80ff5a9139cd83e8927cb38fade6f5}\label{classdai_1_1EMAlg_a2c80ff5a9139cd83e8927cb38fade6f5} 
+\index{dai::EMAlg@{dai::EMAlg}!LOG\_Z\_TOL\_DEFAULT@{LOG\_Z\_TOL\_DEFAULT}}
+\index{LOG\_Z\_TOL\_DEFAULT@{LOG\_Z\_TOL\_DEFAULT}!dai::EMAlg@{dai::EMAlg}}
+\doxysubsubsection{\texorpdfstring{LOG\_Z\_TOL\_DEFAULT}{LOG\_Z\_TOL\_DEFAULT}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} dai\+::\+EMAlg\+::\+LOG\+\_\+\+Z\+\_\+\+TOL\+\_\+\+DEFAULT = 0.\+01\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Default likelihood tolerance. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/dai/\mbox{\hyperlink{emalg_8h}{emalg.\+h}}\item 
+src/emalg.\+cpp\end{DoxyCompactItemize}

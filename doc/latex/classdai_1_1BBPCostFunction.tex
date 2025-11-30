@@ -1,0 +1,93 @@
+\doxysection{dai\+::BBPCost\+Function Class Reference}
+\hypertarget{classdai_1_1BBPCostFunction}{}\label{classdai_1_1BBPCostFunction}\index{dai::BBPCostFunction@{dai::BBPCostFunction}}
+
+
+Predefined cost functions that can be used with \doxylink{classdai_1_1BBP}{BBP}.  
+
+
+
+
+{\ttfamily \#include $<$dai/bbp.\+h$>$}
+
+
+
+Inherits BBPCost\+Function\+Base.
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdai_1_1BBPCostFunction_a6fc8c655c52729fc97f2410c02d050da}{BBPCost\+Function}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1BBPCostFunction_a3302aab31fd483288878c870acd89c54}{BBPCost\+Function}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} BBPCost\+Function\+Base \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}})
+\begin{DoxyCompactList}\small\item\em Construct from BBPCost\+Function\+Base {\itshape x}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} \mbox{\hyperlink{classdai_1_1BBPCostFunction_a50bfbda89e1a40c7ed2cb5826ec0efe1}{need\+Gibbs\+State}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns whether this cost function depends on having a Gibbs state. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{classdai_1_1BBPCostFunction_ad9b0aab3a09f11417f514c1c7ce730ca}{evaluate}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1InfAlg}{Inf\+Alg}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{ia}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::vector$<$ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} $>$ \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{stateP}}) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Evaluates cost function in state {\itshape stateP} using the information in inference algorithm {\itshape ia}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1BBPCostFunction}{BBPCost\+Function}} \& \mbox{\hyperlink{classdai_1_1BBPCostFunction_a1275257ee3f764ff06f18903187ed0ad}{operator=}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} BBPCost\+Function\+Base \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}})
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Predefined cost functions that can be used with \doxylink{classdai_1_1BBP}{BBP}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classdai_1_1BBPCostFunction_a6fc8c655c52729fc97f2410c02d050da}\label{classdai_1_1BBPCostFunction_a6fc8c655c52729fc97f2410c02d050da} 
+\index{dai::BBPCostFunction@{dai::BBPCostFunction}!BBPCostFunction@{BBPCostFunction}}
+\index{BBPCostFunction@{BBPCostFunction}!dai::BBPCostFunction@{dai::BBPCostFunction}}
+\doxysubsubsection{\texorpdfstring{BBPCostFunction()}{BBPCostFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily dai\+::\+BBPCost\+Function\+::\+BBPCost\+Function (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor. 
+
+\Hypertarget{classdai_1_1BBPCostFunction_a3302aab31fd483288878c870acd89c54}\label{classdai_1_1BBPCostFunction_a3302aab31fd483288878c870acd89c54} 
+\index{dai::BBPCostFunction@{dai::BBPCostFunction}!BBPCostFunction@{BBPCostFunction}}
+\index{BBPCostFunction@{BBPCostFunction}!dai::BBPCostFunction@{dai::BBPCostFunction}}
+\doxysubsubsection{\texorpdfstring{BBPCostFunction()}{BBPCostFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily dai\+::\+BBPCost\+Function\+::\+BBPCost\+Function (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} BBPCost\+Function\+Base \&}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct from BBPCost\+Function\+Base {\itshape x}. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classdai_1_1BBPCostFunction_a50bfbda89e1a40c7ed2cb5826ec0efe1}\label{classdai_1_1BBPCostFunction_a50bfbda89e1a40c7ed2cb5826ec0efe1} 
+\index{dai::BBPCostFunction@{dai::BBPCostFunction}!needGibbsState@{needGibbsState}}
+\index{needGibbsState@{needGibbsState}!dai::BBPCostFunction@{dai::BBPCostFunction}}
+\doxysubsubsection{\texorpdfstring{needGibbsState()}{needGibbsState()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} dai\+::\+BBPCost\+Function\+::need\+Gibbs\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns whether this cost function depends on having a Gibbs state. 
+
+\Hypertarget{classdai_1_1BBPCostFunction_ad9b0aab3a09f11417f514c1c7ce730ca}\label{classdai_1_1BBPCostFunction_ad9b0aab3a09f11417f514c1c7ce730ca} 
+\index{dai::BBPCostFunction@{dai::BBPCostFunction}!evaluate@{evaluate}}
+\index{evaluate@{evaluate}!dai::BBPCostFunction@{dai::BBPCostFunction}}
+\doxysubsubsection{\texorpdfstring{evaluate()}{evaluate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} dai\+::\+BBPCost\+Function\+::evaluate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1InfAlg}{Inf\+Alg}} \&}]{ia,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::vector$<$ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} $>$ \texorpdfstring{$\ast$}{*}}]{stateP }\end{DoxyParamCaption}) const}
+
+
+
+Evaluates cost function in state {\itshape stateP} using the information in inference algorithm {\itshape ia}. 
+
+\Hypertarget{classdai_1_1BBPCostFunction_a1275257ee3f764ff06f18903187ed0ad}\label{classdai_1_1BBPCostFunction_a1275257ee3f764ff06f18903187ed0ad} 
+\index{dai::BBPCostFunction@{dai::BBPCostFunction}!operator=@{operator=}}
+\index{operator=@{operator=}!dai::BBPCostFunction@{dai::BBPCostFunction}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1BBPCostFunction}{BBPCost\+Function}} \& dai\+::\+BBPCost\+Function\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} BBPCost\+Function\+Base \&}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Assignment operator. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/dai/\mbox{\hyperlink{bbp_8h}{bbp.\+h}}\item 
+src/bbp.\+cpp\end{DoxyCompactItemize}

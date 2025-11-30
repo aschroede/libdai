@@ -1,0 +1,557 @@
+\doxysection{dai\+::DAG Class Reference}
+\hypertarget{classdai_1_1DAG}{}\label{classdai_1_1DAG}\index{dai::DAG@{dai::DAG}}
+
+
+Represents the neighborhood structure of nodes in a directed cyclic graph.  
+
+
+
+
+{\ttfamily \#include $<$dai/dag.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors and destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdai_1_1DAG_a492535d29b681e169478bf996f4bc8ea}{DAG}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor (creates an empty \doxylink{classdai_1_1DAG}{DAG}). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1DAG_a479637ba8bc537f368d343d98187a325}{DAG}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{nr}})
+\begin{DoxyCompactList}\small\item\em Constructs \doxylink{classdai_1_1DAG}{DAG} with {\itshape nr} nodes and no edges. \end{DoxyCompactList}\item 
+{\footnotesize template$<$\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typename}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Edge\+Input\+Iterator}} $>$ }\\\mbox{\hyperlink{classdai_1_1DAG_acfb7a32b5e8e56d4268738d2a6388a29}{DAG}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{nr}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Edge\+Input\+Iterator}} begin, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Edge\+Input\+Iterator}} end, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{check}}=\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{true}})
+\begin{DoxyCompactList}\small\item\em Constructs \doxylink{classdai_1_1DAG}{DAG} from a range of edges. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Accessors and mutators}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{structdai_1_1Neighbor}{Neighbor}} \& \mbox{\hyperlink{classdai_1_1DAG_ada7483211efef87be9d2f9749cb3f3ea}{pa}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} n, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \+\_\+p) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns constant reference to the {\itshape \+\_\+p} \textquotesingle{}th parent of node {\itshape n}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structdai_1_1Neighbor}{Neighbor}} \& \mbox{\hyperlink{classdai_1_1DAG_a3e9f50e211405a2be4c2181a288f116f}{pa}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} n, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \+\_\+p)
+\begin{DoxyCompactList}\small\item\em Returns reference to the {\itshape \+\_\+p} \textquotesingle{}th parent of node {\itshape n}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a14c563f2e5f6acf255903cae5c3b415c}{Neighbors}} \& \mbox{\hyperlink{classdai_1_1DAG_a9fe2291b7fec4f23d7836fa29fb4bc2e}{pa}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} n) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns constant reference to all parents of node {\itshape n}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a14c563f2e5f6acf255903cae5c3b415c}{Neighbors}} \& \mbox{\hyperlink{classdai_1_1DAG_afe80e0cf98d28dc49c7403f37293a65a}{pa}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} n)
+\begin{DoxyCompactList}\small\item\em Returns reference to all parents of node {\itshape n}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{structdai_1_1Neighbor}{Neighbor}} \& \mbox{\hyperlink{classdai_1_1DAG_afc96dd9895801ea2e092493a1a18bb70}{ch}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} n, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \+\_\+c) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns constant reference to the {\itshape \+\_\+c} \textquotesingle{}th child of node {\itshape n}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structdai_1_1Neighbor}{Neighbor}} \& \mbox{\hyperlink{classdai_1_1DAG_a73792ca4bcaba151916618dce6452459}{ch}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} n, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \+\_\+c)
+\begin{DoxyCompactList}\small\item\em Returns reference to the {\itshape \+\_\+c} \textquotesingle{}th child of node {\itshape n}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a14c563f2e5f6acf255903cae5c3b415c}{Neighbors}} \& \mbox{\hyperlink{classdai_1_1DAG_a0153465e8909f3fb49213935fc789ed1}{ch}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} n) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns constant reference to all children of node {\itshape n}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a14c563f2e5f6acf255903cae5c3b415c}{Neighbors}} \& \mbox{\hyperlink{classdai_1_1DAG_af0d8fd147d78f633ab3df26ce1989ed6}{ch}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} n)
+\begin{DoxyCompactList}\small\item\em Returns reference to all children of node {\itshape n}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Adding nodes and edges}\par
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typename}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Edge\+Input\+Iterator}} $>$ }\\\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1DAG_a7b9a3e26a9275bd68e9eee5ee16933fd}{construct}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{nr}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Edge\+Input\+Iterator}} begin, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Edge\+Input\+Iterator}} end, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{check}}=\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{true}})
+\begin{DoxyCompactList}\small\item\em (Re)constructs \doxylink{classdai_1_1DAG}{DAG} from a range of edges. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{classdai_1_1DAG_ae1840708ee5af411ecce0055c62fea77}{add\+Node}} ()
+\begin{DoxyCompactList}\small\item\em Adds a node without parents and children and returns the index of the added node. \end{DoxyCompactList}\item 
+{\footnotesize template$<$\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typename}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Node\+Input\+Iterator}} $>$ }\\\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{classdai_1_1DAG_a033383086ab9eb71d6c5e602fd493816}{add\+Node}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Node\+Input\+Iterator}} begin, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Node\+Input\+Iterator}} end, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+Hint}}=0)
+\begin{DoxyCompactList}\small\item\em Adds a node with parents specified by a range of nodes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1DAG}{DAG}} \& \mbox{\hyperlink{classdai_1_1DAG_aeee04f48ac5d0bf68187d5325dd551bd}{add\+Edge}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n1}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n2}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{check}}=\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{true}})
+\begin{DoxyCompactList}\small\item\em Adds an edge from node {\itshape n1} and node {\itshape n2}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Erasing nodes and edges}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1DAG_a1e9807a4fdd893548a4d6db807c1f48b}{erase\+Node}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} n)
+\begin{DoxyCompactList}\small\item\em Removes node {\itshape n} and all ingoing and outgoing edges; indices of other nodes are changed accordingly. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1DAG_a187e12110645d09f7bd4271dae17d142}{erase\+Edge}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n1}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n2}})
+\begin{DoxyCompactList}\small\item\em Removes edge from node {\itshape n1} to node {\itshape n2}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Queries}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{classdai_1_1DAG_a612bc2529939865352ae7d2aa4ec3566}{nr\+Nodes}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns number of nodes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{classdai_1_1DAG_afb43ebd3f17ee634c8ca3a525fdb8c90}{nr\+Edges}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Calculates the number of edges, time complexity\+: O(nr\+Nodes()) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} \mbox{\hyperlink{classdai_1_1DAG_a013c82a515b9f5cd668542fd68ad22a1}{has\+Edge}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n1}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n2}}) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns true if the \doxylink{classdai_1_1DAG}{DAG} contains an edge from node {\itshape n1} and {\itshape n2}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{classdai_1_1DAG_a2a98f61d94c29070a813e4dd0a5e1263}{find\+Pa}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} n, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} p)
+\begin{DoxyCompactList}\small\item\em Returns the index of a given node {\itshape p} amongst the parents of {\itshape n}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{classdai_1_1DAG_a5807cff8d5fda8e0c6ff060fc1a01ab8}{find\+Ch}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} n, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} c)
+\begin{DoxyCompactList}\small\item\em Returns the index of a given node {\itshape c} amongst the children of {\itshape n}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1SmallSet}{Small\+Set}}$<$ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} $>$ \mbox{\hyperlink{classdai_1_1DAG_a5d8048d34c4068364ef83f7f7ad852d2}{pa\+Set}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} n) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns parents of node {\itshape n} as a \doxylink{classdai_1_1SmallSet}{Small\+Set$<$size\+\_\+t$>$}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1SmallSet}{Small\+Set}}$<$ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} $>$ \mbox{\hyperlink{classdai_1_1DAG_ab8fee5e48afddda71a216a5d91a03272}{ch\+Set}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} n) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns children of node {\itshape n} as a \doxylink{classdai_1_1SmallSet}{Small\+Set$<$size\+\_\+t$>$}. \end{DoxyCompactList}\item 
+std\+::set$<$ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} $>$ \mbox{\hyperlink{classdai_1_1DAG_a170032adbb114f4f96f1c20ab302849c}{ancestors}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} n, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{inclusive}}) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns the set of ancestors of node {\itshape n}, i.\+e., all nodes {\itshape a} such that there exists a directed path from {\itshape a} to {\itshape n} (including {\itshape n} itself if {\itshape inclusive} == {\ttfamily true}) \end{DoxyCompactList}\item 
+std\+::set$<$ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} $>$ \mbox{\hyperlink{classdai_1_1DAG_a6fcc8b43368df191ae96fafd7fd2a6c7}{descendants}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} n, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{inclusive}}) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns the set of descendants of node {\itshape n}, i.\+e., all nodes {\itshape d} such that there exists a directed path from {\itshape n} to {\itshape d} (excluding {\itshape n} itself if {\itshape inclusive} == {\ttfamily true}) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} \mbox{\hyperlink{classdai_1_1DAG_aa00f032b2a7fed95d0f357cb1eb4580b}{exists\+Directed\+Path}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n1}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{n2}}) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns whether there exists a directed path from node {\itshape n1} to node {\itshape n2} (which may consist of zero edges) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} \mbox{\hyperlink{classdai_1_1DAG_a3def593491a5a6571e3a160f7effa88b}{is\+Connected}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns true if the \doxylink{classdai_1_1DAG}{DAG} is connected. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1DAG_a41f676221e1805dd8ca969147d521ac3}{check\+Consistency}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Asserts internal consistency. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} \mbox{\hyperlink{classdai_1_1DAG_abb7141905e962a6419f7af43e1b85dc4}{operator==}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1DAG}{DAG}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Comparison operator which returns true if two DAGs are identical. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{namespacedai_a14c563f2e5f6acf255903cae5c3b415c}{Neighbors}} $>$ \mbox{\hyperlink{classdai_1_1DAG_a84807bf73872e2d9da90aec3bbc1d9b0}{\+\_\+pa}}
+\begin{DoxyCompactList}\small\item\em Contains for each node a vector of its parent nodes. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{namespacedai_a14c563f2e5f6acf255903cae5c3b415c}{Neighbors}} $>$ \mbox{\hyperlink{classdai_1_1DAG_ab9a90af854f3fb991f435c9d4656e97c}{\+\_\+ch}}
+\begin{DoxyCompactList}\small\item\em Contains for each node a vector of its children nodes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Input and output}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1DAG_afb344895c7d2d5158d9b9ea9d3268f11}{print\+Dot}} (std\+::ostream \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{os}}) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Writes a \doxylink{classdai_1_1DAG}{DAG} to an output stream in Graph\+Viz .dot syntax. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{classdai_1_1DAG_ae4874ef42aa48a90163192ed1eba510d}{to\+String}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Formats a \doxylink{classdai_1_1DAG}{DAG} as a string. \end{DoxyCompactList}\item 
+std\+::ostream \& \mbox{\hyperlink{classdai_1_1DAG_a7c9ba018159d6aafa685b1a8a6cf3d1d}{operator$<$$<$}} (std\+::ostream \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{os}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1DAG}{DAG}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{g}})
+\begin{DoxyCompactList}\small\item\em Writes a \doxylink{classdai_1_1DAG}{DAG} to an output stream. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents the neighborhood structure of nodes in a directed cyclic graph. 
+
+A directed cyclic graph has nodes connected by directed edges, such that there is no directed cycle of edges n1-\/\texorpdfstring{$>$}{>}n2-\/\texorpdfstring{$>$}{>}n3-\/\texorpdfstring{$>$}{>}...-\/\texorpdfstring{$>$}{>}n1. Nodes are indexed by an unsigned integer. If there are \doxylink{classdai_1_1DAG_a612bc2529939865352ae7d2aa4ec3566}{nr\+Nodes()} nodes, they are numbered 0,1,2,...,\doxylink{classdai_1_1DAG_a612bc2529939865352ae7d2aa4ec3566}{nr\+Nodes()}-\/1. An edge from node {\itshape n1} to node {\itshape n2} is represented by a Edge({\itshape n1},{\itshape n2}).
+
+\doxylink{classdai_1_1DAG}{DAG} is implemented as a sparse adjacency list, i.\+e., it stores for each node a list of its parents and a list of its children. Both lists are implemented as a vector of \doxylink{structdai_1_1Neighbor}{Neighbor} structures (accessible by the \doxylink{classdai_1_1DAG_ada7483211efef87be9d2f9749cb3f3ea}{pa()} and \doxylink{classdai_1_1DAG_afc96dd9895801ea2e092493a1a18bb70}{ch()} methods). Thus, each node has two associated variables of type DAG\+::\+Neighbors, which are vectors of \doxylink{structdai_1_1Neighbor}{Neighbor} structures, describing their parent and children nodes. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classdai_1_1DAG_a492535d29b681e169478bf996f4bc8ea}\label{classdai_1_1DAG_a492535d29b681e169478bf996f4bc8ea} 
+\index{dai::DAG@{dai::DAG}!DAG@{DAG}}
+\index{DAG@{DAG}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{DAG()}{DAG()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily dai\+::\+DAG\+::\+DAG (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor (creates an empty \doxylink{classdai_1_1DAG}{DAG}). 
+
+\Hypertarget{classdai_1_1DAG_a479637ba8bc537f368d343d98187a325}\label{classdai_1_1DAG_a479637ba8bc537f368d343d98187a325} 
+\index{dai::DAG@{dai::DAG}!DAG@{DAG}}
+\index{DAG@{DAG}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{DAG()}{DAG()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily dai\+::\+DAG\+::\+DAG (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{nr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs \doxylink{classdai_1_1DAG}{DAG} with {\itshape nr} nodes and no edges. 
+
+\Hypertarget{classdai_1_1DAG_acfb7a32b5e8e56d4268738d2a6388a29}\label{classdai_1_1DAG_acfb7a32b5e8e56d4268738d2a6388a29} 
+\index{dai::DAG@{dai::DAG}!DAG@{DAG}}
+\index{DAG@{DAG}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{DAG()}{DAG()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typename}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Edge\+Input\+Iterator}} $>$ \\
+dai\+::\+DAG\+::\+DAG (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{nr,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Edge\+Input\+Iterator}}}]{begin,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Edge\+Input\+Iterator}}}]{end,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}}}]{check = {\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{true}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs \doxylink{classdai_1_1DAG}{DAG} from a range of edges. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Edge\+Input\+Iterator} & Iterator that iterates over instances of Edge. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em nr} & The number of nodes. \\
+\hline
+{\em begin} & Points to the first edge. \\
+\hline
+{\em end} & Points just beyond the last edge. \\
+\hline
+{\em check} & Whether to only add an edge if it does not exist already and if it does not introduce a cycle \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classdai_1_1DAG_ada7483211efef87be9d2f9749cb3f3ea}\label{classdai_1_1DAG_ada7483211efef87be9d2f9749cb3f3ea} 
+\index{dai::DAG@{dai::DAG}!pa@{pa}}
+\index{pa@{pa}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{pa()}{pa()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{structdai_1_1Neighbor}{Neighbor}} \& dai\+::\+DAG\+::pa (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{n,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{\+\_\+p }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns constant reference to the {\itshape \+\_\+p} \textquotesingle{}th parent of node {\itshape n}. 
+
+\Hypertarget{classdai_1_1DAG_a3e9f50e211405a2be4c2181a288f116f}\label{classdai_1_1DAG_a3e9f50e211405a2be4c2181a288f116f} 
+\index{dai::DAG@{dai::DAG}!pa@{pa}}
+\index{pa@{pa}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{pa()}{pa()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structdai_1_1Neighbor}{Neighbor}} \& dai\+::\+DAG\+::pa (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{n,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{\+\_\+p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns reference to the {\itshape \+\_\+p} \textquotesingle{}th parent of node {\itshape n}. 
+
+\Hypertarget{classdai_1_1DAG_a9fe2291b7fec4f23d7836fa29fb4bc2e}\label{classdai_1_1DAG_a9fe2291b7fec4f23d7836fa29fb4bc2e} 
+\index{dai::DAG@{dai::DAG}!pa@{pa}}
+\index{pa@{pa}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{pa()}{pa()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a14c563f2e5f6acf255903cae5c3b415c}{Neighbors}} \& dai\+::\+DAG\+::pa (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{n }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns constant reference to all parents of node {\itshape n}. 
+
+\Hypertarget{classdai_1_1DAG_afe80e0cf98d28dc49c7403f37293a65a}\label{classdai_1_1DAG_afe80e0cf98d28dc49c7403f37293a65a} 
+\index{dai::DAG@{dai::DAG}!pa@{pa}}
+\index{pa@{pa}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{pa()}{pa()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a14c563f2e5f6acf255903cae5c3b415c}{Neighbors}} \& dai\+::\+DAG\+::pa (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns reference to all parents of node {\itshape n}. 
+
+\Hypertarget{classdai_1_1DAG_afc96dd9895801ea2e092493a1a18bb70}\label{classdai_1_1DAG_afc96dd9895801ea2e092493a1a18bb70} 
+\index{dai::DAG@{dai::DAG}!ch@{ch}}
+\index{ch@{ch}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{ch()}{ch()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{structdai_1_1Neighbor}{Neighbor}} \& dai\+::\+DAG\+::ch (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{n,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{\+\_\+c }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns constant reference to the {\itshape \+\_\+c} \textquotesingle{}th child of node {\itshape n}. 
+
+\Hypertarget{classdai_1_1DAG_a73792ca4bcaba151916618dce6452459}\label{classdai_1_1DAG_a73792ca4bcaba151916618dce6452459} 
+\index{dai::DAG@{dai::DAG}!ch@{ch}}
+\index{ch@{ch}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{ch()}{ch()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structdai_1_1Neighbor}{Neighbor}} \& dai\+::\+DAG\+::ch (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{n,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{\+\_\+c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns reference to the {\itshape \+\_\+c} \textquotesingle{}th child of node {\itshape n}. 
+
+\Hypertarget{classdai_1_1DAG_a0153465e8909f3fb49213935fc789ed1}\label{classdai_1_1DAG_a0153465e8909f3fb49213935fc789ed1} 
+\index{dai::DAG@{dai::DAG}!ch@{ch}}
+\index{ch@{ch}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{ch()}{ch()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a14c563f2e5f6acf255903cae5c3b415c}{Neighbors}} \& dai\+::\+DAG\+::ch (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{n }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns constant reference to all children of node {\itshape n}. 
+
+\Hypertarget{classdai_1_1DAG_af0d8fd147d78f633ab3df26ce1989ed6}\label{classdai_1_1DAG_af0d8fd147d78f633ab3df26ce1989ed6} 
+\index{dai::DAG@{dai::DAG}!ch@{ch}}
+\index{ch@{ch}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{ch()}{ch()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a14c563f2e5f6acf255903cae5c3b415c}{Neighbors}} \& dai\+::\+DAG\+::ch (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns reference to all children of node {\itshape n}. 
+
+\Hypertarget{classdai_1_1DAG_a7b9a3e26a9275bd68e9eee5ee16933fd}\label{classdai_1_1DAG_a7b9a3e26a9275bd68e9eee5ee16933fd} 
+\index{dai::DAG@{dai::DAG}!construct@{construct}}
+\index{construct@{construct}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{construct()}{construct()}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typename}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Edge\+Input\+Iterator}} $>$ \\
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+DAG\+::construct (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{nr,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Edge\+Input\+Iterator}}}]{begin,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Edge\+Input\+Iterator}}}]{end,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}}}]{check = {\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{true}}} }\end{DoxyParamCaption})}
+
+
+
+(Re)constructs \doxylink{classdai_1_1DAG}{DAG} from a range of edges. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Edge\+Input\+Iterator} & Iterator that iterates over instances of Edge. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em nr} & The number of nodes. \\
+\hline
+{\em begin} & Points to the first edge. \\
+\hline
+{\em end} & Points just beyond the last edge. \\
+\hline
+{\em check} & Whether to only add an edge if it does not exist already and does not introduce a cycle. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classdai_1_1DAG_ae1840708ee5af411ecce0055c62fea77}\label{classdai_1_1DAG_ae1840708ee5af411ecce0055c62fea77} 
+\index{dai::DAG@{dai::DAG}!addNode@{addNode}}
+\index{addNode@{addNode}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{addNode()}{addNode()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} dai\+::\+DAG\+::add\+Node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adds a node without parents and children and returns the index of the added node. 
+
+\Hypertarget{classdai_1_1DAG_a033383086ab9eb71d6c5e602fd493816}\label{classdai_1_1DAG_a033383086ab9eb71d6c5e602fd493816} 
+\index{dai::DAG@{dai::DAG}!addNode@{addNode}}
+\index{addNode@{addNode}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{addNode()}{addNode()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typename}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Node\+Input\+Iterator}} $>$ \\
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} dai\+::\+DAG\+::add\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Node\+Input\+Iterator}}}]{begin,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Node\+Input\+Iterator}}}]{end,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{size\+Hint = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Adds a node with parents specified by a range of nodes. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Node\+Input\+Iterator} & Iterator that iterates over instances of {\ttfamily size\+\_\+t}. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em begin} & Points to the first index of the nodes that should become parents of the added node. \\
+\hline
+{\em end} & Points just beyond the last index of the nodes that should become parents of the added node. \\
+\hline
+{\em size\+Hint} & For improved efficiency, the size of the range may be specified by {\itshape size\+Hint}. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Index of the added node. 
+\end{DoxyReturn}
+\Hypertarget{classdai_1_1DAG_aeee04f48ac5d0bf68187d5325dd551bd}\label{classdai_1_1DAG_aeee04f48ac5d0bf68187d5325dd551bd} 
+\index{dai::DAG@{dai::DAG}!addEdge@{addEdge}}
+\index{addEdge@{addEdge}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{addEdge()}{addEdge()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1DAG}{DAG}} \& dai\+::\+DAG\+::add\+Edge (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{n1,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{n2,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}}}]{check = {\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{true}}} }\end{DoxyParamCaption})}
+
+
+
+Adds an edge from node {\itshape n1} and node {\itshape n2}. 
+
+If {\itshape check} == {\ttfamily true}, only adds the edge if it does not exist already and it would not introduce a cycle. \Hypertarget{classdai_1_1DAG_a1e9807a4fdd893548a4d6db807c1f48b}\label{classdai_1_1DAG_a1e9807a4fdd893548a4d6db807c1f48b} 
+\index{dai::DAG@{dai::DAG}!eraseNode@{eraseNode}}
+\index{eraseNode@{eraseNode}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{eraseNode()}{eraseNode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+DAG\+::erase\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{n }\end{DoxyParamCaption})}
+
+
+
+Removes node {\itshape n} and all ingoing and outgoing edges; indices of other nodes are changed accordingly. 
+
+\Hypertarget{classdai_1_1DAG_a187e12110645d09f7bd4271dae17d142}\label{classdai_1_1DAG_a187e12110645d09f7bd4271dae17d142} 
+\index{dai::DAG@{dai::DAG}!eraseEdge@{eraseEdge}}
+\index{eraseEdge@{eraseEdge}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{eraseEdge()}{eraseEdge()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+DAG\+::erase\+Edge (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{n1,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{n2 }\end{DoxyParamCaption})}
+
+
+
+Removes edge from node {\itshape n1} to node {\itshape n2}. 
+
+\Hypertarget{classdai_1_1DAG_a612bc2529939865352ae7d2aa4ec3566}\label{classdai_1_1DAG_a612bc2529939865352ae7d2aa4ec3566} 
+\index{dai::DAG@{dai::DAG}!nrNodes@{nrNodes}}
+\index{nrNodes@{nrNodes}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{nrNodes()}{nrNodes()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} dai\+::\+DAG\+::nr\+Nodes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns number of nodes. 
+
+\Hypertarget{classdai_1_1DAG_afb43ebd3f17ee634c8ca3a525fdb8c90}\label{classdai_1_1DAG_afb43ebd3f17ee634c8ca3a525fdb8c90} 
+\index{dai::DAG@{dai::DAG}!nrEdges@{nrEdges}}
+\index{nrEdges@{nrEdges}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{nrEdges()}{nrEdges()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} dai\+::\+DAG\+::nr\+Edges (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Calculates the number of edges, time complexity\+: O(nr\+Nodes()) 
+
+\Hypertarget{classdai_1_1DAG_a013c82a515b9f5cd668542fd68ad22a1}\label{classdai_1_1DAG_a013c82a515b9f5cd668542fd68ad22a1} 
+\index{dai::DAG@{dai::DAG}!hasEdge@{hasEdge}}
+\index{hasEdge@{hasEdge}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{hasEdge()}{hasEdge()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} dai\+::\+DAG\+::has\+Edge (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{n1,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{n2 }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns true if the \doxylink{classdai_1_1DAG}{DAG} contains an edge from node {\itshape n1} and {\itshape n2}. 
+
+\begin{DoxyNote}{Note}
+The time complexity is linear in the number of children of {\itshape n1} or the number of parents of {\itshape n2}, whichever is smaller 
+\end{DoxyNote}
+\Hypertarget{classdai_1_1DAG_a2a98f61d94c29070a813e4dd0a5e1263}\label{classdai_1_1DAG_a2a98f61d94c29070a813e4dd0a5e1263} 
+\index{dai::DAG@{dai::DAG}!findPa@{findPa}}
+\index{findPa@{findPa}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{findPa()}{findPa()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} dai\+::\+DAG\+::find\+Pa (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{n,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the index of a given node {\itshape p} amongst the parents of {\itshape n}. 
+
+\begin{DoxyNote}{Note}
+The time complexity is linear in the number of parents of {\itshape n} 
+\end{DoxyNote}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em OBJECT\+\_\+\+NOT\+\_\+\+FOUND} & if {\itshape p} is not a parent of {\itshape n} \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classdai_1_1DAG_a5807cff8d5fda8e0c6ff060fc1a01ab8}\label{classdai_1_1DAG_a5807cff8d5fda8e0c6ff060fc1a01ab8} 
+\index{dai::DAG@{dai::DAG}!findCh@{findCh}}
+\index{findCh@{findCh}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{findCh()}{findCh()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} dai\+::\+DAG\+::find\+Ch (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{n,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the index of a given node {\itshape c} amongst the children of {\itshape n}. 
+
+\begin{DoxyNote}{Note}
+The time complexity is linear in the number of children of {\itshape n} 
+\end{DoxyNote}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em OBJECT\+\_\+\+NOT\+\_\+\+FOUND} & if {\itshape c} is not a child {\itshape n} \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classdai_1_1DAG_a5d8048d34c4068364ef83f7f7ad852d2}\label{classdai_1_1DAG_a5d8048d34c4068364ef83f7f7ad852d2} 
+\index{dai::DAG@{dai::DAG}!paSet@{paSet}}
+\index{paSet@{paSet}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{paSet()}{paSet()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1SmallSet}{Small\+Set}}$<$ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} $>$ dai\+::\+DAG\+::pa\+Set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{n }\end{DoxyParamCaption}) const}
+
+
+
+Returns parents of node {\itshape n} as a \doxylink{classdai_1_1SmallSet}{Small\+Set$<$size\+\_\+t$>$}. 
+
+\Hypertarget{classdai_1_1DAG_ab8fee5e48afddda71a216a5d91a03272}\label{classdai_1_1DAG_ab8fee5e48afddda71a216a5d91a03272} 
+\index{dai::DAG@{dai::DAG}!chSet@{chSet}}
+\index{chSet@{chSet}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{chSet()}{chSet()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1SmallSet}{Small\+Set}}$<$ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} $>$ dai\+::\+DAG\+::ch\+Set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{n }\end{DoxyParamCaption}) const}
+
+
+
+Returns children of node {\itshape n} as a \doxylink{classdai_1_1SmallSet}{Small\+Set$<$size\+\_\+t$>$}. 
+
+\Hypertarget{classdai_1_1DAG_a170032adbb114f4f96f1c20ab302849c}\label{classdai_1_1DAG_a170032adbb114f4f96f1c20ab302849c} 
+\index{dai::DAG@{dai::DAG}!ancestors@{ancestors}}
+\index{ancestors@{ancestors}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{ancestors()}{ancestors()}}
+{\footnotesize\ttfamily std\+::set$<$ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} $>$ dai\+::\+DAG\+::ancestors (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{n,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}}}]{inclusive }\end{DoxyParamCaption}) const}
+
+
+
+Returns the set of ancestors of node {\itshape n}, i.\+e., all nodes {\itshape a} such that there exists a directed path from {\itshape a} to {\itshape n} (including {\itshape n} itself if {\itshape inclusive} == {\ttfamily true}) 
+
+\Hypertarget{classdai_1_1DAG_a6fcc8b43368df191ae96fafd7fd2a6c7}\label{classdai_1_1DAG_a6fcc8b43368df191ae96fafd7fd2a6c7} 
+\index{dai::DAG@{dai::DAG}!descendants@{descendants}}
+\index{descendants@{descendants}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{descendants()}{descendants()}}
+{\footnotesize\ttfamily std\+::set$<$ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} $>$ dai\+::\+DAG\+::descendants (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{n,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}}}]{inclusive }\end{DoxyParamCaption}) const}
+
+
+
+Returns the set of descendants of node {\itshape n}, i.\+e., all nodes {\itshape d} such that there exists a directed path from {\itshape n} to {\itshape d} (excluding {\itshape n} itself if {\itshape inclusive} == {\ttfamily true}) 
+
+\Hypertarget{classdai_1_1DAG_aa00f032b2a7fed95d0f357cb1eb4580b}\label{classdai_1_1DAG_aa00f032b2a7fed95d0f357cb1eb4580b} 
+\index{dai::DAG@{dai::DAG}!existsDirectedPath@{existsDirectedPath}}
+\index{existsDirectedPath@{existsDirectedPath}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{existsDirectedPath()}{existsDirectedPath()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} dai\+::\+DAG\+::exists\+Directed\+Path (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{n1,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{n2 }\end{DoxyParamCaption}) const}
+
+
+
+Returns whether there exists a directed path from node {\itshape n1} to node {\itshape n2} (which may consist of zero edges) 
+
+\Hypertarget{classdai_1_1DAG_a3def593491a5a6571e3a160f7effa88b}\label{classdai_1_1DAG_a3def593491a5a6571e3a160f7effa88b} 
+\index{dai::DAG@{dai::DAG}!isConnected@{isConnected}}
+\index{isConnected@{isConnected}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{isConnected()}{isConnected()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} dai\+::\+DAG\+::is\+Connected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns true if the \doxylink{classdai_1_1DAG}{DAG} is connected. 
+
+\Hypertarget{classdai_1_1DAG_a41f676221e1805dd8ca969147d521ac3}\label{classdai_1_1DAG_a41f676221e1805dd8ca969147d521ac3} 
+\index{dai::DAG@{dai::DAG}!checkConsistency@{checkConsistency}}
+\index{checkConsistency@{checkConsistency}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{checkConsistency()}{checkConsistency()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+DAG\+::check\+Consistency (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Asserts internal consistency. 
+
+\Hypertarget{classdai_1_1DAG_abb7141905e962a6419f7af43e1b85dc4}\label{classdai_1_1DAG_abb7141905e962a6419f7af43e1b85dc4} 
+\index{dai::DAG@{dai::DAG}!operator==@{operator==}}
+\index{operator==@{operator==}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} dai\+::\+DAG\+::operator== (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1DAG}{DAG}} \&}]{x }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Comparison operator which returns true if two DAGs are identical. 
+
+\begin{DoxyNote}{Note}
+Two DAGs are called identical if they have the same number of nodes and the same edges (i.\+e., {\itshape x} has an edge from {\itshape n1} to {\itshape n2} if and only if {\ttfamily \texorpdfstring{$\ast$}{*}this} has an edge from node {\itshape n1} to {\itshape n2}). 
+\end{DoxyNote}
+\Hypertarget{classdai_1_1DAG_afb344895c7d2d5158d9b9ea9d3268f11}\label{classdai_1_1DAG_afb344895c7d2d5158d9b9ea9d3268f11} 
+\index{dai::DAG@{dai::DAG}!printDot@{printDot}}
+\index{printDot@{printDot}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{printDot()}{printDot()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+DAG\+::print\+Dot (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os }\end{DoxyParamCaption}) const}
+
+
+
+Writes a \doxylink{classdai_1_1DAG}{DAG} to an output stream in Graph\+Viz .dot syntax. 
+
+\Hypertarget{classdai_1_1DAG_ae4874ef42aa48a90163192ed1eba510d}\label{classdai_1_1DAG_ae4874ef42aa48a90163192ed1eba510d} 
+\index{dai::DAG@{dai::DAG}!toString@{toString}}
+\index{toString@{toString}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{toString()}{toString()}}
+{\footnotesize\ttfamily std\+::string dai\+::\+DAG\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Formats a \doxylink{classdai_1_1DAG}{DAG} as a string. 
+
+
+
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{classdai_1_1DAG_a7c9ba018159d6aafa685b1a8a6cf3d1d}\label{classdai_1_1DAG_a7c9ba018159d6aafa685b1a8a6cf3d1d} 
+\index{dai::DAG@{dai::DAG}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily std\+::ostream \& \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{operator}}$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1DAG}{DAG}} \&}]{g }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Writes a \doxylink{classdai_1_1DAG}{DAG} to an output stream. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classdai_1_1DAG_a84807bf73872e2d9da90aec3bbc1d9b0}\label{classdai_1_1DAG_a84807bf73872e2d9da90aec3bbc1d9b0} 
+\index{dai::DAG@{dai::DAG}!\_pa@{\_pa}}
+\index{\_pa@{\_pa}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{\_pa}{\_pa}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{namespacedai_a14c563f2e5f6acf255903cae5c3b415c}{Neighbors}}$>$ dai\+::\+DAG\+::\+\_\+pa\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Contains for each node a vector of its parent nodes. 
+
+\Hypertarget{classdai_1_1DAG_ab9a90af854f3fb991f435c9d4656e97c}\label{classdai_1_1DAG_ab9a90af854f3fb991f435c9d4656e97c} 
+\index{dai::DAG@{dai::DAG}!\_ch@{\_ch}}
+\index{\_ch@{\_ch}!dai::DAG@{dai::DAG}}
+\doxysubsubsection{\texorpdfstring{\_ch}{\_ch}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{namespacedai_a14c563f2e5f6acf255903cae5c3b415c}{Neighbors}}$>$ dai\+::\+DAG\+::\+\_\+ch\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Contains for each node a vector of its children nodes. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/dai/\mbox{\hyperlink{dag_8h}{dag.\+h}}\item 
+src/dag.\+cpp\end{DoxyCompactItemize}

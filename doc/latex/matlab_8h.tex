@@ -1,0 +1,28 @@
+\doxysection{include/dai/matlab/matlab.h File Reference}
+\hypertarget{matlab_8h}{}\label{matlab_8h}\index{include/dai/matlab/matlab.h@{include/dai/matlab/matlab.h}}
+
+
+Defines some utility functions for interfacing with Mat\+Lab.  
+
+
+{\ttfamily \#include "{}mex.\+h"{}}\newline
+{\ttfamily \#include $<$dai/factor.\+h$>$}\newline
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacedai}{dai}}
+\begin{DoxyCompactList}\small\item\em Namespace for lib\+DAI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{mx\+Array}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{namespacedai_ae62bf4dfaa6694edc2d180b71656d430}{dai\+::\+Factors2mx}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::vector$<$ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} $>$ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Ps}})
+\begin{DoxyCompactList}\small\item\em Convert vector$<$\+Factor$>$ structure to a cell vector of CPTAB-\/like structs. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} $>$ \mbox{\hyperlink{namespacedai_abdd1a935e89ca8dc1d4e0c1cea371d44}{dai\+::mx2\+Factors}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{mx\+Array}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{psi}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{long}} verbose)
+\begin{DoxyCompactList}\small\item\em Convert cell vector of CPTAB-\/like structs to vector$<$\+Factor$>$ \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} \mbox{\hyperlink{namespacedai_a573a608f62779c1a08f8e10c3fa4e940}{dai\+::mx2\+Factor}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{mx\+Array}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{psi}})
+\begin{DoxyCompactList}\small\item\em Convert CPTAB-\/like struct to Factor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Defines some utility functions for interfacing with Mat\+Lab. 
+

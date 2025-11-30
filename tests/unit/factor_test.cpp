@@ -40,7 +40,7 @@ BOOST_AUTO_TEST_CASE( ConstructorsTest ) {
     BOOST_CHECK_EQUAL( x3.nrStates(), 3 );
     BOOST_CHECK_SMALL( dist( x3.p(), Prob( 3, 1.0 / 3.0 ), DISTL1 ), tol );
     BOOST_CHECK( x3.vars() == VarSet( v1 ) );
-    BOOST_CHECK_CLOSE( x3[0], (Real)(1.0 / 3.0), tol );
+    BOOST_CHECK_CLOSE( x3[0],     (Real)(1.0 / 3.0), tol );
     BOOST_CHECK_CLOSE( x3[1], (Real)(1.0 / 3.0), tol );
     BOOST_CHECK_CLOSE( x3[2], (Real)(1.0 / 3.0), tol );
 

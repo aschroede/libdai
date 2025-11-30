@@ -1,0 +1,32 @@
+\doxysection{include/dai/doc.h File Reference}
+\hypertarget{doc_8h}{}\label{doc_8h}\index{include/dai/doc.h@{include/dai/doc.h}}
+
+
+Contains additional doxygen documentation.  
+
+
+
+
+\doxysubsection{Detailed Description}
+Contains additional doxygen documentation. 
+
+\begin{DoxyRefDesc}{Idea}
+\item[\mbox{\hyperlink{ideas__ideas000006}{Idea}}]Adapt (part of the) guidelines in \href{http://www.boost.org/development/requirements.html\#Design_and_Programming}{\texttt{ http\+://www.\+boost.\+org/development/requirements.\+html\#\+Design\+\_\+and\+\_\+\+Programming}}\end{DoxyRefDesc}
+
+
+\begin{DoxyRefDesc}{Idea}
+\item[\mbox{\hyperlink{ideas__ideas000007}{Idea}}]Use "{}gcc -\/\+MM"{} to generate dependencies for targets\+: \href{http://make.paulandlesley.org/autodep.html}{\texttt{ http\+://make.\+paulandlesley.\+org/autodep.\+html}}\end{DoxyRefDesc}
+
+
+\begin{DoxyRefDesc}{Idea}
+\item[\mbox{\hyperlink{ideas__ideas000008}{Idea}}]Disentangle structures. In particular, ensure that graphical properties are not entangled with probabilistic properties. For example, a Factor\+Graph contains several components\+:
+\begin{DoxyItemize}
+\item a Bipartite\+Graph
+\item an array of variable labels
+\item an array of variable state space sizes
+\item an array of pointers to factor value vectors In this way, each factor could be implemented differently, e.\+g., we could have some sparse factors, some noisy-\/\+OR factors, some dense factors, some arbitrary precision factors, etcetera.
+\end{DoxyItemize}\end{DoxyRefDesc}
+
+
+\begin{DoxyRefDesc}{Idea}
+\item[\mbox{\hyperlink{ideas__ideas000009}{Idea}}]Use boost\+::u\+BLAS framework to deal with matrices, especially, with 2D sparse matrices. See \href{http://www.boost.org/libs/numeric/ublas/doc/matrix_sparse.htm}{\texttt{ http\+://www.\+boost.\+org/libs/numeric/ublas/doc/matrix\+\_\+sparse.\+htm}} However\+: I read somewhere that boost\+::u\+BLAS concentrates more on correct implementation than on performance. \end{DoxyRefDesc}

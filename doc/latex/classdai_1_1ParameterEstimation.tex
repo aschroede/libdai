@@ -1,0 +1,235 @@
+\doxysection{dai\+::Parameter\+Estimation Class Reference}
+\hypertarget{classdai_1_1ParameterEstimation}{}\label{classdai_1_1ParameterEstimation}\index{dai::ParameterEstimation@{dai::ParameterEstimation}}
+
+
+Base class for parameter estimation methods.  
+
+
+
+
+{\ttfamily \#include $<$dai/emalg.\+h$>$}
+
+Inheritance diagram for dai\+::Parameter\+Estimation\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classdai_1_1ParameterEstimation}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typedef}} \mbox{\hyperlink{classdai_1_1ParameterEstimation}{Parameter\+Estimation}} \texorpdfstring{$\ast$}{*}(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classdai_1_1ParameterEstimation_aa513406d26358daf22a65916a28be64c}{Param\+Est\+Factory}}) (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&)
+\begin{DoxyCompactList}\small\item\em Type of pointer to factory function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{classdai_1_1ParameterEstimation_a1f1b9e679c5d06890133466fc38d90bc}{\texorpdfstring{$\sim$}{\string~}\+Parameter\+Estimation}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor for deleting pointers to derived classes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{classdai_1_1ParameterEstimation}{Parameter\+Estimation}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classdai_1_1ParameterEstimation_a0254a591dc7b90d43551d693a0b727d5}{clone}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} =0
+\begin{DoxyCompactList}\small\item\em Virtual copy constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \mbox{\hyperlink{classdai_1_1ParameterEstimation_a1f4a5f8e20582ec271009604893bb222}{estimate}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \&p)
+\begin{DoxyCompactList}\small\item\em Estimate the factor using the provided expectations. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \mbox{\hyperlink{classdai_1_1ParameterEstimation_a5c279ce0fa2cda3fda5379252d1bdd99}{parameters\+To\+Factor}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{params}})=0
+\begin{DoxyCompactList}\small\item\em Convert a set of estimated parameters to a factor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \mbox{\hyperlink{classdai_1_1ParameterEstimation_a454801bc228b5826d37f4142d79751d0}{parameters}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \&p)=0
+\begin{DoxyCompactList}\small\item\em Return parameters for the estimated factor, in a format specific to the parameter estimation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{classdai_1_1ParameterEstimation_adfaef5e88cb087d25c1e8df95adae4c5}{prob\+Size}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} =0
+\begin{DoxyCompactList}\small\item\em Returns the size of the Prob that should be passed to estimate and parameters. \end{DoxyCompactList}\item 
+\Hypertarget{classdai_1_1ParameterEstimation_a139a62a610f2fd0357df2bdddc3aee45}\label{classdai_1_1ParameterEstimation_a139a62a610f2fd0357df2bdddc3aee45} 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::string \& {\bfseries name} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} =0
+\item 
+\Hypertarget{classdai_1_1ParameterEstimation_abd02ed9111cf43c6da9e3ef8e07f38e0}\label{classdai_1_1ParameterEstimation_abd02ed9111cf43c6da9e3ef8e07f38e0} 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \& {\bfseries properties} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} =0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{static}} \mbox{\hyperlink{classdai_1_1ParameterEstimation}{Parameter\+Estimation}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classdai_1_1ParameterEstimation_a38ee418f4d5ac9136f13a087528a8718}{construct}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::string \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{method}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&p)
+\begin{DoxyCompactList}\small\item\em General factory method that constructs the desired \doxylink{classdai_1_1ParameterEstimation}{Parameter\+Estimation} subclass. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{static}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1ParameterEstimation_a3248cc18f8683a95e7d318e5c7d27258}{register\+Method}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::string \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{method}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1ParameterEstimation_aa513406d26358daf22a65916a28be64c}{Param\+Est\+Factory}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{f}})
+\begin{DoxyCompactList}\small\item\em Register a subclass so that it can be used with \doxylink{classdai_1_1ParameterEstimation_a38ee418f4d5ac9136f13a087528a8718}{construct()}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{static}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1ParameterEstimation_af649353a5f4910fba23e9fe050e352be}{load\+Default\+Registry}} ()
+\begin{DoxyCompactList}\small\item\em Registers default \doxylink{classdai_1_1ParameterEstimation}{Parameter\+Estimation} subclasses (currently, only \doxylink{classdai_1_1CondProbEstimation}{Cond\+Prob\+Estimation}). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{static}} std\+::map$<$ std\+::string, \mbox{\hyperlink{classdai_1_1ParameterEstimation_aa513406d26358daf22a65916a28be64c}{Param\+Est\+Factory}} $>$ \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classdai_1_1ParameterEstimation_a2e035cfe000cf2450ab4f9693e121c1c}{\+\_\+registry}} = \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{NULL}}
+\begin{DoxyCompactList}\small\item\em A static registry containing all methods registered so far. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class for parameter estimation methods. 
+
+This class defines the general interface of parameter estimation methods.
+
+Implementations of this interface (see e.\+g. \doxylink{classdai_1_1CondProbEstimation}{Cond\+Prob\+Estimation}) should register a factory function (virtual constructor) via the static \doxylink{classdai_1_1ParameterEstimation_a3248cc18f8683a95e7d318e5c7d27258}{register\+Method()} function. This factory function should return a pointer to a newly constructed object, whose type is a subclass of \doxylink{classdai_1_1ParameterEstimation}{Parameter\+Estimation}, and gets as input a \doxylink{classdai_1_1PropertySet}{Property\+Set} of parameters. After a subclass has been registered, instances of it can be constructed using the \doxylink{classdai_1_1ParameterEstimation_a38ee418f4d5ac9136f13a087528a8718}{construct()} method.
+
+Implementations are responsible for collecting data from a probability vector passed to it from a \doxylink{classdai_1_1SharedParameters}{Shared\+Parameters} container object.
+
+The default registry only contains \doxylink{classdai_1_1CondProbEstimation}{Cond\+Prob\+Estimation}, named "{}\+Cond\+Prob\+Estimation"{}.
+
+\begin{DoxyAuthor}{Author}
+Charles Vaske 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{classdai_1_1ParameterEstimation_aa513406d26358daf22a65916a28be64c}\label{classdai_1_1ParameterEstimation_aa513406d26358daf22a65916a28be64c} 
+\index{dai::ParameterEstimation@{dai::ParameterEstimation}!ParamEstFactory@{ParamEstFactory}}
+\index{ParamEstFactory@{ParamEstFactory}!dai::ParameterEstimation@{dai::ParameterEstimation}}
+\doxysubsubsection{\texorpdfstring{ParamEstFactory}{ParamEstFactory}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typedef}} \mbox{\hyperlink{classdai_1_1ParameterEstimation}{Parameter\+Estimation}} \texorpdfstring{$\ast$}{*}(\texorpdfstring{$\ast$}{*} dai\+::\+Parameter\+Estimation\+::\+Param\+Est\+Factory) (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&)}
+
+
+
+Type of pointer to factory function. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classdai_1_1ParameterEstimation_a1f1b9e679c5d06890133466fc38d90bc}\label{classdai_1_1ParameterEstimation_a1f1b9e679c5d06890133466fc38d90bc} 
+\index{dai::ParameterEstimation@{dai::ParameterEstimation}!````~ParameterEstimation@{\texorpdfstring{$\sim$}{\string~}ParameterEstimation}}
+\index{````~ParameterEstimation@{\texorpdfstring{$\sim$}{\string~}ParameterEstimation}!dai::ParameterEstimation@{dai::ParameterEstimation}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}ParameterEstimation()}{\string~ParameterEstimation()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} dai\+::\+Parameter\+Estimation\+::\texorpdfstring{$\sim$}{\string~}\+Parameter\+Estimation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Virtual destructor for deleting pointers to derived classes. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classdai_1_1ParameterEstimation_a0254a591dc7b90d43551d693a0b727d5}\label{classdai_1_1ParameterEstimation_a0254a591dc7b90d43551d693a0b727d5} 
+\index{dai::ParameterEstimation@{dai::ParameterEstimation}!clone@{clone}}
+\index{clone@{clone}!dai::ParameterEstimation@{dai::ParameterEstimation}}
+\doxysubsubsection{\texorpdfstring{clone()}{clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{classdai_1_1ParameterEstimation}{Parameter\+Estimation}} \texorpdfstring{$\ast$}{*} dai\+::\+Parameter\+Estimation\+::clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Virtual copy constructor. 
+
+
+
+Implemented in \mbox{\hyperlink{classdai_1_1CondProbEstimation_a2b5c681c19a10fcb4f9aa22db0dc0921}{dai\+::\+Cond\+Prob\+Estimation}}.
+
+\Hypertarget{classdai_1_1ParameterEstimation_a38ee418f4d5ac9136f13a087528a8718}\label{classdai_1_1ParameterEstimation_a38ee418f4d5ac9136f13a087528a8718} 
+\index{dai::ParameterEstimation@{dai::ParameterEstimation}!construct@{construct}}
+\index{construct@{construct}!dai::ParameterEstimation@{dai::ParameterEstimation}}
+\doxysubsubsection{\texorpdfstring{construct()}{construct()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1ParameterEstimation}{Parameter\+Estimation}} \texorpdfstring{$\ast$}{*} dai\+::\+Parameter\+Estimation\+::construct (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::string \&}]{method,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+General factory method that constructs the desired \doxylink{classdai_1_1ParameterEstimation}{Parameter\+Estimation} subclass. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em method} & Name of the subclass that should be constructed; \\
+\hline
+{\em p} & Parameters passed to constructor of subclass. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+{\itshape method} should either be in the default registry or should be registered first using \doxylink{classdai_1_1ParameterEstimation_a3248cc18f8683a95e7d318e5c7d27258}{register\+Method()}. 
+\end{DoxyNote}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em UNKNOWN\+\_\+\+PARAMETER\+\_\+\+ESTIMATION\+\_\+\+METHOD} & if the requested {\itshape method} is not registered. \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classdai_1_1ParameterEstimation_a3248cc18f8683a95e7d318e5c7d27258}\label{classdai_1_1ParameterEstimation_a3248cc18f8683a95e7d318e5c7d27258} 
+\index{dai::ParameterEstimation@{dai::ParameterEstimation}!registerMethod@{registerMethod}}
+\index{registerMethod@{registerMethod}!dai::ParameterEstimation@{dai::ParameterEstimation}}
+\doxysubsubsection{\texorpdfstring{registerMethod()}{registerMethod()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{static}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+Parameter\+Estimation\+::register\+Method (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::string \&}]{method,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1ParameterEstimation_aa513406d26358daf22a65916a28be64c}{Param\+Est\+Factory}} \&}]{f }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Register a subclass so that it can be used with \doxylink{classdai_1_1ParameterEstimation_a38ee418f4d5ac9136f13a087528a8718}{construct()}. 
+
+\Hypertarget{classdai_1_1ParameterEstimation_a1f4a5f8e20582ec271009604893bb222}\label{classdai_1_1ParameterEstimation_a1f4a5f8e20582ec271009604893bb222} 
+\index{dai::ParameterEstimation@{dai::ParameterEstimation}!estimate@{estimate}}
+\index{estimate@{estimate}!dai::ParameterEstimation@{dai::ParameterEstimation}}
+\doxysubsubsection{\texorpdfstring{estimate()}{estimate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} dai\+::\+Parameter\+Estimation\+::estimate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \&}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Estimate the factor using the provided expectations. 
+
+\Hypertarget{classdai_1_1ParameterEstimation_a5c279ce0fa2cda3fda5379252d1bdd99}\label{classdai_1_1ParameterEstimation_a5c279ce0fa2cda3fda5379252d1bdd99} 
+\index{dai::ParameterEstimation@{dai::ParameterEstimation}!parametersToFactor@{parametersToFactor}}
+\index{parametersToFactor@{parametersToFactor}!dai::ParameterEstimation@{dai::ParameterEstimation}}
+\doxysubsubsection{\texorpdfstring{parametersToFactor()}{parametersToFactor()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} dai\+::\+Parameter\+Estimation\+::parameters\+To\+Factor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \&}]{params }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Convert a set of estimated parameters to a factor. 
+
+
+
+Implemented in \mbox{\hyperlink{classdai_1_1CondProbEstimation_a27ef52cae918a8e91913d92b0e4e6fa5}{dai\+::\+Cond\+Prob\+Estimation}}.
+
+\Hypertarget{classdai_1_1ParameterEstimation_a454801bc228b5826d37f4142d79751d0}\label{classdai_1_1ParameterEstimation_a454801bc228b5826d37f4142d79751d0} 
+\index{dai::ParameterEstimation@{dai::ParameterEstimation}!parameters@{parameters}}
+\index{parameters@{parameters}!dai::ParameterEstimation@{dai::ParameterEstimation}}
+\doxysubsubsection{\texorpdfstring{parameters()}{parameters()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} dai\+::\+Parameter\+Estimation\+::parameters (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a90f06137ef74bb483e30ee2c7e31b2c8}{Prob}} \&}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Return parameters for the estimated factor, in a format specific to the parameter estimation. 
+
+
+
+Implemented in \mbox{\hyperlink{classdai_1_1CondProbEstimation_af8ac0b97fc2059c27793f81f7424fa2f}{dai\+::\+Cond\+Prob\+Estimation}}.
+
+\Hypertarget{classdai_1_1ParameterEstimation_adfaef5e88cb087d25c1e8df95adae4c5}\label{classdai_1_1ParameterEstimation_adfaef5e88cb087d25c1e8df95adae4c5} 
+\index{dai::ParameterEstimation@{dai::ParameterEstimation}!probSize@{probSize}}
+\index{probSize@{probSize}!dai::ParameterEstimation@{dai::ParameterEstimation}}
+\doxysubsubsection{\texorpdfstring{probSize()}{probSize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} dai\+::\+Parameter\+Estimation\+::prob\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Returns the size of the Prob that should be passed to estimate and parameters. 
+
+
+
+Implemented in \mbox{\hyperlink{classdai_1_1CondProbEstimation_ac5f3331ed773f643653df5db6bea073e}{dai\+::\+Cond\+Prob\+Estimation}}.
+
+\Hypertarget{classdai_1_1ParameterEstimation_af649353a5f4910fba23e9fe050e352be}\label{classdai_1_1ParameterEstimation_af649353a5f4910fba23e9fe050e352be} 
+\index{dai::ParameterEstimation@{dai::ParameterEstimation}!loadDefaultRegistry@{loadDefaultRegistry}}
+\index{loadDefaultRegistry@{loadDefaultRegistry}!dai::ParameterEstimation@{dai::ParameterEstimation}}
+\doxysubsubsection{\texorpdfstring{loadDefaultRegistry()}{loadDefaultRegistry()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+Parameter\+Estimation\+::load\+Default\+Registry (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Registers default \doxylink{classdai_1_1ParameterEstimation}{Parameter\+Estimation} subclasses (currently, only \doxylink{classdai_1_1CondProbEstimation}{Cond\+Prob\+Estimation}). 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classdai_1_1ParameterEstimation_a2e035cfe000cf2450ab4f9693e121c1c}\label{classdai_1_1ParameterEstimation_a2e035cfe000cf2450ab4f9693e121c1c} 
+\index{dai::ParameterEstimation@{dai::ParameterEstimation}!\_registry@{\_registry}}
+\index{\_registry@{\_registry}!dai::ParameterEstimation@{dai::ParameterEstimation}}
+\doxysubsubsection{\texorpdfstring{\_registry}{\_registry}}
+{\footnotesize\ttfamily std\+::map$<$ std\+::string, \mbox{\hyperlink{classdai_1_1ParameterEstimation_aa513406d26358daf22a65916a28be64c}{Parameter\+Estimation\+::\+Param\+Est\+Factory}} $>$ \texorpdfstring{$\ast$}{*} dai\+::\+Parameter\+Estimation\+::\+\_\+registry = \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{NULL}}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+A static registry containing all methods registered so far. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/dai/\mbox{\hyperlink{emalg_8h}{emalg.\+h}}\item 
+src/emalg.\+cpp\end{DoxyCompactItemize}

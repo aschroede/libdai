@@ -1,0 +1,172 @@
+\doxysection{include/dai/util.h File Reference}
+\hypertarget{util_8h}{}\label{util_8h}\index{include/dai/util.h@{include/dai/util.h}}
+
+
+Defines general utility functions and adds an abstraction layer for platform-\/dependent functionality.  
+
+
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$set$>$}\newline
+{\ttfamily \#include $<$map$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$boost/foreach.\+hpp$>$}\newline
+{\ttfamily \#include $<$boost/functional/hash.\+hpp$>$}\newline
+{\ttfamily \#include $<$boost/lexical\+\_\+cast.\+hpp$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$cerrno$>$}\newline
+{\ttfamily \#include $<$gmpxx.\+h$>$}\newline
+{\ttfamily \#include $<$dai/exceptions.\+h$>$}\newline
+{\ttfamily \#include $<$tr1/unordered\+\_\+map$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classdai_1_1hash__map}{dai\+::hash\+\_\+map$<$ T, U, H $>$}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classdai_1_1hash__map}{hash\+\_\+map} is an alias for {\ttfamily std\+::tr1\+::unordered\+\_\+map}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacedai}{dai}}
+\begin{DoxyCompactList}\small\item\em Namespace for lib\+DAI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{util_8h_ab712ec4331593f848c40b97a80186850}{bforeach}}~BOOST\+\_\+\+FOREACH
+\begin{DoxyCompactList}\small\item\em An alias to the BOOST\+\_\+\+FOREACH macro from the boost\+::bforeach library. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{util_8h_a96e01a7cbb43e22c9ad60c44dbd11b0e}{DAI\+\_\+\+PV}}(x)~do \{std\+::cerr $<$$<$ \#x "{}= "{} $<$$<$ (x) $<$$<$ std\+::endl;\} while(0)
+\begin{DoxyCompactList}\small\item\em "{}\+Print variable"{}. Prints the text of an expression, followed by its value (only if DAI\+\_\+\+DEBUG is defined) \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{util_8h_a9cfc7b5625e3614b60894303f222258e}{DAI\+\_\+\+DMSG}}(str)~do \{std\+::cerr $<$$<$ str $<$$<$ std\+::endl;\} while(0)
+\begin{DoxyCompactList}\small\item\em "{}\+Debugging message"{}\+: Prints a message (only if DAI\+\_\+\+DEBUG is defined) \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{util_8h_a1281e8d3038e33f33a18e8533e9698bd}{DAI\+\_\+\+IFVERB}}(n,  stmt)~if(props.\+verbose$>$=n) \{ std\+::cerr $<$$<$ stmt; \}
+\begin{DoxyCompactList}\small\item\em Macro to write message {\itshape stmt} to {\ttfamily std\+::cerr} if {\itshape props.\+verbose} \texorpdfstring{$>$}{>}= {\itshape n}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typedef}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{double}} \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{dai\+::\+Real}}
+\begin{DoxyCompactList}\small\item\em Real number (alias for {\ttfamily double}, which could be changed to {\ttfamily long double} if necessary) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typedef}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{mpz\+\_\+class}} \mbox{\hyperlink{namespacedai_acc277bd4f0edae875fca22f063a37220}{dai\+::\+Big\+Int}}
+\begin{DoxyCompactList}\small\item\em Arbitrary precision integer number. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{namespacedai_ae0d0ef753bd0ba57586e556ab6312677}{dai\+::\+Prob\+Norm\+Type}} \{ {\bfseries NORMPROB}
+, {\bfseries NORMLINF}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumerates different ways of normalizing a probability measure. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{namespacedai_aa2735a823696443089d2de23e8ee6ecb}{dai\+::\+Prob\+Dist\+Type}} \{ \newline
+{\bfseries DISTL1}
+, {\bfseries DISTLINF}
+, {\bfseries DISTTV}
+, {\bfseries DISTKL}
+, \newline
+{\bfseries DISTHEL}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumerates different distance measures between probability measures. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a8f9fdd7b607434fcda10d5be59f512d1}{dai\+::\+Big\+Int\+\_\+size\+\_\+t}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_acc277bd4f0edae875fca22f063a37220}{Big\+Int}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{N}})
+\begin{DoxyCompactList}\small\item\em Safe down-\/cast of big integer to size\+\_\+t. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} \mbox{\hyperlink{namespacedai_a9886ca4103eac52b3f82698e12e86672}{dai\+::isnan}} (\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}})
+\begin{DoxyCompactList}\small\item\em Returns true if argument is NAN (Not A Number) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{namespacedai_a934491ad55f57c9072271b4a32ea4919}{dai\+::log}} (\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}})
+\begin{DoxyCompactList}\small\item\em Returns logarithm of {\itshape x}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{namespacedai_a00375a4d7b55534c14f993c909b04c3c}{dai\+::log0}} (\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}})
+\begin{DoxyCompactList}\small\item\em Returns logarithm of {\itshape x}, or 0 if {\itshape x} == 0. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{namespacedai_ac336ffb182b6e6fa3f7df13620aab012}{dai\+::exp}} (\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}})
+\begin{DoxyCompactList}\small\item\em Returns exponent of {\itshape x}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{namespacedai_a16465ce3d62a6456fd06e9a226c966f2}{dai\+::pow}} (\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}, \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{y}})
+\begin{DoxyCompactList}\small\item\em Returns {\itshape x} to the power {\itshape y}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{double}} \mbox{\hyperlink{namespacedai_ab27c0799ddef29bb3833477e32c53862}{dai\+::toc}} ()
+\begin{DoxyCompactList}\small\item\em Returns wall clock time in seconds. \end{DoxyCompactList}\item 
+{\footnotesize template$<$\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{class}} T $>$ }\\T \mbox{\hyperlink{namespacedai_a89f208a23b353176f4797877a0b2b2a5}{dai\+::abs}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} T \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{t}})
+\begin{DoxyCompactList}\small\item\em Returns absolute value of {\itshape t}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{namespacedai_ae699eca7ca4d6e971b54c2b4a95942d4}{dai\+::rnd\+\_\+seed}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{seed}})
+\begin{DoxyCompactList}\small\item\em Sets the random seed. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{namespacedai_a129f3a9c518c632c985d045a4f8c60f9}{dai\+::rnd\+\_\+uniform}} ()
+\begin{DoxyCompactList}\small\item\em Returns a real number, distributed uniformly on \mbox{[}0,1) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{namespacedai_ac3f6d317ca42fbb4b643aa8c82692d74}{dai\+::rnd\+\_\+stdnormal}} ()
+\begin{DoxyCompactList}\small\item\em Returns a real number from a standard-\/normal distribution. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{int}} \mbox{\hyperlink{namespacedai_ac02317b960b112637976333f90d1f937}{dai\+::rnd\+\_\+int}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{int}} min, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{int}} max)
+\begin{DoxyCompactList}\small\item\em Returns a random integer in interval \mbox{[}{\itshape min}, {\itshape max}\mbox{]}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{int}} \mbox{\hyperlink{namespacedai_affae7aacdd26b4a580fbb8790cbccc86}{dai\+::rnd}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{int}} n)
+\begin{DoxyCompactList}\small\item\em Returns a random integer in the half-\/open interval \mbox{[}0, {\itshape n}) \end{DoxyCompactList}\item 
+{\footnotesize template$<$\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{class}} T $>$ }\\std\+::string \mbox{\hyperlink{namespacedai_a20efc75c125a2a3e97eda59fbb77b4f5}{dai\+::to\+String}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} T \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}})
+\begin{DoxyCompactList}\small\item\em Converts a variable of type {\itshape T} to a {\ttfamily std\+::string} by using a {\ttfamily boost\+::lexical\+\_\+cast}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\T \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{dai\+::from\+String}} (const std\+::string \&x)
+\begin{DoxyCompactList}\small\item\em Converts a variable of type std\+::string to {\itshape T} by using a {\ttfamily boost\+::lexical\+\_\+cast}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{class}} T $>$ }\\std\+::ostream \& \mbox{\hyperlink{namespacedai_a270453bc5ccbc6c6f030a162c8a849f0}{dai\+::operator$<$$<$}} (std\+::ostream \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{os}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::vector$<$ T $>$ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}})
+\begin{DoxyCompactList}\small\item\em Writes a {\ttfamily std\+::vector$<$$>$} to a {\ttfamily std\+::ostream}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{class}} T $>$ }\\std\+::string \mbox{\hyperlink{namespacedai_a9c6f69f86368caebc2d1dc8acf184fed}{dai\+::vec\+To\+String}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::vector$<$ T $>$ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}})
+\begin{DoxyCompactList}\small\item\em Writes a {\ttfamily std\+::vector$<$$>$} to a {\ttfamily std\+::string}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{class}} T $>$ }\\std\+::ostream \& \mbox{\hyperlink{namespacedai_a65996d1eb37ec9b8f1a588c0ef696797}{dai\+::operator$<$$<$}} (std\+::ostream \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{os}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::set$<$ T $>$ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}})
+\begin{DoxyCompactList}\small\item\em Writes a {\ttfamily std\+::set$<$$>$} to a {\ttfamily std\+::ostream}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{class}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{T1}} , \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{class}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{T2}} $>$ }\\std\+::ostream \& \mbox{\hyperlink{namespacedai_a46d91c2e9f92ba038e0fc0efb59d6681}{dai\+::operator$<$$<$}} (std\+::ostream \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{os}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::map$<$ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{T1}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{T2}} $>$ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}})
+\begin{DoxyCompactList}\small\item\em Writes a {\ttfamily std\+::map$<$$>$} to a {\ttfamily std\+::ostream}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{class}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{T1}} , \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{class}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{T2}} $>$ }\\std\+::ostream \& \mbox{\hyperlink{namespacedai_a758cf0f749f137682ea9abc882dd0594}{dai\+::operator$<$$<$}} (std\+::ostream \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{os}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::pair$<$ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{T1}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{T2}} $>$ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}})
+\begin{DoxyCompactList}\small\item\em Writes a {\ttfamily std\+::pair$<$$>$} to a {\ttfamily std\+::ostream}. \end{DoxyCompactList}\item 
+{\footnotesize template$<$\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{class}} T $>$ }\\std\+::vector$<$ T $>$ \mbox{\hyperlink{namespacedai_a1b097501061c480599870cc973bb9fce}{dai\+::concat}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::vector$<$ T $>$ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{u}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::vector$<$ T $>$ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{v}})
+\begin{DoxyCompactList}\small\item\em Concatenates two vectors. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{namespacedai_a87303da2767f4906ea37216bdc9278ca}{dai\+::tokenize\+String}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::string \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{s}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{single\+Delim}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::string \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{delim}}="{}\textbackslash{}t\textbackslash{}n"{})
+\begin{DoxyCompactList}\small\item\em Split a string into tokens delimited by one of the characters in {\itshape delim}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Defines general utility functions and adds an abstraction layer for platform-\/dependent functionality. 
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{util_8h_ab712ec4331593f848c40b97a80186850}\label{util_8h_ab712ec4331593f848c40b97a80186850} 
+\index{util.h@{util.h}!bforeach@{bforeach}}
+\index{bforeach@{bforeach}!util.h@{util.h}}
+\doxysubsubsection{\texorpdfstring{bforeach}{bforeach}}
+{\footnotesize\ttfamily \#define bforeach~BOOST\+\_\+\+FOREACH}
+
+
+
+An alias to the BOOST\+\_\+\+FOREACH macro from the boost\+::bforeach library. 
+
+\begin{Desc}
+\item[Examples]\par
+\mbox{\hyperlink{example_bipgraph_8cpp-example}{example\+\_\+bipgraph.\+cpp}}.\end{Desc}
+\Hypertarget{util_8h_a96e01a7cbb43e22c9ad60c44dbd11b0e}\label{util_8h_a96e01a7cbb43e22c9ad60c44dbd11b0e} 
+\index{util.h@{util.h}!DAI\_PV@{DAI\_PV}}
+\index{DAI\_PV@{DAI\_PV}!util.h@{util.h}}
+\doxysubsubsection{\texorpdfstring{DAI\_PV}{DAI\_PV}}
+{\footnotesize\ttfamily \#define DAI\+\_\+\+PV(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~do \{std\+::cerr $<$$<$ \#x "{}= "{} $<$$<$ (x) $<$$<$ std\+::endl;\} while(0)}
+
+
+
+"{}\+Print variable"{}. Prints the text of an expression, followed by its value (only if DAI\+\_\+\+DEBUG is defined) 
+
+Useful debugging macro to see what your code is doing. Example\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{util_8h_a96e01a7cbb43e22c9ad60c44dbd11b0e}{DAI\_PV}}(3+4)\ }
+
+\end{DoxyCode}
+ Output\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{3+4=\ 7\ }
+
+\end{DoxyCode}
+ \Hypertarget{util_8h_a9cfc7b5625e3614b60894303f222258e}\label{util_8h_a9cfc7b5625e3614b60894303f222258e} 
+\index{util.h@{util.h}!DAI\_DMSG@{DAI\_DMSG}}
+\index{DAI\_DMSG@{DAI\_DMSG}!util.h@{util.h}}
+\doxysubsubsection{\texorpdfstring{DAI\_DMSG}{DAI\_DMSG}}
+{\footnotesize\ttfamily \#define DAI\+\_\+\+DMSG(\begin{DoxyParamCaption}\item[{}]{str }\end{DoxyParamCaption})~do \{std\+::cerr $<$$<$ str $<$$<$ std\+::endl;\} while(0)}
+
+
+
+"{}\+Debugging message"{}\+: Prints a message (only if DAI\+\_\+\+DEBUG is defined) 
+
+\Hypertarget{util_8h_a1281e8d3038e33f33a18e8533e9698bd}\label{util_8h_a1281e8d3038e33f33a18e8533e9698bd} 
+\index{util.h@{util.h}!DAI\_IFVERB@{DAI\_IFVERB}}
+\index{DAI\_IFVERB@{DAI\_IFVERB}!util.h@{util.h}}
+\doxysubsubsection{\texorpdfstring{DAI\_IFVERB}{DAI\_IFVERB}}
+{\footnotesize\ttfamily \#define DAI\+\_\+\+IFVERB(\begin{DoxyParamCaption}\item[{}]{n,  }\item[{}]{stmt }\end{DoxyParamCaption})~if(props.\+verbose$>$=n) \{ std\+::cerr $<$$<$ stmt; \}}
+
+
+
+Macro to write message {\itshape stmt} to {\ttfamily std\+::cerr} if {\itshape props.\+verbose} \texorpdfstring{$>$}{>}= {\itshape n}. 
+

@@ -1,0 +1,251 @@
+\doxysection{dai\+::Tree\+EP\+::Tree\+EPSub\+Tree Class Reference}
+\hypertarget{classdai_1_1TreeEP_1_1TreeEPSubTree}{}\label{classdai_1_1TreeEP_1_1TreeEPSubTree}\index{dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}}
+
+
+Stores the data structures needed to efficiently update the approximation of an off-\/tree factor.  
+
+
+\doxysubsubsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a7c96bdc899f2de3782eea1717531ee10}{Tree\+EPSub\+Tree}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a0ae27f56ca9a4d285772921d7555f6b1}{Tree\+EPSub\+Tree}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree}{Tree\+EPSub\+Tree}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}})
+\begin{DoxyCompactList}\small\item\em Copy constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree}{Tree\+EPSub\+Tree}} \& \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a0b92c3ac5c604b4d22a9252022b83266}{operator=}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree}{Tree\+EPSub\+Tree}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}})
+\begin{DoxyCompactList}\small\item\em Assignment operator. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a395904b1e262b0b188d9d8277b4a0162}{Tree\+EPSub\+Tree}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1RootedTree}{Rooted\+Tree}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{sub\+RTree}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1RootedTree}{Rooted\+Tree}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{jt\+\_\+\+RTree}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::vector$<$ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} $>$ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{jt\+\_\+\+Qa}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::vector$<$ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} $>$ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{jt\+\_\+\+Qb}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_ac3736b71a1e6345ec5426d9c2bc41e12}{I}})
+\begin{DoxyCompactList}\small\item\em Construct from {\itshape sub\+RTree}, which is a subtree of the main tree {\itshape jt\+\_\+\+RTree}, with distribution represented by {\itshape jt\+\_\+\+Qa} and {\itshape jt\+\_\+\+Qb}, for off-\/tree factor {\itshape I}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a0b4e0ffa9d77dd18c1439f3fdbb38ba9}{init}} ()
+\begin{DoxyCompactList}\small\item\em Initializes beliefs of this subtree. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_ae06e3d56616ed75b8b34cd945d25c2a2}{Invert\+And\+Multiply}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::vector$<$ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} $>$ \&\mbox{\hyperlink{classdai_1_1JTree_a66cdd4d8258582aaf794466f3786dbfb}{Qa}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::vector$<$ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} $>$ \&\mbox{\hyperlink{classdai_1_1JTree_a9d93e9f387d9772be5bc2b5372f7d20d}{Qb}})
+\begin{DoxyCompactList}\small\item\em Inverts this approximation and multiplies it by the (super) junction tree marginals {\itshape Qa} and {\itshape Qb}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_af4ebfa31613bde8eea1a9b2d67749c41}{HUGIN\+\_\+with\+\_\+I}} (std\+::vector$<$ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} $>$ \&\mbox{\hyperlink{classdai_1_1JTree_a66cdd4d8258582aaf794466f3786dbfb}{Qa}}, std\+::vector$<$ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} $>$ \&\mbox{\hyperlink{classdai_1_1JTree_a9d93e9f387d9772be5bc2b5372f7d20d}{Qb}})
+\begin{DoxyCompactList}\small\item\em Runs junction tree algorithm (including off-\/tree factor I) storing the results in the (super) junction tree {\itshape Qa} and {\itshape Qb}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a6c57ecebacb4f46525c8607af883013b}{logZ}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::vector$<$ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} $>$ \&\mbox{\hyperlink{classdai_1_1JTree_a66cdd4d8258582aaf794466f3786dbfb}{Qa}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::vector$<$ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} $>$ \&\mbox{\hyperlink{classdai_1_1JTree_a9d93e9f387d9772be5bc2b5372f7d20d}{Qb}}) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns energy (?) of this subtree. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} \texorpdfstring{$\ast$}{*}\& \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_ac3736b71a1e6345ec5426d9c2bc41e12}{I}} ()
+\begin{DoxyCompactList}\small\item\em Returns constant reference to the pointer to the off-\/tree factor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} $>$ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a8ee092fe56924e5a6755aa4a8db2f1b3}{\+\_\+\+Qa}}
+\begin{DoxyCompactList}\small\item\em Outer region pseudomarginals (corresponding with the $\tilde f_i(x_j,x_k)$ in \mbox{[}\doxylink{bibliography_MiQ04}{Mi\+Q04}\mbox{]}) \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} $>$ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a870a564b6464de22051ced18e61e8f46}{\+\_\+\+Qb}}
+\begin{DoxyCompactList}\small\item\em Inner region pseudomarginals (corresponding with the $\tilde f_i(x_s)$ in \mbox{[}\doxylink{bibliography_MiQ04}{Mi\+Q04}\mbox{]}) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1RootedTree}{Rooted\+Tree}} \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a557ec259ffecefde3088baffbfeeb5c7}{\+\_\+\+RTree}}
+\begin{DoxyCompactList}\small\item\em The junction tree (stored as a rooted tree) \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} $>$ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a9cc5d855b128e6de60c7fab5c55acee1}{\+\_\+a}}
+\begin{DoxyCompactList}\small\item\em Index conversion table for outer region indices (\+\_\+\+Qa\mbox{[}alpha\mbox{]} corresponds with Qa\mbox{[}\+\_\+a\mbox{[}alpha\mbox{]}\mbox{]} of the supertree) \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} $>$ \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_abb5c16fb452f46606f08a85de6f4d7dd}{\+\_\+b}}
+\begin{DoxyCompactList}\small\item\em Index conversion table for inner region indices (\+\_\+\+Qb\mbox{[}beta\mbox{]} corresponds with Qb\mbox{[}\+\_\+b\mbox{[}beta\mbox{]}\mbox{]} of the supertree) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a572573866619ad36f8ed8474e8ff08b5}{\+\_\+I}}
+\begin{DoxyCompactList}\small\item\em Pointer to off-\/tree factor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_af890392f433ea7a16de891bcc4a3a6ef}{\+\_\+ns}}
+\begin{DoxyCompactList}\small\item\em Variables in off-\/tree factor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_acde8c4cad31261784f54f2114bec74da}{\+\_\+nsrem}}
+\begin{DoxyCompactList}\small\item\em Variables in off-\/tree factor which are not in the root of this subtree. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree_a2d59226b586690e0ba8101c90cf41a97}{\+\_\+logZ}}
+\begin{DoxyCompactList}\small\item\em Used for calculating the free energy. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Stores the data structures needed to efficiently update the approximation of an off-\/tree factor. 
+
+The \doxylink{classdai_1_1TreeEP}{Tree\+EP} object stores a \doxylink{classdai_1_1TreeEP_1_1TreeEPSubTree}{Tree\+EPSub\+Tree} object for each off-\/tree factor. It stores the approximation of that off-\/tree factor, which is represented as a distribution on a subtree of the main tree. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classdai_1_1TreeEP_1_1TreeEPSubTree_a7c96bdc899f2de3782eea1717531ee10}\label{classdai_1_1TreeEP_1_1TreeEPSubTree_a7c96bdc899f2de3782eea1717531ee10} 
+\index{dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}!TreeEPSubTree@{TreeEPSubTree}}
+\index{TreeEPSubTree@{TreeEPSubTree}!dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}}
+\doxysubsubsection{\texorpdfstring{TreeEPSubTree()}{TreeEPSubTree()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily dai\+::\+Tree\+EP\+::\+Tree\+EPSub\+Tree\+::\+Tree\+EPSub\+Tree (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor. 
+
+\Hypertarget{classdai_1_1TreeEP_1_1TreeEPSubTree_a0ae27f56ca9a4d285772921d7555f6b1}\label{classdai_1_1TreeEP_1_1TreeEPSubTree_a0ae27f56ca9a4d285772921d7555f6b1} 
+\index{dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}!TreeEPSubTree@{TreeEPSubTree}}
+\index{TreeEPSubTree@{TreeEPSubTree}!dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}}
+\doxysubsubsection{\texorpdfstring{TreeEPSubTree()}{TreeEPSubTree()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily dai\+::\+Tree\+EP\+::\+Tree\+EPSub\+Tree\+::\+Tree\+EPSub\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree}{Tree\+EPSub\+Tree}} \&}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Copy constructor. 
+
+\Hypertarget{classdai_1_1TreeEP_1_1TreeEPSubTree_a395904b1e262b0b188d9d8277b4a0162}\label{classdai_1_1TreeEP_1_1TreeEPSubTree_a395904b1e262b0b188d9d8277b4a0162} 
+\index{dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}!TreeEPSubTree@{TreeEPSubTree}}
+\index{TreeEPSubTree@{TreeEPSubTree}!dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}}
+\doxysubsubsection{\texorpdfstring{TreeEPSubTree()}{TreeEPSubTree()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily dai\+::\+Tree\+EP\+::\+Tree\+EPSub\+Tree\+::\+Tree\+EPSub\+Tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1RootedTree}{Rooted\+Tree}} \&}]{sub\+RTree,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1RootedTree}{Rooted\+Tree}} \&}]{jt\+\_\+\+RTree,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::vector$<$ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} $>$ \&}]{jt\+\_\+\+Qa,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::vector$<$ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} $>$ \&}]{jt\+\_\+\+Qb,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} \texorpdfstring{$\ast$}{*}}]{I }\end{DoxyParamCaption})}
+
+
+
+Construct from {\itshape sub\+RTree}, which is a subtree of the main tree {\itshape jt\+\_\+\+RTree}, with distribution represented by {\itshape jt\+\_\+\+Qa} and {\itshape jt\+\_\+\+Qb}, for off-\/tree factor {\itshape I}. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classdai_1_1TreeEP_1_1TreeEPSubTree_a0b92c3ac5c604b4d22a9252022b83266}\label{classdai_1_1TreeEP_1_1TreeEPSubTree_a0b92c3ac5c604b4d22a9252022b83266} 
+\index{dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}!operator=@{operator=}}
+\index{operator=@{operator=}!dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree}{Tree\+EPSub\+Tree}} \& dai\+::\+Tree\+EP\+::\+Tree\+EPSub\+Tree\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1TreeEP_1_1TreeEPSubTree}{Tree\+EPSub\+Tree}} \&}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Assignment operator. 
+
+\Hypertarget{classdai_1_1TreeEP_1_1TreeEPSubTree_a0b4e0ffa9d77dd18c1439f3fdbb38ba9}\label{classdai_1_1TreeEP_1_1TreeEPSubTree_a0b4e0ffa9d77dd18c1439f3fdbb38ba9} 
+\index{dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}!init@{init}}
+\index{init@{init}!dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+Tree\+EP\+::\+Tree\+EPSub\+Tree\+::init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initializes beliefs of this subtree. 
+
+\Hypertarget{classdai_1_1TreeEP_1_1TreeEPSubTree_ae06e3d56616ed75b8b34cd945d25c2a2}\label{classdai_1_1TreeEP_1_1TreeEPSubTree_ae06e3d56616ed75b8b34cd945d25c2a2} 
+\index{dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}!InvertAndMultiply@{InvertAndMultiply}}
+\index{InvertAndMultiply@{InvertAndMultiply}!dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}}
+\doxysubsubsection{\texorpdfstring{InvertAndMultiply()}{InvertAndMultiply()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+Tree\+EP\+::\+Tree\+EPSub\+Tree\+::\+Invert\+And\+Multiply (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::vector$<$ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} $>$ \&}]{Qa,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::vector$<$ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} $>$ \&}]{Qb }\end{DoxyParamCaption})}
+
+
+
+Inverts this approximation and multiplies it by the (super) junction tree marginals {\itshape Qa} and {\itshape Qb}. 
+
+\Hypertarget{classdai_1_1TreeEP_1_1TreeEPSubTree_af4ebfa31613bde8eea1a9b2d67749c41}\label{classdai_1_1TreeEP_1_1TreeEPSubTree_af4ebfa31613bde8eea1a9b2d67749c41} 
+\index{dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}!HUGIN\_with\_I@{HUGIN\_with\_I}}
+\index{HUGIN\_with\_I@{HUGIN\_with\_I}!dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}}
+\doxysubsubsection{\texorpdfstring{HUGIN\_with\_I()}{HUGIN\_with\_I()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+Tree\+EP\+::\+Tree\+EPSub\+Tree\+::\+HUGIN\+\_\+with\+\_\+I (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} $>$ \&}]{Qa,  }\item[{std\+::vector$<$ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} $>$ \&}]{Qb }\end{DoxyParamCaption})}
+
+
+
+Runs junction tree algorithm (including off-\/tree factor I) storing the results in the (super) junction tree {\itshape Qa} and {\itshape Qb}. 
+
+\Hypertarget{classdai_1_1TreeEP_1_1TreeEPSubTree_a6c57ecebacb4f46525c8607af883013b}\label{classdai_1_1TreeEP_1_1TreeEPSubTree_a6c57ecebacb4f46525c8607af883013b} 
+\index{dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}!logZ@{logZ}}
+\index{logZ@{logZ}!dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}}
+\doxysubsubsection{\texorpdfstring{logZ()}{logZ()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} dai\+::\+Tree\+EP\+::\+Tree\+EPSub\+Tree\+::logZ (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::vector$<$ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} $>$ \&}]{Qa,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} std\+::vector$<$ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} $>$ \&}]{Qb }\end{DoxyParamCaption}) const}
+
+
+
+Returns energy (?) of this subtree. 
+
+\Hypertarget{classdai_1_1TreeEP_1_1TreeEPSubTree_ac3736b71a1e6345ec5426d9c2bc41e12}\label{classdai_1_1TreeEP_1_1TreeEPSubTree_ac3736b71a1e6345ec5426d9c2bc41e12} 
+\index{dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}!I@{I}}
+\index{I@{I}!dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}}
+\doxysubsubsection{\texorpdfstring{I()}{I()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} \texorpdfstring{$\ast$}{*}\& dai\+::\+Tree\+EP\+::\+Tree\+EPSub\+Tree\+::I (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns constant reference to the pointer to the off-\/tree factor. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classdai_1_1TreeEP_1_1TreeEPSubTree_a8ee092fe56924e5a6755aa4a8db2f1b3}\label{classdai_1_1TreeEP_1_1TreeEPSubTree_a8ee092fe56924e5a6755aa4a8db2f1b3} 
+\index{dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}!\_Qa@{\_Qa}}
+\index{\_Qa@{\_Qa}!dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}}
+\doxysubsubsection{\texorpdfstring{\_Qa}{\_Qa}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}}$>$ dai\+::\+Tree\+EP\+::\+Tree\+EPSub\+Tree\+::\+\_\+\+Qa\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Outer region pseudomarginals (corresponding with the $\tilde f_i(x_j,x_k)$ in \mbox{[}\doxylink{bibliography_MiQ04}{Mi\+Q04}\mbox{]}) 
+
+\Hypertarget{classdai_1_1TreeEP_1_1TreeEPSubTree_a870a564b6464de22051ced18e61e8f46}\label{classdai_1_1TreeEP_1_1TreeEPSubTree_a870a564b6464de22051ced18e61e8f46} 
+\index{dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}!\_Qb@{\_Qb}}
+\index{\_Qb@{\_Qb}!dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}}
+\doxysubsubsection{\texorpdfstring{\_Qb}{\_Qb}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}}$>$ dai\+::\+Tree\+EP\+::\+Tree\+EPSub\+Tree\+::\+\_\+\+Qb\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Inner region pseudomarginals (corresponding with the $\tilde f_i(x_s)$ in \mbox{[}\doxylink{bibliography_MiQ04}{Mi\+Q04}\mbox{]}) 
+
+\Hypertarget{classdai_1_1TreeEP_1_1TreeEPSubTree_a557ec259ffecefde3088baffbfeeb5c7}\label{classdai_1_1TreeEP_1_1TreeEPSubTree_a557ec259ffecefde3088baffbfeeb5c7} 
+\index{dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}!\_RTree@{\_RTree}}
+\index{\_RTree@{\_RTree}!dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}}
+\doxysubsubsection{\texorpdfstring{\_RTree}{\_RTree}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1RootedTree}{Rooted\+Tree}} dai\+::\+Tree\+EP\+::\+Tree\+EPSub\+Tree\+::\+\_\+\+RTree\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The junction tree (stored as a rooted tree) 
+
+\Hypertarget{classdai_1_1TreeEP_1_1TreeEPSubTree_a9cc5d855b128e6de60c7fab5c55acee1}\label{classdai_1_1TreeEP_1_1TreeEPSubTree_a9cc5d855b128e6de60c7fab5c55acee1} 
+\index{dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}!\_a@{\_a}}
+\index{\_a@{\_a}!dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}}
+\doxysubsubsection{\texorpdfstring{\_a}{\_a}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}$>$ dai\+::\+Tree\+EP\+::\+Tree\+EPSub\+Tree\+::\+\_\+a\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Index conversion table for outer region indices (\+\_\+\+Qa\mbox{[}alpha\mbox{]} corresponds with Qa\mbox{[}\+\_\+a\mbox{[}alpha\mbox{]}\mbox{]} of the supertree) 
+
+\Hypertarget{classdai_1_1TreeEP_1_1TreeEPSubTree_abb5c16fb452f46606f08a85de6f4d7dd}\label{classdai_1_1TreeEP_1_1TreeEPSubTree_abb5c16fb452f46606f08a85de6f4d7dd} 
+\index{dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}!\_b@{\_b}}
+\index{\_b@{\_b}!dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}}
+\doxysubsubsection{\texorpdfstring{\_b}{\_b}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}$>$ dai\+::\+Tree\+EP\+::\+Tree\+EPSub\+Tree\+::\+\_\+b\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Index conversion table for inner region indices (\+\_\+\+Qb\mbox{[}beta\mbox{]} corresponds with Qb\mbox{[}\+\_\+b\mbox{[}beta\mbox{]}\mbox{]} of the supertree) 
+
+\Hypertarget{classdai_1_1TreeEP_1_1TreeEPSubTree_a572573866619ad36f8ed8474e8ff08b5}\label{classdai_1_1TreeEP_1_1TreeEPSubTree_a572573866619ad36f8ed8474e8ff08b5} 
+\index{dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}!\_I@{\_I}}
+\index{\_I@{\_I}!dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}}
+\doxysubsubsection{\texorpdfstring{\_I}{\_I}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}}\texorpdfstring{$\ast$}{*} dai\+::\+Tree\+EP\+::\+Tree\+EPSub\+Tree\+::\+\_\+I\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer to off-\/tree factor. 
+
+\Hypertarget{classdai_1_1TreeEP_1_1TreeEPSubTree_af890392f433ea7a16de891bcc4a3a6ef}\label{classdai_1_1TreeEP_1_1TreeEPSubTree_af890392f433ea7a16de891bcc4a3a6ef} 
+\index{dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}!\_ns@{\_ns}}
+\index{\_ns@{\_ns}!dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}}
+\doxysubsubsection{\texorpdfstring{\_ns}{\_ns}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} dai\+::\+Tree\+EP\+::\+Tree\+EPSub\+Tree\+::\+\_\+ns\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Variables in off-\/tree factor. 
+
+\Hypertarget{classdai_1_1TreeEP_1_1TreeEPSubTree_acde8c4cad31261784f54f2114bec74da}\label{classdai_1_1TreeEP_1_1TreeEPSubTree_acde8c4cad31261784f54f2114bec74da} 
+\index{dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}!\_nsrem@{\_nsrem}}
+\index{\_nsrem@{\_nsrem}!dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}}
+\doxysubsubsection{\texorpdfstring{\_nsrem}{\_nsrem}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} dai\+::\+Tree\+EP\+::\+Tree\+EPSub\+Tree\+::\+\_\+nsrem\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Variables in off-\/tree factor which are not in the root of this subtree. 
+
+\Hypertarget{classdai_1_1TreeEP_1_1TreeEPSubTree_a2d59226b586690e0ba8101c90cf41a97}\label{classdai_1_1TreeEP_1_1TreeEPSubTree_a2d59226b586690e0ba8101c90cf41a97} 
+\index{dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}!\_logZ@{\_logZ}}
+\index{\_logZ@{\_logZ}!dai::TreeEP::TreeEPSubTree@{dai::TreeEP::TreeEPSubTree}}
+\doxysubsubsection{\texorpdfstring{\_logZ}{\_logZ}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} dai\+::\+Tree\+EP\+::\+Tree\+EPSub\+Tree\+::\+\_\+logZ\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Used for calculating the free energy. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/dai/\mbox{\hyperlink{treeep_8h}{treeep.\+h}}\item 
+src/treeep.\+cpp\end{DoxyCompactItemize}

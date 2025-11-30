@@ -1,0 +1,52 @@
+\doxysection{include/dai/graph.h File Reference}
+\hypertarget{graph_8h}{}\label{graph_8h}\index{include/dai/graph.h@{include/dai/graph.h}}
+
+
+Defines the Graph\+AL class, which represents an undirected graph as an adjacency list.  
+
+
+{\ttfamily \#include $<$ostream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$dai/util.\+h$>$}\newline
+{\ttfamily \#include $<$dai/exceptions.\+h$>$}\newline
+{\ttfamily \#include $<$dai/smallset.\+h$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structdai_1_1Neighbor}{dai\+::\+Neighbor}}
+\begin{DoxyCompactList}\small\item\em Describes the neighbor relationship of two nodes in a graph. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{classdai_1_1GraphAL}{dai\+::\+Graph\+AL}}
+\begin{DoxyCompactList}\small\item\em Represents the neighborhood structure of nodes in an undirected graph. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \mbox{\hyperlink{namespacedai}{dai}}
+\begin{DoxyCompactList}\small\item\em Namespace for lib\+DAI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typedef}} std\+::vector$<$ \mbox{\hyperlink{structdai_1_1Neighbor}{Neighbor}} $>$ \mbox{\hyperlink{namespacedai_a14c563f2e5f6acf255903cae5c3b415c}{dai\+::\+Neighbors}}
+\begin{DoxyCompactList}\small\item\em Describes the set of neighbors of some node in a graph. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typedef}} std\+::pair$<$ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} $>$ \mbox{\hyperlink{namespacedai_aca51f13415f708db9eabda981b107a14}{dai\+::\+Edge}}
+\begin{DoxyCompactList}\small\item\em Represents an edge in a graph\+: an Edge({\itshape i},{\itshape j}) corresponds to the edge between node {\itshape i} and node {\itshape j}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdai_1_1GraphAL}{Graph\+AL}} \mbox{\hyperlink{namespacedai_aedbe32ae13acdd8b62050b18e81a53ea}{dai\+::create\+Graph\+Full}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{N}})
+\begin{DoxyCompactList}\small\item\em Creates a fully-\/connected graph with {\itshape N} nodes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1GraphAL}{Graph\+AL}} \mbox{\hyperlink{namespacedai_aaeeffaf06b9cd2fecccaf2bf773baed7}{dai\+::create\+Graph\+Grid}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{N1}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{N2}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{periodic}})
+\begin{DoxyCompactList}\small\item\em Creates a two-\/dimensional rectangular grid of {\itshape N1} by {\itshape N2} nodes, which can be {\itshape periodic}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1GraphAL}{Graph\+AL}} \mbox{\hyperlink{namespacedai_a9950d08bd6190ea12f50b4be6f2584cf}{dai\+::create\+Graph\+Grid3D}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{N1}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{N2}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{N3}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{periodic}})
+\begin{DoxyCompactList}\small\item\em Creates a three-\/dimensional rectangular grid of {\itshape N1} by {\itshape N2} by {\itshape N3} nodes, which can be {\itshape periodic}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1GraphAL}{Graph\+AL}} \mbox{\hyperlink{namespacedai_a7f65fc1665a6fa04b1b6897a4551bccc}{dai\+::create\+Graph\+Loop}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{N}})
+\begin{DoxyCompactList}\small\item\em Creates a graph consisting of a single loop of {\itshape N} nodes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1GraphAL}{Graph\+AL}} \mbox{\hyperlink{namespacedai_ad3fbe55f9fdb020e7a2b04f1d2451d20}{dai\+::create\+Graph\+Tree}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{N}})
+\begin{DoxyCompactList}\small\item\em Creates a random tree-\/structured graph of {\itshape N} nodes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1GraphAL}{Graph\+AL}} \mbox{\hyperlink{namespacedai_abfd6bb3f4b6135a99a68b9b13bee8bae}{dai\+::create\+Graph\+Regular}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{N}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{d}})
+\begin{DoxyCompactList}\small\item\em Creates a random regular graph of {\itshape N} nodes with uniform connectivity {\itshape d}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Defines the Graph\+AL class, which represents an undirected graph as an adjacency list. 
+

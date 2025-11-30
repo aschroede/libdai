@@ -1,0 +1,93 @@
+\doxysection{example\+\_\+sprinkler.\+cpp}
+\hypertarget{example_sprinkler_8cpp-example}{}\label{example_sprinkler_8cpp-example}This example illustrates how to manually construct a factor graph and write it to a file.
+
+
+\begin{DoxyCodeInclude}{0}
+\DoxyCodeLine{\textcolor{comment}{/*\ \ This\ file\ is\ part\ of\ libDAI\ -\/\ http://www.libdai.org/}}
+\DoxyCodeLine{\textcolor{comment}{\ *}}
+\DoxyCodeLine{\textcolor{comment}{\ *\ \ Copyright\ (c)\ 2006-\/2011,\ The\ libDAI\ authors.\ All\ rights\ reserved.}}
+\DoxyCodeLine{\textcolor{comment}{\ *}}
+\DoxyCodeLine{\textcolor{comment}{\ *\ \ Use\ of\ this\ source\ code\ is\ governed\ by\ a\ BSD-\/style\ license\ that\ can\ be\ found\ in\ the\ LICENSE\ file.}}
+\DoxyCodeLine{\textcolor{comment}{\ */}}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{factorgraph_8h}{dai/factorgraph.h}}>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{\textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespacedai}{dai}};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main()\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ This\ example\ program\ illustrates\ how\ to\ construct\ a\ factorgraph}}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ by\ means\ of\ the\ sprinkler\ network\ example\ discussed\ at}}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ http://www.cs.ubc.ca/\string~murphyk/Bayes/bnintro.html}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classdai_1_1Var}{Var}}\ C(0,\ 2);\ \ \textcolor{comment}{//\ Define\ binary\ variable\ Cloudy\ (with\ label\ 0)}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classdai_1_1Var}{Var}}\ S(1,\ 2);\ \ \textcolor{comment}{//\ Define\ binary\ variable\ Sprinkler\ (with\ label\ 1)}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classdai_1_1Var}{Var}}\ R(2,\ 2);\ \ \textcolor{comment}{//\ Define\ binary\ variable\ Rain\ (with\ label\ 2)}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classdai_1_1Var}{Var}}\ W(3,\ 2);\ \ \textcolor{comment}{//\ Define\ binary\ variable\ Wetgrass\ (with\ label\ 3)}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Define\ probability\ distribution\ for\ C}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classdai_1_1TFactor}{Factor}}\ P\_C(\ C\ );}
+\DoxyCodeLine{\ \ \ \ P\_C.\mbox{\hyperlink{classdai_1_1TFactor_a52963ca6221af355da0eb0c742d6a113}{set}}(0,\ 0.5);\ \ \ \textcolor{comment}{//\ C\ =\ 0}}
+\DoxyCodeLine{\ \ \ \ P\_C.\mbox{\hyperlink{classdai_1_1TFactor_a52963ca6221af355da0eb0c742d6a113}{set}}(1,\ 0.5);\ \ \ \textcolor{comment}{//\ C\ =\ 1}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Define\ conditional\ probability\ of\ S\ given\ C}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classdai_1_1TFactor}{Factor}}\ P\_S\_given\_C(\ \mbox{\hyperlink{classdai_1_1VarSet}{VarSet}}(\ S,\ C\ )\ );}
+\DoxyCodeLine{\ \ \ \ P\_S\_given\_C.\mbox{\hyperlink{classdai_1_1TFactor_a52963ca6221af355da0eb0c742d6a113}{set}}(0,\ 0.5);\ \ \ \textcolor{comment}{//\ C\ =\ 0,\ S\ =\ 0}}
+\DoxyCodeLine{\ \ \ \ P\_S\_given\_C.\mbox{\hyperlink{classdai_1_1TFactor_a52963ca6221af355da0eb0c742d6a113}{set}}(1,\ 0.9);\ \ \ \textcolor{comment}{//\ C\ =\ 1,\ S\ =\ 0}}
+\DoxyCodeLine{\ \ \ \ P\_S\_given\_C.\mbox{\hyperlink{classdai_1_1TFactor_a52963ca6221af355da0eb0c742d6a113}{set}}(2,\ 0.5);\ \ \ \textcolor{comment}{//\ C\ =\ 0,\ S\ =\ 1}}
+\DoxyCodeLine{\ \ \ \ P\_S\_given\_C.\mbox{\hyperlink{classdai_1_1TFactor_a52963ca6221af355da0eb0c742d6a113}{set}}(3,\ 0.1);\ \ \ \textcolor{comment}{//\ C\ =\ 1,\ S\ =\ 1}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Define\ conditional\ probability\ of\ R\ given\ C}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classdai_1_1TFactor}{Factor}}\ P\_R\_given\_C(\ \mbox{\hyperlink{classdai_1_1VarSet}{VarSet}}(\ R,\ C\ )\ );}
+\DoxyCodeLine{\ \ \ \ P\_R\_given\_C.\mbox{\hyperlink{classdai_1_1TFactor_a52963ca6221af355da0eb0c742d6a113}{set}}(0,\ 0.8);\ \ \ \textcolor{comment}{//\ C\ =\ 0,\ R\ =\ 0}}
+\DoxyCodeLine{\ \ \ \ P\_R\_given\_C.\mbox{\hyperlink{classdai_1_1TFactor_a52963ca6221af355da0eb0c742d6a113}{set}}(1,\ 0.2);\ \ \ \textcolor{comment}{//\ C\ =\ 1,\ R\ =\ 0}}
+\DoxyCodeLine{\ \ \ \ P\_R\_given\_C.\mbox{\hyperlink{classdai_1_1TFactor_a52963ca6221af355da0eb0c742d6a113}{set}}(2,\ 0.2);\ \ \ \textcolor{comment}{//\ C\ =\ 0,\ R\ =\ 1}}
+\DoxyCodeLine{\ \ \ \ P\_R\_given\_C.\mbox{\hyperlink{classdai_1_1TFactor_a52963ca6221af355da0eb0c742d6a113}{set}}(3,\ 0.8);\ \ \ \textcolor{comment}{//\ C\ =\ 1,\ R\ =\ 1}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Define\ conditional\ probability\ of\ W\ given\ S\ and\ R}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classdai_1_1TFactor}{Factor}}\ P\_W\_given\_S\_R(\ \mbox{\hyperlink{classdai_1_1VarSet}{VarSet}}(\ S,\ R\ )\ |\ W\ );}
+\DoxyCodeLine{\ \ \ \ P\_W\_given\_S\_R.\mbox{\hyperlink{classdai_1_1TFactor_a52963ca6221af355da0eb0c742d6a113}{set}}(0,\ 1.0);\ \ \textcolor{comment}{//\ S\ =\ 0,\ R\ =\ 0,\ W\ =\ 0}}
+\DoxyCodeLine{\ \ \ \ P\_W\_given\_S\_R.\mbox{\hyperlink{classdai_1_1TFactor_a52963ca6221af355da0eb0c742d6a113}{set}}(1,\ 0.1);\ \ \textcolor{comment}{//\ S\ =\ 1,\ R\ =\ 0,\ W\ =\ 0}}
+\DoxyCodeLine{\ \ \ \ P\_W\_given\_S\_R.\mbox{\hyperlink{classdai_1_1TFactor_a52963ca6221af355da0eb0c742d6a113}{set}}(2,\ 0.1);\ \ \textcolor{comment}{//\ S\ =\ 0,\ R\ =\ 1,\ W\ =\ 0}}
+\DoxyCodeLine{\ \ \ \ P\_W\_given\_S\_R.\mbox{\hyperlink{classdai_1_1TFactor_a52963ca6221af355da0eb0c742d6a113}{set}}(3,\ 0.01);\ \textcolor{comment}{//\ S\ =\ 1,\ R\ =\ 1,\ W\ =\ 0}}
+\DoxyCodeLine{\ \ \ \ P\_W\_given\_S\_R.\mbox{\hyperlink{classdai_1_1TFactor_a52963ca6221af355da0eb0c742d6a113}{set}}(4,\ 0.0);\ \ \textcolor{comment}{//\ S\ =\ 0,\ R\ =\ 0,\ W\ =\ 1}}
+\DoxyCodeLine{\ \ \ \ P\_W\_given\_S\_R.\mbox{\hyperlink{classdai_1_1TFactor_a52963ca6221af355da0eb0c742d6a113}{set}}(5,\ 0.9);\ \ \textcolor{comment}{//\ S\ =\ 1,\ R\ =\ 0,\ W\ =\ 1}}
+\DoxyCodeLine{\ \ \ \ P\_W\_given\_S\_R.\mbox{\hyperlink{classdai_1_1TFactor_a52963ca6221af355da0eb0c742d6a113}{set}}(6,\ 0.9);\ \ \textcolor{comment}{//\ S\ =\ 0,\ R\ =\ 1,\ W\ =\ 1}}
+\DoxyCodeLine{\ \ \ \ P\_W\_given\_S\_R.\mbox{\hyperlink{classdai_1_1TFactor_a52963ca6221af355da0eb0c742d6a113}{set}}(7,\ 0.99);\ \textcolor{comment}{//\ S\ =\ 1,\ R\ =\ 1,\ W\ =\ 1}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Build\ factor\ graph\ consisting\ of\ those\ four\ factors}}
+\DoxyCodeLine{\ \ \ \ vector<Factor>\ SprinklerFactors;}
+\DoxyCodeLine{\ \ \ \ SprinklerFactors.push\_back(\ P\_C\ );}
+\DoxyCodeLine{\ \ \ \ SprinklerFactors.push\_back(\ P\_R\_given\_C\ );}
+\DoxyCodeLine{\ \ \ \ SprinklerFactors.push\_back(\ P\_S\_given\_C\ );}
+\DoxyCodeLine{\ \ \ \ SprinklerFactors.push\_back(\ P\_W\_given\_S\_R\ );}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classdai_1_1FactorGraph}{FactorGraph}}\ SprinklerNetwork(\ SprinklerFactors\ );}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Write\ factorgraph\ to\ a\ file}}
+\DoxyCodeLine{\ \ \ \ SprinklerNetwork.\mbox{\hyperlink{classdai_1_1FactorGraph_ab1bfc377a351b628620b684bcdac5fa3}{WriteToFile}}(\ \textcolor{stringliteral}{"{}sprinkler.fg"{}}\ );}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}Sprinkler\ network\ written\ to\ sprinkler.fg"{}}\ <<\ endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Output\ some\ information\ about\ the\ factorgraph}}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ SprinklerNetwork.\mbox{\hyperlink{classdai_1_1FactorGraph_a2b8149e76290cee02816a2b2e0b666be}{nrVars}}()\ <<\ \textcolor{stringliteral}{"{}\ variables"{}}\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ SprinklerNetwork.\mbox{\hyperlink{classdai_1_1FactorGraph_afac1b429a0df6851810f1959d1ea8f46}{nrFactors}}()\ <<\ \textcolor{stringliteral}{"{}\ factors"{}}\ <<\ endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Calculate\ joint\ probability\ of\ all\ four\ variables}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classdai_1_1TFactor}{Factor}}\ P;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{size\_t}\ I\ =\ 0;\ I\ <\ SprinklerNetwork.\mbox{\hyperlink{classdai_1_1FactorGraph_afac1b429a0df6851810f1959d1ea8f46}{nrFactors}}();\ I++\ )}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ P\ *=\ SprinklerNetwork.\mbox{\hyperlink{classdai_1_1FactorGraph_a6aa6c8f8bdbaee7a7af917a4e7b54c8b}{factor}}(\ I\ );}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ P.normalize();\ \ //\ Not\ necessary:\ a\ Bayesian\ network\ is\ already\ normalized\ by\ definition}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{comment}{//\ Calculate\ some\ probabilities}}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}}\ denom\ =\ P.\mbox{\hyperlink{classdai_1_1TFactor_ab18d34852ba2136a6329dccbb1a5815b}{marginal}}(\ W\ )[1];}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}P(W=1)\ =\ "{}}\ <<\ denom\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}P(S=1\ |\ W=1)\ =\ "{}}\ <<\ P.\mbox{\hyperlink{classdai_1_1TFactor_ab18d34852ba2136a6329dccbb1a5815b}{marginal}}(\ \mbox{\hyperlink{classdai_1_1VarSet}{VarSet}}(\ S,\ W\ )\ )[3]\ /\ denom\ <<\ endl;}
+\DoxyCodeLine{\ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}P(R=1\ |\ W=1)\ =\ "{}}\ <<\ P.\mbox{\hyperlink{classdai_1_1TFactor_ab18d34852ba2136a6329dccbb1a5815b}{marginal}}(\ \mbox{\hyperlink{classdai_1_1VarSet}{VarSet}}(\ R,\ W\ )\ )[3]\ /\ denom\ <<\ endl;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCodeInclude}
+ 

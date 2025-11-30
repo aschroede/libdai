@@ -1,0 +1,205 @@
+\doxysection{dai\+::Maximization\+Step Class Reference}
+\hypertarget{classdai_1_1MaximizationStep}{}\label{classdai_1_1MaximizationStep}\index{dai::MaximizationStep@{dai::MaximizationStep}}
+
+
+A \doxylink{classdai_1_1MaximizationStep}{Maximization\+Step} groups together several parameter estimation tasks (\doxylink{classdai_1_1SharedParameters}{Shared\+Parameters} objects) into a single unit.  
+
+
+
+
+{\ttfamily \#include $<$dai/emalg.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdai_1_1MaximizationStep_a643fe90612f20480518000039bf13a77}{Maximization\+Step}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1MaximizationStep_acb3cc6c7e710caa546f86b043befadef}{Maximization\+Step}} (std\+::vector$<$ \mbox{\hyperlink{classdai_1_1SharedParameters}{Shared\+Parameters}} $>$ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{maximizations}})
+\begin{DoxyCompactList}\small\item\em Construct \doxylink{classdai_1_1MaximizationStep}{Maximization\+Step} from a vector of parameter estimation tasks. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1MaximizationStep_ad705857af3c53a94264590f8a6d1a120}{Maximization\+Step}} (std\+::istream \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{is}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1FactorGraph}{Factor\+Graph}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{fg\+\_\+varlookup}})
+\begin{DoxyCompactList}\small\item\em Constructor from an input stream and a corresponding factor graph. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1MaximizationStep_a5dcaac5456934d874a030e4b1db1c961}{add\+Expectations}} (\mbox{\hyperlink{classdai_1_1InfAlg}{Inf\+Alg}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{alg}})
+\begin{DoxyCompactList}\small\item\em Collect the beliefs from this \doxylink{classdai_1_1InfAlg}{Inf\+Alg} as expectations for the next Maximization step. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1MaximizationStep_aa91aab0e5776b645a738b8644b5a9042}{maximize}} (\mbox{\hyperlink{classdai_1_1FactorGraph}{Factor\+Graph}} \&fg)
+\begin{DoxyCompactList}\small\item\em Using all of the currently added expectations, make new factors with maximized parameters and set them in the \doxylink{classdai_1_1FactorGraph}{Factor\+Graph}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1MaximizationStep_a9c5e7354696e2beafcd37388124dcfcb}{clear}} ()
+\begin{DoxyCompactList}\small\item\em Clear the step, to be called at the begining of each step. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classdai_1_1SharedParameters}{Shared\+Parameters}} $>$ \mbox{\hyperlink{classdai_1_1MaximizationStep_a583e2dcc3dabcea433adc9c9a196ed6e}{\+\_\+params}}
+\begin{DoxyCompactList}\small\item\em Vector of parameter estimation tasks of which this maximization step consists. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Iterator interface}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typedef}} std\+::vector$<$ \mbox{\hyperlink{classdai_1_1SharedParameters}{Shared\+Parameters}} $>$\+::iterator \mbox{\hyperlink{classdai_1_1MaximizationStep_abcc9502927c3f016abab2a4b74c4f6c2}{iterator}}
+\begin{DoxyCompactList}\small\item\em Iterator over the parameter estimation tasks. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typedef}} std\+::vector$<$ \mbox{\hyperlink{classdai_1_1SharedParameters}{Shared\+Parameters}} $>$\+::const\+\_\+iterator \mbox{\hyperlink{classdai_1_1MaximizationStep_a950d5cf33de63b3a7211448a045b908e}{const\+\_\+iterator}}
+\begin{DoxyCompactList}\small\item\em Constant iterator over the parameter estimation tasks. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1MaximizationStep_abcc9502927c3f016abab2a4b74c4f6c2}{iterator}} \mbox{\hyperlink{classdai_1_1MaximizationStep_a00ac8107ac2f3eabd7f4edb798593730}{begin}} ()
+\begin{DoxyCompactList}\small\item\em Returns iterator that points to the first parameter estimation task. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1MaximizationStep_a950d5cf33de63b3a7211448a045b908e}{const\+\_\+iterator}} \mbox{\hyperlink{classdai_1_1MaximizationStep_ab58e7f295b81bc0c8c3cbee310cb99ab}{begin}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns constant iterator that points to the first parameter estimation task. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1MaximizationStep_abcc9502927c3f016abab2a4b74c4f6c2}{iterator}} \mbox{\hyperlink{classdai_1_1MaximizationStep_a2b5ad24e56b171d6df22eac3e6e63e97}{end}} ()
+\begin{DoxyCompactList}\small\item\em Returns iterator that points beyond the last parameter estimation task. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1MaximizationStep_a950d5cf33de63b3a7211448a045b908e}{const\+\_\+iterator}} \mbox{\hyperlink{classdai_1_1MaximizationStep_aaff2bcece209a065fca661caf653347a}{end}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns constant iterator that points beyond the last parameter estimation task. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A \doxylink{classdai_1_1MaximizationStep}{Maximization\+Step} groups together several parameter estimation tasks (\doxylink{classdai_1_1SharedParameters}{Shared\+Parameters} objects) into a single unit. 
+
+\begin{DoxyAuthor}{Author}
+Charles Vaske 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{classdai_1_1MaximizationStep_abcc9502927c3f016abab2a4b74c4f6c2}\label{classdai_1_1MaximizationStep_abcc9502927c3f016abab2a4b74c4f6c2} 
+\index{dai::MaximizationStep@{dai::MaximizationStep}!iterator@{iterator}}
+\index{iterator@{iterator}!dai::MaximizationStep@{dai::MaximizationStep}}
+\doxysubsubsection{\texorpdfstring{iterator}{iterator}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typedef}} std\+::vector$<$\mbox{\hyperlink{classdai_1_1SharedParameters}{Shared\+Parameters}}$>$\+::iterator \mbox{\hyperlink{classdai_1_1MaximizationStep_abcc9502927c3f016abab2a4b74c4f6c2}{dai\+::\+Maximization\+Step\+::iterator}}}
+
+
+
+Iterator over the parameter estimation tasks. 
+
+\Hypertarget{classdai_1_1MaximizationStep_a950d5cf33de63b3a7211448a045b908e}\label{classdai_1_1MaximizationStep_a950d5cf33de63b3a7211448a045b908e} 
+\index{dai::MaximizationStep@{dai::MaximizationStep}!const\_iterator@{const\_iterator}}
+\index{const\_iterator@{const\_iterator}!dai::MaximizationStep@{dai::MaximizationStep}}
+\doxysubsubsection{\texorpdfstring{const\_iterator}{const\_iterator}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{typedef}} std\+::vector$<$\mbox{\hyperlink{classdai_1_1SharedParameters}{Shared\+Parameters}}$>$\+::const\+\_\+iterator \mbox{\hyperlink{classdai_1_1MaximizationStep_a950d5cf33de63b3a7211448a045b908e}{dai\+::\+Maximization\+Step\+::const\+\_\+iterator}}}
+
+
+
+Constant iterator over the parameter estimation tasks. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classdai_1_1MaximizationStep_a643fe90612f20480518000039bf13a77}\label{classdai_1_1MaximizationStep_a643fe90612f20480518000039bf13a77} 
+\index{dai::MaximizationStep@{dai::MaximizationStep}!MaximizationStep@{MaximizationStep}}
+\index{MaximizationStep@{MaximizationStep}!dai::MaximizationStep@{dai::MaximizationStep}}
+\doxysubsubsection{\texorpdfstring{MaximizationStep()}{MaximizationStep()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily dai\+::\+Maximization\+Step\+::\+Maximization\+Step (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor. 
+
+\Hypertarget{classdai_1_1MaximizationStep_acb3cc6c7e710caa546f86b043befadef}\label{classdai_1_1MaximizationStep_acb3cc6c7e710caa546f86b043befadef} 
+\index{dai::MaximizationStep@{dai::MaximizationStep}!MaximizationStep@{MaximizationStep}}
+\index{MaximizationStep@{MaximizationStep}!dai::MaximizationStep@{dai::MaximizationStep}}
+\doxysubsubsection{\texorpdfstring{MaximizationStep()}{MaximizationStep()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily dai\+::\+Maximization\+Step\+::\+Maximization\+Step (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classdai_1_1SharedParameters}{Shared\+Parameters}} $>$ \&}]{maximizations }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct \doxylink{classdai_1_1MaximizationStep}{Maximization\+Step} from a vector of parameter estimation tasks. 
+
+\Hypertarget{classdai_1_1MaximizationStep_ad705857af3c53a94264590f8a6d1a120}\label{classdai_1_1MaximizationStep_ad705857af3c53a94264590f8a6d1a120} 
+\index{dai::MaximizationStep@{dai::MaximizationStep}!MaximizationStep@{MaximizationStep}}
+\index{MaximizationStep@{MaximizationStep}!dai::MaximizationStep@{dai::MaximizationStep}}
+\doxysubsubsection{\texorpdfstring{MaximizationStep()}{MaximizationStep()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily dai\+::\+Maximization\+Step\+::\+Maximization\+Step (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{is,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1FactorGraph}{Factor\+Graph}} \&}]{fg\+\_\+varlookup }\end{DoxyParamCaption})}
+
+
+
+Constructor from an input stream and a corresponding factor graph. 
+
+\begin{DoxySeeAlso}{See also}
+\doxysectlink{fileformats_fileformats-emalg-maximizationstep}{Maximization Step block format}{2} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classdai_1_1MaximizationStep_a5dcaac5456934d874a030e4b1db1c961}\label{classdai_1_1MaximizationStep_a5dcaac5456934d874a030e4b1db1c961} 
+\index{dai::MaximizationStep@{dai::MaximizationStep}!addExpectations@{addExpectations}}
+\index{addExpectations@{addExpectations}!dai::MaximizationStep@{dai::MaximizationStep}}
+\doxysubsubsection{\texorpdfstring{addExpectations()}{addExpectations()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+Maximization\+Step\+::add\+Expectations (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classdai_1_1InfAlg}{Inf\+Alg}} \&}]{alg }\end{DoxyParamCaption})}
+
+
+
+Collect the beliefs from this \doxylink{classdai_1_1InfAlg}{Inf\+Alg} as expectations for the next Maximization step. 
+
+\Hypertarget{classdai_1_1MaximizationStep_aa91aab0e5776b645a738b8644b5a9042}\label{classdai_1_1MaximizationStep_aa91aab0e5776b645a738b8644b5a9042} 
+\index{dai::MaximizationStep@{dai::MaximizationStep}!maximize@{maximize}}
+\index{maximize@{maximize}!dai::MaximizationStep@{dai::MaximizationStep}}
+\doxysubsubsection{\texorpdfstring{maximize()}{maximize()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+Maximization\+Step\+::maximize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classdai_1_1FactorGraph}{Factor\+Graph}} \&}]{fg }\end{DoxyParamCaption})}
+
+
+
+Using all of the currently added expectations, make new factors with maximized parameters and set them in the \doxylink{classdai_1_1FactorGraph}{Factor\+Graph}. 
+
+\Hypertarget{classdai_1_1MaximizationStep_a9c5e7354696e2beafcd37388124dcfcb}\label{classdai_1_1MaximizationStep_a9c5e7354696e2beafcd37388124dcfcb} 
+\index{dai::MaximizationStep@{dai::MaximizationStep}!clear@{clear}}
+\index{clear@{clear}!dai::MaximizationStep@{dai::MaximizationStep}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+Maximization\+Step\+::clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Clear the step, to be called at the begining of each step. 
+
+\Hypertarget{classdai_1_1MaximizationStep_a00ac8107ac2f3eabd7f4edb798593730}\label{classdai_1_1MaximizationStep_a00ac8107ac2f3eabd7f4edb798593730} 
+\index{dai::MaximizationStep@{dai::MaximizationStep}!begin@{begin}}
+\index{begin@{begin}!dai::MaximizationStep@{dai::MaximizationStep}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1MaximizationStep_abcc9502927c3f016abab2a4b74c4f6c2}{iterator}} dai\+::\+Maximization\+Step\+::begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns iterator that points to the first parameter estimation task. 
+
+\Hypertarget{classdai_1_1MaximizationStep_ab58e7f295b81bc0c8c3cbee310cb99ab}\label{classdai_1_1MaximizationStep_ab58e7f295b81bc0c8c3cbee310cb99ab} 
+\index{dai::MaximizationStep@{dai::MaximizationStep}!begin@{begin}}
+\index{begin@{begin}!dai::MaximizationStep@{dai::MaximizationStep}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1MaximizationStep_a950d5cf33de63b3a7211448a045b908e}{const\+\_\+iterator}} dai\+::\+Maximization\+Step\+::begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns constant iterator that points to the first parameter estimation task. 
+
+\Hypertarget{classdai_1_1MaximizationStep_a2b5ad24e56b171d6df22eac3e6e63e97}\label{classdai_1_1MaximizationStep_a2b5ad24e56b171d6df22eac3e6e63e97} 
+\index{dai::MaximizationStep@{dai::MaximizationStep}!end@{end}}
+\index{end@{end}!dai::MaximizationStep@{dai::MaximizationStep}}
+\doxysubsubsection{\texorpdfstring{end()}{end()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1MaximizationStep_abcc9502927c3f016abab2a4b74c4f6c2}{iterator}} dai\+::\+Maximization\+Step\+::end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns iterator that points beyond the last parameter estimation task. 
+
+\Hypertarget{classdai_1_1MaximizationStep_aaff2bcece209a065fca661caf653347a}\label{classdai_1_1MaximizationStep_aaff2bcece209a065fca661caf653347a} 
+\index{dai::MaximizationStep@{dai::MaximizationStep}!end@{end}}
+\index{end@{end}!dai::MaximizationStep@{dai::MaximizationStep}}
+\doxysubsubsection{\texorpdfstring{end()}{end()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1MaximizationStep_a950d5cf33de63b3a7211448a045b908e}{const\+\_\+iterator}} dai\+::\+Maximization\+Step\+::end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns constant iterator that points beyond the last parameter estimation task. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classdai_1_1MaximizationStep_a583e2dcc3dabcea433adc9c9a196ed6e}\label{classdai_1_1MaximizationStep_a583e2dcc3dabcea433adc9c9a196ed6e} 
+\index{dai::MaximizationStep@{dai::MaximizationStep}!\_params@{\_params}}
+\index{\_params@{\_params}!dai::MaximizationStep@{dai::MaximizationStep}}
+\doxysubsubsection{\texorpdfstring{\_params}{\_params}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classdai_1_1SharedParameters}{Shared\+Parameters}}$>$ dai\+::\+Maximization\+Step\+::\+\_\+params\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Vector of parameter estimation tasks of which this maximization step consists. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/dai/\mbox{\hyperlink{emalg_8h}{emalg.\+h}}\item 
+src/emalg.\+cpp\end{DoxyCompactItemize}

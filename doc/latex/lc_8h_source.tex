@@ -1,0 +1,116 @@
+\doxysection{lc.\+h}
+\hypertarget{lc_8h_source}{}\label{lc_8h_source}\index{include/dai/lc.h@{include/dai/lc.h}}
+\mbox{\hyperlink{lc_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*\ \ This\ file\ is\ part\ of\ libDAI\ -\/\ http://www.libdai.org/}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ \ Copyright\ (c)\ 2006-\/2011,\ The\ libDAI\ authors.\ All\ rights\ reserved.}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ Use\ of\ this\ source\ code\ is\ governed\ by\ a\ BSD-\/style\ license\ that\ can\ be\ found\ in\ the\ LICENSE\ file.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#ifndef\ \_\_defined\_libdai\_lc\_h}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ \_\_defined\_libdai\_lc\_h}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{dai__config_8h}{dai/dai\_config.h}}>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#ifdef\ DAI\_WITH\_LC}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{daialg_8h}{dai/daialg.h}}>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{enum_8h}{dai/enum.h}}>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{factorgraph_8h}{dai/factorgraph.h}}>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{properties_8h}{dai/properties.h}}>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{exceptions_8h}{dai/exceptions.h}}>}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacedai}{dai}}\ \{}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classdai_1_1LC}{LC}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classdai_1_1DAIAlg}{DAIAlgFG}}\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ std::vector<Factor>\ \mbox{\hyperlink{classdai_1_1LC_a5e7935f10e10a338388585d386b2a410}{\_pancakes}};}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ std::vector<Factor>\ \mbox{\hyperlink{classdai_1_1LC_a2e31e6034841d1d73c92e2abff3c9ed6}{\_cavitydists}};}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ std::vector<std::vector<Factor>\ >\ \mbox{\hyperlink{classdai_1_1LC_a042485bf668f05096eb316ce9ea8d9b1}{\_phis}};}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ std::vector<Factor>\ \mbox{\hyperlink{classdai_1_1LC_ae46a55eed6268e16f8d525a698c92bfd}{\_beliefs}};}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}}\ \mbox{\hyperlink{classdai_1_1LC_a0a2e99fa1baeec72d7478a33ca05efce}{\_maxdiff}};}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classdai_1_1LC_ab9a6ef3efc0f0312b32989a317f93be0}{\_iters}};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structdai_1_1LC_1_1Properties}{Properties}}\ \{}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structdai_1_1LC_1_1Properties_ae6e87b167ff5de790a1e2db9f5af96d0}{DAI\_ENUM}}(\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{CavityType}},\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{FULL}},\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{PAIR}},\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{PAIR2}},\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{UNIFORM}});}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structdai_1_1LC_1_1Properties_aa2d1708ee9aaee444d65ba712d41b2f4}{DAI\_ENUM}}(UpdateType,\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{SEQFIX}},\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{SEQRND}});}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{structdai_1_1LC_1_1Properties_af36169e6a7ba3a27df32007bea3a42d9}{verbose}};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{structdai_1_1LC_1_1Properties_a62730c262e688ac59512cf3018b5f4e8}{maxiter}};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}}\ \mbox{\hyperlink{structdai_1_1LC_1_1Properties_ae8715b5b3aaf3cfa7c7277c688a24fda}{tol}};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structdai_1_1LC_1_1Properties_af03789fceacde90d75ebe5f1b19eaafb}{reinit}};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}}\ \mbox{\hyperlink{structdai_1_1LC_1_1Properties_a741949520e541904d59878b57e0b0598}{damping}};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{CavityType}}\ \mbox{\hyperlink{structdai_1_1LC_1_1Properties_a76cb44f7bdd84b4d8fa0eb5b37d4d14d}{cavity}};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ UpdateType\ \mbox{\hyperlink{structdai_1_1LC_1_1Properties_a771b51ab1d382bae136f76e6fcc9b481}{updates}};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ \mbox{\hyperlink{structdai_1_1LC_1_1Properties_a8e4cbe17245261c2e6996edf3926365c}{cavainame}};}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1PropertySet}{PropertySet}}\ \mbox{\hyperlink{structdai_1_1LC_1_1Properties_a276fd4fc9a94cf5dace3de93ceefc027}{cavaiopts}};}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \}\ props;}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1LC_ae46e76de9def71e83ff7d95604e641b4}{LC}}()\ :\ \mbox{\hyperlink{classdai_1_1DAIAlg}{DAIAlgFG}}(),\ \mbox{\hyperlink{classdai_1_1LC_a5e7935f10e10a338388585d386b2a410}{\_pancakes}}(),\ \mbox{\hyperlink{classdai_1_1LC_a2e31e6034841d1d73c92e2abff3c9ed6}{\_cavitydists}}(),\ \mbox{\hyperlink{classdai_1_1LC_a042485bf668f05096eb316ce9ea8d9b1}{\_phis}}(),\ \mbox{\hyperlink{classdai_1_1LC_ae46a55eed6268e16f8d525a698c92bfd}{\_beliefs}}(),\ \mbox{\hyperlink{classdai_1_1LC_a0a2e99fa1baeec72d7478a33ca05efce}{\_maxdiff}}(),\ \mbox{\hyperlink{classdai_1_1LC_ab9a6ef3efc0f0312b32989a317f93be0}{\_iters}}(),\ props()\ \{\}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1LC_ae46e76de9def71e83ff7d95604e641b4}{LC}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classdai_1_1FactorGraph}{FactorGraph}}\ \&\mbox{\hyperlink{classdai_1_1DAIAlg_a056caa8b537fccbd764b1c9f4e1ff615}{fg}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classdai_1_1PropertySet}{PropertySet}}\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{opts}}\ );}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classdai_1_1LC}{LC}}*\ \mbox{\hyperlink{classdai_1_1LC_a585bd4bee463ed814afa3031d0d6f35f}{clone}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classdai_1_1LC_ae46e76de9def71e83ff7d95604e641b4}{LC}}(*\textcolor{keyword}{this});\ \}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classdai_1_1LC}{LC}}*\ \mbox{\hyperlink{classdai_1_1LC_a1076cba7ec437ff1ab05d8142dd06d85}{construct}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classdai_1_1FactorGraph}{FactorGraph}}\ \&\mbox{\hyperlink{classdai_1_1DAIAlg_a056caa8b537fccbd764b1c9f4e1ff615}{fg}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classdai_1_1PropertySet}{PropertySet}}\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{opts}}\ )\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classdai_1_1LC_ae46e76de9def71e83ff7d95604e641b4}{LC}}(\ \mbox{\hyperlink{classdai_1_1DAIAlg_a056caa8b537fccbd764b1c9f4e1ff615}{fg}},\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{opts}}\ );\ \}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ std::string\ \mbox{\hyperlink{classdai_1_1LC_a09f5ee54d9ac43b0be1a4ee4c9f79198}{name}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}LC"{}};\ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classdai_1_1TFactor}{Factor}}\ \mbox{\hyperlink{classdai_1_1LC_a7d2daf122e3f278ace1ed6a423f24aa0}{belief}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classdai_1_1Var}{Var}}\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{v}}\ )\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classdai_1_1LC_a750077bc0b20deaa0bf17ac6e576b0ae}{beliefV}}(\ findVar(\ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{v}}\ )\ );\ \}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classdai_1_1TFactor}{Factor}}\ \mbox{\hyperlink{classdai_1_1LC_a7d2daf122e3f278ace1ed6a423f24aa0}{belief}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classdai_1_1VarSet}{VarSet}}\ \&\textcolor{comment}{/*vs*/}\ )\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classdai_1_1TFactor}{Factor}}\ \mbox{\hyperlink{classdai_1_1LC_a750077bc0b20deaa0bf17ac6e576b0ae}{beliefV}}(\ \textcolor{keywordtype}{size\_t}\ i\ )\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classdai_1_1LC_ae46a55eed6268e16f8d525a698c92bfd}{\_beliefs}}[i];\ \}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ std::vector<Factor>\ \mbox{\hyperlink{classdai_1_1LC_a55644a8ebf61594562ce7f765e0927d7}{beliefs}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classdai_1_1LC_ae46a55eed6268e16f8d525a698c92bfd}{\_beliefs}};\ \}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}}\ \mbox{\hyperlink{classdai_1_1LC_a3b3a00ac9bba5058f6be8833cf523a08}{logZ}}()\textcolor{keyword}{\ const\ }\{\ DAI\_THROW(NOT\_IMPLEMENTED);\ \textcolor{keywordflow}{return}\ 0.0;\ \}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classdai_1_1LC_a007ab11f0d08d0ed23ae141230b122cc}{init}}();}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classdai_1_1LC_ab077c808ad6ca6b9e134746d0846ea5d}{init}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classdai_1_1VarSet}{VarSet}}\ \&\textcolor{comment}{/*ns*/}\ )\ \{\ \mbox{\hyperlink{classdai_1_1LC_ab077c808ad6ca6b9e134746d0846ea5d}{init}}();\ \}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}}\ \mbox{\hyperlink{classdai_1_1LC_aab01bec7e166b552f02484c15fefa1c9}{run}}();}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}}\ \mbox{\hyperlink{classdai_1_1LC_a662106125a9f1bca40a213d9e699272b}{maxDiff}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classdai_1_1LC_a0a2e99fa1baeec72d7478a33ca05efce}{\_maxdiff}};\ \}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{classdai_1_1LC_a6322a4647b0cdd49bea2bf3ea6d3856d}{Iterations}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classdai_1_1LC_ab9a6ef3efc0f0312b32989a317f93be0}{\_iters}};\ \}}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classdai_1_1LC_a2f0abe8c11345286596456851d690111}{setMaxIter}}(\ \textcolor{keywordtype}{size\_t}\ maxiter\ )\ \{\ props.\mbox{\hyperlink{structdai_1_1LC_1_1Properties_a62730c262e688ac59512cf3018b5f4e8}{maxiter}}\ =\ maxiter;\ \}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classdai_1_1LC_a5e7f0c159e23c48c93b92a83572a1b37}{setProperties}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classdai_1_1PropertySet}{PropertySet}}\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{opts}}\ );}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classdai_1_1PropertySet}{PropertySet}}\ \mbox{\hyperlink{classdai_1_1LC_a702e165d33827df7a717ac9eba2898da}{getProperties}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ std::string\ \mbox{\hyperlink{classdai_1_1LC_a5176725b78e5a39b153b90b4bc4d7e49}{printProperties}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}}\ \mbox{\hyperlink{classdai_1_1LC_a5434630d65c22c3f3dfc7b913b58bdaf}{CalcCavityDist}}(\ \textcolor{keywordtype}{size\_t}\ i,\ \textcolor{keyword}{const}\ std::string\ \&\mbox{\hyperlink{classdai_1_1LC_a09f5ee54d9ac43b0be1a4ee4c9f79198}{name}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classdai_1_1PropertySet}{PropertySet}}\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{opts}}\ );}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}}\ \mbox{\hyperlink{classdai_1_1LC_acc10d4cd212255ae2edf44f121347665}{InitCavityDists}}(\ \textcolor{keyword}{const}\ std::string\ \&\mbox{\hyperlink{classdai_1_1LC_a09f5ee54d9ac43b0be1a4ee4c9f79198}{name}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classdai_1_1PropertySet}{PropertySet}}\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{opts}}\ );}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{classdai_1_1LC_a8f378501c011772b7bf9a753af3e131d}{SetCavityDists}}(\ std::vector<Factor>\ \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{Q}}\ );}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classdai_1_1TFactor}{Factor}}\ \mbox{\hyperlink{classdai_1_1LC_a0fddd5b0eee7c54f4294aeed0a01acc2}{NewPancake}}\ (\textcolor{keywordtype}{size\_t}\ i,\ \textcolor{keywordtype}{size\_t}\ \_I,\ \textcolor{keywordtype}{bool}\ \&\ hasNaNs);}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classdai_1_1LC_ac0b31ad501fc7051874162a000165894}{CalcBelief}}\ (\textcolor{keywordtype}{size\_t}\ i);}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classdai_1_1TFactor}{Factor}}\ \&\mbox{\hyperlink{classdai_1_1LC_a4ffb4db1ddb93dad5c09e543c00eb255}{pancake}}\ (\textcolor{keywordtype}{size\_t}\ i)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classdai_1_1LC_a5e7935f10e10a338388585d386b2a410}{\_pancakes}}[i];\ \};}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classdai_1_1TFactor}{Factor}}\ \&\mbox{\hyperlink{classdai_1_1LC_a867e8809bde2466576b7832a7f265c61}{cavitydist}}\ (\textcolor{keywordtype}{size\_t}\ i)\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classdai_1_1LC_a2e31e6034841d1d73c92e2abff3c9ed6}{\_cavitydists}}[i];\ \};}
+\DoxyCodeLine{00144\ \};}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \}\ \textcolor{comment}{//\ end\ of\ namespace\ dai}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

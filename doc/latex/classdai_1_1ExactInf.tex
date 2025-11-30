@@ -1,0 +1,554 @@
+\doxysection{dai\+::Exact\+Inf Class Reference}
+\hypertarget{classdai_1_1ExactInf}{}\label{classdai_1_1ExactInf}\index{dai::ExactInf@{dai::ExactInf}}
+
+
+Exact inference algorithm using brute force enumeration (mainly useful for testing purposes)  
+
+
+
+
+{\ttfamily \#include $<$dai/exactinf.\+h$>$}
+
+Inheritance diagram for dai\+::Exact\+Inf\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classdai_1_1ExactInf}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structdai_1_1ExactInf_1_1Properties}{Properties}}
+\begin{DoxyCompactList}\small\item\em Parameters for \doxylink{classdai_1_1ExactInf}{Exact\+Inf}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{Indent}\textbf{ Constructors/destructors}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdai_1_1ExactInf_a324505f8fdc4904179eb2e1c96fccda1}{Exact\+Inf}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1ExactInf_a014dde3f2b7ec66332fb1cbe00538b89}{Exact\+Inf}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1FactorGraph}{Factor\+Graph}} \&\mbox{\hyperlink{classdai_1_1DAIAlg_a056caa8b537fccbd764b1c9f4e1ff615}{fg}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{opts}})
+\begin{DoxyCompactList}\small\item\em Construct from \doxylink{classdai_1_1FactorGraph}{Factor\+Graph} {\itshape fg} and \doxylink{classdai_1_1PropertySet}{Property\+Set} {\itshape opts}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ General Inf\+Alg interface}\par
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{classdai_1_1ExactInf}{Exact\+Inf}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classdai_1_1ExactInf_a6ae3dd95879fb926772aef8814c237ea}{clone}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns a pointer to a new, cloned copy of {\ttfamily \texorpdfstring{$\ast$}{*}this} (i.\+e., virtual copy constructor) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{classdai_1_1ExactInf}{Exact\+Inf}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classdai_1_1ExactInf_ac3d7d2732b641d1a6ad3fa88f13c9ef4}{construct}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1FactorGraph}{Factor\+Graph}} \&\mbox{\hyperlink{classdai_1_1DAIAlg_a056caa8b537fccbd764b1c9f4e1ff615}{fg}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{opts}}) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns a pointer to a newly constructed inference algorithm. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} std\+::string \mbox{\hyperlink{classdai_1_1ExactInf_a94a2886632359b861381e6ebc3778086}{name}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns the name of the algorithm. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} \mbox{\hyperlink{classdai_1_1ExactInf_ab833bcf29ff9849a207c03f0d7ae4c9c}{belief}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1Var}{Var}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{v}}) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns the (approximate) marginal probability distribution of a variable. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} \mbox{\hyperlink{classdai_1_1ExactInf_ab1b1dba048c25c2372d88fb78b28ad7f}{belief}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{vs}}) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns the (approximate) marginal probability distribution of a set of variables. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} \mbox{\hyperlink{classdai_1_1ExactInf_a1a9e71f3b91b50bad4dc71d222d758ac}{beliefV}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} i) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns the (approximate) marginal probability distribution of the variable with index {\itshape i}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} \mbox{\hyperlink{classdai_1_1ExactInf_a6067617be47ac495adcf9e2e1941e9b9}{beliefF}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} I) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns the (approximate) marginal probability distribution of the variables on which factor {\itshape I} depends. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} std\+::vector$<$ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} $>$ \mbox{\hyperlink{classdai_1_1ExactInf_a708e0d67af217339842b1395b0e8301f}{beliefs}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns all beliefs (approximate marginal probability distributions) calculated by the algorithm. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{classdai_1_1ExactInf_a32515673c189d799dc27d97b6f38532b}{logZ}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns the logarithm of the (approximated) partition sum (normalizing constant of the factor graph). \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} $>$ \mbox{\hyperlink{classdai_1_1ExactInf_a2e1f3a85f3c61b337f8a25285a2ab99f}{find\+Maximum}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1ExactInf_a8b86be92502af6ef5ecb38f12406733d}{init}} ()
+\begin{DoxyCompactList}\small\item\em Initializes all data structures of the approximate inference algorithm. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1ExactInf_aace58f99e40bb4084c73d6b77fd26456}{init}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} \&)
+\begin{DoxyCompactList}\small\item\em Initializes all data structures corresponding to some set of variables. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{classdai_1_1ExactInf_a68f774f631cb5de9767bb78cc379176b}{run}} ()
+\begin{DoxyCompactList}\small\item\em Runs the approximate inference algorithm. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{classdai_1_1ExactInf_a161c14217330e27605aa906fc2d2c1ab}{max\+Diff}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns maximum difference between single variable beliefs in the last iteration. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{classdai_1_1ExactInf_aa369d8163114e720d8f6abe6a1c6dabb}{Iterations}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns number of iterations done (one iteration passes over the complete factorgraph). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1ExactInf_a885f296c16fdeeb33f5fa51309db5c7b}{set\+Properties}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{opts}})
+\begin{DoxyCompactList}\small\item\em Set parameters of this inference algorithm. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \mbox{\hyperlink{classdai_1_1ExactInf_aa45d49dc9b2d0a7830cf87066b06b612}{get\+Properties}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns parameters of this inference algorithm converted into a \doxylink{classdai_1_1PropertySet}{Property\+Set}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} std\+::string \mbox{\hyperlink{classdai_1_1ExactInf_a43d56d08aa33e10e837dad60f8e5da54}{print\+Properties}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns parameters of this inference algorithm formatted as a string in the format "{}\mbox{[}key1=val1,key2=val2,...,keyn=valn\mbox{]}"{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classdai_1_1DAIAlg}{dai\+::\+DAIAlg$<$ GRM $>$}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdai_1_1DAIAlg_a1b66918854e70f19c8b506658c9f50e0}{DAIAlg}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classdai_1_1DAIAlg_a46ac57c2abad7c6870f30edc951aeff3}{DAIAlg}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} GRM \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{grm}})
+\begin{DoxyCompactList}\small\item\em Construct from GRM. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classdai_1_1FactorGraph}{Factor\+Graph}} \& \mbox{\hyperlink{classdai_1_1DAIAlg_a056caa8b537fccbd764b1c9f4e1ff615}{fg}} ()
+\begin{DoxyCompactList}\small\item\em Returns reference to underlying \doxylink{classdai_1_1FactorGraph}{Factor\+Graph}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1FactorGraph}{Factor\+Graph}} \& \mbox{\hyperlink{classdai_1_1DAIAlg_afdb2f05fe4b4458a9680ddbe21ad58a9}{fg}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Returns constant reference to underlying \doxylink{classdai_1_1FactorGraph}{Factor\+Graph}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1DAIAlg_ac0d7b26c09d9d7db4a7eda5f66181045}{clamp}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} i, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{x}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{backup}}=\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{false}})
+\begin{DoxyCompactList}\small\item\em Clamp variable with index {\itshape i} to value {\itshape x} (i.\+e. multiply with a Kronecker delta $\delta_{x_i, x}$) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1DAIAlg_a7f0b8452352080a1e35ab9a68cb589fd}{make\+Cavity}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} i, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{backup}}=\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{false}})
+\begin{DoxyCompactList}\small\item\em Sets all factors interacting with variable with index {\itshape i} to one. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1DAIAlg_a195bcd6ad05557374c95db50c674ad7f}{make\+Region\+Cavity}} (std\+::vector$<$ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} $>$ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{fac\+Inds}}, \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{bool}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{backup}})
+\begin{DoxyCompactList}\small\item\em Sets all factors indicated by {\itshape fac\+Inds} to one. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1DAIAlg_a48ba6a58d10b8802d690e5e92ec5abe9}{backup\+Factor}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} I)
+\begin{DoxyCompactList}\small\item\em Make a backup copy of factor {\itshape I}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1DAIAlg_ac74e4ae749a3f706462bb5c0c0f204ca}{backup\+Factors}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{vs}})
+\begin{DoxyCompactList}\small\item\em Make backup copies of all factors involving the variables in {\itshape vs}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1DAIAlg_abf8dbd2797ec871e86566a6dfc0864e3}{restore\+Factor}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} I)
+\begin{DoxyCompactList}\small\item\em Restore factor {\itshape I} from its backup copy. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1DAIAlg_a333a182249b2abeb93ff21377d0e8ffd}{restore\+Factors}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{vs}})
+\begin{DoxyCompactList}\small\item\em Restore the factors involving the variables in {\itshape vs} from their backup copies. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1DAIAlg_aa4f659feb4967ba096400f4904cfe068}{restore\+Factors}} ()
+\begin{DoxyCompactList}\small\item\em Restore all factors from their backup copies. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classdai_1_1InfAlg}{dai\+::\+Inf\+Alg}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{classdai_1_1InfAlg_a00c1dba1041af038de0689cceb0a69f0}{\texorpdfstring{$\sim$}{\string~}\+Inf\+Alg}} ()
+\begin{DoxyCompactList}\small\item\em Virtual destructor (needed because this class contains virtual functions) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} std\+::string \mbox{\hyperlink{classdai_1_1InfAlg_aa4284a406963b4cd55a820af98e9f03d}{identify}} () \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Identifies itself for logging purposes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1InfAlg_ac48656e5d42a7d288e9ca6d70e264858}{set\+Max\+Iter}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}})
+\begin{DoxyCompactList}\small\item\em Sets maximum number of iterations (one iteration passes over the complete factorgraph). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classdai_1_1ExactInf_a77f1f18369e7392f47852890e34e9c29}\label{classdai_1_1ExactInf_a77f1f18369e7392f47852890e34e9c29} 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{struct}} \mbox{\hyperlink{structdai_1_1ExactInf_1_1Properties}{dai\+::\+Exact\+Inf\+::\+Properties}} {\bfseries props}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} $>$ \mbox{\hyperlink{classdai_1_1ExactInf_a5a926fe33ffc6bb1d85b99e2999f4a2a}{\+\_\+beliefsV}}
+\begin{DoxyCompactList}\small\item\em All single variable marginals. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} $>$ \mbox{\hyperlink{classdai_1_1ExactInf_af5acccc7ac54ae7ccd62fb0e189155c1}{\+\_\+beliefsF}}
+\begin{DoxyCompactList}\small\item\em All factor variable marginals. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} \mbox{\hyperlink{classdai_1_1ExactInf_ae312e3ebdad499ae3df38e63594f701a}{\+\_\+logZ}}
+\begin{DoxyCompactList}\small\item\em Logarithm of partition sum. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional interface specific for Exact\+Inf}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} \mbox{\hyperlink{classdai_1_1ExactInf_ab279d7e2639373bd9425067251f81b3e}{calc\+Marginal}} (\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} \&\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{vs}}) \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}}
+\begin{DoxyCompactList}\small\item\em Calculates marginal probability distribution for variables {\itshape vs}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} \mbox{\hyperlink{classdai_1_1ExactInf_aed3435a7b3efc19678f7da12f0876487}{construct}} ()
+\begin{DoxyCompactList}\small\item\em Helper function for constructors. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Exact inference algorithm using brute force enumeration (mainly useful for testing purposes) 
+
+Inference is done simply by multiplying all factors together into one large factor, and then calculating marginals and partition sum from the product. \begin{DoxyNote}{Note}
+This inference method can easily exhaust all available memory; in that case, one may try the \doxylink{classdai_1_1JTree}{JTree} class instead. 
+\end{DoxyNote}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classdai_1_1ExactInf_a324505f8fdc4904179eb2e1c96fccda1}\label{classdai_1_1ExactInf_a324505f8fdc4904179eb2e1c96fccda1} 
+\index{dai::ExactInf@{dai::ExactInf}!ExactInf@{ExactInf}}
+\index{ExactInf@{ExactInf}!dai::ExactInf@{dai::ExactInf}}
+\doxysubsubsection{\texorpdfstring{ExactInf()}{ExactInf()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily dai\+::\+Exact\+Inf\+::\+Exact\+Inf (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Default constructor. 
+
+\Hypertarget{classdai_1_1ExactInf_a014dde3f2b7ec66332fb1cbe00538b89}\label{classdai_1_1ExactInf_a014dde3f2b7ec66332fb1cbe00538b89} 
+\index{dai::ExactInf@{dai::ExactInf}!ExactInf@{ExactInf}}
+\index{ExactInf@{ExactInf}!dai::ExactInf@{dai::ExactInf}}
+\doxysubsubsection{\texorpdfstring{ExactInf()}{ExactInf()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily dai\+::\+Exact\+Inf\+::\+Exact\+Inf (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1FactorGraph}{Factor\+Graph}} \&}]{fg,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&}]{opts }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Construct from \doxylink{classdai_1_1FactorGraph}{Factor\+Graph} {\itshape fg} and \doxylink{classdai_1_1PropertySet}{Property\+Set} {\itshape opts}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fg} & Factor graph. \\
+\hline
+{\em opts} & Parameters \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxylink{structdai_1_1ExactInf_1_1Properties}{Properties} 
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classdai_1_1ExactInf_a6ae3dd95879fb926772aef8814c237ea}\label{classdai_1_1ExactInf_a6ae3dd95879fb926772aef8814c237ea} 
+\index{dai::ExactInf@{dai::ExactInf}!clone@{clone}}
+\index{clone@{clone}!dai::ExactInf@{dai::ExactInf}}
+\doxysubsubsection{\texorpdfstring{clone()}{clone()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{classdai_1_1ExactInf}{Exact\+Inf}} \texorpdfstring{$\ast$}{*} dai\+::\+Exact\+Inf\+::clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Returns a pointer to a new, cloned copy of {\ttfamily \texorpdfstring{$\ast$}{*}this} (i.\+e., virtual copy constructor) 
+
+
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_a4e05d62b78fc4f9a93cd417a5c807eab}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1ExactInf_ac3d7d2732b641d1a6ad3fa88f13c9ef4}\label{classdai_1_1ExactInf_ac3d7d2732b641d1a6ad3fa88f13c9ef4} 
+\index{dai::ExactInf@{dai::ExactInf}!construct@{construct}}
+\index{construct@{construct}!dai::ExactInf@{dai::ExactInf}}
+\doxysubsubsection{\texorpdfstring{construct()}{construct()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{classdai_1_1ExactInf}{Exact\+Inf}} \texorpdfstring{$\ast$}{*} dai\+::\+Exact\+Inf\+::construct (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1FactorGraph}{Factor\+Graph}} \&}]{fg,  }\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&}]{opts }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Returns a pointer to a newly constructed inference algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fg} & Factor graph on which to perform the inference algorithm; \\
+\hline
+{\em opts} & Parameters passed to constructor of inference algorithm; \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_ac2865bb3577b103a707903010a53b6ce}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1ExactInf_a94a2886632359b861381e6ebc3778086}\label{classdai_1_1ExactInf_a94a2886632359b861381e6ebc3778086} 
+\index{dai::ExactInf@{dai::ExactInf}!name@{name}}
+\index{name@{name}!dai::ExactInf@{dai::ExactInf}}
+\doxysubsubsection{\texorpdfstring{name()}{name()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} std\+::string dai\+::\+Exact\+Inf\+::name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Returns the name of the algorithm. 
+
+
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_a25108f733ca6bc54f445a4fffdc2a392}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1ExactInf_ab833bcf29ff9849a207c03f0d7ae4c9c}\label{classdai_1_1ExactInf_ab833bcf29ff9849a207c03f0d7ae4c9c} 
+\index{dai::ExactInf@{dai::ExactInf}!belief@{belief}}
+\index{belief@{belief}!dai::ExactInf@{dai::ExactInf}}
+\doxysubsubsection{\texorpdfstring{belief()}{belief()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} dai\+::\+Exact\+Inf\+::belief (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1Var}{Var}} \&}]{v }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Returns the (approximate) marginal probability distribution of a variable. 
+
+\begin{DoxyNote}{Note}
+Before this method is called, \doxylink{classdai_1_1ExactInf_a68f774f631cb5de9767bb78cc379176b}{run()} should have been called. 
+\end{DoxyNote}
+
+
+Reimplemented from \mbox{\hyperlink{classdai_1_1InfAlg_ab36227bbc227dfaff65d4a39ff938c34}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1ExactInf_ab1b1dba048c25c2372d88fb78b28ad7f}\label{classdai_1_1ExactInf_ab1b1dba048c25c2372d88fb78b28ad7f} 
+\index{dai::ExactInf@{dai::ExactInf}!belief@{belief}}
+\index{belief@{belief}!dai::ExactInf@{dai::ExactInf}}
+\doxysubsubsection{\texorpdfstring{belief()}{belief()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} dai\+::\+Exact\+Inf\+::belief (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} \&}]{vs }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Returns the (approximate) marginal probability distribution of a set of variables. 
+
+\begin{DoxyNote}{Note}
+Before this method is called, \doxylink{classdai_1_1ExactInf_a68f774f631cb5de9767bb78cc379176b}{run()} should have been called. 
+\end{DoxyNote}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em NOT\+\_\+\+IMPLEMENTED} & if not implemented/supported. \\
+\hline
+{\em BELIEF\+\_\+\+NOT\+\_\+\+AVAILABLE} & if the requested belief cannot be calculated with this algorithm. \\
+\hline
+\end{DoxyExceptions}
+
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_a4655db9d766470f1a555cba7d3ec7190}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1ExactInf_a1a9e71f3b91b50bad4dc71d222d758ac}\label{classdai_1_1ExactInf_a1a9e71f3b91b50bad4dc71d222d758ac} 
+\index{dai::ExactInf@{dai::ExactInf}!beliefV@{beliefV}}
+\index{beliefV@{beliefV}!dai::ExactInf@{dai::ExactInf}}
+\doxysubsubsection{\texorpdfstring{beliefV()}{beliefV()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} dai\+::\+Exact\+Inf\+::beliefV (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{i }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Returns the (approximate) marginal probability distribution of the variable with index {\itshape i}. 
+
+For some approximate inference algorithms, using \doxylink{classdai_1_1ExactInf_a1a9e71f3b91b50bad4dc71d222d758ac}{belief\+V()} is preferred to \doxylink{classdai_1_1ExactInf_ab833bcf29ff9849a207c03f0d7ae4c9c}{belief()} for performance reasons. \begin{DoxyNote}{Note}
+Before this method is called, \doxylink{classdai_1_1ExactInf_a68f774f631cb5de9767bb78cc379176b}{run()} should have been called. 
+\end{DoxyNote}
+
+
+Reimplemented from \mbox{\hyperlink{classdai_1_1InfAlg_ad89814b146552be0928a772ca110b444}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1ExactInf_a6067617be47ac495adcf9e2e1941e9b9}\label{classdai_1_1ExactInf_a6067617be47ac495adcf9e2e1941e9b9} 
+\index{dai::ExactInf@{dai::ExactInf}!beliefF@{beliefF}}
+\index{beliefF@{beliefF}!dai::ExactInf@{dai::ExactInf}}
+\doxysubsubsection{\texorpdfstring{beliefF()}{beliefF()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} dai\+::\+Exact\+Inf\+::beliefF (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}}}]{I }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Returns the (approximate) marginal probability distribution of the variables on which factor {\itshape I} depends. 
+
+For some approximate inference algorithms, using \doxylink{classdai_1_1ExactInf_a6067617be47ac495adcf9e2e1941e9b9}{belief\+F()} is preferred to \doxylink{classdai_1_1ExactInf_ab833bcf29ff9849a207c03f0d7ae4c9c}{belief()} for performance reasons. \begin{DoxyNote}{Note}
+Before this method is called, \doxylink{classdai_1_1ExactInf_a68f774f631cb5de9767bb78cc379176b}{run()} should have been called. 
+\end{DoxyNote}
+
+
+Reimplemented from \mbox{\hyperlink{classdai_1_1InfAlg_a7db625ef414a06961ac0d808b6102546}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1ExactInf_a708e0d67af217339842b1395b0e8301f}\label{classdai_1_1ExactInf_a708e0d67af217339842b1395b0e8301f} 
+\index{dai::ExactInf@{dai::ExactInf}!beliefs@{beliefs}}
+\index{beliefs@{beliefs}!dai::ExactInf@{dai::ExactInf}}
+\doxysubsubsection{\texorpdfstring{beliefs()}{beliefs()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} $>$ dai\+::\+Exact\+Inf\+::beliefs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Returns all beliefs (approximate marginal probability distributions) calculated by the algorithm. 
+
+\begin{DoxyNote}{Note}
+Before this method is called, \doxylink{classdai_1_1ExactInf_a68f774f631cb5de9767bb78cc379176b}{run()} should have been called. 
+\end{DoxyNote}
+
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_a283601d71d62a6f60183748cbee88006}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1ExactInf_a32515673c189d799dc27d97b6f38532b}\label{classdai_1_1ExactInf_a32515673c189d799dc27d97b6f38532b} 
+\index{dai::ExactInf@{dai::ExactInf}!logZ@{logZ}}
+\index{logZ@{logZ}!dai::ExactInf@{dai::ExactInf}}
+\doxysubsubsection{\texorpdfstring{logZ()}{logZ()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} dai\+::\+Exact\+Inf\+::logZ (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Returns the logarithm of the (approximated) partition sum (normalizing constant of the factor graph). 
+
+\begin{DoxyNote}{Note}
+Before this method is called, \doxylink{classdai_1_1ExactInf_a68f774f631cb5de9767bb78cc379176b}{run()} should have been called. 
+\end{DoxyNote}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em NOT\+\_\+\+IMPLEMENTED} & if not implemented/supported \\
+\hline
+\end{DoxyExceptions}
+
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_a40a2353d63c358ebca834d40b0a4fc70}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1ExactInf_a2e1f3a85f3c61b337f8a25285a2ab99f}\label{classdai_1_1ExactInf_a2e1f3a85f3c61b337f8a25285a2ab99f} 
+\index{dai::ExactInf@{dai::ExactInf}!findMaximum@{findMaximum}}
+\index{findMaximum@{findMaximum}!dai::ExactInf@{dai::ExactInf}}
+\doxysubsubsection{\texorpdfstring{findMaximum()}{findMaximum()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} $>$ dai\+::\+Exact\+Inf\+::find\+Maximum (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+\begin{DoxyNote}{Note}
+The complexity of this calculation is exponential in the number of variables. 
+\end{DoxyNote}
+
+
+Reimplemented from \mbox{\hyperlink{classdai_1_1InfAlg_a2095732e9defd30c7348703990804763}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1ExactInf_a8b86be92502af6ef5ecb38f12406733d}\label{classdai_1_1ExactInf_a8b86be92502af6ef5ecb38f12406733d} 
+\index{dai::ExactInf@{dai::ExactInf}!init@{init}}
+\index{init@{init}!dai::ExactInf@{dai::ExactInf}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+Exact\+Inf\+::init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Initializes all data structures of the approximate inference algorithm. 
+
+\begin{DoxyNote}{Note}
+This method should be called at least once before \doxylink{classdai_1_1ExactInf_a68f774f631cb5de9767bb78cc379176b}{run()} is called. 
+\end{DoxyNote}
+
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_a99dd53d1aaccf09a4b977a49a983cc85}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1ExactInf_aace58f99e40bb4084c73d6b77fd26456}\label{classdai_1_1ExactInf_aace58f99e40bb4084c73d6b77fd26456} 
+\index{dai::ExactInf@{dai::ExactInf}!init@{init}}
+\index{init@{init}!dai::ExactInf@{dai::ExactInf}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+Exact\+Inf\+::init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} \&}]{vs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Initializes all data structures corresponding to some set of variables. 
+
+This method can be used to do a partial initialization after a part of the factor graph has changed. Instead of initializing all data structures, it only initializes those involving the variables in {\itshape vs}. 
+\begin{DoxyExceptions}{Exceptions}
+{\em NOT\+\_\+\+IMPLEMENTED} & if not implemented/supported \\
+\hline
+\end{DoxyExceptions}
+
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_a5b1e6d8af207bcc47fd954fdef382a77}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1ExactInf_a68f774f631cb5de9767bb78cc379176b}\label{classdai_1_1ExactInf_a68f774f631cb5de9767bb78cc379176b} 
+\index{dai::ExactInf@{dai::ExactInf}!run@{run}}
+\index{run@{run}!dai::ExactInf@{dai::ExactInf}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} dai\+::\+Exact\+Inf\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Runs the approximate inference algorithm. 
+
+\begin{DoxyNote}{Note}
+Before \doxylink{classdai_1_1ExactInf_a68f774f631cb5de9767bb78cc379176b}{run()} is called the first time, \doxylink{classdai_1_1ExactInf_a8b86be92502af6ef5ecb38f12406733d}{init()} should have been called. 
+\end{DoxyNote}
+
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_a4ac173c4d4109fd1e2229dd83532d32f}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1ExactInf_a161c14217330e27605aa906fc2d2c1ab}\label{classdai_1_1ExactInf_a161c14217330e27605aa906fc2d2c1ab} 
+\index{dai::ExactInf@{dai::ExactInf}!maxDiff@{maxDiff}}
+\index{maxDiff@{maxDiff}!dai::ExactInf@{dai::ExactInf}}
+\doxysubsubsection{\texorpdfstring{maxDiff()}{maxDiff()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} dai\+::\+Exact\+Inf\+::max\+Diff (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Returns maximum difference between single variable beliefs in the last iteration. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em NOT\+\_\+\+IMPLEMENTED} & if not implemented/supported \\
+\hline
+\end{DoxyExceptions}
+
+
+Reimplemented from \mbox{\hyperlink{classdai_1_1InfAlg_a915a659034eb4c85abde912d684f8dee}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1ExactInf_aa369d8163114e720d8f6abe6a1c6dabb}\label{classdai_1_1ExactInf_aa369d8163114e720d8f6abe6a1c6dabb} 
+\index{dai::ExactInf@{dai::ExactInf}!Iterations@{Iterations}}
+\index{Iterations@{Iterations}!dai::ExactInf@{dai::ExactInf}}
+\doxysubsubsection{\texorpdfstring{Iterations()}{Iterations()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{virtual}} \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{size\+\_\+t}} dai\+::\+Exact\+Inf\+::\+Iterations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Returns number of iterations done (one iteration passes over the complete factorgraph). 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em NOT\+\_\+\+IMPLEMENTED} & if not implemented/supported \\
+\hline
+\end{DoxyExceptions}
+
+
+Reimplemented from \mbox{\hyperlink{classdai_1_1InfAlg_a89986bbc1a42554905c6f417f2227ac5}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1ExactInf_a885f296c16fdeeb33f5fa51309db5c7b}\label{classdai_1_1ExactInf_a885f296c16fdeeb33f5fa51309db5c7b} 
+\index{dai::ExactInf@{dai::ExactInf}!setProperties@{setProperties}}
+\index{setProperties@{setProperties}!dai::ExactInf@{dai::ExactInf}}
+\doxysubsubsection{\texorpdfstring{setProperties()}{setProperties()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+Exact\+Inf\+::set\+Properties (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} \&}]{opts }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Set parameters of this inference algorithm. 
+
+The parameters are set according to the \doxylink{classdai_1_1PropertySet}{Property\+Set} {\itshape opts}. The values can be stored either as std\+::string or as the type of the corresponding MF\+::props member. 
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_ac422893fd7b8e37f914860aeba9602dc}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1ExactInf_aa45d49dc9b2d0a7830cf87066b06b612}\label{classdai_1_1ExactInf_aa45d49dc9b2d0a7830cf87066b06b612} 
+\index{dai::ExactInf@{dai::ExactInf}!getProperties@{getProperties}}
+\index{getProperties@{getProperties}!dai::ExactInf@{dai::ExactInf}}
+\doxysubsubsection{\texorpdfstring{getProperties()}{getProperties()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classdai_1_1PropertySet}{Property\+Set}} dai\+::\+Exact\+Inf\+::get\+Properties (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Returns parameters of this inference algorithm converted into a \doxylink{classdai_1_1PropertySet}{Property\+Set}. 
+
+
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_aba3b821f6ed47b91ef4080b03c14220e}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1ExactInf_a43d56d08aa33e10e837dad60f8e5da54}\label{classdai_1_1ExactInf_a43d56d08aa33e10e837dad60f8e5da54} 
+\index{dai::ExactInf@{dai::ExactInf}!printProperties@{printProperties}}
+\index{printProperties@{printProperties}!dai::ExactInf@{dai::ExactInf}}
+\doxysubsubsection{\texorpdfstring{printProperties()}{printProperties()}}
+{\footnotesize\ttfamily string dai\+::\+Exact\+Inf\+::print\+Properties (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Returns parameters of this inference algorithm formatted as a string in the format "{}\mbox{[}key1=val1,key2=val2,...,keyn=valn\mbox{]}"{}. 
+
+
+
+Implements \mbox{\hyperlink{classdai_1_1InfAlg_a9cc7a50cbbe8825a334b16e41c92f019}{dai\+::\+Inf\+Alg}}.
+
+\Hypertarget{classdai_1_1ExactInf_ab279d7e2639373bd9425067251f81b3e}\label{classdai_1_1ExactInf_ab279d7e2639373bd9425067251f81b3e} 
+\index{dai::ExactInf@{dai::ExactInf}!calcMarginal@{calcMarginal}}
+\index{calcMarginal@{calcMarginal}!dai::ExactInf@{dai::ExactInf}}
+\doxysubsubsection{\texorpdfstring{calcMarginal()}{calcMarginal()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}} dai\+::\+Exact\+Inf\+::calc\+Marginal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{const}} \mbox{\hyperlink{classdai_1_1VarSet}{Var\+Set}} \&}]{vs }\end{DoxyParamCaption}) const}
+
+
+
+Calculates marginal probability distribution for variables {\itshape vs}. 
+
+\begin{DoxyNote}{Note}
+The complexity of this calculation is exponential in the number of variables. 
+\end{DoxyNote}
+\Hypertarget{classdai_1_1ExactInf_aed3435a7b3efc19678f7da12f0876487}\label{classdai_1_1ExactInf_aed3435a7b3efc19678f7da12f0876487} 
+\index{dai::ExactInf@{dai::ExactInf}!construct@{construct}}
+\index{construct@{construct}!dai::ExactInf@{dai::ExactInf}}
+\doxysubsubsection{\texorpdfstring{construct()}{construct()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_a94b4dd96324af3c0511584a0925f9c15}{void}} dai\+::\+Exact\+Inf\+::construct (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Helper function for constructors. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classdai_1_1ExactInf_a5a926fe33ffc6bb1d85b99e2999f4a2a}\label{classdai_1_1ExactInf_a5a926fe33ffc6bb1d85b99e2999f4a2a} 
+\index{dai::ExactInf@{dai::ExactInf}!\_beliefsV@{\_beliefsV}}
+\index{\_beliefsV@{\_beliefsV}!dai::ExactInf@{dai::ExactInf}}
+\doxysubsubsection{\texorpdfstring{\_beliefsV}{\_beliefsV}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}}$>$ dai\+::\+Exact\+Inf\+::\+\_\+beliefsV\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+All single variable marginals. 
+
+\Hypertarget{classdai_1_1ExactInf_af5acccc7ac54ae7ccd62fb0e189155c1}\label{classdai_1_1ExactInf_af5acccc7ac54ae7ccd62fb0e189155c1} 
+\index{dai::ExactInf@{dai::ExactInf}!\_beliefsF@{\_beliefsF}}
+\index{\_beliefsF@{\_beliefsF}!dai::ExactInf@{dai::ExactInf}}
+\doxysubsubsection{\texorpdfstring{\_beliefsF}{\_beliefsF}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{namespacedai_a86be70fd557d9135b4726e76b33b89fc}{Factor}}$>$ dai\+::\+Exact\+Inf\+::\+\_\+beliefsF\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+All factor variable marginals. 
+
+\Hypertarget{classdai_1_1ExactInf_ae312e3ebdad499ae3df38e63594f701a}\label{classdai_1_1ExactInf_ae312e3ebdad499ae3df38e63594f701a} 
+\index{dai::ExactInf@{dai::ExactInf}!\_logZ@{\_logZ}}
+\index{\_logZ@{\_logZ}!dai::ExactInf@{dai::ExactInf}}
+\doxysubsubsection{\texorpdfstring{\_logZ}{\_logZ}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacedai_ae7d0472fdc89a8635825d01940e91cbf}{Real}} dai\+::\+Exact\+Inf\+::\+\_\+logZ\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Logarithm of partition sum. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/dai/\mbox{\hyperlink{exactinf_8h}{exactinf.\+h}}\item 
+src/exactinf.\+cpp\end{DoxyCompactItemize}
