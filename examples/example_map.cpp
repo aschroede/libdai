@@ -161,18 +161,18 @@ void VEMap(dai::FactorGraph &fg, LibLogger &logger)
     // Stop clock
     auto end = std::chrono::steady_clock::now();
 
-    // Format instantiation data
-    string instantiation = "";
-    for (const auto &myMap : MAP.i())
-    {
-        for (const auto &entry : myMap)
-        {
-            instantiation += std::to_string(entry.second) + " ";
-        }
-    }
+    //// Format instantiation data
+    //string instantiation = "";
+    //for (const auto &myMap : MAP.i())
+    //{
+    //    for (const auto &entry : myMap)
+    //    {
+    //        instantiation += std::to_string(entry.second) + " ";
+    //    }
+    //}
 
-    logger.log(LogLevel::INFO, "[MAP] Total Time: " + std::to_string(std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()) + " ns");
-    logger.log(LogLevel::INFO, "[MAP] Instantiation: " + instantiation + " has probability " + probToString(MAP.p()));
+    //logger.log(LogLevel::INFO, "[MAP] Total Time: " + std::to_string(std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count()) + " ns");
+    //logger.log(LogLevel::INFO, "[MAP] Instantiation: " + instantiation + " has probability " + probToString(MAP.p()));
     
 }
 

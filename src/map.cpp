@@ -440,287 +440,257 @@ dai::Factor get_map_ve(dai::FactorGraph fg, std::vector<unsigned int> map_vars, 
                        std::vector<unsigned int> evidence_values, bool mapList, LibLogger &logger)
 {
 
-    try{
+    // TODO: PruneNetwork
 
-        // TODO: PruneNetwork
+    // Clamp evidence
+    auto start = std::chrono::steady_clock::now();
+    for (int i = 0; i < evidence_vars.size(); i++){
+        fg.clampReduce(evidence_vars[i], evidence_values[i], false);
+    }
+    auto end = std::chrono::steady_clock::now();
+    std::cout << "Clamping evidence " << std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() << " ns" << std::endl;
 
-        // Clamp evidence
-        auto start = std::chrono::steady_clock::now();
-        for (int i = 0; i < evidence_vars.size(); i++){
-            fg.clampReduce(evidence_vars[i], evidence_values[i], false);
-        }
-        auto end = std::chrono::steady_clock::now();
-        std::cout << "Clamping evidence " << std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() << " ns" << std::endl;
+    double num_states = 1;
+    double num_hyp_states = 1;
+    for (Var var : fg.vars()){
 
-        double num_states = 1;
-        double num_hyp_states = 1;
-        for (Var var : fg.vars()){
-            
-            if(std::find(evidence_vars.begin(), evidence_vars.end(), var.label()) == evidence_vars.end()){
+        if(std::find(evidence_vars.begin(), evidence_vars.end(), var.label()) == evidence_vars.end()){
 
-                num_states *= var.states();
-            }
-
-            if(std::find(map_vars.begin(), map_vars.end(), var.label()) != map_vars.end()){
-
-                num_hyp_states *= var.states();
-            }
-
+            num_states *= var.states();
         }
 
-        // Generate constrained variable elimination order. Don't include evidence variables
-        greedyVariableElimination::eliminationCostFunction ec = eliminationCost_MinFill;
+        if(std::find(map_vars.begin(), map_vars.end(), var.label()) != map_vars.end()){
 
-        // Find name of heuristic
-        for (const auto& entry: functionNames){
-            if (entry.first == ec){
-                logger.log(LogLevel::INFO, "[MAP] Heuristic Used: " + entry.second);
+            num_hyp_states *= var.states();
+        }
+
+    }
+
+    // Generate constrained variable elimination order. Don't include evidence variables
+    greedyVariableElimination::eliminationCostFunction ec = eliminationCost_MinFill;
+
+    // Find name of heuristic
+    for (const auto& entry: functionNames){
+        if (entry.first == ec){
+            logger.log(LogLevel::INFO, "[MAP] Heuristic Used: " + entry.second);
+            break;
+        }
+    }
+
+    // Get constrained elimination order using heuristic
+    vector<size_t> constrainedElimOrder = getConstrainedElimOrder(fg, greedyVariableElimination( ec ), map_vars, evidence_vars);
+    logger.log(LogLevel::INFO, "[MAP] Elimination Order: " + vecToString(constrainedElimOrder));
+
+    //boundTreewidth1(fg, eliminationCost_MinFill, 0);
+    std::pair<size_t,BigInt> data = calculateEliminationWidth(fg, constrainedElimOrder);
+    logger.log(LogLevel::INFO, "Treewidth: " + std::to_string(data.first));
+    logger.log(LogLevel::INFO, "Maximum States in a single cluster: " + data.second.get_str());
+
+    int eliminationCount = 0;
+    // Perform Variable Elimination
+    std::vector<dai::Factor> factors = fg.factors();
+    // Make a stack of factors to keep around so that we can backtrack and find the MAP instantiation
+    std::stack<dai::Factor> backtrack_factors;
+
+	for (Factor factor : factors){
+		logger.log(LogLevel::DEBUG, "[MAP] Factor: " + factor.toStringNice());
+	}
+
+    for (int i=0; i < constrainedElimOrder.size(); i++){
+
+        std::cout << "Eliminate: " << constrainedElimOrder[i] << endl;
+		logger.log(LogLevel::DEBUG, "Eliminating: " + constrainedElimOrder[i]);
+
+        // Find all factors fk that mention variable pi[i]
+        // f <- Then multiply those factors together
+
+        // Could also use findFactor and findVars in factorgraph
+        std::vector<dai::Factor> toMultiply;
+
+        for(int j=0; j<factors.size(); j++){
+
+            dai::VarSet vars = (factors[j].vars());
+
+            for (auto it = vars.begin(); it != vars.end(); ++it){
+
+                if(it->label() == constrainedElimOrder[i]){
+
+                    toMultiply.push_back(factors[j]);
+                }
+            }
+        }
+
+		for (Factor factor : toMultiply){
+			logger.log(LogLevel::DEBUG, "Factors to multiply: " + factor.toStringNice());
+		}
+
+        // If more than one factor found with the variable to be eliminated,
+        // then multiply together the factors
+        dai::Factor newFactor = toMultiply[0];
+        if(toMultiply.size() > 1){
+
+            for (int i = 1; i<toMultiply.size(); i++){
+
+                newFactor *= toMultiply[i];
+            }
+        }
+
+        // Check if variable to eliminate is a MAP variable
+        // If it is make sure to keep the final factor for this variable prior to maximization available
+        // for backtracking to find assignment later.
+        if (std::find(map_vars.begin(), map_vars.end(), constrainedElimOrder[i]) != map_vars.end()){
+
+            // Store this factor for backtracking
+            backtrack_factors.push(newFactor);
+
+            // If variable pi(i) is a map variable then
+            // fi <- max out pi(i) from f
+            dai::VarSet vars = newFactor.vars();
+
+            dai::VarSet varsToKeep;
+            for (auto it = vars.begin(); it != vars.end(); ++it){
+
+                if(it->label() == constrainedElimOrder[i]){
+                    continue;
+                }
+                else{
+                    varsToKeep.insert(*it);
+                }
+            }
+            newFactor = newFactor.maxMarginal(varsToKeep,  false);
+        }
+
+        //Else fi <- sum out pi(i) from f
+        else{
+
+            dai::VarSet vars = newFactor.vars();
+
+            dai::VarSet varsToKeep;
+            for (auto it = vars.begin(); it != vars.end(); ++it){
+
+                if(it->label() == constrainedElimOrder[i]){
+                    continue;
+                }
+                else{
+                    varsToKeep.insert(*it);
+                }
+            }
+            newFactor = newFactor.marginal(varsToKeep, false);
+        }
+
+        // Replace all factors fk in the set of factor S by factor fi
+        // Remove factors to multiply and replace with newFactor
+        for (auto it = toMultiply.begin(); it != toMultiply.end(); ++it){
+            factors.erase(std::find_if(factors.begin(), factors.end(), [&](Factor const& f){ return f == *it; }));
+        }
+        factors.push_back(newFactor);
+
+        std::cout << "Eliminated " << ++eliminationCount << "/" << constrainedElimOrder.size() << endl;
+
+    }
+
+    // Now backtrack to get the instantiation
+    std::map<size_t, size_t> assignmentByLabel; // map from Var label -> chosen value
+    while (!backtrack_factors.empty()){
+        dai::Factor factor = backtrack_factors.top();
+        backtrack_factors.pop();
+
+		logger.log(LogLevel::DEBUG, "Backtrack factor: " + factor.toStringNice());
+
+        // Find which MAP variable in this factor still needs assignment
+        size_t targetVarLabel = std::numeric_limits<size_t>::max();
+        for (auto it = factor.vars().begin(); it != factor.vars().end(); ++it) {
+            size_t lbl = it->label();
+            if (std::find(map_vars.begin(), map_vars.end(), lbl) != map_vars.end() && assignmentByLabel.find(lbl) == assignmentByLabel.end()) {
+                targetVarLabel = lbl;
                 break;
             }
         }
 
-        // Get constrained elimination order using heuristic
-        vector<size_t> constrainedElimOrder = getConstrainedElimOrder(fg, greedyVariableElimination( ec ), map_vars, evidence_vars);
-        logger.log(LogLevel::INFO, "[MAP] Elimination Order: " + vecToString(constrainedElimOrder));
-
-        //boundTreewidth1(fg, eliminationCost_MinFill, 0);
-        std::pair<size_t,BigInt> data = calculateEliminationWidth(fg, constrainedElimOrder);
-        logger.log(LogLevel::INFO, "Treewidth: " + std::to_string(data.first));
-        logger.log(LogLevel::INFO, "Maximum States in a single cluster: " + data.second.get_str());
-        
-        int eliminationCount = 0;
-        // Perform Variable Elimination
-        std::vector<dai::Factor> factors = fg.factors();
-        // Make a stack of factors to keep around so that we can backtrack and find the MAP instantiation
-        std::stack<dai::Factor> backtrack_factors;
-
-        // for (dai::Factor& factor : factors) {
-        //     std::cout << factor.p().size() << " " << factor.i().size() << endl;
-        // }
-
-        for (int i=0; i < constrainedElimOrder.size(); i++){
-
-            std::cout << "Eliminate: " << constrainedElimOrder[i] << endl;
-
-            // Find all factors fk that mention variable pi[i] 
-            // f <- Then multiply those factors together 
-
-            // Could also use findFactor and findVars in factorgraph
-            std::vector<dai::Factor> toMultiply;
-
-            for(int j=0; j<factors.size(); j++){
-                
-                dai::VarSet vars = (factors[j].vars());
-
-                for (auto it = vars.begin(); it != vars.end(); ++it){
-
-                    if(it->label() == constrainedElimOrder[i]){
-                        
-                        toMultiply.push_back(factors[j]);
-                    }
-                }
-            }
-
-            // If more than one factor found with the variable to be eliminated,
-            // then multiply together the factors
-            dai::Factor newFactor = toMultiply[0];
-            if(toMultiply.size() > 1){
-
-                for (int i = 1; i<toMultiply.size(); i++){
-
-                    newFactor *= toMultiply[i];
-                }
-            }
-
-            // Check if variable to eliminate is a MAP variable
-            // If it is make sure to keep the final factor for this variable prior to maximization available
-            // For backtracking to find assignment later.
-            if (std::find(map_vars.begin(), map_vars.end(), constrainedElimOrder[i]) != map_vars.end()){
-
-                // Store this factor for backtracking
-                backtrack_factors.push(newFactor);
-
-                // If variable pi(i) is a map variable then
-                // fi <- max out pi(i) from f
-                dai::VarSet vars = newFactor.vars();
-
-                dai::VarSet varsToKeep;
-                for (auto it = vars.begin(); it != vars.end(); ++it){
-
-                    if(it->label() == constrainedElimOrder[i]){
-                        continue;
-                    }
-                    else{
-                        varsToKeep.insert(*it);
-                    }
-                }
-                newFactor = newFactor.maxMarginalTransparent(varsToKeep,  false);
-            }
-
-            //Else fi <- sum out pi(i) from f
-            else{
-                
-                dai::VarSet vars = newFactor.vars();
-
-                dai::VarSet varsToKeep;
-                for (auto it = vars.begin(); it != vars.end(); ++it){
-
-                    if(it->label() == constrainedElimOrder[i]){
-                        continue;
-                    }
-                    else{
-                        varsToKeep.insert(*it);
-                    }
-                }
-                newFactor = newFactor.marginal(varsToKeep, false);
-            }
-
-            // Replace all factors fk in the set of factor S by factor fi
-            // Remove factors to multiply and replace with newFactor
-            for (auto it = toMultiply.begin(); it != toMultiply.end(); ++it){
-                factors.erase(std::find_if(factors.begin(), factors.end(), [&](Factor const& f){ return f == *it; }));
-            }
-            factors.push_back(newFactor);
-
-            std::cout << "Eliminated " << ++eliminationCount << "/" << constrainedElimOrder.size() << endl;
-
-            std::cout << sizeof(factors) << std::endl;
-
+        // If we couldn't find an unassigned MAP var in this factor, skip it
+        if (targetVarLabel == std::numeric_limits<size_t>::max()){
+            logger.log(LogLevel::ERROR, "[MAP] Variable label does not exist");
+            continue;
         }
 
-        // Now backtrack to get the instantiation
-        std::map<size_t, size_t> assignmentByLabel; // map from Var label -> chosen value
-        while (!backtrack_factors.empty()){
-            dai::Factor factor = backtrack_factors.top();
-            backtrack_factors.pop();
+        // Iterate over all entries in the factor and pick the value for targetVarLabel
+        // that maximizes the factor's probability while being consistent with already chosen assignments
+		// for variables that are present in the factor.
+        double bestP = -2.0;
+        size_t bestVal = 0;
 
-            // Find which MAP variable in this factor still needs assignment
+        for (size_t idx = 0; idx < factor.nrStates(); ++idx) {
+            // calcState returns a map<Var, size_t>
+            std::map<dai::Var, size_t> stateMap = dai::calcState(factor.vars(), idx);
 
-            size_t targetVarLabel = std::numeric_limits<size_t>::max();
-            for (auto it = factor.vars().begin(); it != factor.vars().end(); ++it) {
-                size_t lbl = it->label();
-                if (std::find(map_vars.begin(), map_vars.end(), lbl) != map_vars.end() && assignmentByLabel.find(lbl) == assignmentByLabel.end()) {
-                    targetVarLabel = lbl;
+            // Check consistency with already chosen assignments
+            bool consistent = true;
+			// a is each of the assignments made already
+			// should iterate through each of the variables in the factor itself and check against their assignments
+			// in assignmentByLabel
+
+            for (const auto& v : factor.vars()) {
+                size_t lbl = v.label();
+
+                // Only check variables that are already assigned
+                auto itAssign = assignmentByLabel.find(lbl);
+                if (itAssign == assignmentByLabel.end())
+                    continue;
+
+                // Look up this variable in the stateMap
+                auto itState = std::find_if(
+                    stateMap.begin(), stateMap.end(),
+                    [&](const std::pair<dai::Var, size_t>& p) {
+                        return p.first.label() == lbl;
+                    });
+
+                if (itState == stateMap.end() || itState->second != itAssign->second) {
+                    consistent = false;
                     break;
                 }
             }
 
-            // If we couldn't find an unassigned MAP var in this factor, skip it
-            if (targetVarLabel == std::numeric_limits<size_t>::max()){
-                logger.log(LogLevel::ERROR, "[MAP] Variable label does not exist");
+			if (!consistent)
                 continue;
+
+            // get value for target var in this state
+            auto itTarget = std::find_if(stateMap.begin(), stateMap.end(), [&](const std::pair<dai::Var, size_t> &p) {
+                return p.first.label() == targetVarLabel;
+            });
+            if (itTarget == stateMap.end()){
+                logger.log(LogLevel::ERROR, "[MAP] Variable label does not exist");
+                continue; // shouldn't happen
             }
 
-            // Iterate over all entries in the factor and pick the value for targetVarLabel
-            // that maximizes the factor's probability while being consistent with already chosen assignments
-            double bestP = -1.0;
-            size_t bestVal = 0;
-
-            for (size_t idx = 0; idx < factor.nrStates(); ++idx) {
-                // calcState returns a map<Var, size_t>
-                std::map<dai::Var, size_t> stateMap = dai::calcState(factor.vars(), idx);
-
-                // Check consistency with already chosen assignments
-                bool consistent = true;
-                for (const auto &a : assignmentByLabel) {
-                    // find the Var in stateMap with matching label
-                    auto itfind = std::find_if(stateMap.begin(), stateMap.end(), [&](const std::pair<dai::Var, size_t> &p) {
-                        return p.first.label() == a.first;
-                    });
-                    if (itfind == stateMap.end() || itfind->second != a.second) {
-                        consistent = false;
-                        break;
-                    }
-                }
-                if (!consistent)
-                    continue;
-
-                // get value for target var in this state
-                auto itTarget = std::find_if(stateMap.begin(), stateMap.end(), [&](const std::pair<dai::Var, size_t> &p) {
-                    return p.first.label() == targetVarLabel;
-                });
-                if (itTarget == stateMap.end()){
-                    logger.log(LogLevel::ERROR, "[MAP] Variable label does not exist");
-                    continue; // shouldn't happen
-                }
-
-                double p = factor.p()[idx];
-                if (p > bestP) {
-                    bestP = p;
-                    bestVal = itTarget->second;
-                }
+            double p = factor.p()[idx];
+            if (p > bestP) {
+                bestP = p;
+                bestVal = itTarget->second;
             }
-
-            // Record chosen value (if nothing matched, default to 0)
-            assignmentByLabel[targetVarLabel] = bestVal;
-            logger.log(LogLevel::INFO, "[MAP-BT] Chosen var " + std::to_string(targetVarLabel) + " = " + std::to_string(bestVal) + " (p=" + (std::ostringstream() << std::scientific << std::setprecision(5) << bestP).str() + ")");
-            //logger.log(LogLevel::INFO, "[MAP-BT] p = " + (std::ostringstream() << std::scientific << std::setprecision(5) << bestP).str());
-
-            //std:string exactly_zero = "false";
-            //if (bestP == 0.0) {exactly_zero = "true";}
-            //logger.log(LogLevel::INFO, "Is prob exactly zero? " + exactly_zero);
         }
 
-        // Assemble final MAP instantiation in the order of map_vars
-        std::vector<unsigned long int> mapInstantiation;
-        for (size_t lbl : map_vars) {
-            auto it = assignmentByLabel.find(lbl);
-            if (it != assignmentByLabel.end())
-                mapInstantiation.push_back(it->second);
-            else
-                mapInstantiation.push_back(0); // fallback if not assigned
-        }
-        logger.log(LogLevel::INFO, "[MAP-BT] Final instantiation: " + vecToString(mapInstantiation));
+        // Record chosen value (if nothing matched, default to 0)
+        assignmentByLabel[targetVarLabel] = bestVal;
+        logger.log(LogLevel::INFO, "[MAP-BT] Chosen var " + std::to_string(targetVarLabel) + " = " + std::to_string(bestVal) + " (p=" + (std::ostringstream() << std::scientific << std::setprecision(5) << bestP).str() + ")");
+        //logger.log(LogLevel::INFO, "[MAP-BT] p = " + (std::ostringstream() << std::scientific << std::setprecision(5) << bestP).str());
 
-        // Populate the instantiation information in the final returned factor so callers (e.g. examples)
-        // that expect Factor.i() to contain the MAP assignment will see it. We set the same MAP
-        // instantiation for all rows of the final factor (the instantiation is the joint assignment
-        // to the MAP variables recovered by backtracking).
-        if (!factors.empty()) {
-            dai::Factor &finalFactor = factors[0];
-            std::map<dai::Var, size_t> instMap;
-            for (size_t k = 0; k < map_vars.size(); ++k) {
-                size_t lbl = map_vars[k];
-                size_t val = 0;
-                auto it = assignmentByLabel.find(lbl);
-                if (it != assignmentByLabel.end())
-                    val = it->second;
-                instMap[ fg.var(lbl) ] = val;
-            }
-            // Set this instantiation for every entry in the factor
-            for (size_t i = 0; i < finalFactor.nrStates(); ++i)
-                finalFactor.setInstantiation(i, instMap);
-        }
-
-        // // Shouldn't need this multiplication at the end -> all factors collapsed already
-        // // Multiply remaining factors, no normalization?
-        // dai::Factor newFactor = factors[0];
-        // if(factors.size() > 1){
-        //     for (int i = 1; i<factors.size(); i++){
-        //         newFactor *= factors[i];
-        //     }
-        // }
-        // std::cout << "Returning last factor" << std::endl;
-        return factors[0];
+        //std:string exactly_zero = "false";
+        //if (bestP == 0.0) {exactly_zero = "true";}
+        //logger.log(LogLevel::INFO, "Is prob exactly zero? " + exactly_zero);
     }
-    
-    catch( Exception &e ) {
-        // Save a copy of /proc/self/maps to a file
-        std::ofstream mapsFile("proc_self_maps_copy.txt");
-        if (mapsFile.is_open()) {
-            std::ifstream maps("/proc/self/maps");
-            if (maps.is_open()) {
-                mapsFile << maps.rdbuf();
-                maps.close();
-            } else {
-                std::cerr << "Failed to open /proc/self/maps for reading." << std::endl;
-            }
 
-            mapsFile.close();
-        } else {
-            std::cerr << "Failed to open proc_self_maps_copy.txt for writing." << std::endl;
-        }
+    // Assemble final MAP instantiation in the order of map_vars
+    std::vector<unsigned long int> mapInstantiation;
+    for (size_t lbl : map_vars) {
+        auto it = assignmentByLabel.find(lbl);
+        if (it != assignmentByLabel.end())
+            mapInstantiation.push_back(it->second);
+        else
+            mapInstantiation.push_back(0); // fallback if not assigned
     }
+
+    logger.log(LogLevel::INFO, "[MAP-BT] Final instantiation: " + vecToString(mapInstantiation));
+    return factors[0];
 }
 
 std::vector<unsigned long int> get_map_jt(dai::FactorGraph fg, std::vector<unsigned int> hypothesis_vars, std::vector<unsigned int> evidence_vars,
